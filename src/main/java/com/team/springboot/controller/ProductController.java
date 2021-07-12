@@ -21,13 +21,13 @@ import java.util.List;
 public class ProductController {
     @Autowired
     ProductService productService;
-    
+
     @Autowired
     ProductCategoryService productCategoryService;
 
     @Autowired
     UserHeadService userHeadService;
-    
+
     @RequestMapping("/init")
     public String showproductInfo(HttpSession session, Model m) {
         String account = (String) session.getAttribute("u_Account");
@@ -147,7 +147,7 @@ public class ProductController {
     @RequestMapping("/edit/info")
     @ResponseBody
     public BaseResponse edit (@RequestParam("p_Id") String p_Id,
-                                HttpSession session){
+                              HttpSession session){
         Product product=productService.selectProductallById(Integer.valueOf(p_Id));
         BaseResponse baseResponse = new BaseResponse();
         if(product!=null) {
@@ -171,7 +171,7 @@ public class ProductController {
                             @RequestParam("p_Price") Double p_Price,
                             @RequestParam("p_Des") String p_Des,
                             HttpSession session
-                            ){
+    ){
         Product product=new Product();
         product.setP_Id(Integer.valueOf(p_Id));
         product.setP_Account(p_Account);
@@ -202,7 +202,8 @@ public class ProductController {
                        @RequestParam("p_Date") Date p_Date,
                        @RequestParam("p_Price") Double p_Price,
                        @RequestParam("p_Des") String p_Des,
-                       @RequestParam("c_Id") String c_Id){
+                       @RequestParam("p_num") int p_num
+    ){
 
         ProductCategory productCategory = new ProductCategory();
         productCategory.setP_Id(productCategoryService.selectMaxP_Id()+1);
@@ -212,13 +213,27 @@ public class ProductController {
         productCategory.setP_Title(p_Title);
         productCategory.setP_Name(p_Name);
         productCategory.setP_Price(p_Price);
-        productCategory.setC_Id(c_Id);
+        productCategory.setP_num(p_num);
+        switch (p_Name)
+        {
+            case "日常用品":productCategory.setC_Id("c09");
+            case "书籍教材":productCategory.setC_Id("c01");
+            case "电子产品":productCategory.setC_Id("c02");
+            case "代步工具":productCategory.setC_Id("c03");
+            case "衣帽鞋伞":productCategory.setC_Id("c04");
+            case "体育健身":productCategory.setC_Id("c05");
+            case "家用电器":productCategory.setC_Id("c06");
+            case "虚拟产品":productCategory.setC_Id("c07");
+            case "手工设计":productCategory.setC_Id("c08");
+            case "音乐器材":productCategory.setC_Id("c10");
+        }
+        //productCategory.setC_Id();
         productCategoryService.insertProductCategory(productCategory);
         if(productService.selectProductById(Integer.valueOf(productCategory.getP_Id()))!=null){
-          return "admin/productadd";
+            return "admin/productadd";
         }
         else
-        return "admin/productadd";
+            return "admin/productadd";
     }
     @RequestMapping("/typeValue")
     @ResponseBody

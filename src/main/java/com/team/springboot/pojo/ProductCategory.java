@@ -13,6 +13,7 @@ public class ProductCategory implements Comparable<ProductCategory>{
     private Double p_Price;
     private String p_Des;
     private String p_href;
+    private int p_num;
 
     public String getP_href() {
         return p_href;
@@ -93,6 +94,15 @@ public class ProductCategory implements Comparable<ProductCategory>{
     public void setP_Title(String p_Title) {
         this.p_Title = p_Title;
     }
+
+    public void setP_num(int p_num) {
+        this.p_num = p_num;
+    }
+
+    public int getP_num() {
+        return p_num;
+    }
+
     @Override
     public int compareTo(ProductCategory o)
     {
