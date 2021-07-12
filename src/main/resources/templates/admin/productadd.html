@@ -986,7 +986,7 @@
                 const field = res.data;
                 $.each(field, function (index, item) {  // $.each表示对JavaScript中数组对象的遍历，函数第一个参数为下标，第二个参数为下标对应的值
                     $('#o_type').append(new Option(item,item));// 下拉菜单里添加元素
-                });
+                });//
                 form.render("select");
             }
         });
