@@ -102,7 +102,7 @@ public class ProductCategory implements Comparable<ProductCategory>{
     public int getP_num() {
         return p_num;
     }
-
+//
     @Override
     public int compareTo(ProductCategory o)
     {
