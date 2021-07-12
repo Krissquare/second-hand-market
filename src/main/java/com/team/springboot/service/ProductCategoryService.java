@@ -17,6 +17,6 @@ public interface ProductCategoryService {
     List<ProductCategory>selectAllcName();
     int selectMaxP_Id();
     List<ProductCategory>selectProductCategorysByp_name1(String p_Name);
-///
+////
     List<ProductCategory>selectProductCategorysByRange(int min,int max);
 }
