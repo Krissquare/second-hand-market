@@ -11,6 +11,7 @@ import com.team.springboot.service.ShoppingCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -174,27 +175,14 @@ public class showController {
 
     }
 
-    @RequestMapping("/range")
-    public String range(@RequestParam(value = "minRange",name = "minRange",required = false)String minRange,
-                        @RequestParam(value="maxRange",name="maxRange",required = false)String maxRange,
-                        Model m,  HttpServletRequest req)
+    @PostMapping("/range")
+    public String range(@RequestParam("minRange")int minRange,
+                        @RequestParam("maxRange") int maxRange, Model model)
     {
-        setLoginState(m, req);
-
-        int min,max;
-        if(minRange!=null)
-            min=Integer.parseInt(minRange);
-        else
-            min=0;
-        if(maxRange!=null)
-            max=Integer.parseInt(maxRange);
-        else
-            max=100000;
-
-        int pageSize = 15;
-        List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(min,max);
+        Integer pageSize = 15;
+        List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(minRange,maxRange);
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
-        m.addAttribute("productList", pageInfo);
+        model.addAttribute("productList", pageInfo);
         return "html/shop-left-sidebar";
     }
 
