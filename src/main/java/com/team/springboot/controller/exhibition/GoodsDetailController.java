@@ -55,6 +55,11 @@ public class GoodsDetailController   {
        return  baseResponse;
    }
 
+   @RequestMapping("/showShoppingCar")
+   public String showShoppingCar(){
+
+       return "html/cart";
+   }
 
    //购买商品layer初始化
    @RequestMapping("/buyGoodsInit")
