@@ -566,7 +566,7 @@
                         <div class="dropdown right1 md_acc ">
 								<span class="dropdown-toggle">
                                     <span th:if="${signInFlag}" href="" class="font-weight-bolder"
-                                       th:text="${account}"></span>
+                                          th:text="${account}"></span>
                                     <a th:if="${!signInFlag}" href="/login" class="font-weight-bolder">登录</a>
 								</span>
 
@@ -578,13 +578,13 @@
 
                             <span class="dropdown-toggle">
                                     <a th:if="${signInFlag}" href="index.html" class="font-weight-bolder"
-                                       >退出</a>
+                                    >退出</a>
                                     <a th:if="${!signInFlag}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
                         </div>
                         <div class="dropdown right1 md_1 hr_" th:if="${signInFlag}">
 								<span class="dropdown-toggle">
-                                    <a href="userInfo.html" class="font-weight-bolder">修改个人信息</a>
+                                    <a th:href="@{/admin/userInfo}" class="font-weight-bolder">修改个人信息</a>
 								</span>
 
                         </div>
@@ -645,7 +645,7 @@
                                         <img src="assets/img/订单.png" style="height: 33px;width: 30px" alt="">
                                         <span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
                                             <a th:if="${signInFlag}" href="/showMyTransactionOrders">订单管理</a></span>
-                                            <a th:if="${!signInFlag}" href="/login">订单管理</a></span>
+                                        <a th:if="${!signInFlag}" href="/login">订单管理</a></span>
                                     </a>
                                 </li>
                                 <li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
@@ -1158,8 +1158,8 @@
                     <div class="product_thumb top_thumb bg-white rounded">
                         <div class="cat_effect">
                             <div class="pro_image">
-                                <a href="shop-left-sidebar.html"><img src="assets/img/category/日常用品.png"
-                                                                      class=" mx-auto d-block img-fluid" alt="category_2"></a>
+                                <a href="/search?search=日常用品"><img src="assets/img/category/日常用品.png"
+                                                                   class=" mx-auto d-block img-fluid" alt="category_2"></a>
                             </div>
                             <div class="main_text">
                                 <p class="text-center pro-heading my-2 text-uppercase"><a class="text-muted"
@@ -1175,8 +1175,8 @@
                     <div class="product_thumb top_thumb bg-white rounded">
                         <div class="cat_effect">
                             <div class="pro_image">
-                                <a href="shop-left-sidebar.html"><img src="assets/img/category/书籍教材.png"
-                                                                      class=" mx-auto d-block img-fluid" alt="category_1"></a>
+                                <a href="/search?search=书籍教材"><img src="assets/img/category/书籍教材.png"
+                                                                   class=" mx-auto d-block img-fluid" alt="category_1"></a>
                             </div>
                             <div class="main_text">
                                 <p class="text-center pro-heading my-2 text-uppercase"><a class="text-muted"
@@ -1192,8 +1192,8 @@
                     <div class="product_thumb top_thumb bg-white rounded">
                         <div class="cat_effect">
                             <div class="pro_image">
-                                <a href="shop-left-sidebar.html"><img src="assets/img/category/电子产品.png"
-                                                                      class=" mx-auto d-block img-fluid" alt="category_7"></a>
+                                <a href="/search?search=电子产品"><img src="assets/img/category/电子产品.png"
+                                                                   class=" mx-auto d-block img-fluid" alt="category_7"></a>
                             </div>
                             <div class="main_text">
                                 <p class="text-center pro-heading my-2 text-uppercase"><a class="text-muted"
@@ -1209,8 +1209,8 @@
                     <div class="product_thumb top_thumb bg-white rounded">
                         <div class="cat_effect">
                             <div class="pro_image">
-                                <a href="shop-left-sidebar.html"><img src="assets/img/category/衣帽鞋伞.png"
-                                                                      class=" mx-auto d-block img-fluid" alt="category_4"></a>
+                                <a href="/search?search=衣帽鞋伞"><img src="assets/img/category/衣帽鞋伞.png"
+                                                                   class=" mx-auto d-block img-fluid" alt="category_4"></a>
                             </div>
                             <div class="main_text">
                                 <p class="text-center pro-heading my-2 text-uppercase"><a class="text-muted"
@@ -1226,8 +1226,8 @@
                     <div class="product_thumb top_thumb bg-white rounded">
                         <div class="cat_effect">
                             <div class="pro_image">
-                                <a href="shop-left-sidebar.html"><img src="assets/img/category/代步工具.png"
-                                                                      class=" mx-auto d-block img-fluid" alt="category_5"></a>
+                                <a href="/search?search=代步工具"><img src="assets/img/category/代步工具.png"
+                                                                   class=" mx-auto d-block img-fluid" alt="category_5"></a>
                             </div>
                             <div class="main_text">
                                 <p class="text-center pro-heading my-2 text-uppercase"><a class="text-muted"
@@ -1243,8 +1243,8 @@
                     <div class="product_thumb top_thumb bg-white rounded">
                         <div class="cat_effect">
                             <div class="pro_image">
-                                <a href="shop-left-sidebar.html"><img src="assets/img/category/家用电器.png"
-                                                                      class=" mx-auto d-block img-fluid" alt="category_6"></a>
+                                <a href="/search?search=家用电器"><img src="assets/img/category/家用电器.png"
+                                                                   class=" mx-auto d-block img-fluid" alt="category_6"></a>
                             </div>
                             <div class="main_text">
                                 <p class="text-center pro-heading my-2 text-uppercase"><a class="text-muted"
@@ -1260,8 +1260,8 @@
                     <div class="product_thumb top_thumb bg-white rounded">
                         <div class="cat_effect">
                             <div class="pro_image">
-                                <a href="shop-left-sidebar.html"><img src="assets/img/category/体育健身.png"
-                                                                      class=" mx-auto d-block img-fluid" alt="category_7"></a>
+                                <a href="/search?search=体育健身"><img src="assets/img/category/体育健身.png"
+                                                                   class=" mx-auto d-block img-fluid" alt="category_7"></a>
                             </div>
                             <div class="main_text">
                                 <p class="text-center pro-heading my-2 text-uppercase"><a class="text-muted"
@@ -1277,8 +1277,8 @@
                     <div class="product_thumb top_thumb bg-white rounded">
                         <div class="cat_effect">
                             <div class="pro_image">
-                                <a href="shop-left-sidebar.html"><img src="assets/img/category/虚拟产品.png"
-                                                                      class=" mx-auto d-block img-fluid" alt="category_2"></a>
+                                <a href="/search?search=虚拟产品"><img src="assets/img/category/虚拟产品.png"
+                                                                   class=" mx-auto d-block img-fluid" alt="category_2"></a>
                             </div>
                             <div class="main_text">
                                 <p class="text-center pro-heading my-2 text-uppercase"><a class="text-muted"
@@ -1294,8 +1294,8 @@
                     <div class="product_thumb top_thumb bg-white rounded">
                         <div class="cat_effect">
                             <div class="pro_image">
-                                <a href="shop-left-sidebar.html"><img src="assets/img/category/手工设计.png"
-                                                                      class=" mx-auto d-block img-fluid" alt="category_1"></a>
+                                <a href="/search?search=手工设计"><img src="assets/img/category/手工设计.png"
+                                                                   class=" mx-auto d-block img-fluid" alt="category_1"></a>
                             </div>
                             <div class="main_text">
                                 <p class="text-center pro-heading my-2 text-uppercase"><a class="text-muted"
@@ -1311,8 +1311,8 @@
                     <div class="product_thumb top_thumb bg-white rounded">
                         <div class="cat_effect">
                             <div class="pro_image">
-                                <a href="shop-left-sidebar.html"><img src="assets/img/category/音乐器材.png"
-                                                                      class=" mx-auto d-block img-fluid" alt="category_4"></a>
+                                <a href="/search?search=音乐器材"><img src="assets/img/category/音乐器材.png"
+                                                                   class=" mx-auto d-block img-fluid" alt="category_4"></a>
                             </div>
                             <div class="main_text">
                                 <p class="text-center pro-heading my-2 text-uppercase"><a class="text-muted"
@@ -1540,7 +1540,7 @@
 
 <!-- banner -->
 
- <!-- container custom_container main_banner -->
+<!-- container custom_container main_banner -->
 
 <!-- banner end -->
 
