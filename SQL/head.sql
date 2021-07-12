@@ -3,3 +3,5 @@ CREATE TABLE `userHead` (
                         `u_Account` varchar(100) NOT NULL,
                         PRIMARY KEY (`u_Account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --
