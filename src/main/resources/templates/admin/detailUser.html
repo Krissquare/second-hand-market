@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <title>detail</title>
+</head>
+<body>
+<blockquote class=layui-elem-quote>用户信息</blockquote>
+<div class="layui-form-item">
+    <label class="layui-form-label">用户名</label>
+    <div class="layui-input-inline">
+        <input type="text" th:value="${session.userAddressList.getU_Name()}"  name="title" readonly lay-verify="required" autocomplete="off" class="layui-input">
+    </div>
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label">收货地址1</label>
+    <div class="layui-input-inline">
+        <input type="text" th:value="${session.userAddressList.getA_Address1()}"  name="title" readonly lay-verify="required" autocomplete="off" class="layui-input">
+    </div>
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label">收货地址2</label>
+    <div class="layui-input-inline">
+        <input type="text" th:value="${session.userAddressList.getA_Address2()}"  name="title" readonly lay-verify="required" autocomplete="off" class="layui-input">
+    </div>
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label">收货地址3</label>
+    <div class="layui-input-inline">
+        <input type="text" th:value="${session.userAddressList.getA_Address3()}"  name="title" readonly lay-verify="required" autocomplete="off" class="layui-input">
+    </div>
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label">收货地址4</label>
+    <div class="layui-input-inline">
+        <input type="text" th:value="${session.userAddressList.getA_Address4()}"  name="title" readonly lay-verify="required" autocomplete="off" class="layui-input">
+    </div>
+</div>
+
+<script th:src="@{/layui/layui.js}"></script>
+</body>
+</html>

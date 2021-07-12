@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html  class="" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Hitech</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/all.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/owl.theme.default.min.css}">
+<!--		<link rel="shortcut icon" type="image/x-icon" href="assets/img/Favicon.ico}">-->
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/fontawesome.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/fontawesome.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/media.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/responsive.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/owl.carousel.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/animate.min.css}">
+	    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+</head>
+<body>
+<!-- header area -->
+																		<!-- first row -->
+<div>
+		<div class="topbar-outer py-2 border-bottom bg-white d-md-none d-none d-none d-lg-block">
+			<div class="container custom_container">
+				<div class="row">
+					<div class="col-lg-5 col-md-4 col-sm-4 topbar_left">
+						<ul>
+							<li>
+								<span class="font-weight-bolder">厦门大学用户后台</span>
+							</li>
+						</ul>
+					</div> <!-- col-lg-5 col-md-4 col-sm-4 hidden-md-down topbar_left -->
+					<div class="col-lg-7 col-md-8 col-sm-8 text-xs-right  topbar_right text-right">
+						
+						<nav class="navbar ">
+							<div class="dropdown right1 md_acc ">
+								<img th:src= "${session.url}" class="layui-nav-img">
+							  <span class="dropdown-toggle" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder"> 我的&nbsp;<i class="fas fa-angle-down"></i></a>
+							  </span>
+							  <div class="dropdown-menu r_menu dropdown-menu-right" >
+								    <a class="dropdown-item font-weight-bolder" href="login.html">基本资料</a>
+								    <a class="dropdown-item font-weight-bolder" href="registration.html">退出</a>
+							  </div>
+							</div>
+
+						</nav>
+						
+					</div> <!-- col-lg-7 col-md-8 col-sm-8 text-xs-right hidden-md-down topbar_right text-right -->
+				</div> <!-- row -->
+			</div> <!-- container custom_container -->
+		</div> <!-- topbar-outer py-2 border-bottom bg-white -->
+
+		<div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
+
+			<div class="container custom_container">
+				<a style="font-weight: bolder;color: #e85454;font-family:'Microsoft Yi Baiti',serif;font-size: 35px;position: absolute;left: 20px;top:50px">厦门大学二手交易市场</a>
+				<div class="row">
+
+					<div class="col-lg-9 sp_hz_menu text-xl-right">
+						<ul class="main-menu navbar">
+							<li><a href="index.html">用户管理</a></li>
+							<li><a href="shop-left-sidebar.html">商品管理</a></li>
+							<li><a href="blog.html">购物车管理</a></li>
+							<li><a href="portfolio-grid-4.html">回到主页</a></li>
+							<li><a class="dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-expanded="false">订单管理 <i class="fas fa-angle-down"></i></a>
+							    <ul class="dropdown-menu">
+							    	<li class="d-block"><a class="dropdown-item font-weight-bolder" href="about-us.html">我是卖家</a></li>
+							    	<li class="d-block"><a class="dropdown-item font-weight-bolder" href="single-product.html">我是买家</a></li>
+							    </ul>
+						    </li>
+						</ul>
+						<nav class="navbar text-right">
+							<div class="dropdown right1 md_acc ">
+								<img th:src= "${session.url}" class="layui-nav-img">
+								<span class="dropdown-toggle" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder"> 我的&nbsp;<i class="fas fa-angle-down"></i></a>
+							  </span>
+								<div class="dropdown-menu r_menu dropdown-menu-right" >
+									<a class="dropdown-item font-weight-bolder" href="login.html">基本资料</a>
+									<a class="dropdown-item font-weight-bolder" href="registration.html">退出</a>
+								</div>
+							</div>
+
+						</nav>
+					</div> <!-- col-lg-9 text-left -->
+
+				</div> <!-- row -->
+			</div> <!-- container custom_container -->
+		</div> <!-- header_bottom shadow-sm bg-white rounded bg-white -->
+
+</div> <!-- header -->
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+	//JavaScript代码区域
+	layui.use('element', function(){
+		var element = layui.element;
+
+	});
+</script>
+<script>
+	layui.use('table', function(){
+		var table = layui.table;
+		table.on('tool(test)', function(obj){
+			var data = obj.data; //获得当前行数据
+			var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+			var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+			const $=layui.$;
+			if(layEvent === 'detail'){ //查看
+				layer.confirm('确认查看', function(index){
+					$.ajax({
+						url: '/admin/detail/user',
+						type: 'POST',
+						data:{u_Account:data.u_Account},
+						success:function (res){
+							if(res.code===200) {
+								tableIns.reload();
+								layer.open({
+									type: 2,
+									content: '/admin/detailuser',
+									title:false,
+									area: ['500px', '400px'],
+									success: function(layero, index){
+										layer.msg('正在查看用户:'+data.u_Account+'的信息');
+									}
+								});
+							}
+							else
+								layer.msg('查看失败');
+						}
+						,error(error){
+							layer.msg(error);
+						}
+					});
+					layer.close(index);
+				});
+			} else if(layEvent === 'del'){ //删除
+				layer.confirm('真的要删除行么', function(index){
+					$.ajax({
+						url: '/admin/userdelete',
+						type: 'POST',
+						data:{u_Account:data.u_Account},
+						success:function (res){
+							if(res.code===200) {
+								tableIns.reload();
+								layer.msg('删除成功');
+							}
+							else
+								layer.msg('删除失败');
+						}
+						,error(error){
+							layer.msg(error);
+						}
+					});
+					layer.close(index);
+				});
+			} else if (layEvent === 'edit') { //编辑
+				layer.confirm('确认查看', function(index){
+					var count=0;
+					$.ajax({
+						url: '/admin/user/edit',
+						type: 'POST',
+						data:{u_Account:data.u_Account},
+						success:function (res){
+							if(res.code===200) {
+								layer.open({
+									type: 2,
+									content: '/admin/useredit',
+									title:false,
+									area: ['500px', '600px'],
+									success: function(layero, index){
+										if(count==0) {
+											count++;
+											layer.msg('正在修改用户为:' + data.u_Account + '的信息');
+										}
+										else {
+											layer.msg("更新成功");
+											tableIns.reload();
+										}
+									}
+								});
+							}
+							else
+								layer.msg('查看失败');
+						}
+						,error(error){
+							layer.msg(error);
+						}
+					});
+					layer.close(index);
+				});
+			} else if(layEvent === 'LAYTABLE_TIPS'){
+				layer.alert('Hi，头部工具栏扩展的右侧图标。');
+			}
+		});
+		table.on('toolbar(test)', function(obj){
+			const $=layui.$;
+			var checkStatus = table.checkStatus(obj.config.id);
+			switch(obj.event){
+				case 'add':
+					var count=0;
+					layer.open({
+						type: 2,
+						content: '/admin/useraddinit',
+						area: ['600px', '600px'],
+						title: false,
+						success: function(layero, index){
+							if(count==0) {
+								layer.msg("请添加信息");
+								count++;
+							}
+							else{
+								layer.msg("添加成功");
+								tableIns.reload();
+							}
+						}
+					});
+					break;
+			};
+		});
+		//第一个实例
+		var tableIns = table.render({
+			elem: '#demo'
+			,url: '/admin/userdata' //数据接口
+			,toolbar: '#toolbarDemo'
+			, page: true
+			,limit:10
+			,limits:[10,30,50]
+			,response: {
+				statusCode: 200 //规定成功的状态码，默认：0
+			}
+			,cols: [[ //表头
+				{field: 'u_Account', title: '用户名', sort: true, fixed: 'left'}
+				,{field: 'u_Name', title: '姓名',sort: true}
+				,{field: 'u_Password', title: '密码'}
+				,{field: 'u_Sex', title: '性别'}
+				,{field: 'u_Email', title: '电子邮箱'}
+				,{field: 'u_Phone', title: '手机号码',sort: true}
+				,{fixed: 'right', title: '操作',width:175, align:'center', toolbar: '#barDemo'}
+			]]
+		});
+	});
+</script>
+<script th:if="${session.u_Account} ne 'admin'">
+	layui.use('layer', function(){
+		var layer = layui.layer;
+		layer.msg('权限不足，请联系管理员给予权限');
+	});
+</script>
+<script type="text/html" id="barDemo" th:if="${session.u_Account} eq 'admin'">
+	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+	<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+	<a class="layui-btn layui-btn-danger layui-btn-xs layui-bg-red" lay-event="del" >删除</a>
+</script>
+
+<script type="text/html" id="toolbarDemo" th:if="${session.u_Account} eq 'admin'">
+	<div class="layui-btn-container">
+		<button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+	</div>
+</script>
+	
+
+
+<!-- blog page -->
+
+
+
+	<script src="assets/js/jquery-3.4.1.min.js"></script>
+	<script src="assets/js/owl.carousel.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/all.min.js"></script>
+	<script src="assets/js/index.js"></script>
+	<script src="assets/js/wow.min.js"></script>
+
+
+</body>
+</html>
+
+

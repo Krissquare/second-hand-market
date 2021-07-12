@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <title>用户头像</title>
+</head>
+<body>
+<blockquote class=layui-elem-quote>头像设置</blockquote>
+<div class="layui-tab">
+    <ul class="layui-tab-title">
+        <li class="layui-this">自定义头像</li>
+        <li>热门推荐头像</li>
+    </ul>
+
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+                <div class="layui-form-item">
+                    <p style="color: #666666;font-size: 12px">选择本地照片，上传编辑自己的头像</p>
+                </div>
+            <div class="layui-input-inline" style="cursor: pointer">
+                <img class="layui-upload-img" id="demo1" width="100px" height="100px" alt="点击上传" title="点击上传">
+            </div>
+            <div class="layui-form-item login-btn" style="margin-top: 10px;margin-left: 10px;">
+                <button class="layui-btn layui-btn-disabled" id="save" onclick="go()">保存</button>
+            </div>
+        </div>
+    <div class="layui-tab-item">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-form-item">
+                <p style="color: #666666;font-size: 12px">选择系统推荐头像，快速上传优质头像</p>
+            </div>
+            <form class="layui-form">
+            <table border="0" style="text-align: center">
+                <tr>
+                    <th><img width="100px" height="100px" src="/images/user/default.jpg"></th>
+                    <th><img width="100px" height="100px" src="/images/user/default2.jpg"></th>
+                    <th><img width="100px" height="100px" src="/images/user/default3.jpg"></th>
+                    <th><img width="100px" height="100px" src="/images/user/default4.jpg"></th>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="u_Url" value="/images/user/default.jpg" checked></td>
+                    <td><input type="radio" name="u_Url" value="/images/user/default2.jpg" ></td>
+                    <td><input type="radio" name="u_Url" value="/images/user/default3.jpg" ></td>
+                    <td><input type="radio" name="u_Url" value="/images/user/default4.jpg"></td>
+                </tr>
+            </table>
+            <div class="layui-form-item login-btn" style="margin-top: 10px;width: 430px;text-align: center">
+                <button class="layui-btn layui-btn" lay-submit lay-filter="save" onclick="save()">保存</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<script th:src="@{/layui/layui.all.js}"></script>
+<script th:inline="javascript">
+    var myVarate = [[${session.url}]];
+    console.log(myVarate);
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function () {
+        var layer = layui.layer, upload = layui.upload, $ = layui.$, demoText = $('#demoText');
+        $('#demo1').attr('src', myVarate);//页面初始化的时候渲染图片
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#demo1',
+            url: '/admin/uploadSource',//这里填写你的上传地址
+            accept: 'images',
+            bindAction: '#uploadBtn',
+            method: 'post',
+            acceptMime: 'image/*'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    myVarate = result;
+                    $('#save').attr('class', 'layui-btn');
+                });
+            },
+            done: function (res) {
+                if (res.code == 200) {//长传成功(具体返回code 看后台是怎么处理的)
+                    layer.msg('图片上传成功!');
+                    $('#demo1').attr('src', myVarate);
+                }
+            }
+            , error: function () {
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            }
+        });
+    });
+    function go(){
+        var index = parent.layer.getFrameIndex(window.name);//获取窗口索引
+        parent.location.reload()
+        parent.layer.close(index);//关闭弹出层
+    }
+
+    layui.use(['element','form','layer'], function() {
+        const element = layui.element;
+        const form = layui.form;
+        const layer = layui.layer;
+        const $ = layui.$;
+        form.on('submit(save)', function (data) { <!-- 监听密码的修改 -->
+            const field = data.field;
+            $.ajax({
+                url: '/admin/uploaddefault',
+                type: 'POST',
+                contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(field),
+                dataType: "json",
+                success: function (res) {
+                    if (res.code === 200) {
+                        var index = parent.layer.getFrameIndex(window.name);//获取窗口索引
+                        parent.location.reload()
+                    }
+                    else{
+                        layer.msg("修改失败");
+                    }
+                },
+                error: function (res) {
+                    layer.msg('请求出错！');
+                }
+
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>忘记密码</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/layui/css/login.css}">
+</head>
+<body style="background-repeat: no-repeat;background-size:100% 100%;background-attachment:fixed" background="/images/background.jpg">
+<div class="login-main">
+    <div style="background-color: rgba(0,0,0,0);opacity: 0.8">
+    <header class="layui-elip" style="color: white">修改密码</header>
+    <div class="layui-form-item">
+        <form class="layui-form" autocomplete="off">
+            <div class="layui-input-inline">
+                <label>
+                    <input type="password" id="pwd" name="u_Password" lay-verify=“required"  placeholder="密码" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-input-inline">
+                <label>
+                    <input type="password" id="repwd"  name="u_RePassword" lay-verify=“required"  placeholder="确认密码" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-input-inline login-btn">
+                <button lay-submit lay-filter="repwd" class="layui-btn" onmouseenter="check()">修改</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+<script th:src="@{/layui/layui.all.js}"></script>
+<script>
+    const form = layui.form;
+    const layer = layui.layer;
+    const $ = layui.$;
+    var $flag=false;
+    layui.use(['form','layer'], function(){
+        form.render();
+        form.on('submit(repwd)', function(data){
+            const field = data.field;
+            console.log(field);
+            $.ajax({
+                url: 'set_pwd',
+                type: 'POST',
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify(field),
+                success:function (res){
+                    console.log(res.code)
+                    if(res.code === 200){
+                        console.log(res.code)
+                        layer.msg('修改成功');
+                        $flag=true;
+                    }else if(res.code === 500){
+                        layer.msg('修改失败');
+                    }
+                },
+                error: function (res){
+                    layer.msg('Http错误！');
+                }
+            });
+            window.setTimeout("go()",1500);
+            return false;
+        });
+
+    });
+
+    function go(){
+        if($flag)
+            window.location.href = '/login';
+        else
+            window.location.href = '/repwd/success';
+    }
+    function check(){
+        var $pwd=document.getElementById("pwd").value;
+        var $repwd=document.getElementById("repwd").value;
+        if($pwd!=$repwd&&$pwd!=null&&$repwd!=null){
+            layer.msg("两次密码不一致");
+        }
+    }
+</script>
+</body>
+</html>

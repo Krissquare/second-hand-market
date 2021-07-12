@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <title>add</title>
+</head>
+<body>
+<blockquote class=layui-elem-quote>添加物品</blockquote>
+<form class="layui-form" th:action="@{/admin/add}" method="post">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-inline">
+            <input type="text"   name="p_Account"  th:value="${session.u_Account}" readonly autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">物品名称</label>
+        <div class="layui-input-inline">
+            <input type="text"   name="p_Name" required autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">物品类别</label>
+        <div class="layui-input-inline">
+            <select name="c_Id" id="o_type" lay-verify="required" lay-filter="xmFilter">
+                <option value="请选择"></option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">物品标题</label>
+        <div class="layui-input-inline">
+            <input type="text"   name="p_Title" required  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">上架时间</label>
+        <div class="layui-input-inline">
+            <input type="date"   name="p_Date"  required autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">物品价格</label>
+        <div class="layui-input-inline">
+            <input type="text"  name="p_Price"  required autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'')">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">物品描述</label>
+        <div class="layui-input-inline">
+        <textarea type="text"  name="p_Des"  required  autocomplete="off" class="layui-input">
+        </textarea>
+        </div>
+    </div>
+    <div class="layui-input-inline login-btn">
+        <button  class="layui-btn" id="btn" style="margin-left: 120px">添加</button>
+    </div>
+</form>
+<script th:src="@{/layui/layui.all.js}"></script>
+<script>
+    layui.use(['element','form','layer','table'], function(){
+        const form = layui.form;
+        const $ = layui.$;
+        const table = layui.table;
+        $.ajax({  // select框ajax动态赋值
+            url: 'typeValue',
+            type: 'POST',
+            contentType: "application/json;charset=utf-8",
+            success: function (res) {
+                const field = res.data;
+                $.each(field, function (index, item) {  // $.each表示对JavaScript中数组对象的遍历，函数第一个参数为下标，第二个参数为下标对应的值
+                    $('#o_type').append(new Option(item,"c"+(index+1)));// 下拉菜单里添加元素
+                });
+                form.render("select");
+            }
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+ * {
+                margin: 0;
+                padding: 0;
+            }
+            .box {
+                width: 1000px;
+                height: 474px;
+                margin: 50px auto;
+            }
+            .box dl {
+                width: 198px;
+                height: 237px;
+                border: 1px solid lightgray;
+                float: left;
+                margin: -1px 0 0 -1px;
+            }
+            .box dl dt {
+                height: 165px;
+                border-bottom: 1px solid lightgray;
+                text-align: center;
+            }
+            .box dl dt i {
+                display: inline-block;
+                vertical-align: middle;
+                height: 100%;
+                width: 0;
+            }
+            .box dl dt a {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .box dl dd p {
+                height: 34px;
+                line-height: 34px;
+                padding-left: 16px;
+            }
+            .box dl dd p a {
+                text-decoration: none;
+                font-size: 14px;
+                color: gray;
+            }
+            .box dl dd span {
+                padding-left: 16px;
+                line-height: 36px;
+                color: red;
+                font-size: 14px;
+            }

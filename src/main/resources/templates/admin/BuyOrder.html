@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>校园二手物品后台</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui4.css}"/>
+    <style type="text/css">
+        .layui-table-cell{
+            height: auto!important;
+            white-space: normal;
+        }
+    </style>
+</head>
+<body class="layui-layout-body" >
+<div class="layui-layout layui-layout-admin ">
+    <div class="layui-header" style="background-color: #ffb65a" >
+        <div class="layui-logo" style="font-weight:bolder;font-style: italic" style="color: #000000">厦门大学二手市场后台</div>
+        <!--        <ul class="layui-nav layui-layout-left layui-bg-cyan" >-->
+        <!--        </ul>-->
+        <ul class="layui-nav layui-layout-right " style="background-color:  #ffb65a" >
+            <li class="layui-nav-item" >
+                <a href="javascript:" style="font-weight:bolder;color: #0C0C0C">
+                    <img th:src= "${userHead.getU_Url()}" class="layui-nav-img">
+                    我的
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/admin/userInfo" style="font-weight:bolder;color: #0C0C0C">基本资料</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: #0C0C0C">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side " >
+        <div class="layui-side-scroll " style="background-color: #EEEEEE">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree "  lay-filter="test">
+                <li class="layui-nav-item" style="background-color: #eeeeee "><a th:if="${session.u_Account eq 'admin'}" href="/admin/userinit" style="color: #0C0C0C">用户管理</a></li>
+                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/init" style="color: #0C0C0C">商品管理</a></li>
+                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/shoppingCarInit"style="color: #0C0C0C">购物车管理</a></li>
+                <li class="layui-nav-item" style="background-color: #EEEEEE">
+                    <a href="javascript:" style="color: #0C0C0C">订单管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/admin/BuyOrderInit}" >我是买家</a></dd>
+                        <dd><a th:href="@{/admin/SellOrderInit}" >我是卖家</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/showAll}" style="color: #0C0C0C">返回主页</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body" >
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <div class="demoTable" style="margin-top: 10px;margin-left: 10px;">
+                <div class="layui-col-md4">
+                    <input class="layui-input" name="SearchName" id="demoReload" autocomplete="off" placeholder="请输入商品名称">
+                </div>
+                <button class="layui-btn" data-type="reload" >搜索</button>
+            </div>
+            <table id="orderInfo" lay-filter="test"></table>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © xmu-secondhandmarket
+    </div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="detial">订单状态</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改地址</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除订单</a>
+</script>
+
+<script>
+    //JavaScript代码区域
+    layui.use(['element','form','layer','table'], function(){
+        const element = layui.element;
+        const form = layui.form;
+        const layer = layui.layer;
+        const table = layui.table;
+        form.render();
+
+        // 监听搜索按钮
+        const $ = layui.$, active = {
+            reload: function(){
+                var demoReload = $('#demoReload');
+
+                table.reload('reloadTest', {
+                    where: {
+                        SearchName: demoReload.val()
+                    }
+                });
+            }
+        };
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        const tableIns = table.render({
+            elem: '#orderInfo'
+            ,url: 'BuyOrderInfo' //数据接口
+            ,page: true
+            ,id: 'reloadTest'
+            ,limit: 10
+            ,cols: [[ //表头
+                {field: 'o_Id', title: '订单编号',  sort: true, width: 200}
+                ,{field: 'p_href', title: '图片展示',templet: "<div><img  src=\"{{ d.p_href }}\"></div>"}
+                ,{field: 'o_Seller', title: '卖家ID', width: 150}
+                ,{field: 'p_Title', title: '商品标题', }
+                ,{field: 'o_Baddress', title: '收货地址'}
+                ,{title: '操作',width:320, align:'center', toolbar: '#barDemo'}
+            ]]
+        });
+
+        table.on('tool(test)', function (obj){
+            const $ = layui.$;
+            const data = obj.data;
+            const layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            const tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+            const oId = data.o_Id;
+            if(layEvent == 'edit'){ //修改收货地址
+                layer.open({
+                    type: 2,
+                    title:false,
+                    area: ['454px','394px'],
+                    resize: false,
+                    cancel: function (index, layero){
+                        table.reload('reloadTest',{
+                            url: 'BuyOrderInfo',
+                            where: {}
+                        })
+                    },
+                    content:'OrderAddressUpdate',
+                    success: function (layero, index){ //传值
+                        const body = layer.getChildFrame('body', index);
+                        body.find('#o_Id').val(data.o_Id);
+                        body.find('#p_Title').val(data.p_Title);
+                        body.find('#o_Seller').val(data.o_Seller);
+                    }
+                });
+            }else if(layEvent == 'del'){ // 删除订单
+                console.log(data);
+                layer.confirm('确定要删除吗？', function (){
+                   $.ajax({
+                       url: 'deleteOrder',
+                       type: 'POST',
+                       contentType: "application/json;charset=utf-8",
+                       data: JSON.stringify(data),
+                       success: function (res){
+                           if(res.code === 200){
+                               tableIns.reload();
+                               layer.msg(res.msg);
+                           }else if(res.code === 500){
+                               layer.msg(res.msg);
+                           }
+                       },
+                       error: function (res){
+                           layer.msg(res.msg);
+                       }
+                   });
+                    table.reload('reloadTest',{
+                        url: 'BuyOrderInfo',
+                        where: {}
+                    });
+                });
+            }else if(layEvent == 'detial'){
+                layer.open({
+                    type: 2,
+                    title:false,
+                    area: ['300px','226px'],
+                    resize: false,
+                    content:'OrderStatusInit',
+                    cancel: function (index, layero){
+                        table.reload('reloadTest',{
+                            url: 'BuyOrderInfo',
+                            where: {}
+                        })
+                    },
+                    success: function (layero, index){
+                        const Status = data.o_Status;
+                        const oId = data.o_Id;
+                        const body = layer.getChildFrame('body', index);
+                        body.find('#o_Id').val(oId);
+                        body.find('#o_Buyer').val(data.o_Buyer);
+                        body.find('#o_Seller').val(data.o_Seller);
+                        if(Status == 0){
+                            body.find('#o_Status').val("未发货");
+                        }else if(Status == 3){
+                            body.find('#o_Status').val("已收货");
+                        }else if(Status == 1){
+                            body.find('#o_Status').val("已发货");
+                        }
+                    }
+                });
+            }
+        });
+
+    });
+
+
+</script>
+<style type="text/css">
+    .laytable-cell-1-p_href{
+        height:100%;
+        max-width:100%
+    }
+    .layui-table-cell{
+        text-align:center;
+    }
+</style>
+</body>
+</html>

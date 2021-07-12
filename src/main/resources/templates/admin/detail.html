@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <title>detail</title>
+</head>
+<body>
+<blockquote class=layui-elem-quote>物品信息</blockquote>
+<div class="layui-form-item">
+    <label class="layui-form-label">物品编号</label>
+    <div class="layui-input-inline">
+        <input type="text" th:value="${session.product.getP_Id()}"  name="title" readonly lay-verify="required" autocomplete="off" class="layui-input">
+    </div>
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label">上架时间</label>
+    <div class="layui-input-inline">
+        <input type="text" th:value="${session.product.getP_Date()}"  name="title" readonly lay-verify="required" autocomplete="off" class="layui-input">
+    </div>
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label">物品描述</label>
+    <div class="layui-input-inline">
+        <textarea type="text" th:text="${session.product.getP_Des()}"  name="title" readonly lay-verify="required" autocomplete="off" class="layui-input">
+        </textarea>
+    </div>
+</div>
+
+<script th:src="@{/layui/layui.js}"></script>
+</body>
+</html>

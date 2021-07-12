@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/layui/css/login.css}">
+</head>
+<body style="background-repeat: no-repeat;background-size:100% 100%;background-attachment:fixed" background="/images/background.jpg">
+<div class="login-main">
+    <div style="background-color: rgba(0,0,0,0);opacity: 0.8">
+    <header class="layui-elip" style="color: white">用户注册</header>
+    <div class="layui-form-item">
+        <form class="layui-form" autocomplete="off">
+            <div class="layui-input-inline">
+                <label>
+                    <input type="text"  name="u_Account" lay-verify="required" placeholder="用户名" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-input-inline">
+                <label>
+                    <input type="text"  name="u_Name" lay-verify="required" placeholder="姓名" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-input-inline">
+                <label>
+                    <input type="password" id="pwd" name="u_Password" lay-verify="required"  placeholder="密码" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-input-inline">
+                <label>
+                    <input type="password" id="repwd"  name="u_RePassword" onblur="check()" lay-verify="required"  placeholder="确认密码" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-input-inline">
+                <label>
+                    <input type="email"  name="u_Email" lay-verify=“required|email" placeholder="电子邮箱" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-input-inline">
+                <input type="text"  name="u_Phone" lay-verify=“required|phone"  placeholder="电话号码" class="layui-input">
+            </div>
+            <div class="layui-input-inline" style="text-align: center;color:#009688">
+                <input type="radio" name="u_Sex" value="男" title="男" checked>
+                <input type="radio" name="u_Sex" value="女" title="女">
+            </div>
+            <div class="layui-input-inline login-btn">
+                <button lay-submit lay-filter="register" class="layui-btn" id="btn" onclick="check()">注册</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+<script th:src="@{/layui/layui.all.js}"></script>
+<script>
+    const form = layui.form;
+    const layer = layui.layer;
+    const $ = layui.$;
+    var $flag=false;
+    layui.use(['form','layer'], function(){
+        form.render();
+        form.on('submit(register)', function(data){
+            const field = data.field;
+            console.log(field);
+            $.ajax({
+                url: '/regists/add',
+                type: 'POST',
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify(field),
+                success:function (res){
+                    console.log(res.code)
+                    if(res.code === 200){
+                        console.log(res.code)
+                        layer.msg('注册成功');
+                        $flag=true;
+                    }else if(res.code === 500){
+                        layer.msg('注册失败！错误:500');
+                    }
+                    else if(res.code === 400){
+                        layer.msg('注册失败,用户名已存在');
+                    }
+                },
+                error: function (res){
+                    layer.msg('Http错误！');
+                }
+            });
+            window.setTimeout("go()",1500);
+            return false;
+        });
+
+    });
+    function go(){
+        if($flag)
+            window.location.href = '/login';
+        else
+            window.location.href = '/regists/init';
+    }
+    function check(){
+        var $pwd=document.getElementById("pwd").value;
+        var $repwd=document.getElementById("repwd").value;
+        var obj =document.getElementById("btn");
+        if($pwd!=$repwd&&$pwd!=null&&$repwd!=null){
+            layer.msg("两次密码不一致");
+            obj.setAttribute("class","layui-btn layui-btn-disabled");
+        }
+        else{
+            obj.setAttribute("class","layui-btn");
+        }
+    }
+</script>
+</body>
+</html>

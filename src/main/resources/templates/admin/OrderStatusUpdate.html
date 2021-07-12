@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>订单编辑</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+</head>
+<body>
+<form class="layui-form">
+    <blockquote class="layui-elem-quote">编辑</blockquote>
+    <div class="layui-form-item">
+        <label class="layui-form-label">订单状态：</label>
+        <div class="layui-input-inline">
+            <input type="text" id="o_Status" name="o_Status" readonly  autocomplete="off" class="layui-input" style="width: 80px;" value="000">
+        </div>
+    </div>
+
+    <div class="layui-form-item" th:if="${session.StatusCode1}eq 'Buy'">
+        <label class="layui-form-label">订单操作：</label>
+        <div class="layui-form-inline">
+            <input type="text" id="o_Buyer" name="o_Buyer" style="display: none;">  <!-- 隐藏o_Id -->
+            <button type="button" lay-submit lay-filter="OrderStatusUpdate" class="layui-btn layui-btn-sm">确认收货</button>
+        </div>
+    </div>
+
+    <div class="layui-form-item" th:if="${session.StatusCode2}eq 'Sell'">
+        <label class="layui-form-label">订单操作：</label>
+        <div class="layui-form-inline">
+            <input type="text" id="o_Seller" name="o_Seller" style="display: none;">  <!-- 隐藏o_Id -->
+            <button type="button" lay-submit lay-filter="OrderStatusUpdate" class="layui-btn layui-btn-sm">确认发货</button>
+        </div>
+    </div>
+
+    <input type="text" id="o_Id" name="o_Id" style="display: none;">  <!-- 隐藏o_Id -->
+</form>
+
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/layui/jquery.min.js}"></script>
+<script>
+    layui.use(['element','form','layer','table'], function(){
+        const form = layui.form;
+        const $ = layui.$;
+        const table = layui.table;
+        form.on('submit(OrderStatusUpdate)',function (data){
+            console.log(data);
+            const field = data.field;
+            $.ajax({
+                url: "orderStatusUpdate",
+                type: 'POST',
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify(field),
+                success: function (res){
+                    if(res.code === 200){
+                        layer.msg(res.msg);
+                    }else if(res.code === 500){
+                        layer.msg(res.msg);
+                    }
+                },
+                error: function (res){
+                    layer.msg("请求错误");
+                }
+            });
+        });
+    })
+</script>
+<script>
+    function toBuyOrder(){ <!-- 转跳 -->
+        window.location.href = '/admin/BuyOrderInit';
+    }
+</script>
+</body>
+</html>

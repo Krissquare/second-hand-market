@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <style type="text/css">
+        .layui-table-cell{
+            height: auto!important;
+            white-space: normal;
+        }
+    </style>
+</head>
+<body>
+
+<table id="demo" lay-filter="test"></table>
+<div class="layui-form">
+    <input type="hidden" id="p_Id" name="p_Id" value="" style="display: none">
+</div>
+
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    layui.use(['table','form'], function() {
+        var table = layui.table;
+        const form = layui.form;
+        const $ = layui.$;
+        const pid = $("#p_Id").val();
+        console.log(pid);
+        var tableIns = table.render({
+            elem: '#demo'
+            ,url: '/imgAll?p_Id=' + pid //数据接口
+            ,toolbar: '#toolbarDemo'
+            ,cols: [[ //表头
+                {field: 'p_href', title: '物品图片', templet: "<div><img  src=\"{{ d.p_href }}\"></div>"}
+                ,{title: '操作', toolbar: '#barDemo'}
+            ]]
+        });
+
+        table.on('tool(test)', function(obj){
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+            if(layEvent == 'del'){
+                $.ajax({
+                    url: '/imgDelete',
+                    type: 'POST',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(data),
+                    success:function (res) {
+                        if(res.code === 200){
+                            layer.msg(res.msg);
+                        }else if(res.code === 500){
+                            layer.msg(res.msg);
+                        }
+                    }
+                    ,error(error){
+                        layer.msg("请求出错");
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<style type="text/css">
+    .laytable-cell-1-p_href{
+        height:100%;
+        max-width:100%
+    }
+    .layui-table-cell{
+        text-align:center;
+    }
+</style>
+</body>
+</html>

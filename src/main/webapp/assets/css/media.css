@@ -1,0 +1,345 @@
+@media (max-width: 1199px)
+{
+	.slider_2_1
+	{
+		font-size: 62px;
+	}
+	.help
+	{
+		/*height: 122px;*/
+		width: 100%;
+		background-color: #FFD52D;
+		color: #1b3039;
+	}
+	.help_1
+	{
+		text-align: center;
+	}
+	/*.healing
+	{
+		height: 435px;
+		width: 195px;
+		background-color: #1B3039;
+		padding: 20px;
+		float: left;
+	}*/
+	.dd
+	{
+		padding-top: 25px;
+	}
+	.ds
+	{
+		margin: 0;
+		color: #1B3039;
+		font-size: 2.1875rem;
+	}
+	.paleo
+	{
+		padding-top: 100px;
+		padding-bottom: 100px;
+	}
+	.ante
+	{
+		padding-top: 56px;
+	}
+	.vel_1
+	{
+		font-size: 35px;
+	}
+	.tempus
+	{
+		/*height: 256px;*/
+		width: 281px;
+		background-image: url("../img/8.jpg");
+	}
+	.button_5
+	{
+		height: 60px;
+		width: 250px;
+		background-color: #FFD52D;
+		border: none;
+		border-radius: 3px;
+		margin-top: 25px;
+		color: #1B3039;
+		font-size: 20px;
+	}
+}
+@media (max-width: 991px)
+{
+	.main_menu
+	{
+		display: none;
+	}
+	.menu_icon
+	{
+		display: inline-block;
+		padding: 15px;
+	}
+	.menu_icon .open_menu
+	{
+		font-size: 25px;
+	}
+	.mob_main_menu
+	{
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		text-align: left;
+		background-color: #1B3039;
+	}
+	.mob_main_menu li a
+	{
+		display: block;
+		padding: 10px 15px;
+		color: #000;
+	}
+	.mob_sub_menu
+	{
+		padding-left: 40px;
+	}
+	.slider_2_1
+	{
+		font-size: 52px;
+	}
+	.owl-nav
+	{
+		position: relative;
+		position: absolute;
+		top: 25%;
+		left: 0;
+		width: 100%;
+		color: #fff;
+		font-size: 100px;
+	}
+	.help
+	{
+		/*height: 195px;*/
+		width: 100%;
+		background-color: #FFD52D;
+		color: #1b3039;
+	}
+	.help_1
+	{
+		text-align: center;
+	}
+	.quis
+	{
+		font-size: 30px;
+	}
+	.dd
+	{
+		padding-top: 20px;
+		text-align: center;
+	}
+	.ds
+	{
+		margin: 0;
+		color: #1B3039;
+		font-size: 2.1875rem;
+	}
+	.paleo
+	{
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
+	.ante
+	{
+		padding-top: 125px;
+	}
+	.ipsum
+	{
+		padding-top: 19px;
+	}
+	.tempus
+	{
+		padding-top: 15px;
+	}
+	.Proin
+	{
+		font-size: 26px;
+	}
+	.vel_1
+	{
+		font-size: 30px;
+	}
+	.tempus
+	{
+		height: 372px;
+		width: 200px;
+		background-image: url("../img/8.jpg");
+	}
+	.button_5
+	{
+		height: 60px;
+		width: 168px;
+		background-color: #FFD52D;
+		border: none;
+		border-radius: 3px;
+		margin-top: 25px;
+		color: #1B3039;
+		font-size: 18px;
+	}
+}
+@media (max-width: 767px)
+{
+	.pt-5, .py-5 {
+    padding-top: 1.5rem!important;
+	}
+	.headding
+	{
+		text-align: center;
+	}
+	.menu_back
+	{
+		text-align: center;
+	}
+	.menu_icon i
+	{
+		text-align: center;
+	}
+	.slider_2_1
+	{
+		font-size: 42px;
+	}
+	.owl-nav
+	{
+		position: relative;
+		position: absolute;
+		top: 20%;
+		left: 0;
+		width: 100%;
+		color: #fff;
+		font-size: 100px;
+	}
+	.help
+	{
+		/*height: 275px;*/
+		width: 100%;
+		background-color: #FFD52D;
+		color: #1b3039;
+	}
+	.help_1
+	{
+		text-align: center;
+	}
+	.project
+	{
+		text-align: center;
+		font-size: 30px;
+	}
+	.View
+	{
+		text-align: center;
+		font-size: 15px;
+		margin-top: 10px;
+	}
+	/*.healing
+	{
+		height: 435px;
+		width: 225px;
+		background-color: #1B3039;
+		padding: 20px;
+		float: left;
+	}*/
+	.col-sm-12
+	{
+    	margin-top: 10px;
+	}
+	.dd
+	{
+		padding-top: 15px;
+		text-align: center;
+	}
+	.ds
+	{
+		margin: 0;
+		color: #1B3039;
+		font-size: 2.1875rem;
+	}
+	.paleo
+	{
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
+	.ante
+	{
+		padding-top: 0px;
+	}
+	.tempus
+	{
+		height: 250px;
+		width: 481px;
+		background-image: url("../img/8.jpg");
+		margin-top: 25px;
+	}
+}
+@media (max-width: 575px)
+{
+	.slider_2_1
+	{
+		font-size: 34px;
+	}
+	.owl-nav
+	{
+		position: relative;
+		position: absolute;
+		top: 15%;
+		left: 0;
+		width: 100%;
+		color: #fff;
+		font-size: 100px;
+	}
+	.help
+	{
+		/*height: 564px;*/
+		width: 100%;
+		background-color: #FFD52D;
+		color: #1b3039;
+	}
+	.help_1
+	{
+		text-align: center;
+	}
+	.project
+	{
+		text-align: center;
+		font-size: 30px;
+	}
+	.View
+	{
+		text-align: center;
+		font-size: 15px;
+		margin-top: 10px;
+	}
+	/*.healing
+	{
+		height: 435px;
+		width: 219px;
+		background-color: #1B3039;
+		padding: 20px;
+		float: left;
+	}*/
+	.dd
+	{
+		padding-top: 15px;
+		text-align: center;
+	}
+	.ds
+	{
+		margin: 0;
+		color: #1B3039;
+		font-size: 2.1875rem;
+	}
+	.paleo
+	{
+		padding-top: 30px;
+		padding-bottom: 50px;
+	}
+	.tempus
+	{
+		/*height: 256px;*/
+		width: 515px;
+		background-image: url("../img/8.jpg");
+	}
+}

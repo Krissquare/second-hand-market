@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>贵大校园二手交易平台-商品详情页</title>
+	<link rel="stylesheet" th:href="@{layui/css/goods_main.css}">
+	<link rel="stylesheet" th:href="@{layui/css/goods_reset.css}">
+	<link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+<!--	<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>-->
+</head>
+<body>
+	<!-- 头部信息 -->
+	<div class="header_con">
+		<div class="header">
+			<div class="welcome">厦门大学校园二手交易平台!</div>
+			<div class="user_login">
+				<a th:if="!${session.u_Account}" href="/login">登录</a>
+				<span th:if="!${session.u_Account}">|</span>
+				<a th:if="!${session.u_Account}" href="/regists/init">注册</a>
+				<span th:if="!${session.u_Account}">|</span>
+				<a href="/admin/shoppingCarInit">我的购物车</a>
+				<span>|</span>
+				<a href="/admin/BuyOrderInit">我的订单</a>
+			</div>
+		</div>
+	</div>
+	<div class="search_bar clearfix">
+		<a href="#" class="logo fl"><img src=""></a>
+		<div class="search_con fl">
+			<form class="search-input" action="/search">
+			<input type="text" class="input_text fl" name="search" placeholder="搜索商品">
+			<input type="submit" class="input_btn fr" value="搜索">
+			</form>
+		</div>
+	</div>
+	<!-- 商品信息栏 -->
+	<div class="navbar_con">
+		<div class="navbar clearfix">
+			<div class="subnav_con fl">
+				<a href="/showAll"><h1>全部商品分类 <i></i></h1></a>
+			</div>
+		</div>
+	</div>
+
+	<div class="center_con clearfix" style="margin-top: 70px;">
+		<div class="main_menu fl" style="margin-top: 5px"><img th:src="${product.getP_href()}" style="height: 350px;width: 350px"></div>
+		<div class="goods_detail_list fr" style="margin-top: 10px">
+			<div class="layui-form">
+			<h3 th:text="${product.getP_Title()}"></h3>
+			<div class="prize_bar">
+				<div class="show_prize fl">￥<em th:text="${product.getP_Price()}"></em></div>
+
+			</div>
+			<div class="goods_num clearfix">
+				<div class="num_name fl">数量：</div>
+				<div class="num_add fl">
+					<input type="text" class="num_show fl" value="1">
+					<a href="javascript:;" class="add fr">+</a>
+					<a href="javascript:;" class="minus fr">-</a>
+				</div>
+			</div>
+			<div class="total">总价：<em th:text="${product.getP_Price()}"></em></div>
+			<div class="operate_btn">
+				<a href="" class="buy_btn" lay-submit lay-filter="buy">立即购买</a>
+				<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none;">
+				<a href="" class="add_cart" lay-submit lay-filter="ShoppingCarAdd">加入购物车</a>
+			</div>
+			</div>
+		</div>
+		<div style="margin-top: 50px;"><hr class="layui-bg-green"></div>
+		<img th:src="${product.getP_href()}" style="height: 350px;width: 350px;margin-right: 480px;">
+		<img th:src="${product.getP_href1()}" style="height: 350px;width: 350px;margin-left: 15px;">
+		<p th:utext="${product.getP_Des()}" style="margin-top: 50px;margin-bottom: 50px;font-size: 20px;"></p>
+	</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+	layui.use(['table','form','layer'],function (){
+		var $ = layui.$;
+		var form = layui.form;
+		var table = layui.table;
+		var layer = layui.layer;
+
+		form.on('submit(ShoppingCarAdd)',function (data) {
+			var field = data.field;
+			console.log(field);
+			$.ajax({
+				url: '/shoppingCar',
+				type: 'POST',
+				contentType: "application/json;charset=utf-8",
+				data: JSON.stringify(field),
+				success:function (res){
+					if(res.code === 200){
+						layer.msg(res.msg);
+					}else if(res.code === 500){
+						layer.msg(res.msg);
+						window.setTimeout('toLogin()',1500);
+					}
+				},
+				error: function (res){
+					layer.msg('请求出错！');
+				}
+			});
+			return false;
+		});
+
+		form.on('submit(buy)',function (data) {
+			layer.open({
+				type: 2,
+				content: '/buyGoodsInit?p_Id=' + $("#p_Id").val(),
+				area: ['454px','365px'],
+				title: false,
+				success: function (layero, index){
+					const body = layer.getChildFrame('body', index);
+					body.find('#p_Id').val($("#p_Id").val());
+					body.find('#s_Id').val(data.s_Id);
+				},
+			})
+			return false;
+		});
+	});
+</script>
+<script>
+	function toLogin() {
+		window.location.href = "/login";
+	}
+</script>
+</body>
+</html>

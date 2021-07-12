@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>layui 点击上传图片</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="//layui.hcwl520.com.cn/layui/css/layui.css?v=201801090202"/>
+    <script src="//layui.hcwl520.com.cn/layui/layui.js?v=201801090202"></script>
+</head>
+<body>
+<div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">上传头像</label>
+        <div class="layui-input-inline">
+            <div class="layui-upload">
+                <input type="hidden" name="logo" value="" id="logo">
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="demo1" width="100px" height="100px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var myVarate = '/layui/images/user/default.jpg';
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function () {
+        var layer = layui.layer, upload = layui.upload, $ = layui.$, demoText = $('#demoText');
+        $('#demo1').attr('src', myVarate);//页面初始化的时候渲染图片
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#demo1',
+            url: '/uploadSource',//这里填写你的上传地址
+            accept: 'images',
+            bindAction: '#uploadBtn',
+            method: 'post',
+            acceptMime: 'image/*'
+            ,before: function(obj){
+            //预读本地文件示例，不支持ie8
+            obj.preview(function(index, file, result){
+                myVarate = result;
+                $('#demo1').attr('src', myVarate);
+            });
+          },
+            done: function (res) {
+                if (res.code == 200) {//长传成功(具体返回code 看后台是怎么处理的)
+                    return layer.msg('上传失败');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                } else {
+                    layer.msg('图片上传成功!');
+                }
+            }
+            , error: function () {
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            }
+        });
+        //上传失败监听重试按钮的操作
+        demoText.find('.demo-reload').on('click', function () {
+            uploadInst.upload();
+        });
+    });
+</script>
+</html>

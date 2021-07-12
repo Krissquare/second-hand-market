@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <title>edit</title>
+</head>
+<body>
+<blockquote class=layui-elem-quote>物品信息</blockquote>
+<form class="layui-form" th:action="@{/admin/edit/userupdate}" method="post">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${session.userAddress.getU_Account()}"  name="u_Account" readonly lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${session.userAddress.getU_Name()}"  name="u_Name" readonly lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${session.userAddress.getU_Sex()}"  name="u_Sex" required autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电子邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${session.userAddress.getU_Email()}"  name="u_Email" required  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话号码</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${session.userAddress.getU_Phone()}"  name="u_Phone" required  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货地址1</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${session.userAddress.getA_Address1()}"  name="a_Address1"  required autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货地址2</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${session.userAddress.getA_Address2()}"  name="a_Address2"  required autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'')">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货地址3</label>
+        <div class="layui-input-inline">
+        <input type="text" th:value="${session.userAddress.getA_Address3()}"  name="a_Address3"  required  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货地址4</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${session.userAddress.getA_Address4()}"  name="a_Address4"  required  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-input-inline login-btn">
+        <button  class="layui-btn" id="btn" style="margin-left: 120px">修改</button>
+    </div>
+</form>
+<script th:src="@{/layui/layui.all.js}"></script>
+</body>
+</html>

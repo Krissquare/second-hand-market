@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+<div class="layui-form">
+<div class="layui-upload">
+    <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+    <div class="layui-upload-list">
+        <table class="layui-table">
+            <thead>
+            <tr><th>文件名</th>
+                <th>大小</th>
+                <th>状态</th>
+                <th>预览</th>
+                <th>操作</th>
+            </tr></thead>
+            <tbody id="demoList"></tbody>
+        </table>
+    </div>
+    <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+    <input type="hidden" id="p_Id" name="p_Id" value="" style="display: none">
+</div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    layui.use(['upload','layer','form'], function(){
+        const form = layui.form;
+        var $ = layui.jquery,
+            layer = layui.layer//独立版的layer无需执行这一句
+            ,upload = layui.upload;
+        //多文件列表示例
+        var demoListView = $('#demoList')
+            ,uploadListIns = upload.render({
+            elem: '#testList'
+            ,url: 'imgUpload' //改成您自己的上传接口
+            ,accept: 'file'
+            ,multiple: true
+            ,number: 2
+            ,auto: false
+            ,data: { // 绑定额外参数传值
+                p_Id: function (){
+                    return $('#p_Id').val();
+                }
+            }
+            ,bindAction: '#testListAction'
+            ,choose: function(obj){
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var tr = $(['<tr id="upload-'+ index +'">'
+                        ,'<td>'+ file.name +'</td>'
+                        ,'<td>'+ (file.size/1024).toFixed(1) +'kb</td>'
+                        ,'<td>等待上传</td>'
+                        ,'<td>'
+                        ,'<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">'
+                        ,'</td>'
+                        ,'<td>'
+                        ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        ,'</td>'
+                        ,'</tr>'].join(''));
+
+                    //单个重传
+                    tr.find('.demo-reload').on('click', function(){
+                        // console.log(files.length);
+                        obj.upload(index, file);
+                    });
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function(){
+                        //console.log(file);
+                        console.log(files[index]);
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+                    demoListView.append(tr);
+                });
+            }
+            ,done: function(res, index, upload){
+                if(res.code==0){ //上传成功,这里的code为后台响应的code
+                    var tr = demoListView.find('tr#upload-'+ index)
+                        ,tds = tr.children();
+                    tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+                }
+                this.error(index, upload);
+            }
+            ,error: function(index, upload,res){
+                var tr = demoListView.find('tr#upload-'+ index)
+                    ,tds = tr.children();
+                tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+//由于是动态添加，所以要先找到这这节点，在对其进行操作
+        $("#demoList").on("click", 'img', function(){
+
+            var imgSrc=$(this).attr('src');
+            var alt=$(this).attr('alt');
+            layer.open({
+                type:1
+                ,title:false
+                ,closeBtn:0
+                ,skin:'layui-layer-nobg'
+                ,shadeClose:true
+                ,content:'<img  src="'+imgSrc+'" height="400px"; width="100%";/>'
+                ,scrollbar:false
+            })
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <title>add</title>
+</head>
+<body>
+<blockquote class=layui-elem-quote>添加物品</blockquote>
+<form class="layui-form" th:action="@{/admin/adduser}" method="post">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-inline">
+            <input type="text"   name="u_Account"   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-inline">
+            <input type="text"   name="u_Name"   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline">
+            <input type="text"   name="u_Password" required autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-inline">
+            <input type="text" name="u_Sex" required autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电子邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text"   name="u_Email" required  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话号码</label>
+        <div class="layui-input-inline">
+            <input type="text"   name="u_Phone"  required autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货地址1:</label>
+        <div class="layui-input-inline">
+            <input type="text"  name="a_Address1" th:value="无"  required autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'')">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货地址2:</label>
+        <div class="layui-input-inline">
+        <input type="text"  name="a_Address2"  th:value="无" required  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货地址3:</label>
+        <div class="layui-input-inline">
+            <input type="text"  name="a_Address3" th:value="无"  required  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货地址4:</label>
+        <div class="layui-input-inline">
+            <input type="text"  name="a_Address4"  th:value="无" required  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-input-inline login-btn">
+        <button  class="layui-btn" id="btn" style="margin-left: 120px">添加</button>
+    </div>
+</form>
+<script th:src="@{/layui/layui.all.js}"></script>
+</body>
+</html>
