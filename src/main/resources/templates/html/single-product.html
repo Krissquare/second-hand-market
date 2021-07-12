@@ -1217,7 +1217,15 @@
 							</div>
 					      </div>
 					      	<span class="sp_c_count2">
-					      	<a href="cart.html" class="btn btn-primary primary">加入购物车</a>
+<!--								加入购物车的信息-->
+					      	<a th:href="@{}" class="btn btn-primary primary" onclick="showAddCart()">
+								加入购物车
+								<script>
+									function showAddCart() {
+										alert("加入购物车成功！");
+									}
+								</script>
+							</a>
 					      </span>
 					    </div>
 
