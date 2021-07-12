@@ -54,7 +54,7 @@ public class SignInController {
             session.setAttribute("u_Account",account);
             session.setAttribute("url", userService.selectUserById(account).getU_Url());
             return "redirect:/admin/userinit";
-        } else {
+        } else {//
             session.setAttribute("msg", "用户名或密码错误");
             return "redirect:/login";
         }
