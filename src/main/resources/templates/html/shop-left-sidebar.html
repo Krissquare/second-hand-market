@@ -969,19 +969,21 @@
 
 					<div class="s_filter mt-0">
 						<h6 class="text-uppercase  border-bottom font-weight-bold">范围<button class="toggle collapsed" data-toggle="collapse" data-target="#shop_range_collapse"></button></h6>
-						<div class="collapse " id="shop_range_collapse">
-							<div class="col-md-6 col-sm-12 pl-0 pr-md-2 pr-sm-0 pr-0">
-								<label class="font-weight-bolder">最小值</label>
-								<input class="form-control"  placeholder="$0" name="minRange" id="minRange">
-							</div>
-							<div class="col-md-6 col-sm-12 pr-0 pl-md-2 pl-sm-0 pl-0 ">
-								<label class="font-weight-bolder">最大值</label>
-								<input class="form-control"  placeholder="$0" name="maxRange" id="maxRange">
-							</div>
-						</div>
-					</div>
 
-					<button data-search-url="#" class="btn btn-primary clear_btn " id="range">搜索全部</button>
+						<form class="layui-form" th:action="@{/range}" method="post">
+							<div class="layui-input-inline">
+								<label for="minRange">最小值</label>
+								<input type="number" id="minRange" name="minRange" placeholder="$0" class="layui-input">
+							</div>
+							<div class="layui-input-inline">
+								<label for="maxRange">最大值</label>
+								<input type="number" id="maxRange" name="maxRange" placeholder="$0" class="layui-input">
+							</div>
+							<button data-search-url="#" class="btn btn-primary clear_btn " id="range">搜索全部</button>
+						</form>>
+
+
+					</div>
 
 
 				</div>
@@ -1005,6 +1007,7 @@
 					<div class="col-xl-6 col-sm-10 col-8 pr-0 sortpro">
 						<div class="sort-by text-right">
 							<div class="sort">
+								<button value="3" id="Num">数量升序</button>
 								<button value="3" id="Low">价格升序</button>
 							</div>
 						</div>
@@ -1246,9 +1249,14 @@
 	let oTxt = document.getElementById("txt");
 	let oBtn = document.getElementById("btn");
 	let rBtn=document.getElementById("range");
-	rBtn.onclick=function (){
-		location.href="/range";
+	let nBtn=document.getElementById("Num");
+	nBtn.onclick=function ()
+	{
+		location.href="/ByNum";
 	}
+	/*rBtn.onclick=function (){
+		location.href="/range";
+	}*/
 	oBtn.onclick = function(){
 		location.href = "/search?search="+oTxt.value;
 		//location.href = "/search?search="+oTxt.value;
