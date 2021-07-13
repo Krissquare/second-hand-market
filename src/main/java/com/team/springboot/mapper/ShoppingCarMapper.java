@@ -27,7 +27,7 @@ public interface ShoppingCarMapper {
 
     @Select("select IFNULL(sum(p_Price),0) from shoppingcar, product where u_Account = #{u_Account} and shoppingcar.p_Id = product.p_Id")
     double getTotalPrice(String u_Account);
-
+//
     @Delete("Delete from shoppingcar where s_Id = #{0} ")
     void deleteById(int s_Id);
 
