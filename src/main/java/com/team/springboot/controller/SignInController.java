@@ -32,17 +32,18 @@ public class SignInController {
             session.setAttribute("msg","用户名或密码错误");
             return "redirect:/login";
         }
-
-        if(userService.selectUserById(account).getU_Password().equals(password)){
+        if(userService.selectUserById(account).getU_Password().equals(password) && !userService.selectUserById(account).getU_Account().equals("admin")){
             session.setAttribute("u_Account",account);
             session.setAttribute("url", userService.selectUserById(account).getU_Url());
             session.setAttribute("shoppingCartList", shoppingCarService.selectShoppingCarProductById(account));
             session.setAttribute("shoppingCarPrice", shoppingCarService.getTotalPrice(account));
-
             return "redirect:/";
-        }
-        else {
-            session.setAttribute("msg","用户名或密码错误");
+        } else if (userService.selectUserById(account).getU_Password().equals(password) && userService.selectUserById(account).getU_Account().equals("admin")) {
+            session.setAttribute("u_Account",account);
+            session.setAttribute("url", userService.selectUserById(account).getU_Url());
+            return "redirect:/admin/userinit";
+        } else {
+            session.setAttribute("msg", "用户名或密码错误");
             return "redirect:/login";
         }
     }
