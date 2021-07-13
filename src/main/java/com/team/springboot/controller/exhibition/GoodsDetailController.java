@@ -55,6 +55,7 @@ public class GoodsDetailController   {
        return  baseResponse;
    }
 
+   //打开购物车
    @RequestMapping("/showShoppingCar")
    public String showShoppingCar(){
 
