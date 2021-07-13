@@ -25,7 +25,7 @@ public interface ProductMapper {
     @Select("select p_Id,p_Account,p_Name,p_Title,p_Price,p_num from product where p_Id = #{0}")
     Product selectProductById(int p_ID);
     //根据ID查找产品ID描述日期的详情
-    @Select("select p_Id,p_Des,p_Date from product where p_Id = #{0}")
+    @Select("select * from product where p_Id = #{0}")
     Product selectProductsById(int p_ID);
     //根据ID查找产品全部详情
     @Select("select p_Id,p_Account,p_Name,p_Title,p_Des,p_Price,p_Date,p_num from product where p_Id = #{0}")
@@ -37,7 +37,7 @@ public interface ProductMapper {
     @Update("update product set p_Name = #{p_Name},p_Title = #{p_Title},p_Des = #{p_Des},p_Price = #{p_Price} ,p_Date = #{p_Date} ,p_num=#{p_num} where p_Id = #{p_Id}")
     void updateProduct(Product product);
     //查询图片地址
-    @Select("select p_href, p_href1 from product where p_Id = #{p_Id}")
+    @Select("select p_href from product where p_Id = #{p_Id}")
     Product imgHref(int p_Id);
     //更新href
     @Update("update product set p_href = #{0} where p_Id = #{1}")

@@ -13,7 +13,6 @@ public class Product implements Comparable<Product>{
     private Double p_Price;
     private String p_Des;
     private String p_href;
-    private String p_href1;
     private int p_num;
     public Product(int p_Id, String p_Des, Date p_Date) {
         this.p_Id = p_Id;
@@ -35,13 +34,7 @@ public class Product implements Comparable<Product>{
     public Product() {
     }
 
-    public String getP_href1() {
-        return p_href1;
-    }
 
-    public void setP_href1(String p_href1) {
-        this.p_href1 = p_href1;
-    }
 
     public String getP_href() {
         return p_href;
