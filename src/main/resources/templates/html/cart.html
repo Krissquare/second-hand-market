@@ -4,7 +4,7 @@
 	<title>Hitech</title>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">	
 		<link rel="stylesheet" type="text/css" href="assets/css/all.min.css">				
 		<link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
@@ -844,17 +844,114 @@
 						</div>
 
 						<div class="card-body cart_body">
-							<table id="demo" lay-filter="test"></table>
-
+							<div class="row">
+								<div class="col-12 col-md-6 pr-0">
+									<div class="d-flex">
+										<div class=" col-xl-4 col-lg-5 col-md-4 col-4 px-0">
+											<a href="#"><img src="assets/img/product/product_13.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_13"></a>
+										</div>
+										<div class=" col-xl-8 col-lg-7 col-md-8 col-8 pr-0">
+											<h4 class="product-name font-weight-bold mb-2 mb-sm-3 mb-xl-3 mt-sm-2 mt-md-2"><a href="#">Aliquam Top Erat Volutpat</a></h4>
+											<div><span class="font-weight-bolder price">$69.00 </span> <del class="text-muted">$100.00</del></div>
+											<div class="my-1 f_13">
+												<span>size:</span>
+												<span>s</span>
+											</div>
+											<div class="f_13">
+												<span>color:</span>
+												<span>white</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-md-6 mt-4">
+									<div class="d-flex">
+										<div class="col-md-3 col-sm-4 col-5 text-left text-md-right my-2 ">
+											<span class="font-weight-bold">$45.00</span>
+										</div>
+										<div class="col-md-7 col-sm-4 col-5">
+											<input type="number" class="form-control border"  placeholder="$0">
+										</div>
+										<div class="col-md-2 col-sm-4 col-2 my-2 mt-1 text-right text-md-left">
+											<a href="#"><i class="fas fa-trash-alt"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-12 col-md-6 pr-0">
+									<div class="d-flex">
+										<div class=" col-xl-4 col-lg-5 col-md-4 col-4 px-0">
+											<a href="#"><img src="assets/img/product/product_17.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_17"></a>
+										</div>
+										<div class=" col-xl-8 col-lg-7 col-md-8 col-8 pr-0">
+											<h4 class="product-name font-weight-bold mb-2 mb-sm-3 mb-xl-3 mt-sm-2 mt-md-2"><a href="#">Aliquam Top Erat Volutpat</a></h4>
+											<div><span class="font-weight-bolder price">$69.00 </span> <del class="text-muted">$100.00</del></div>
+											<div class="my-1 f_13">
+												<span>size:</span>
+												<span>s</span>
+											</div>
+											<div class="f_13">
+												<span>color:</span>
+												<span>white</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-md-6 mt-4">
+									<div class="d-flex">
+										<div class="col-md-3 col-sm-4 col-5 text-left text-md-right my-2 ">
+											<span class="font-weight-bold">$45.00</span>
+										</div>
+										<div class="col-md-7 col-sm-4 col-5">
+											<input type="number" class="form-control border"  placeholder="$0">
+										</div>
+										<div class="col-md-2 col-sm-4 col-2 my-2 mt-1 text-right text-md-left">
+											<a href="#"><i class="fas fa-trash-alt"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							
 						</div>
+
 						<div class="card-footer">
 							<div class="row">
+								<div class="col-6 col-sm-7 text-right">
+									<div class="my-2 font-weight-bold">
+										<span>total:</span>
+										<span>$56.00</span>
+									</div>
+								</div>
 								<div class="col-6 col-sm-5">
 									<a href="checkout.html" class="btn btn-success btn-block f_13 font-weight-bold">Checkout</a>
 								</div>
 							</div>
 						</div>
 
+					</div>
+				</div>
+				<div class="col-12 col-lg-4">
+					<div class="border rounded bg-white final_payment">
+						<div class="card-body  border-bottom">
+							<p class="text-muted">5 items</p>
+							<p class="font-weight-bolder">show details</p>
+							<div>
+								<span class="font-weight-bold">subtotal</span>
+								<span class="float-right font-weight-bold">$94.00</span>
+							</div>
+						</div>
+						<div class="card-body ">
+							<div>
+								<span class="font-weight-bold">total(tax excl.)</span>
+								<span class="float-right font-weight-bold">$94.00</span>
+							</div>
+							<div>
+								<span class="font-weight-bold">taxes</span>
+								<span class="float-right font-weight-bold">$9.00</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1014,148 +1111,6 @@
 	<script src="assets/js/index.js"></script>
 	<script src="assets/js/wow.min.js"></script>
 
-<script th:src="@{/layui/layui.js}"></script>
-<script>
-	//JavaScript代码区域
-	layui.use('element', function(){
-		var element = layui.element;
 
-	});
-</script>
-<script th:inline="javascript">
-	layui.use('table', function(){
-		var table = layui.table;
-		table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-			var data = obj.data; //获得当前行数据
-			var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-			var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
-			const $=layui.$;
-
-			if(layEvent === 'detail'){ //查看
-				layer.confirm('确认查看', function(index){
-					$.ajax({
-						url: '/admin/detail/info',
-						type: 'POST',
-						data:{p_Id:data.p_Id},
-						success:function (res){
-							if(res.code===200) {
-								tableIns.reload();
-								layer.open({
-									type: 2,
-									content: '/admin/detail',
-									title:false,
-									area: ['500px', '400px'],
-									success: function(layero, index){
-										layer.msg('正在查看物品编号为:'+data.p_Id+'的信息');
-									}
-								});
-							}
-							else
-								layer.msg('查看失败');
-						}
-						,error(error){
-							layer.msg(error);
-						}
-					});
-					layer.close(index);
-				});
-			} else if(layEvent === 'del'){ //删除
-				layer.confirm('确定要下移除该物品吗？', function(index){
-					$.ajax({
-						url: '/admin/shoppingCardelete',
-						type: 'POST',
-						data:{s_Id:data.s_Id},
-						success:function (res){
-							if(res.code===200) {
-								tableIns.reload();
-								layer.msg('移除成功');
-							}
-							else
-								layer.msg('移除失败');
-						}
-						,error(error){
-							layer.msg("请求出错");
-						}
-					});
-					layer.close(index);
-				});
-			} else if (layEvent === 'buy') { //购买
-
-				console.log(data.p_Id);
-				layer.open({
-					type: 2,
-					content: '/buyGoodsInit?p_Id=' + data.p_Id,
-					area: ['454px','365px'],
-					title: false,
-					success: function (layero, index){
-						const body = layer.getChildFrame('body', index);
-						body.find('#p_Id').val(data.p_Id);
-						body.find('#s_Id').val(data.s_Id);
-					},
-					cancel: function (index, layero){
-						tableIns.reload();
-					}
-				})
-			} else if(layEvent === 'LAYTABLE_TIPS'){
-				layer.alert('Hi，头部工具栏扩展的右侧图标。');
-			}
-		});
-		table.on('toolbar(test)', function(obj){
-			const $=layui.$;
-			var checkStatus = table.checkStatus(obj.config.id);
-			switch(obj.event){
-				case 'add':
-					var count=0;
-					layer.open({
-						type: 2,
-						content: '/admin/addinit',
-						area: ['600px', '600px'],
-						title: false,
-						success: function(layero, index){
-							if(count==0) {
-								layer.msg("请添加信息");
-								count++;
-							}
-							else{
-								layer.msg("添加成功");
-								tableIns.reload();
-							}
-						}
-					});
-					break;
-			};
-		});
-		//第一个实例
-		var tableIns = table.render({
-			elem: '#demo'
-			,url: '/admin/shoppingCarAll' //数据接口
-			,toolbar: '#toolbarDemo'
-			, page: true
-			,limit:10
-			,limits:[10,30,50]
-			,response: {
-				statusCode: 200 //规定成功的状态码，默认：0
-			}
-			,cols: [[ //表头
-				{field: 's_Id', title: '编号', sort: true}
-				,{field: 'p_href', title: '物品图片', templet: "<div><img  src=\"{{ d.p_href }}\"></div>"}
-				,{field: 'p_Title', title: '物品标题'}
-				,{field: 'p_Price', title: '价格',sort: true}
-				,{title: '操作', toolbar: '#barDemo'}
-			]]
-		});
-	});
-</script>
-<script type="text/html" id="barDemo">
-	<!--    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
-	<a class="layui-btn layui-btn-xs" lay-event="buy">确认购买</a>
-	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">移除购物车</a>
-</script>
-
-<script type="text/html" id="toolbarDemo">
-	<div class="layui-btn-container">
-		<button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
-	</div>
-</script>
 </body>
 </html>
