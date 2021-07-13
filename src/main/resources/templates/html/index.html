@@ -541,8 +541,9 @@
 
 <!-- header area -->
 
-<!-- first row -->
 <header>
+    <!-- first row -->
+
     <div class="topbar-outer py-2 border-bottom bg-white d-md-none d-none d-none d-lg-block">
         <div class="container custom_container">
             <div class="row">
@@ -555,8 +556,8 @@
                                 font-size:14px;
                             }
                         </style>
-                            <span class="font-weight-bolder1" th:if="${!signInFlag}" th:text="'&nbsp;&nbsp;&nbsp;' + 亲 + ',' + 请先登录哦"></span>
-                            <span class="font-weight-bolder1" th:if="${signInFlag}" th:text="'&nbsp;&nbsp;&nbsp;' +欢迎来到厦大二手交易平台+ '!'"></span>
+                            <span class="font-weight-bolder1" th:if="${session.u_Account == null}" th:text="'&nbsp;&nbsp;&nbsp;' + 亲 + ',' + 请先登录哦"></span>
+                            <span class="font-weight-bolder1" th:if="${session.u_Account != null}" th:text="'&nbsp;&nbsp;&nbsp;' +欢迎来到厦大二手交易平台+ '!'"></span>
                         </li>
                     </ul>
                 </div> <!-- col-lg-5 col-md-4 col-sm-4 hidden-md-down topbar_left -->
@@ -565,11 +566,10 @@
                     <nav class="navbar ">
                         <div class="dropdown right1 md_acc ">
 								<span class="dropdown-toggle">
-                                    <span th:if="${signInFlag}" href="" class="font-weight-bolder"
-                                          th:text="${account}"></span>
-                                    <a th:if="${!signInFlag}" href="/login" class="font-weight-bolder">登录</a>
+                                    <span th:if="${session.u_Account != null}" href="" class="font-weight-bolder"
+                                          th:text="${session.u_Account}"></span>
+                                    <a th:if="${session.u_Account == null}" href="/login" class="font-weight-bolder">登录</a>
 								</span>
-
                         </div>
 
 
@@ -577,14 +577,14 @@
                         <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${signInFlag}" href="index.html" class="font-weight-bolder"
+                                    <a th:if="${session.u_Account != null}" href="index.html" class="font-weight-bolder"
                                     >退出</a>
-                                    <a th:if="${!signInFlag}" href="/registration" class="font-weight-bolder">注册</a>
+                                    <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
                         </div>
-                        <div class="dropdown right1 md_1 hr_" th:if="${signInFlag}">
+                        <div class="dropdown right1 md_1 hr_" th:if="${session.u_Account != null}">
 								<span class="dropdown-toggle">
-                                    <a th:href="@{/admin/userInfo}" class="font-weight-bolder">修改个人信息</a>
+                                    <a href="userInfo.html" class="font-weight-bolder">修改个人信息</a>
 								</span>
 
                         </div>
@@ -644,8 +644,8 @@
                                                     width="34px" height="40px"></svg></span>
                                         <img src="assets/img/订单.png" style="height: 33px;width: 30px" alt="">
                                         <span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
-                                            <a th:if="${signInFlag}" href="/showMyTransactionOrders">订单管理</a></span>
-                                        <a th:if="${!signInFlag}" href="/login">订单管理</a></span>
+                                            <a th:if="${session.u_Account != null}" href="/showMyTransactionOrders">订单管理</a></span>
+                                        <a th:if="${session.u_Account == null}" href="/login">订单管理</a></span>
                                     </a>
                                 </li>
                                 <li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
@@ -671,7 +671,7 @@
                                 </li>
 
                                 <li class="dropdown d-inline-block">
-										<span th:if="${!signInFlag}" class="dropdown-toggle" role="menu"
+										<span th:if="${session.u_Account == null}" class="dropdown-toggle" role="menu"
                                               aria-haspopup="true" aria-expanded="false">
 											<a href="/login">
 												<span><svg width="35px" height="35px">
@@ -682,7 +682,7 @@
 											</a>
                                     </span>
 
-                                    <span th:if="${signInFlag}" class="dropdown-toggle" role="menu"
+                                    <span th:if="${session.u_Account != null}" class="dropdown-toggle" role="menu"
                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
 												<span><svg width="35px" height="35px">
@@ -690,13 +690,12 @@
 													</svg></span>
 												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
                                                 <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
-                                                      th:text="${shoppingCartList.size()}"></span>
-
+                                                      th:text="${session.shoppingCartList.size()}"></span>
 										</span>
 
                                     <div class="dropdown-menu s_cart dropdown-menu-right">
                                         <ul class="shopping-cart p-2 ">
-                                            <li th:each="p:${shoppingCartList}" class="pb-2 d-block">
+                                            <li th:each="p:${session.shoppingCartList}" class="pb-2 d-block">
                                                 <div class="media ">
                                                     <div>
                                                         <a href="#">
@@ -718,10 +717,10 @@
                                             <li class="d-block text-muted font-weight-bolder p-2 border-bottom">
                                                 <span class="text-left">总计:</span>
                                                 <span class="float-right f_13"
-                                                      th:text="'￥' + ${shoppingCarPrice}"></span>
+                                                      th:text="'￥' + ${session.shoppingCarPrice}"></span>
                                             </li>
                                             <li class="d-block font-weight-bolder pt-2">
-                                                <span class="text-left"><a th:href="@{/showShoppingCar}">查看购物车</a></span>
+                                                <span class="text-left"><a href="cart.html">view cart</a></span>
                                                 <span class="float-right"><a href="checkout.html">结账</a></span>
                                             </li>
                                         </ul>
