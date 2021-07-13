@@ -53,8 +53,12 @@ public class SignInController {
         }
 
         if(userService.selectUserById(account).getU_Password().equals(password) && !userService.selectUserById(account).getU_Account().equals("admin")){
+            setLoginState(account);
             session.setAttribute("u_Account",account);
             session.setAttribute("url", userService.selectUserById(account).getU_Url());
+            session.setAttribute("signInFlag", signInFlag);
+            session.setAttribute("shoppingCartList", shoppingCartList);
+            session.setAttribute("shoppingCarPrice", shoppingCarPrice);
             return "redirect:/";
         } else if (userService.selectUserById(account).getU_Password().equals(password) && userService.selectUserById(account).getU_Account().equals("admin")) {
             session.setAttribute("u_Account",account);
