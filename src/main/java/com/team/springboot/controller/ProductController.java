@@ -216,16 +216,16 @@ public class ProductController {
         productCategory.setP_num(p_num);
         switch (p_Name)
         {
-            case "日常用品":productCategory.setC_Id("c09");
-            case "书籍教材":productCategory.setC_Id("c01");
-            case "电子产品":productCategory.setC_Id("c02");
-            case "代步工具":productCategory.setC_Id("c03");
-            case "衣帽鞋伞":productCategory.setC_Id("c04");
-            case "体育健身":productCategory.setC_Id("c05");
-            case "家用电器":productCategory.setC_Id("c06");
-            case "虚拟产品":productCategory.setC_Id("c07");
-            case "手工设计":productCategory.setC_Id("c08");
-            case "音乐器材":productCategory.setC_Id("c10");
+            case "日常用品":productCategory.setC_Id("c09");break;
+            case "书籍教材":productCategory.setC_Id("c01");break;
+            case "电子产品":productCategory.setC_Id("c02");break;
+            case "代步工具":productCategory.setC_Id("c03");break;
+            case "衣帽鞋伞":productCategory.setC_Id("c04");break;
+            case "体育健身":productCategory.setC_Id("c05");break;
+            case "家用电器":productCategory.setC_Id("c06");break;
+            case "虚拟产品":productCategory.setC_Id("c07");break;
+            case "手工设计":productCategory.setC_Id("c08");break;
+            case "音乐器材":productCategory.setC_Id("c10");break;
         }
         //productCategory.setC_Id();
         productCategoryService.insertProductCategory(productCategory);
