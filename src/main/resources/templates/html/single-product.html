@@ -790,23 +790,6 @@
 													   href="forgot.html">忘记密码</a></li>
 							</ul>
 						</li>
-						<style>
-
-							.fabu{
-								position: absolute;
-								top:-8px;
-								left: 400px;
-
-								width:105px;
-								height:38px;
-							}
-						</style>
-						<li style="background-color:#FFC107" class="fabu">
-
-
-
-							<a class="dropdown-item font-weight-bolder1"
-							   th:href="@{/admin/addinit}" style="color: black"> &nbsp;发布商品</a></li>
 					</ul>
 				</div> <!-- col-lg-9 text-left -->
 
@@ -1080,7 +1063,7 @@
 				</div>
 				<div class="col-xl-7 col-md-6 col-12">
 
-					<div class="sp_product_detail">
+					<div class="layui-form">
 						
 						<h1 class="font-weight-bold text-uppercase" th:text="${product.getP_Title()}">
 							<a href="#"></a>
@@ -1088,28 +1071,14 @@
 
 						<span class="sp_price font-weight-bold" th:text="'￥'+${product.getP_Price()}"></span>
 
-<!--						<div class="text-secondary sp_tax">Tax included.</div>-->
 
 						<div class="sp_add_info my-3">
 							<div th:text="'商品剩余数：' +  ${product.getP_num()}"></div>
-<!--							<ul>-->
-<!--								<li class="sku my-2">-->
-<!--									<span class="text-uppercase font-weight-bolder">sku:</span>-->
-<!--									<span>5010</span>-->
-<!--								</li>-->
-<!--								<li class="availability my-2">-->
-<!--									<span class="font-weight-bolder">Availability:</span>-->
-<!--									<span class="p_quantity">1</span>-->
-<!--									<span>in stock</span>-->
-<!--								</li>-->
-<!--							</ul>-->
+
 						</div>
 
 						<div class="sp_text" th:text="${product.getP_Des()}">
-<!--							<ul>-->
-<!--								 <li class="my-2">Fashion has been creating well-designed collections since 2010. </li>-->
-<!--								 <li class="my-2">The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-tcollection in which every item is a vital part of a woman's wardrobe. </li>								-->
-<!--							</ul>-->
+
 						</div>
 
 						<div class="sp_rating">
@@ -1139,85 +1108,12 @@
 					        </div>
 					    </div>
 
-					    <div class="sp_color my-4">
-<!--					    	<ul>-->
-<!--					      	<li class="font-weight-bold text-uppercase my-2">color:</li>-->
-<!--							<li class="btn-group btn-group-toggle my-2" data-toggle="buttons">-->
-<!--								  <label class="btn yellow rounded  active">-->
-<!--								    <input class="" type="radio" name="options"  >-->
-<!--								  </label>-->
-<!--								  <label class="btn black rounded">-->
-<!--								    <input class="" type="radio" name="options" > -->
-<!--								  </label>-->
-<!--							</li>-->
-<!--							</ul>				      	-->
-<!--					    </div>-->
 
-<!--					    <div class="sp_size">-->
-<!--					    	<ul>-->
-<!--					      	<li class="font-weight-bold text-uppercase my-2">size:</li>-->
-<!--					      	<li class="btn-group btn-group-toggle my-2" data-toggle="buttons">-->
-<!--								  <label class="btn size_ rounded  active">-->
-<!--								    <input class="" type="radio" name="options"  >S-->
-<!--								  </label>-->
-<!--								  <label class="btn size_ rounded">-->
-<!--								    <input class="" type="radio" name="options" >M-->
-<!--								  </label>-->
-<!--								  <label class="btn size_ rounded">-->
-<!--								    <input class="" type="radio" name="options" >L-->
-<!--								  </label>-->
-<!--							</li>-->
-<!--							</ul>-->
-<!--					    </div>-->
-
-<!--					    <div class="sp_about my-3">-->
-<!--					      	<span class="sp_comn1"><a href="#" class="font-weight-bolder" data-toggle="modal" data-target="#shippingModal"><i class="fas fa-box-open"></i>shipping</a></span>-->
-<!--							-->
-<!--					      	<span class="sp_comn2"><a href="#" class="font-weight-bolder" data-toggle="modal" data-target="#question_Modal"><i class="far fa-envelope"></i>ask about this product</a></span>-->
-
-<!--					      	<div class="modal fade" id="question_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--							  <div class="modal-dialog">-->
-<!--							    <div class="modal-content">-->
-<!--							      <div class="modal-header">-->
-<!--							        <h5 class="modal-title " id="exampleModalLabel">shipping</h5>-->
-<!--							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--							          <span aria-hidden="true">&times;</span>-->
-<!--							        </button>-->
-<!--							      </div>-->
-<!--							      <div class="modal-body que_form">-->
-<!--							      	<h6>have a any question?</h6>-->
-<!--							      	<form>-->
-<!--									  <div>-->
-<!--									  	<div class="col-12 sp_form pl-0 pb-3">-->
-<!--									      <textarea class="form-control"  rows="3" placeholder="Enter Your Message"></textarea>-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0 pb-3">-->
-<!--									      <input type="text" class="form-control" placeholder="Enter Your Name">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0 pb-3">-->
-<!--									      <input type="email" class="form-control" placeholder="Enter Your Mail">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0 pb-3 ">-->
-<!--									      <input type="tel" pattern=".{10}" class="form-control" id="other_number" oninput="check(this)" required placeholder="Enter Your Phone">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0 pb-3">-->
-<!--									    	<button type="submit" class="btn btn-primary">submit review</button>-->
-<!--									    </div>-->
-<!--									  </div>-->
-<!--									</form>-->
-<!--							      </div>-->
-<!--							      </div>-->
-<!--							  </div>-->
-<!--							</div>-->
-<!--							-->
-					    </div>
 
 					    <div class="sp_counter">
 					      <div class="sp_c_count1">
 							<div class="number">
-								<!-- <span class="minus">-</span>
-								<input type="text" value="1"/>
-								<span class="plus">+</span> -->
+
 								<div class="sp_counter ">
 
 								 <div class="input-group">
@@ -1234,131 +1130,30 @@
 							</div>
 					      </div>
 					      	<span class="sp_c_count2">
-<!--								加入购物车的信息-->
-					      	<a th:href="@{/showShoppingCar}" class="btn btn-primary primary" onclick="showAddCart()">
-								加入购物车
-								<script>
-									function showAddCart() {
-										alert("加入购物车成功！");
-									}
-								</script>
-							</a>
+
+
 					      </span>
 					    </div>
 
 					    <div class="form-check sp_check my-3">
-<!--							  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">-->
-<!--							  <label class="form-check-label" for="defaultCheck1">I agree with the terms and conditions </label>						-->
-						</div>
+
+</div>
 
 						<div class="sp_buy">
-							<a class="btn btn-primary primary" th:href="@{/checkOutWithSingleProduct(pid=${product.getP_Id()})}">立即购买</a>
+							<div class="operate_btn">
+							<a href="" class="buy_btn" lay-submit lay-filter="buy">立即购买</a>
+							<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none;">
+							<a href="" class="add_cart" lay-submit lay-filter="ShoppingCarAdd">加入购物车</a>
+						    </div>
 						</div>
 						<div class="sp_wish_com my-3">
 					      	<span class="sp_comp1"><a href="#" class="text-uppercase font-weight-bolder " data-toggle="modal" data-target="#wish_Modal"><i class="far fa-heart"></i>加入愿望单</a></span>
-<!--					      	<span class="sp_comp2"><a href="#" class="text-uppercase font-weight-bolder"><i class="fas fa-tasks"></i>ADD TO COMPARE</a></span>-->
 					    </div>
 						<div class="sp_ad_info">
-<!--							<ul>-->
-<!--								<li class="my-2">-->
-<!--									<span>vendor:</span><span><a href="#" class="text-muted pl-2">levis</a></span>-->
-<!--								</li>-->
-<!--								<li class="my-2">-->
-<!--									<span>product type:</span><span class="text-muted pl-2">shirt</span>-->
-<!--								</li>-->
-<!--								<li class="my-2">-->
-<!--									<span>barcode:</span><span class="text-muted pl-2">1234321</span>-->
-<!--								</li>-->
-<!--								<li class="my-2">-->
-<!--									<span>tags:</span><span><a href="#" class="text-muted px-2">summer ,</a></span><span><a href="#" class="text-muted ">winter</a></span>-->
-<!--								</li>-->
-<!--							</ul>-->
+
 						</div>
 						<div class="sp_collapse_block my-4">
-<!--							<div class="accordion" id="collapse_block">-->
-<!--							  <div class="card">-->
-<!--							    <div class="card-header" id="heading_One">-->
-<!--							      <h2 class="mb-0">-->
-<!--							        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_One" aria-expanded="true" aria-controls="collapse_One">-->
-<!--							          DESCRIPTION<span class="float-right"><i class="fas fa-angle-down"></i></span>-->
-<!--							        </button>-->
-<!--							      </h2>-->
-<!--							    </div>-->
 
-<!--							    <div id="collapse_One" class="collapse show" aria-labelledby="heading_One" data-parent="#collapse_block">-->
-<!--							      <div class="card-body">-->
-<!--							      	<p class="mb-2">Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. </p>-->
-<!--							      	<p class="mb-2"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.</p>-->
-<!--							      	<p class="mb-2"> Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>-->
-<!--							      </div>-->
-<!--							    </div>-->
-<!--							  </div>-->
-<!--							  <div class="card">-->
-<!--							    <div class="card-header" id="heading_Two">-->
-<!--							      <h2 class="mb-0">-->
-<!--							        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse_Two" aria-expanded="false" aria-controls="collapse_Two">-->
-<!--							          ADDITIONAL INFORMATION<span class="float-right"><i class="fas fa-angle-down"></i></span>-->
-<!--							        </button>-->
-<!--							      </h2>-->
-<!--							    </div>-->
-<!--							    <div id="collapse_Two" class="collapse" aria-labelledby="heading_Two" data-parent="#collapse_block">-->
-<!--							      <div class="card-body">-->
-<!--							        <table>-->
-<!--									   <tbody>-->
-<!--									    <tr>-->
-<!--									      <td class="pr-5">color:</td>-->
-<!--									      <td>pink</td>-->
-<!--									    </tr>-->
-<!--									    <tr>-->
-<!--									      <td>size:</td>-->
-<!--									      <td>large</td>-->
-<!--									    </tr>-->
-<!--									    <tr>-->
-<!--									      <td>material:</td>-->
-<!--									      <td>faberics</td>-->
-<!--									    </tr>-->
-<!--									  </tbody>-->
-<!--									</table>-->
-<!--							      </div>-->
-<!--							    </div>-->
-<!--							  </div>-->
-<!--							  <div class="card">-->
-<!--							    <div class="card-header" id="heading_Three">-->
-<!--							      <h2 class="mb-0">-->
-<!--							        <button class="btn btn-link btn-block text-left collapsed " type="button" data-toggle="collapse" data-target="#collapse_Three" aria-expanded="false" aria-controls="collapse_Three">-->
-<!--							          REVIEW<span class="float-right"><i class="fas fa-angle-down"></i></span>-->
-<!--							        </button>-->
-<!--							      </h2>-->
-<!--							    </div>-->
-<!--							    <div id="collapse_Three" class="collapse" aria-labelledby="heading_Three" data-parent="#collapse_block">-->
-<!--							      <div class="card-body">-->
-<!--							        <form>-->
-<!--									  <div class="">-->
-<!--									    <div class="col-12 sp_form pl-0">-->
-<!--									      <label class="font-weight-bolder">name:</label>-->
-<!--									      <input type="text" class="form-control" placeholder="First name">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0">-->
-<!--									    	<label class="font-weight-bolder">email:</label>-->
-<!--									      <input type="email" class="form-control" placeholder="Enter Your Mail">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0">-->
-<!--									    	<label class="font-weight-bolder">title:</label>-->
-<!--									      <input type="text" class="form-control" placeholder="Review Title">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0">-->
-<!--									    	<label class="font-weight-bolder">review:</label>-->
-<!--									      <textarea class="form-control sp_text_area" id="exampleFormControlTextarea1" rows="3" placeholder="Your Review"></textarea>-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0">-->
-<!--									    	<button type="submit" class="btn btn-primary font-weight-bolder">submit review</button>-->
-<!--									    </div>-->
-<!--									  </div>-->
-<!--									</form>-->
-<!--							      </div>-->
-<!--							    </div>-->
-<!--							  </div>-->
-<!--							</div>-->
 						</div>
 					</div>
 
@@ -1972,7 +1767,58 @@
 	<script src="assets/js/all.min.js"></script>
 	<script src="assets/js/index.js"></script>
 	<script src="assets/js/wow.min.js"></script>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+	layui.use(['table','form','layer'],function (){
+		var $ = layui.$;
+		var form = layui.form;
+		var table = layui.table;
+		var layer = layui.layer;
 
+		form.on('submit(ShoppingCarAdd)',function (data) {
+			var field = data.field;
+			console.log(field);
+			$.ajax({
+				url: '/shoppingCar',
+				type: 'POST',
+				contentType: "application/json;charset=utf-8",
+				data: JSON.stringify(field),
+				success:function (res){
+					if(res.code === 200){
+						layer.msg(res.msg);
+					}else if(res.code === 500){
+						layer.msg(res.msg);
+						window.setTimeout('toLogin()',1500);
+					}
+				},
+				error: function (res){
+					layer.msg('请求出错！');
+				}
+			});
+			return false;
+		});
+
+		form.on('submit(buy)',function (data) {
+			layer.open({
+				type: 2,
+				content: '/buyGoodsInit?p_Id=' + $("#p_Id").val(),
+				area: ['454px','365px'],
+				title: false,
+				success: function (layero, index){
+					const body = layer.getChildFrame('body', index);
+					body.find('#p_Id').val($("#p_Id").val());
+					body.find('#s_Id').val(data.s_Id);
+				},
+			})
+			return false;
+		});
+	});
+</script>
+<script>
+	function toLogin() {
+		window.location.href = "/login";
+	}
+</script>
 	<script>
 						function getTimeRemaining(endtime) {
 						  var t = Date.parse(endtime) - Date.now();
