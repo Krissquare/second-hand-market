@@ -25,7 +25,7 @@ public interface ShoppingCarMapper {
     @Select("select count(s_Id) from shoppingcar where u_Account = #{u_Account}")
     int getCountByAccount(String u_Account);
 
-    @Select("select sum(p_Price) from shoppingcar, product where u_Account = #{u_Account} and shoppingcar.p_Id = product.p_Id")
+    @Select("select IFNULL(sum(p_Price),0) from shoppingcar, product where u_Account = #{u_Account} and shoppingcar.p_Id = product.p_Id")
     double getTotalPrice(String u_Account);
 
     @Delete("Delete from shoppingcar where s_Id = #{0} ")
