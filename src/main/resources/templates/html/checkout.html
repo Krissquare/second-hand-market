@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html class="" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Hitech</title>
 	<meta charset="utf-8"/>
@@ -688,8 +688,8 @@
 				<div class="row ">
 					<div class="col-12 ">
 						<ul>
-							<li class="d-inline-block font-weight-bolder"><a href="index.html">home</a></li>
-							<li class="d-inline-block hr_ font-weight-bolder"><a href="#">checkout</a></li>
+							<li class="d-inline-block font-weight-bolder"><a th:href="@{/}">主页</a></li>
+							<li class="d-inline-block hr_ font-weight-bolder"><a href="#">结算</a></li>
 						</ul>
 					</div>
 				</div>
@@ -705,87 +705,56 @@
 					    <div class="card-header bg-white" id="checkout_info">
 					      <h2 class="mb-0">
 					        <button class="btn btn-link btn-block text-left text-body p-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#check_info" aria-expanded="true" aria-controls="check_info">
-					          Personal information<span class="float-right"><i class="fas fa-angle-down"></i></span>
+					          	请填写您的个人信息<span class="float-right"><i class="fas fa-angle-down"></i></span>
 					        </button>
 					      </h2>
 					    </div>
 
 					    <div id="check_info" class="collapse show" aria-labelledby="checkout_info" data-parent="#check_out_toggle">
 					      <div class="card-body">
-					        
-					      	<ul class="nav nav-tabs " role="tablist" >
-							  <li class="nav-item" >
-							    <a class="nav-link p-0 font-weight-bold active" id="order_guest_tab" data-toggle="tab" href="#order_guest" role="tab" aria-controls="order_guest" aria-selected="true">order as a guest</a>
-							  </li>
-							  <li class="hr_"></li>
-							  <li class="nav-item" >
-							    <a class="nav-link p-0 font-weight-bold" id="sign_in_tab" data-toggle="tab" href="#sign_in" role="tab" aria-controls="sign_in" aria-selected="false">sign in</a>
-							  </li>
-							</ul>
+
 							<div class="tab-content" >
 							  <div class="tab-pane fade show active" id="order_guest"  aria-labelledby="order_guest">
-							  	
+
 							  	<div id="Registration" class="page-content mt-4 mb-0">
 					            	<form  class="needs-validation " method="post" novalidate>
 
-					            	  <div class="form-group text-left">
-				                        <label class="font-weight-bold">Social title</label><br>
-				                            <span class="form-check">
-									          <input class="form-check-input" type="radio" name="gridRadios" id="gender_mr" checked>
-									          <label class="form-check-label" for="gender_mr">
-									            mr.
-									          </label>
-									        </span>
-									        <span class="form-check">
-									          <input class="form-check-input" type="radio" name="gridRadios" id="gender_mrs">
-									          <label class="form-check-label" for="gender_mrs">
-									            mrs.
-									          </label>
-									        </span>
-				                         </div>
-
-									  <div class="form-group">
-									    <label for="f_name" class="font-weight-bold">First name</label>
-				      					<input type="text" class="form-control" id="f_name" placeholder="First name"  required>
-				      					<div class="invalid-feedback">Please enter your name.</div>
-									  </div>
+<!--									  <div class="form-group">-->
+<!--									    <label for="f_name" class="font-weight-bold">First name</label>-->
+<!--				      					<input type="text" class="form-control" id="f_name" placeholder="First name"  required>-->
+<!--				      					<div class="invalid-feedback">姓名</div>-->
+<!--									  </div>-->
 
 									  <div class="form-group" >
-									    <label for="l_name" class="font-weight-bold">Last name</label>
-				      					<input type="text" class="form-control" id="l_name" placeholder="Last Name" required>
-				      					<div class="invalid-feedback">Please enter your name.</div>
+									    <label for="buyer_address" class="font-weight-bold">地址</label>
+				      					<input type="text" class="form-control" id="buyer_address" placeholder="您的收货地址" required>
+				      					<div class="invalid-feedback">输入您的地址</div>
 									  </div>
 
-									  <div class="form-group">
-									    <label for="r_email" class="font-weight-bold">Email address</label>
-									    <input type="email" class="form-control" id="r_email" aria-describedby="emailHelp" placeholder="Email" required>
-									    <div class="invalid-feedback">Please enter your account name.</div>
-									  </div>
+<!--									  <div class="form-group">-->
+<!--										  <label for="l_name" class="font-weight-bold">Last name</label>-->
+<!--										  <input type="text" class="form-control" id="l_name" placeholder="Last Name" required>-->
+<!--										  <div class="invalid-feedback">Please enter your name.</div>-->
+<!--									  </div>-->
 
-									  <div class="form-group font-weight-bold">
-									    <label for="r_password" class="font-weight-bold">Password</label>
-									    <input type="password" class="form-control" id="r_password" placeholder="password" required>
-									    <div class="invalid-feedback">Please enter your password.</div>
-									  </div>
-
-									  <div class="form-group">
-									  	  <label class="font-weight-bold">birth date</label>
-				                          <input class="form-control"  type="date" required/>
-				                          <div class="invalid-feedback">Please enter your birthdate.</div>
-				                       </div>
+<!--									  <div class="form-group font-weight-bold">-->
+<!--										  <label for="l_name" class="font-weight-bold">Last name</label>-->
+<!--										  <input type="text" class="form-control" id="l_name" placeholder="Last Name" required>-->
+<!--										  <div class="invalid-feedback">Please enter your name.</div>-->
+<!--									  </div>-->
 
 									  <div class="form-group form-check d-block">
 									    <input type="checkbox" class="form-check-input" >
-									    <label class="form-check-label" for="user_check">Sign up for our newsletter</label>
+									    <label class="form-check-label" for="user_check">我同意用户条款</label>
 									  </div>
 
-									  <div class="form-group form-check d-block">
-									    <input type="checkbox" class="form-check-input" >
-									    <label class="form-check-label" for="user_check">I agree to the terms and conditions and the privacy policy</label>
+									  <div>
+<!--									<input type="submit" name="submit" class="btn btn-primary mt-3" value="提交订单">-->
+										  <span class="sp_c_count2">
+										  	<a class="btn btn-primary primary" th:href="@{/buyOneProduct}" th:text="提交表单"></a>
+										  </span>
 									  </div>
-									  
-									  <div><input type="submit" name="submit" class="btn btn-primary mt-3" value="save"></div>
-									  
+
 									</form>
 					            </div>
 
@@ -809,7 +778,7 @@
 									    <input type="checkbox" class="form-check-input" id="user_check" >
 									    <label class="form-check-label" for="user_check">Check me out</label>
 									  </div>
-									  
+
 									  <input type="submit" name="submit" class="btn btn-primary mb-3 d-inline-block" value="submit">
 									  <div class="pass_acc d-inline-block float-right pt-3">
 										  <span class="forgot_password font-weight-bolder"><a href="forgot.html">Forgot your password? </a></span>
@@ -823,169 +792,24 @@
 					      </div>
 					    </div>
 					  </div> <!-- card -->
-					  <div class="card rounded mb-2">
-					    <div class="card-header bg-white" id="chechout_add">
-					      <h2 class="mb-0">
-					        <button class="btn btn-link btn-block text-left collapsed text-body p-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#check_add" aria-expanded="false" aria-controls="check_add">
-					          Address<span class="float-right"><i class="fas fa-angle-down"></i></span>
-					        </button>
-					      </h2>
-					    </div>
-					    <div id="check_add" class="collapse" aria-labelledby="chechout_add" data-parent="#check_out_toggle">
-					      <div class="card-body">
-					        
-					      		<div id="c_address" class="page-content">
-					            	<form class="needs-validation " method="post" novalidate>
 
-									  <div class="form-group" >
-									    <label for="f_name" class="font-weight-bold">line 1</label>
-				      					<input type="text" class="form-control"  placeholder="Address Line 1"  required>
-				      					<div class="invalid-feedback">Please Enter your address.</div>
-									  </div>
-
-									  <div class="form-group" >
-									    <label for="l_name" class="font-weight-bold">line 2</label>
-				      					<input type="text" class="form-control"  placeholder="Address Line 2"  required>
-				      					<div class="invalid-feedback">Please Enter your address.</div>
-									  </div>
-
-									  <div class="form-group">
-									    <label for="r_email" class="font-weight-bold">city</label>
-									    <input type="text" class="form-control"  placeholder="City"  required>
-									    <div class="invalid-feedback">Please Enter your city.</div>
-									  </div>
-
-									  <div class="form-group">
-									    <label for="r_password" class="font-weight-bold">state</label>
-									    <input type="text" class="form-control"  placeholder="State"  required>
-									  </div>
-
-									  <div class="form-group">
-									    <label for="r_password" class="font-weight-bold">post code</label>
-									    <input type="text" class="form-control"  placeholder="Post Code"  required>
-									    <div class="invalid-feedback">Please Enter your post code.</div>
-									  </div>
-
-									  <div class="form-group">
-									    <label for="r_password" class="font-weight-bold">country</label>
-									    <input type="text" class="form-control"  placeholder="Country"  required>
-									    <div class="invalid-feedback">Please Enter your country.</div>
-									  </div>
-
-									  <div><button id="clearButton" type="reset" class=" f_13 btn btn-primary rese mt-3">reset</button><input type="submit" name="submit" class="f_13 btn btn-primary mt-3 float-right" value="save"></div>
-
-									  
-									</form>
-					            </div>
-
-
-					      </div>
-					    </div>
-					  </div> <!-- card -->
-					  <div class="card rounded mb-2">
-					    <div class="card-header bg-white" id="checkout_shipping">
-					      <h2 class="mb-0">
-					        <button class="btn btn-link btn-block text-left collapsed text-body p-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#check_ship" aria-expanded="false" aria-controls="check_ship">
-					          Shipping Method<span class="float-right"><i class="fas fa-angle-down"></i></span>
-					        </button>
-					      </h2>
-					    </div>
-					    <div id="check_ship" class="collapse" aria-labelledby="checkout_shipping" data-parent="#check_out_toggle">
-					      <div class="card-body">
-					        
-					      	<div id="ship_check" class="page-content">
-					            	<form>
-
-					            	  <div class="form-group text-left">
-				                        <label class="font-weight-bold">Shipping Method</label><br>
-				                            <span class="form-check d-inline-block">
-									          <input class="form-check-input" type="radio" name="gridRadios" id="free_ship" checked>
-									          <label class="form-check-label" for="free_ship">
-									            Free shipping
-									          </label>
-									        </span>
-									        <span class="form-check d-inline-block ml-2">
-									          <input class="form-check-input" type="radio" name="gridRadios" id="with_ship">
-									          <label class="form-check-label" for="with_ship">
-									            shipping
-									          </label>
-									        </span>
-				                         </div>
-				                     </form>
-				                 </div>
-
-					      </div>
-					    </div>
-					  </div> <!-- card -->
-					  <div class="card rounded mb-2">
-					    <div class="card-header bg-white" id="checkout_payment">
-					      <h2 class="mb-0">
-					        <button class="btn btn-link btn-block text-left collapsed text-body p-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#check_payment" aria-expanded="false" aria-controls="check_payment">
-					          Payment<span class="float-right"><i class="fas fa-angle-down"></i></span>
-					        </button>
-					      </h2>
-					    </div>
-					    <div id="check_payment" class="collapse" aria-labelledby="checkout_payment" data-parent="#check_out_toggle">
-					      <div class="card-body">
-					        
-					      	<div id="pay_check" class="page-content">
-					            	<form >
-
-					            	  <div class="form-group text-left">
-				                        <label class="font-weight-bold">payment Method</label><br>
-				                            <span class="form-check d-inline-block">
-									          <input class="form-check-input" type="radio" name="gridRadios" id="pay_by_check" checked>
-									          <label class="form-check-label" for="pay_by_check">
-									            pay by check
-									          </label>
-									        </span>
-									        <span class="form-check d-inline-block ml-2">
-									          <input class="form-check-input" type="radio" name="gridRadios" id="pay_by_bank">
-									          <label class="form-check-label" for="pay_by_bank">
-									            pay by bank 
-									          </label>
-									        </span>
-				                         </div>
-				                         <div class="form-group form-check">
-										    <input type="checkbox" class="form-check-input" id="user_pay_check" >
-										    <label class="form-check-label" for="user_pay_check">I accept the Terms of Use & Privacy Policy</label>
-										  </div>
-										  <div class="text-center">
-											  <button type="submit" class="btn btn-primary f_13">
-						                        Order with an obligation to pay
-						                      </button>
-						                  </div>
-				                     </form>
-				                 </div>
-
-					      </div>
-					    </div>
-					  </div> <!-- card -->
 					</div>
 
 				</div>
 				<div class="col-lg-4 col-12 ">
 					<div class="border rounded bg-white final_payment">
 						<div class="card-body  border-bottom">
-							<p class="text-muted">5 items</p>
-							<p class="font-weight-bolder">show details</p>
+							<p class="text-muted">商品个数</p>
+							<p class="font-weight-bolder">详情</p>
 							<div>
-								<span class="font-weight-bold">subtotal</span>
-								<span class="float-right font-weight-bold">$94.00</span>
-							</div>
-							<div>
-								<span class="font-weight-bold">shipping</span>
-								<span class="float-right font-weight-bold">$9.00</span>
+								<span class="font-weight-bold" th:text="${product.getP_Title()}"></span>
+								<span class="float-right font-weight-bold" th:text="'￥'+${product.getP_Price()}"></span>
 							</div>
 						</div>
 						<div class="card-body ">
 							<div>
-								<span class="font-weight-bold">total(tax excl.)</span>
-								<span class="float-right font-weight-bold">$94.00</span>
-							</div>
-							<div>
-								<span class="font-weight-bold">taxes</span>
-								<span class="float-right font-weight-bold">$9.00</span>
+								<span class="font-weight-bold">总价</span>
+								<span class="float-right font-weight-bold" th:text="'￥'+${product.getP_Price()}"></span>
 							</div>
 						</div>
 					</div>
