@@ -22,6 +22,13 @@ public class SignInController {
         return "html/login";
     }
 
+    @RequestMapping("/logout")
+    public String logout( HttpSession session) {
+        session.setAttribute("u_Account",null);
+
+        return "redirect:/";
+    }
+
     @PostMapping("/user/login")
     public String loginin(@RequestParam("u_Account") String account,
                           @RequestParam("u_Password") String password,
