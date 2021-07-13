@@ -1141,9 +1141,16 @@
 
 						<div class="sp_buy">
 							<div class="operate_btn">
-							<a href="" class="buy_btn" lay-submit lay-filter="buy">立即购买</a>
+								<div class="sp_buy">
+									<button type="button" class="btn btn-primary primary" href="">立即购买</button>
+								</div>
+<!--								<span class="sp_c_count2">-->
+<!--							<a href="" class="btn btn-primary primary" >立即购买</a>-->
+<!--								</span>-->
 							<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none;">
-							<a href="" class="add_cart" lay-submit lay-filter="ShoppingCarAdd">加入购物车</a>
+								<span class="sp_c_count2">
+							<a href="" class="btn btn-primary primary" lay-submit lay-filter="ShoppingCarAdd">加入购物车</a>
+								</span>
 						    </div>
 						</div>
 						<div class="sp_wish_com my-3">
