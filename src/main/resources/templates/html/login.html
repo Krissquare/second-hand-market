@@ -393,7 +393,7 @@
                         <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" href="index.html" class="font-weight-bolder"
+                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
                                     >退出</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
@@ -418,7 +418,7 @@
         <div class="container custom_container header-top-container">
             <div class="row">
                 <div class="col-xl-2 col-lg-2 col-6  head-logo">
-                    <div class="text-left header-top-left pt-2"><a href="index.html"><img src="assets/img/logo.png"
+                    <div class="text-left header-top-left pt-2"><a href="/"><img src="assets/img/logo.png"
                                                                                           class="img-responsive img" alt="Hitech"></a></div>
                 </div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
                 <div class="col-xl-10 col-lg-10 col-6  head-search">
@@ -561,7 +561,7 @@
 
                 <div class="col-lg-9 text-left sp_hz_menu">
                     <ul class="main-menu navbar">
-                        <li><a href="index.html">主页</a></li>
+                        <li><a href="/">主页</a></li>
                         <li><a th:href="@{/searchAll}">商店</a></li>
 
                         <li><a href="about-us.html">关于我们</a></li>
@@ -834,7 +834,7 @@
             <div class="row ">
                 <div class="col-12 ">
                     <ul>
-                        <li class="d-inline-block font-weight-bolder"><a href="index.html">主页</a></li>
+                        <li class="d-inline-block font-weight-bolder"><a href="/">主页</a></li>
                         <li class="d-inline-block hr_ font-weight-bolder"><a href="#">登录</a></li>
                     </ul>
                 </div>
@@ -845,7 +845,7 @@
     <div class="container custom_container ">
         <h3 class="text-center">登录您的账号</h3>
         <div id="login" class="page-content card card-block p-3 p-sm-4 ">
-            <form class="layui-form" th:action="@{user/login}" method="post">
+            <form class="layui-form" th:action="@{/user/login}" method="post">
 
                 <div class="form-group">
                     <label for="user_email" class="font-weight-bolder">用户名</label>
@@ -857,7 +857,6 @@
                     <input type="password" class="form-control" name="u_Password" id="user_password" required>
                     <div class="invalid-feedback">Please enter your password.</div>
                 </div>
-
 
                 <input type="submit" name="submit" class="btn btn-primary mb-3" value="提交">
                 <div class="pass_acc border-top pt-3">

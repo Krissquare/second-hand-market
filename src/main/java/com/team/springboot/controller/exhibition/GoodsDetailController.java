@@ -5,10 +5,7 @@ import com.team.springboot.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,23 +33,18 @@ public class GoodsDetailController   {
    }
 
    //添加商品到购物车
-   @RequestMapping("/shoppingCar")
-   @ResponseBody
-   public BaseResponse shoppingCar(@RequestBody Product p, HttpSession session){
-       BaseResponse<Integer> baseResponse = new BaseResponse<>();
+   @PostMapping("/addIntoShoppingCar")
+   public String shoppingCar(@RequestParam("p_Id") int p_Id, HttpSession session){
        String account = (String) session.getAttribute("u_Account");
-       System.out.println(account);
-       if(account == null || account.equals("")){
-           baseResponse.setCode(500);
-           baseResponse.setMsg("请登录账号");
-           System.out.println("cesi");
-           return baseResponse;
-       }
-       shoppingCarService.insertOne(account,p.getP_Id());//添加商品p到购物车
-       System.out.println(p.getP_Id());
-       baseResponse.setCode(200);
-       baseResponse.setMsg("添加成功");
-       return  baseResponse;
+
+       if(account == null)
+           return "redirect:/login";
+
+       shoppingCarService.insertOne(account, p_Id);//添加商品p到购物车
+       session.setAttribute("shoppingCartList", shoppingCarService.selectShoppingCarProductById(account));
+       session.setAttribute("shoppingCarPrice", shoppingCarService.getTotalPrice(account));
+
+       return "redirect:/goodsDetail?pid=" + p_Id;
    }
 
    //打开购物车
@@ -88,7 +80,6 @@ public class GoodsDetailController   {
    public BaseResponse buyGoods(@RequestBody BuyOrderInfo b, HttpServletRequest req){
        BaseResponse<Integer> baseResponse = new BaseResponse<>();
        String account = (String)req.getSession().getAttribute("u_Account");
-       //String test=(String)req.getSession().getAttribute("")
        Order o = new Order(); // 要插入到订单表里的实体
        int count = orderService.selectOrderCount();
 
@@ -102,16 +93,16 @@ public class GoodsDetailController   {
        o.setO_ItemId(b.getP_Id());
        o.setO_Buyer(account);
        o.setO_Seller(b.getO_Seller());
-       //2021.7.7
+
        if(b.getO_Baddress().equals("无"))
        {
            baseResponse.setCode(500);
            baseResponse.setMsg("收货地址不能为空");
            return baseResponse;
        }
-       //
+
        o.setO_Baddress(b.getO_Baddress());
-       o.setO_Status("0");//这个status不知道是什么，但这里默认设置为0
+       o.setO_Status("0");
        orderService.insertOne(o);
        if(String.valueOf(b.getS_Id()) != null){
            shoppingCarService.deleteById(b.getS_Id());

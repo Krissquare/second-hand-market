@@ -13,5 +13,8 @@ public interface ShoppingCarService  {
     List<ShoppingCarProduct> selectShoppingCarProductById(String u_Account);
 
     int getCountByAccount(String u_Account);
+
+    double getTotalPrice(String u_Account);
+
     void deleteById(int s_Id);
 }

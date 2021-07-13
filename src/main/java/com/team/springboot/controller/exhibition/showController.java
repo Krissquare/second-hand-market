@@ -2,12 +2,10 @@ package com.team.springboot.controller.exhibition;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.team.springboot.mapper.OrderMapper;
 import com.team.springboot.pojo.*;
 import com.team.springboot.service.OrderService;
 import com.team.springboot.service.ProductCategoryService;
 import com.team.springboot.service.ProductService;
-import com.team.springboot.service.ShoppingCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +46,6 @@ public class showController {
 
         return doubleList;
     }
-
 
     //前台展示初始化
     @RequestMapping({"/"})
