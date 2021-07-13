@@ -31,7 +31,7 @@ public class ShoppingController {
         String account = (String) session.getAttribute("u_Account");
         UserHead userHead = userHeadService.selectHead(account);
         m.addAttribute("userHead", userHead);
-        return "admin/shoppingcar";
+        return "html/cart";
     }
 
     @RequestMapping("/shoppingCarAll")
