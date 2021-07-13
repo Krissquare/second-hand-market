@@ -34,6 +34,11 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
     }
 
     @Override
+    public double getTotalPrice(String u_Account) {
+        return shoppingCarMapper.getTotalPrice(u_Account);
+    }
+
+    @Override
     public void deleteById(int s_Id){
         shoppingCarMapper.deleteById(s_Id);
     }

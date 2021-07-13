@@ -845,7 +845,7 @@
     <div class="container custom_container ">
         <h3 class="text-center">登录您的账号</h3>
         <div id="login" class="page-content card card-block p-3 p-sm-4 ">
-            <form class="layui-form" th:action="@{user/login}" method="post">
+            <form class="layui-form" th:action="@{/user/login}" method="post">
 
                 <div class="form-group">
                     <label for="user_email" class="font-weight-bolder">用户名</label>
@@ -857,7 +857,6 @@
                     <input type="password" class="form-control" name="u_Password" id="user_password" required>
                     <div class="invalid-feedback">Please enter your password.</div>
                 </div>
-
 
                 <input type="submit" name="submit" class="btn btn-primary mb-3" value="提交">
                 <div class="pass_acc border-top pt-3">
