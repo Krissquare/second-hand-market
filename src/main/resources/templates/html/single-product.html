@@ -1235,14 +1235,11 @@
 					      </div>
 					      	<span class="sp_c_count2">
 <!--								加入购物车的信息-->
-					      	<a th:href="@{/showShoppingCar}" class="btn btn-primary primary" onclick="showAddCart()">
-								加入购物车
-								<script>
-									function showAddCart() {
-										alert("加入购物车成功！");
-									}
-								</script>
-							</a>
+					     <div class="operate_btn">
+				<a href="" class="buy_btn" lay-submit lay-filter="buy">立即购买</a>
+				<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none;">
+				<a href="" class="add_cart" lay-submit lay-filter="ShoppingCarAdd">加入购物车</a>
+			</div>
 					      </span>
 					    </div>
 
@@ -1972,7 +1969,58 @@
 	<script src="assets/js/all.min.js"></script>
 	<script src="assets/js/index.js"></script>
 	<script src="assets/js/wow.min.js"></script>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+	layui.use(['table','form','layer'],function (){
+		var $ = layui.$;
+		var form = layui.form;
+		var table = layui.table;
+		var layer = layui.layer;
 
+		form.on('submit(ShoppingCarAdd)',function (data) {
+			var field = data.field;
+			console.log(field);
+			$.ajax({
+				url: '/shoppingCar',
+				type: 'POST',
+				contentType: "application/json;charset=utf-8",
+				data: JSON.stringify(field),
+				success:function (res){
+					if(res.code === 200){
+						layer.msg(res.msg);
+					}else if(res.code === 500){
+						layer.msg(res.msg);
+						window.setTimeout('toLogin()',1500);
+					}
+				},
+				error: function (res){
+					layer.msg('请求出错！');
+				}
+			});
+			return false;
+		});
+
+		form.on('submit(buy)',function (data) {
+			layer.open({
+				type: 2,
+				content: '/buyGoodsInit?p_Id=' + $("#p_Id").val(),
+				area: ['454px','365px'],
+				title: false,
+				success: function (layero, index){
+					const body = layer.getChildFrame('body', index);
+					body.find('#p_Id').val($("#p_Id").val());
+					body.find('#s_Id').val(data.s_Id);
+				},
+			})
+			return false;
+		});
+	});
+</script>
+<script>
+	function toLogin() {
+		window.location.href = "/login";
+	}
+</script>
 	<script>
 						function getTimeRemaining(endtime) {
 						  var t = Date.parse(endtime) - Date.now();
