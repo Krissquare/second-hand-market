@@ -1252,7 +1252,7 @@
 						</div>
 
 						<div class="sp_buy">
-							<button type="button" class="btn btn-primary primary">立即购买</button>
+							<a class="btn btn-primary primary" th:href="@{/checkOutWithSingleProduct(pid=${product.getP_Id()})}">立即购买</a>
 						</div>
 						<div class="sp_wish_com my-3">
 					      	<span class="sp_comp1"><a href="#" class="text-uppercase font-weight-bolder " data-toggle="modal" data-target="#wish_Modal"><i class="far fa-heart"></i>加入愿望单</a></span>
