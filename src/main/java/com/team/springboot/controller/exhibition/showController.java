@@ -28,9 +28,6 @@ public class showController {
     ProductCategoryService productCategoryService;
 
     @Autowired
-    ShoppingCarService shoppingCarService;
-
-    @Autowired
     private OrderService orderService;
 
     @Autowired
@@ -53,41 +50,16 @@ public class showController {
     }
 
 
-    private void setLoginState(Model m, HttpServletRequest req) {
-        String account = (String) req.getSession().getAttribute("u_Account");
-        List<ShoppingCarProduct> shoppingCartList = shoppingCarService.selectShoppingCarProductById(account);
-        int shoppingCarPrice = 0;
-        boolean signInFlag;
-        if (account != null) {
-            signInFlag = true;
-            for (ShoppingCarProduct ele : shoppingCartList)
-                shoppingCarPrice += ele.getP_Price();
-        } else
-            signInFlag = false;
-
-        m.addAttribute("shoppingCartList", shoppingCartList);
-        m.addAttribute("account", account);
-        m.addAttribute("signInFlag", signInFlag);
-        m.addAttribute("shoppingCarPrice", shoppingCarPrice);
-
-    }
     //前台展示初始化
-
-
-    //前台展示初始化
-    @RequestMapping({"showAll","/"})
-    public String showAll(Model m, HttpServletRequest req) {
-        setLoginState(m, req);
-
+    @RequestMapping({"/"})
+    public String showAll(Model model) {
         List<ProductCategory> digitalEquipmentList = productCategoryService.selectProductCategorysByp_name1("电子产品");
         List<ProductCategory> dailySupplyList = productCategoryService.selectProductCategorysByp_name1("衣帽鞋伞");
         List<ProductCategory> bookList = productCategoryService.selectProductCategorysByp_name1("书籍教材");
 
-
-        m.addAttribute("digitalEquipmentList", row1ToRow2(digitalEquipmentList));
-        m.addAttribute("dailySupplyList", row1ToRow2(dailySupplyList));
-        m.addAttribute("bookList", row1ToRow2(bookList));
-
+        model.addAttribute("digitalEquipmentList", row1ToRow2(digitalEquipmentList));
+        model.addAttribute("dailySupplyList", row1ToRow2(dailySupplyList));
+        model.addAttribute("bookList", row1ToRow2(bookList));
 
         return "html/index";
     }
@@ -96,7 +68,7 @@ public class showController {
     @RequestMapping("/search")
     public String search(Model m, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo,
                          @RequestParam("search") String search, HttpServletRequest req) {
-        setLoginState(m, req);
+
 
         int pageSize = 15;
         search = "%" + search + "%";
@@ -114,7 +86,7 @@ public class showController {
     @RequestMapping("/searchAll")
     public String searchAll(Model m, HttpServletRequest req)
     {
-        setLoginState(m, req);
+
 
         Integer pageSize = 15;
         List<ProductCategory> list = productCategoryService.selectProductAll();
@@ -153,7 +125,7 @@ public class showController {
             public String byLow(Model m,
                                 HttpServletRequest req,
                                 @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo) {
-        setLoginState(m, req);
+
 
         if (req.getSession().getAttribute("search") != null) {
             String search = (String) req.getSession().getAttribute("search");
