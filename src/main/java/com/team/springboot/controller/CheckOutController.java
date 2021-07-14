@@ -72,6 +72,7 @@ public class CheckOutController {
         System.out.println("卖家账号:"+product.getP_Account());
         System.out.println("买家账号:"+account);
         System.out.println("地址:"+address);
+        System.out.println("商品剩余:"+product.getP_num());
         System.out.println("--新订单");
         return "html/buySuccessfully";
     }

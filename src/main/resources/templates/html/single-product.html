@@ -1189,12 +1189,14 @@
 								</div>
 							</div>
 
-							<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form">
-					      		<span class="sp_c_count2">
-									<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none;">
-									<input type="submit" value="加入购物车" class="btn btn-primary primary">
-					      		</span>
-							</form>
+							<div th:if="${session.u_Account != product.getP_Account()}">
+								<form class="layui-form" method="post">
+									<span class="sp_c_count2">
+										<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none">
+										<input type="submit" value="加入购物车" class="btn btn-primary primary">
+									</span>
+								</form>
+							</div>
 							<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
 								<div class="btn btn-primary primary" th:text="加入购物车" onclick="alert('不能买自己发布的商品！')"></div>
 							</span>
