@@ -59,12 +59,12 @@ public class CheckOutController {
 
         orderService.insertOne(newOrder);
 
-        if (product.getP_num() > 1){
-            product.setP_num(product.getP_num()-1);
-            productService.updateProduct(product);
-        }else{
-            productService.deleteProductById(product.getP_Id());
-        }
+//        if (product.getP_num() > 1){
+//            product.setP_num(product.getP_num()-1);
+//            productService.updateProduct(product);
+//        }else{
+//            productService.deleteProductById(product.getP_Id());
+//        }
 
         System.out.println("新订单--");//debug
         System.out.println("订单号:"+orderId);
@@ -73,6 +73,6 @@ public class CheckOutController {
         System.out.println("买家账号:"+account);
         System.out.println("地址:"+address);
         System.out.println("--新订单");
-        return "html/index";
+        return "html/buySuccessfully";
     }
 }

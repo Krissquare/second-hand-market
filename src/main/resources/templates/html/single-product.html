@@ -741,17 +741,17 @@
 												<div class="media ">
 													<div>
 														<a href="#">
-															<img th:src="${p.getP_href()}"
+															<img th:src="${product.getP_href()}"
 																 class="fst-image img-fluid align-self-center"
 																 alt="product_13">
 														</a>
 													</div>
 													<div class="media-body">&nbsp;
 														<h6 class="mt-0 f_15"
-															th:text="${p.getP_Title()}"><span
+															th:text="${product.getP_Title()}"><span
 																class="float-right cart_cross">X</span></h6>
 														<p><span class="f_13"
-																 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span></p>
+																 th:text="'&nbsp;￥' + ${product.getP_Price()}"></span></p>
 													</div>
 												</div>
 											</li>
@@ -1296,7 +1296,7 @@
 							</div>
 
 
-						</form>>
+						</form>
 
 						</div>
 
