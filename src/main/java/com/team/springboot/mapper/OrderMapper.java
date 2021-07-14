@@ -44,6 +44,6 @@ public interface OrderMapper {
     @Select("select count(o_Id) from order2")
     int selectOrderCount();
 
-    @Insert("insert into order2(o_Id, o_ItemId, o_Buyer, o_Seller, o_Baddress, o_Status) values(#{o_Id},#{o_ItemId}, #{o_Buyer}, #{o_Seller}, #{o_Baddress}, #{o_Status})")
+    @Insert("insert into order2(o_Id, o_ItemId, o_Buyer, o_Seller, o_Baddress, o_Saddress, o_Date, o_Status) values(#{o_Id},#{o_ItemId}, #{o_Buyer}, #{o_Seller}, #{o_Baddress}, #{o_Saddress}, #{o_Date}, #{o_Status})")
     void insertOne(Order o);
 }

@@ -717,31 +717,14 @@
 							  <div class="tab-pane fade show active" id="order_guest"  aria-labelledby="order_guest">
 
 							  	<div id="Registration" class="page-content mt-4 mb-0">
-					            	<form  class="needs-validation " method="post" novalidate>
-
-<!--									  <div class="form-group">-->
-<!--									    <label for="f_name" class="font-weight-bold">First name</label>-->
-<!--				      					<input type="text" class="form-control" id="f_name" placeholder="First name"  required>-->
-<!--				      					<div class="invalid-feedback">姓名</div>-->
-<!--									  </div>-->
+					            	<form  class="needs-validation" th:action="@{/buyOneProduct}" method="post" novalidate>
 
 									  <div class="form-group" >
-									    <label for="buyer_address" class="font-weight-bold">地址</label>
-				      					<input type="text" class="form-control" id="buyer_address" placeholder="您的收货地址" required>
-				      					<div class="invalid-feedback">输入您的地址</div>
+									    <label for="u_Address" class="font-weight-bold">地址</label>
+				      					<input type="text" class="form-control" name="u_Address" id="u_Address" placeholder="您的收货地址" required>
+<!--				      					<div class="invalid-feedback">输入您的地址</div>-->
+										  <input type="hidden" id="pid" name="pid" th:value="${product.getP_Id()}" style="display: none">
 									  </div>
-
-<!--									  <div class="form-group">-->
-<!--										  <label for="l_name" class="font-weight-bold">Last name</label>-->
-<!--										  <input type="text" class="form-control" id="l_name" placeholder="Last Name" required>-->
-<!--										  <div class="invalid-feedback">Please enter your name.</div>-->
-<!--									  </div>-->
-
-<!--									  <div class="form-group font-weight-bold">-->
-<!--										  <label for="l_name" class="font-weight-bold">Last name</label>-->
-<!--										  <input type="text" class="form-control" id="l_name" placeholder="Last Name" required>-->
-<!--										  <div class="invalid-feedback">Please enter your name.</div>-->
-<!--									  </div>-->
 
 									  <div class="form-group form-check d-block">
 									    <input type="checkbox" class="form-check-input" >
@@ -749,9 +732,9 @@
 									  </div>
 
 									  <div>
-<!--									<input type="submit" name="submit" class="btn btn-primary mt-3" value="提交订单">-->
 										  <span class="sp_c_count2">
-										  	<a class="btn btn-primary primary" th:href="@{/buyOneProduct}" th:text="提交表单"></a>
+<!--										  <a class="btn btn-primary primary" th:href="@{/buyOneProduct}" th:text="提交表单"></a>-->
+											  <input type="submit" name="submit" class="btn btn-primary mt-3" value="提交订单">
 										  </span>
 									  </div>
 

@@ -9,6 +9,7 @@ public class Order {
     private String o_Baddress;
     private String o_Saddress;
     private String p_Title;
+    private String o_Date;
     private String o_Status;
     private String p_href;
     private double p_Price;
@@ -16,6 +17,14 @@ public class Order {
 
     public Order() {
 
+    }
+
+    public String getO_Date() {
+        return o_Date;
+    }
+
+    public void setO_Date(String o_Date) {
+        this.o_Date = o_Date;
     }
 
     public String getP_href() {
