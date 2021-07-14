@@ -1162,95 +1162,13 @@
 						</div>
 
 						<div id="clockdiv" class="sp_clockdiv">
-					        <div class="main_box rounded">
-					           <span class="days"></span>
-					          <div class="smalltext">Day</div>
-					        </div> 
-					        <div class="main_box rounded">
-					          <span class="hours"></span>
-					          <div class="smalltext">Hour</div>
-					        </div> 
-					        <div class="main_box rounded">
-					         <span class="minutes"></span>
-					          <div class="smalltext">Min</div>
-					        </div> 
-					        <div class="main_box rounded">
-					          <span class="seconds"></span>
-					          <div class="smalltext">Sec</div>
-					        </div>
+					        <div class="main_box rounded"><span class="days"></span><div class="smalltext">天</div></div>
+					        <div class="main_box rounded"><span class="hours"></span><div class="smalltext">小时</div></div>
+					        <div class="main_box rounded"><span class="minutes"></span><div class="smalltext">分钟</div></div>
+					        <div class="main_box rounded"><span class="seconds"></span><div class="smalltext">秒</div></div>
 					    </div>
 
 					    <div class="sp_color my-4">
-<!--					    	<ul>-->
-<!--					      	<li class="font-weight-bold text-uppercase my-2">color:</li>-->
-<!--							<li class="btn-group btn-group-toggle my-2" data-toggle="buttons">-->
-<!--								  <label class="btn yellow rounded  active">-->
-<!--								    <input class="" type="radio" name="options"  >-->
-<!--								  </label>-->
-<!--								  <label class="btn black rounded">-->
-<!--								    <input class="" type="radio" name="options" > -->
-<!--								  </label>-->
-<!--							</li>-->
-<!--							</ul>				      	-->
-<!--					    </div>-->
-
-<!--					    <div class="sp_size">-->
-<!--					    	<ul>-->
-<!--					      	<li class="font-weight-bold text-uppercase my-2">size:</li>-->
-<!--					      	<li class="btn-group btn-group-toggle my-2" data-toggle="buttons">-->
-<!--								  <label class="btn size_ rounded  active">-->
-<!--								    <input class="" type="radio" name="options"  >S-->
-<!--								  </label>-->
-<!--								  <label class="btn size_ rounded">-->
-<!--								    <input class="" type="radio" name="options" >M-->
-<!--								  </label>-->
-<!--								  <label class="btn size_ rounded">-->
-<!--								    <input class="" type="radio" name="options" >L-->
-<!--								  </label>-->
-<!--							</li>-->
-<!--							</ul>-->
-<!--					    </div>-->
-
-<!--					    <div class="sp_about my-3">-->
-<!--					      	<span class="sp_comn1"><a href="#" class="font-weight-bolder" data-toggle="modal" data-target="#shippingModal"><i class="fas fa-box-open"></i>shipping</a></span>-->
-<!--							-->
-<!--					      	<span class="sp_comn2"><a href="#" class="font-weight-bolder" data-toggle="modal" data-target="#question_Modal"><i class="far fa-envelope"></i>ask about this product</a></span>-->
-
-<!--					      	<div class="modal fade" id="question_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--							  <div class="modal-dialog">-->
-<!--							    <div class="modal-content">-->
-<!--							      <div class="modal-header">-->
-<!--							        <h5 class="modal-title " id="exampleModalLabel">shipping</h5>-->
-<!--							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--							          <span aria-hidden="true">&times;</span>-->
-<!--							        </button>-->
-<!--							      </div>-->
-<!--							      <div class="modal-body que_form">-->
-<!--							      	<h6>have a any question?</h6>-->
-<!--							      	<form>-->
-<!--									  <div>-->
-<!--									  	<div class="col-12 sp_form pl-0 pb-3">-->
-<!--									      <textarea class="form-control"  rows="3" placeholder="Enter Your Message"></textarea>-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0 pb-3">-->
-<!--									      <input type="text" class="form-control" placeholder="Enter Your Name">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0 pb-3">-->
-<!--									      <input type="email" class="form-control" placeholder="Enter Your Mail">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0 pb-3 ">-->
-<!--									      <input type="tel" pattern=".{10}" class="form-control" id="other_number" oninput="check(this)" required placeholder="Enter Your Phone">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0 pb-3">-->
-<!--									    	<button type="submit" class="btn btn-primary">submit review</button>-->
-<!--									    </div>-->
-<!--									  </div>-->
-<!--									</form>-->
-<!--							      </div>-->
-<!--							      </div>-->
-<!--							  </div>-->
-<!--							</div>-->
-<!--							-->
 					    </div>
 
 						<form class="layui-form" th:action="@{/addIntoShoppingCar}" method="post">
@@ -1271,28 +1189,30 @@
 								</div>
 							</div>
 
-							<form th:if="${session.u_Account != product.getP_Account()}">
+							<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form">
 					      		<span class="sp_c_count2">
 									<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none;">
 									<input type="submit" value="加入购物车" class="btn btn-primary primary">
 					      		</span>
 							</form>
 							<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
-								<div class="btn btn-primary primary" th:text="加入购物车" onclick="alert('不能买自己发布的商品！')">
-								</div>
+								<div class="btn btn-primary primary" th:text="加入购物车" onclick="alert('不能买自己发布的商品！')"></div>
 							</span>
+
+<!--							下面这个东西是为了制造空隙用的，别删-->
+							<div class="sp_wish_com my-3"></div>
+
 							<div class="sp_buy">
 								<!--							<button type="button" class="btn btn-primary primary" th:href="@{/checkOutWithSingleProduct}" th:text="立即购买"></button>-->
 								<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form" th:action="@{/checkOutWithSingleProduct}" method="post">
-								<span class="sp_c_count2">
-									<input type="hidden" id="pid" name="pid" th:value="${product.getP_Id()}" style="display: none">
-									<input type="submit" value="立即购买" class="btn btn-primary primary">
-								</span>
+									<span class="sp_c_count2">
+										<input type="hidden" id="pid" name="pid" th:value="${product.getP_Id()}" style="display: none">
+										<input type="submit" value="立即购买" class="btn btn-primary primary">
+									</span>
 								</form>
 								<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
-								<div class="btn btn-primary primary" th:text="立即购买" onclick="alert('不能买自己发布的商品！')">
-								</div>
-							</span>
+									<div class="btn btn-primary primary" th:text="立即购买" onclick="alert('不能买自己发布的商品！')"></div>
+								</span>
 							</div>
 
 
@@ -1304,111 +1224,11 @@
 
 
 						<div class="sp_wish_com my-3">
-					      	<span class="sp_comp1"><a href="#" class="text-uppercase font-weight-bolder " data-toggle="modal" data-target="#wish_Modal"><i class="far fa-heart"></i>加入愿望单</a></span>
+<!--					      	<span class="sp_comp1"><a href="#" class="text-uppercase font-weight-bolder " data-toggle="modal" data-target="#wish_Modal"><i class="far fa-heart"></i>加入愿望单</a></span>-->
 <!--					      	<span class="sp_comp2"><a href="#" class="text-uppercase font-weight-bolder"><i class="fas fa-tasks"></i>ADD TO COMPARE</a></span>-->
 					    </div>
-						<div class="sp_ad_info">
-<!--							<ul>-->
-<!--								<li class="my-2">-->
-<!--									<span>vendor:</span><span><a href="#" class="text-muted pl-2">levis</a></span>-->
-<!--								</li>-->
-<!--								<li class="my-2">-->
-<!--									<span>product type:</span><span class="text-muted pl-2">shirt</span>-->
-<!--								</li>-->
-<!--								<li class="my-2">-->
-<!--									<span>barcode:</span><span class="text-muted pl-2">1234321</span>-->
-<!--								</li>-->
-<!--								<li class="my-2">-->
-<!--									<span>tags:</span><span><a href="#" class="text-muted px-2">summer ,</a></span><span><a href="#" class="text-muted ">winter</a></span>-->
-<!--								</li>-->
-<!--							</ul>-->
-						</div>
-						<div class="sp_collapse_block my-4">
-<!--							<div class="accordion" id="collapse_block">-->
-<!--							  <div class="card">-->
-<!--							    <div class="card-header" id="heading_One">-->
-<!--							      <h2 class="mb-0">-->
-<!--							        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_One" aria-expanded="true" aria-controls="collapse_One">-->
-<!--							          DESCRIPTION<span class="float-right"><i class="fas fa-angle-down"></i></span>-->
-<!--							        </button>-->
-<!--							      </h2>-->
-<!--							    </div>-->
-
-<!--							    <div id="collapse_One" class="collapse show" aria-labelledby="heading_One" data-parent="#collapse_block">-->
-<!--							      <div class="card-body">-->
-<!--							      	<p class="mb-2">Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. </p>-->
-<!--							      	<p class="mb-2"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.</p>-->
-<!--							      	<p class="mb-2"> Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>-->
-<!--							      </div>-->
-<!--							    </div>-->
-<!--							  </div>-->
-<!--							  <div class="card">-->
-<!--							    <div class="card-header" id="heading_Two">-->
-<!--							      <h2 class="mb-0">-->
-<!--							        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse_Two" aria-expanded="false" aria-controls="collapse_Two">-->
-<!--							          ADDITIONAL INFORMATION<span class="float-right"><i class="fas fa-angle-down"></i></span>-->
-<!--							        </button>-->
-<!--							      </h2>-->
-<!--							    </div>-->
-<!--							    <div id="collapse_Two" class="collapse" aria-labelledby="heading_Two" data-parent="#collapse_block">-->
-<!--							      <div class="card-body">-->
-<!--							        <table>-->
-<!--									   <tbody>-->
-<!--									    <tr>-->
-<!--									      <td class="pr-5">color:</td>-->
-<!--									      <td>pink</td>-->
-<!--									    </tr>-->
-<!--									    <tr>-->
-<!--									      <td>size:</td>-->
-<!--									      <td>large</td>-->
-<!--									    </tr>-->
-<!--									    <tr>-->
-<!--									      <td>material:</td>-->
-<!--									      <td>faberics</td>-->
-<!--									    </tr>-->
-<!--									  </tbody>-->
-<!--									</table>-->
-<!--							      </div>-->
-<!--							    </div>-->
-<!--							  </div>-->
-<!--							  <div class="card">-->
-<!--							    <div class="card-header" id="heading_Three">-->
-<!--							      <h2 class="mb-0">-->
-<!--							        <button class="btn btn-link btn-block text-left collapsed " type="button" data-toggle="collapse" data-target="#collapse_Three" aria-expanded="false" aria-controls="collapse_Three">-->
-<!--							          REVIEW<span class="float-right"><i class="fas fa-angle-down"></i></span>-->
-<!--							        </button>-->
-<!--							      </h2>-->
-<!--							    </div>-->
-<!--							    <div id="collapse_Three" class="collapse" aria-labelledby="heading_Three" data-parent="#collapse_block">-->
-<!--							      <div class="card-body">-->
-<!--							        <form>-->
-<!--									  <div class="">-->
-<!--									    <div class="col-12 sp_form pl-0">-->
-<!--									      <label class="font-weight-bolder">name:</label>-->
-<!--									      <input type="text" class="form-control" placeholder="First name">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0">-->
-<!--									    	<label class="font-weight-bolder">email:</label>-->
-<!--									      <input type="email" class="form-control" placeholder="Enter Your Mail">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0">-->
-<!--									    	<label class="font-weight-bolder">title:</label>-->
-<!--									      <input type="text" class="form-control" placeholder="Review Title">-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0">-->
-<!--									    	<label class="font-weight-bolder">review:</label>-->
-<!--									      <textarea class="form-control sp_text_area" id="exampleFormControlTextarea1" rows="3" placeholder="Your Review"></textarea>-->
-<!--									    </div>-->
-<!--									    <div class="col-12 sp_form pl-0">-->
-<!--									    	<button type="submit" class="btn btn-primary font-weight-bolder">submit review</button>-->
-<!--									    </div>-->
-<!--									  </div>-->
-<!--									</form>-->
-<!--							      </div>-->
-<!--							    </div>-->
-<!--							  </div>-->
-<!--							</div>-->
-						</div>
+						<div class="sp_ad_info"></div>
+						<div class="sp_collapse_block my-4"></div>
 					</div>
 
 				</div>
@@ -1417,234 +1237,6 @@
 
 
 <!-- single product img and detail -->
-
-
-
-
-<!--&lt;!&ndash; custom product &ndash;&gt;-->
-//
-<!--	<div class="container custom_container t_pro_container">-->
-<!--		<div class="row">-->
-<!--			<div class="col-12">-->
-<!--				<div class="title_outer">-->
-<!--					<h5 class="font-weight-bolder mb-4 d-inline-block pr-3"><span class="text-danger">custom</span> products</h5>-->
-<!--				</div> &lt;!&ndash; title_outer &ndash;&gt;-->
-<!--			</div> &lt;!&ndash; col-12 &ndash;&gt;-->
-<!--		</div> &lt;!&ndash; row &ndash;&gt;-->
-
-<!--		<div class="row">-->
-<!--			<div id="custom_product_carousel" class="owl-carousel owl-theme pro_thumb">-->
-
-<!--				    <div class="item">-->
-<!--				    	<div class="col-12">-->
-<!--				    	 <div class="product_thumb bg-white rounded">-->
-<!--							<div class="pro_image">-->
-
-<!--								<a href="single-product.html"><img src="assets/img/product/product_15.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_15"></a>-->
-<!--								<a href="single-product.html"><img src="assets/img/product/product_16.jpg" class="second-img mx-auto d-block img-fluid" alt="product_16"></a>-->
-<!--												-->
-<!--							</div>-->
-
-<!--							<div class="text-center">-->
-<!--								<div class="button-group">-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model"><svg width="20px" height="19px"><use xlink:href="#pro_compare"></use></svg></a>-->
-<!--									<a href="#" class="symbol"  data-toggle="modal" data-target="#eye_model"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>-->
-<!--									<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>-->
-<!--								</div>-->
-
-<!--								<div class="main_text">-->
-<!--									<div class="star">-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--									</div>-->
-<!--										<h2 class="text-center pro-heading my-2"><a href="single-product.html" class="font-weight-bolder">Samsung Free Side by Side Refrigerator</a></h2>-->
-<!--										<span class="text-center"><span class="font-weight-bolder price">$69.00 </span> <del class="text-muted">$100.00</del></span>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				   </div> &lt;!&ndash; item &ndash;&gt;-->
-
-<!--				   <div class="item">-->
-<!--				    	<div class="col-12">-->
-<!--				    	 <div class="product_thumb bg-white rounded">-->
-<!--							<div class="pro_image">-->
-
-<!--								<a href="single-product.html"><img src="assets/img/product/product_17.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_17"></a>-->
-<!--								<a href="single-product.html"><img src="assets/img/product/product_18.jpg" class="second-img mx-auto d-block img-fluid" alt="product_18"></a>-->
-<!--												-->
-<!--							</div>-->
-
-<!--							<div class="text-center">-->
-<!--								<div class="button-group">-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model"><svg width="20px" height="19px"><use xlink:href="#pro_compare"></use></svg></a>-->
-<!--									<a href="#" class="symbol"  data-toggle="modal" data-target="#eye_model"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>-->
-<!--									<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>-->
-<!--								</div>-->
-
-<!--								<div class="main_text">-->
-<!--									<div class="star">-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--									</div>-->
-<!--										<h2 class="text-center pro-heading my-2"><a href="single-product.html" class="font-weight-bolder">Panasonic ELUGA I6 (Black, 16 GB)</a></h2>-->
-<!--										<span class="text-center"><span class="font-weight-bolder price">$69.00 </span> <del class="text-muted">$100.00</del></span>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				   </div> &lt;!&ndash; item &ndash;&gt;-->
-
-<!--				   <div class="item">-->
-<!--				    	<div class="col-12">-->
-<!--				    	 <div class="product_thumb bg-white rounded">-->
-<!--							<div class="pro_image">-->
-
-<!--								<a href="single-product.html"><img src="assets/img/product/product_19.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_19"></a>-->
-<!--								<a href="single-product.html"><img src="assets/img/product/product_20.jpg" class="second-img mx-auto d-block img-fluid" alt="product_20"></a>-->
-<!--												-->
-<!--							</div>-->
-
-<!--							<div class="text-center">-->
-<!--								<div class="button-group">-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model"><svg width="20px" height="19px"><use xlink:href="#pro_compare"></use></svg></a>-->
-<!--									<a href="#" class="symbol"  data-toggle="modal" data-target="#eye_model"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>-->
-<!--									<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>-->
-<!--								</div>-->
-
-<!--								<div class="main_text">-->
-<!--									<div class="star">-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--									</div>-->
-<!--										<h2 class="text-center pro-heading my-2"><a href="single-product.html" class="font-weight-bolder">Czech earphone Wired Headset</a></h2>-->
-<!--										<span class="text-center"><span class="font-weight-bolder price">$69.00 </span> <del class="text-muted">$100.00</del></span>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				   </div> &lt;!&ndash; item &ndash;&gt;-->
-
-<!--				   <div class="item">-->
-<!--				    	<div class="col-12">-->
-<!--				    	 <div class="product_thumb bg-white rounded">-->
-<!--							<div class="pro_image">-->
-
-<!--								<a href="single-product.html"><img src="assets/img/product/product_21.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_21"></a>-->
-<!--								<a href="single-product.html"><img src="assets/img/product/product_22.jpg" class="second-img mx-auto d-block img-fluid" alt="product_22"></a>-->
-<!--												-->
-<!--							</div>-->
-
-<!--							<div class="text-center">-->
-<!--								<div class="button-group">-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model"><svg width="20px" height="19px"><use xlink:href="#pro_compare"></use></svg></a>-->
-<!--									<a href="#" class="symbol"  data-toggle="modal" data-target="#eye_model"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>-->
-<!--									<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>-->
-<!--								</div>-->
-
-<!--								<div class="main_text">-->
-<!--									<div class="star">-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--									</div>-->
-<!--										<h2 class="text-center pro-heading my-2"><a href="single-product.html" class="font-weight-bolder">specker Gathered Multicolor</a></h2>-->
-<!--										<span class="text-center"><span class="font-weight-bolder price">$69.00 </span> <del class="text-muted">$100.00</del></span>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				   </div> &lt;!&ndash; item &ndash;&gt;-->
-
-<!--				   <div class="item">-->
-<!--				    	<div class="col-12">-->
-<!--				    	 <div class="product_thumb bg-white rounded">-->
-<!--							<div class="pro_image">-->
-
-<!--								<a href="single-product.html"><img src="assets/img/product/product_23.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_23"></a>-->
-<!--								<a href="single-product.html"><img src="assets/img/product/product_24.jpg" class="second-img mx-auto d-block img-fluid" alt="product_24"></a>-->
-<!--												-->
-<!--							</div>-->
-
-<!--							<div class="text-center">-->
-<!--								<div class="button-group">-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model"><svg width="20px" height="19px"><use xlink:href="#pro_compare"></use></svg></a>-->
-<!--									<a href="#" class="symbol"  data-toggle="modal" data-target="#eye_model"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>-->
-<!--									<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>-->
-<!--								</div>-->
-
-<!--								<div class="main_text">-->
-<!--									<div class="star">-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--									</div>-->
-<!--										<h2 class="text-center pro-heading my-2"><a href="single-product.html" class="font-weight-bolder">Chiffon Solid Multicolor washing machine</a></h2>-->
-<!--										<span class="text-center"><span class="font-weight-bolder price">$69.00 </span> <del class="text-muted">$100.00</del></span>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				   </div> &lt;!&ndash; item &ndash;&gt;-->
-
-<!--				   <div class="item">-->
-<!--				    	<div class="col-12">-->
-<!--				    	 <div class="product_thumb bg-white rounded">-->
-<!--							<div class="pro_image">-->
-
-<!--								<a href="single-product.html"><img src="assets/img/product/product_25.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_25"></a>-->
-<!--								<a href="single-product.html"><img src="assets/img/product/product_26.jpg" class="second-img mx-auto d-block img-fluid" alt="product_26"></a>-->
-<!--												-->
-<!--							</div>-->
-
-<!--							<div class="text-center">-->
-<!--								<div class="button-group">-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>-->
-<!--									<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model"><svg width="20px" height="19px"><use xlink:href="#pro_compare"></use></svg></a>-->
-<!--									<a href="#" class="symbol"  data-toggle="modal" data-target="#eye_model"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>-->
-<!--									<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>-->
-<!--								</div>-->
-
-<!--								<div class="main_text">-->
-<!--									<div class="star">-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--										<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--									</div>-->
-<!--										<h2 class="text-center pro-heading my-2"><a href="single-product.html" class="font-weight-bolder">Latest Collection Simple Digital tv</a></h2>-->
-<!--										<span class="text-center"><span class="font-weight-bolder price">$69.00 </span> <del class="text-muted">$100.00</del></span>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				   </div> &lt;!&ndash; item &ndash;&gt; -->
-<!--				    -->
-<!--				</div> &lt;!&ndash; product_carousel2 &ndash;&gt;-->
-<!--		</div>-->
-<!--	</div>-->
-
-<!--&lt;!&ndash; custom product end &ndash;&gt;-->
-
 
 		<!-- footer -->
 
