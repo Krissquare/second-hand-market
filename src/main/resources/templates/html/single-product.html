@@ -762,7 +762,7 @@
 													  th:text="'￥' + ${session.shoppingCarPrice}"></span>
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
-												<span class="text-left"><a href="cart.html">view cart</a></span>
+												<span class="text-left"><a href="cart.html">查看购物车</a></span>
 												<span class="float-right"><a href="checkout.html">结账</a></span>
 											</li>
 										</ul>
@@ -1254,28 +1254,41 @@
 					    </div>
 
 					    <div class="sp_counter">
-
-							<form class="layui-form" th:action="@{/addIntoShoppingCar}" method="post">
-								<div class="sp_c_count1">
-								<div class="number">
+					      <div class="sp_c_count1">
+							<div class="number">
+								<!-- <span class="minus">-</span>
+								<input type="text" value="1"/>
+								<span class="plus">+</span> -->
 								<div class="sp_counter ">
-								<div class="input-group">
+
+								 <div class="input-group">
 					                <span class="input-group-btn">
 					              		<button type="button" class="btn btn-default btn-number p-0" disabled="disabled" data-type="minus" data-field="quant[1]"><span class="minus">-</span></button>
 					                </span>
-									<input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
-									<span class="input-group-btn">
+					                <input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+					                <span class="input-group-btn">
 					                	<button type="button" class="btn btn-default btn-number p-0" data-type="plus" data-field="quant[1]"><span class="plus">+</span></button>
 					                </span>
-								</div>
-								</div>
-								</div>
-								</div>
+					            </div>
+						      </div>
+							</div>
+					      </div>
+
+							<div class="form-check sp_check my-3">
+								<!--							  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">-->
+								<!--							  <label class="form-check-label" for="defaultCheck1">I agree with the terms and conditions </label>						-->
+							</div>
+
+							<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form" th:action="@{/addIntoShoppingCar}" method="post">
 					      		<span class="sp_c_count2">
 									<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none;">
 									<input type="submit" value="加入购物车" class="btn btn-primary primary">
 					      		</span>
 							</form>
+							<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
+								<div class="btn btn-primary primary" th:text="加入购物车" onclick="alert('不能买自己发布的商品！')">
+								</div>
+							</span>
 					    </div>
 
 					    <div class="form-check sp_check my-3">
@@ -1285,12 +1298,16 @@
 
 						<div class="sp_buy">
 <!--							<button type="button" class="btn btn-primary primary" th:href="@{/checkOutWithSingleProduct}" th:text="立即购买"></button>-->
-							<form class="layui-form" th:action="@{/checkOutWithSingleProduct}" method="post">
+							<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form" th:action="@{/checkOutWithSingleProduct}" method="post">
 								<span class="sp_c_count2">
 									<input type="hidden" id="pid" name="pid" th:value="${product.getP_Id()}" style="display: none">
 									<input type="submit" value="立即购买" class="btn btn-primary primary">
 								</span>
 							</form>
+							<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
+								<div class="btn btn-primary primary" th:text="立即购买" onclick="alert('不能买自己发布的商品！')">
+								</div>
+							</span>
 						</div>
 						<div class="sp_wish_com my-3">
 					      	<span class="sp_comp1"><a href="#" class="text-uppercase font-weight-bolder " data-toggle="modal" data-target="#wish_Modal"><i class="far fa-heart"></i>加入愿望单</a></span>

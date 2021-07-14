@@ -41,7 +41,7 @@ public class CheckOutController {
                                 @RequestParam("pid") String pid,
                                 HttpSession session){
         String account = (String) session.getAttribute("u_Account");
-        String orderId = String.valueOf( orderService.selectOrderCount() + 1);//新订单编号-递增规则
+        String orderId = "o" + String.valueOf( orderService.selectOrderCount() + 1);//新订单编号-递增规则
         int p_id = Integer.valueOf(pid);
 
         Product product = productService.selectProductById(p_id);
@@ -58,6 +58,13 @@ public class CheckOutController {
         newOrder.setO_Saddress(address1.getA_Address1());
 
         orderService.insertOne(newOrder);
+
+        if (product.getP_num() > 1){
+            product.setP_num(product.getP_num()-1);
+            productService.updateProduct(product);
+        }else{
+            productService.deleteProductById(product.getP_Id());
+        }
 
         System.out.println("新订单--");//debug
         System.out.println("订单号:"+orderId);
