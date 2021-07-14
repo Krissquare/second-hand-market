@@ -355,203 +355,290 @@
 
 
 <!-- header area -->
-																		<!-- first row -->
-	<header>
-		<div class="topbar-outer py-2 border-bottom bg-white d-md-none d-none d-none d-lg-block">
-			<div class="container custom_container">
-				<div class="row">
-					<div class="col-lg-5 col-md-4 col-sm-4 topbar_left">
-						<ul>
-							<li>
-								<span class="font-weight-bolder">Get 30% Off On Selected Items</span>
-							</li>
-						</ul>
-					</div> <!-- col-lg-5 col-md-4 col-sm-4 hidden-md-down topbar_left -->
-					<div class="col-lg-7 col-md-8 col-sm-8 text-xs-right  topbar_right text-right">
-						
-						<nav class="navbar ">
-							<div class="dropdown right1 md_acc ">
-							  <span class="dropdown-toggle" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder"> my account&nbsp;<i class="fas fa-angle-down"></i></a>
-							  </span>
-							  <div class="dropdown-menu r_menu dropdown-menu-right" >
-								    <a class="dropdown-item font-weight-bolder" href="login.html">log in</a>
-								    <a class="dropdown-item font-weight-bolder" href="registration.html">register</a>
-							  </div>
-							</div>
+
+
+<header>
+	<!-- first row -->
+
+	<div class="topbar-outer py-2 border-bottom bg-white d-md-none d-none d-none d-lg-block">
+		<div class="container custom_container">
+			<div class="row">
+				<div class="col-lg-5 col-md-4 col-sm-4 topbar_left">
+					<ul>
+						<li><style type="text/css">
+							.font-weight-bolder1
+							{font-family:'YouYuan';
+								color:red;
+								font-size:14px;
+							}
+						</style>
+							<span class="font-weight-bolder1" th:if="${session.u_Account == null}" th:text="'&nbsp;&nbsp;&nbsp;' + 亲 + ',' + 请先登录哦"></span>
+							<span class="font-weight-bolder1" th:if="${session.u_Account != null}" th:text="'&nbsp;&nbsp;&nbsp;' +欢迎来到厦大二手交易平台+ '!'"></span>
+						</li>
+					</ul>
+				</div> <!-- col-lg-5 col-md-4 col-sm-4 hidden-md-down topbar_left -->
+				<div class="col-lg-7 col-md-8 col-sm-8 text-xs-right  topbar_right text-right">
+
+					<nav class="navbar ">
+						<div class="dropdown right1 md_acc ">
+								<span class="dropdown-toggle">
+                                    <span th:if="${session.u_Account != null}" href="" class="font-weight-bolder"
+										  th:text="${session.u_Account}"></span>
+                                    <a th:if="${session.u_Account == null}" href="/login" class="font-weight-bolder">登录</a>
+								</span>
+						</div>
+
+
+
 						<div class="dropdown right1 md_1 hr_">
-						  <span class="dropdown-toggle" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder"> USD&nbsp;<i class="fas fa-angle-down"></i></a>
-						  </span>
-						  <div class="dropdown-menu r_menu dropdown-menu-right" >
-						    <a class="dropdown-item font-weight-bolder" href="#">SAR SAR</a>
-						    <a class="dropdown-item font-weight-bolder" href="#">USD $</a>
-						  </div>
+
+                            <span class="dropdown-toggle">
+                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
+									>退出</a>
+                                    <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
+								</span>
 						</div>
-						
-						<div class="dropdown right1 md_2 hr_">
-						  <span class="dropdown-toggle" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">ENG&nbsp;<i class="fas fa-angle-down"></i></a>
-						  </span>
-						  <div class="dropdown-menu r_menu dropdown-menu-right" >
-						    <a class="dropdown-item font-weight-bolder" href="#">English</a>
-						    <a class="dropdown-item font-weight-bolder" href="#">Polski</a>
-						    <a class="dropdown-item font-weight-bolder" href="#">Romana</a>
-						    <a class="dropdown-item font-weight-bolder" href="#">Deutsch</a>
-						    <a class="dropdown-item font-weight-bolder" href="#">Italiano</a>
-						  </div>
+						<div class="dropdown right1 md_1 hr_" th:if="${session.u_Account != null}">
+								<span class="dropdown-toggle">
+                                    <a href="userInfo.html" class="font-weight-bolder">修改个人信息</a>
+								</span>
+
 						</div>
+
 					</nav>
-						
-					</div> <!-- col-lg-7 col-md-8 col-sm-8 text-xs-right hidden-md-down topbar_right text-right -->
-				</div> <!-- row -->
-			</div> <!-- container custom_container -->
-		</div> <!-- topbar-outer py-2 border-bottom bg-white -->
 
-																	<!-- second row -->
+				</div> <!-- col-lg-7 col-md-8 col-sm-8 text-xs-right hidden-md-down topbar_right text-right -->
+			</div> <!-- row -->
+		</div> <!-- container custom_container -->
+	</div> <!-- topbar-outer py-2 border-bottom bg-white -->
 
-		<div   class="header-top py-4 border-bottom bg-white ">
-			<div class="container custom_container header-top-container">
-				<div class="row">
-					<div class="col-xl-2 col-lg-2 col-6  head-logo">
-						<div class="text-left header-top-left pt-2"><a href="index.html"><img src="assets/img/Hitech..png" class="img-responsive img"  alt="Hitech"></a></div>
-					</div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
-					<div class="col-xl-10 col-lg-10 col-6  head-search">
-						<div class="d-flex navbar">
+	<!-- second row -->
+
+	<div class="header-top py-4 border-bottom bg-white sticky-md-top">
+		<div class="container custom_container header-top-container">
+			<div class="row">
+				<div class="col-xl-2 col-lg-2 col-6  head-logo">
+					<div class="text-left header-top-left pt-2"><a href="/"><img src="assets/img/logo.png"
+																				 class="img-responsive img" alt="Hitech"></a></div>
+				</div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
+				<div class="col-xl-10 col-lg-10 col-6  head-search">
+					<div class="d-flex navbar">
 						<div class="input-class  text-left col-xl-8 col-lg-7 col-md-12  ">
 							<div class="between-header border border-danger rounded mb-0 head-left">
-							
-								<select class="select-menu form-select d-none d-sm-block" >
-								    <option value="selected">all categories</option>
-								    <option value="1">laptop</option>
-								    <option value="2">headphone</option>
-								    <option value="3">audio</option>
+
+								<select class="select-menu form-select d-none d-sm-block">
+									<option value="selected">所有分类</option>
+									<option value="1">书籍教材</option>
+									<option value="2">电子产品</option>
+									<option value="3">代步工具</option>
+									<option value="4">衣帽鞋伞</option>
+									<option value="5">体育健身</option>
+									<option value="6">家用电器</option>
+									<option value="7">虚拟产品</option>
+									<option value="8">手工设计</option>
+									<option value="9">日常用品</option>
+									<option value="10">音乐器材</option>
 								</select>
-								
-															
+
+
 								<div class="input-group">
-									<input type="text" placeholder="search" class="form-control" aria-label="search" aria-describedby="button-addon2">
-									<div class="input-group-btn"><button type="button" class="btn btn-danger text-uppercase font-weight-normal">search</button></div>
+									<input type="text" placeholder="搜索" class="form-control" aria-label="search"
+										   aria-describedby="button-addon2" id="txt">
+									<div class="input-group-btn"><button type="button"
+																		 class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
+									</div>
 								</div>
-							</div> <!-- between-header text-left col-sm-8 head-left border border-danger rounded mb-0 -->
+							</div>
+							<!-- between-header text-left col-sm-8 head-left border border-danger rounded mb-0 -->
 						</div>
 
 						<div class="col-xl-4 col-lg-5 head-right text-right">
 							<ul>
-							<li class="md_compare d-lg-inline-block">
-								<a href="compare.html">
-								<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg width="34px" height="34px"><use xlink:href="#compare"></use></svg></span>
-								<span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">compare</span>
-								</a>
-							</li>
-							<li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
-								<a href="wishlist.html">
-								<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg  width="35px" height="35px"><use xlink:href="#favourite"></use></svg></span>
-								<span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">favourite</span>
-								</a>
-							</li>
-							
-							<li class="d-lg-none d-md-inline-block user">
-                                  <span >
-                                    <a href="#"><span><svg width="35px" height="35px"><use xlink:href="#header_user"></use></svg></span></a>
-                                  </span>
-                                  <div class="head_ border rounded bg-white text-left">
-                                    <a class=" md_login" href="#"></a>
-                                  </div>
-                            </li> 
-
-							<li class="dropdown d-inline-block">
-								  <span class="dropdown-toggle" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								  	<a href="#">
-										<span><svg width="35px" height="35px"><use xlink:href="#cart"></use></svg></span>
-										<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span><span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder">2</span>
+								<li class="md_compare d-lg-inline-block">
+									<a href="#">
+											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
+													width="34px" height="40px"></svg></span>
+										<img src="assets/img/订单.png" style="height: 33px;width: 30px" alt="">
+										<span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
+                                            <a th:if="${session.u_Account != null}" href="/showMyTransactionOrders">订单管理</a></span>
+										<a th:if="${session.u_Account == null}" href="/login">订单管理</a></span>
 									</a>
-								  </span>
-								  <div class="dropdown-menu s_cart dropdown-menu-right" >
-								    <ul class="shopping-cart p-2 ">
-								    	<li class="pb-2 d-block">
-								    		<div class="media ">
-								    			<div>
-											  <a href="#"><img src="assets/img/product/product_13.jpg" class="fst-image img-fluid align-self-center" alt="product_13"></a></div>
-											  <div class="media-body">
-											    <h6 class="mt-0 f_15">Media heading<span class="float-right cart_cross">X</span></h6>
-											    <p><span class="f_13">1 x $ 299.00</span></p>
-											  </div>
-											</div>
-								    	</li>
-								    	<li class="pb-2 d-block border-bottom pl-0">
-								    		<div class="media ">
-								    			<div>
-											  <a href="#"><img src="assets/img/product/product_21.jpg" class="fst-image img-fluid align-self-center" alt="product_21"></a></div>
-											  <div class="media-body">
-											    <h6 class="mt-0 f_15">Media heading<span class="float-right cart_cross">X</span></h6>
-											    <p><span>1 x $ 299.00</span></p>
-											  </div>
-											</div>
-								    	</li>
-								    	<li class="d-block text-muted font-weight-bolder p-2 border-bottom">
-								    		<span class="text-left">subtotal:</span>
-								    		<span class="float-right">$230.00</span>
-								    	</li>
-								    	<li class="d-block font-weight-bolder pt-2">
-								    		<span class="text-left"><a href="cart.html">view cart</a></span>
-								    		<span class="float-right"><a href="checkout.html">check out</a></span>
-								    	</li>
-								    </ul>
-								  </div>
-							</li>
-						</ul>
-							
+								</li>
+								<li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
+									<a href="wishlist.html">
+											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
+													width="35px" height="35px">
+													<use xlink:href="#favourite"></use>
+												</svg></span>
+										<span
+												class="comp_wish align-middle d-lg-inline-block font-weight-bolder">心愿清单</span>
+									</a>
+								</li>
+
+								<li class="d-lg-none d-md-inline-block user">
+										<span>
+											<a href="#"><span><svg width="35px" height="35px">
+														<use xlink:href="#header_user"></use>
+													</svg></span></a>
+										</span>
+									<div class="head_ border rounded bg-white text-left">
+										<a class=" md_login" href="#"></a>
+									</div>
+								</li>
+
+								<li class="dropdown d-inline-block">
+										<span th:if="${session.u_Account == null}" class="dropdown-toggle" role="menu"
+											  aria-haspopup="true" aria-expanded="false">
+											<a href="/login">
+												<span><svg width="35px" height="35px">
+														<use xlink:href="#cart"></use>
+													</svg></span>
+												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
+
+											</a>
+                                    </span>
+
+									<span th:if="${session.u_Account != null}" class="dropdown-toggle" role="menu"
+										  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+												<span><svg width="35px" height="35px">
+														<use xlink:href="#cart"></use>
+													</svg></span>
+												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
+                                                <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
+													  th:text="${session.shoppingCartList.size()}"></span>
+										</span>
+
+									<div class="dropdown-menu s_cart dropdown-menu-right">
+										<ul class="shopping-cart p-2 ">
+											<li th:each="p:${session.shoppingCartList}" class="pb-2 d-block">
+												<div class="media ">
+													<div>
+														<a href="#">
+															<img th:src="${p.getP_href()}"
+																 class="fst-image img-fluid align-self-center"
+																 alt="product_13">
+														</a>
+													</div>
+													<div class="media-body">&nbsp;
+														<h6 class="mt-0 f_15"
+															th:text="${p.getP_Title()}"><span
+																class="float-right cart_cross">X</span></h6>
+														<p><span class="f_13"
+																 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span></p>
+													</div>
+												</div>
+											</li>
+
+											<li class="d-block text-muted font-weight-bolder p-2 border-bottom">
+												<span class="text-left">总计:</span>
+												<span class="float-right f_13"
+													  th:text="'￥' + ${session.shoppingCarPrice}"></span>
+											</li>
+											<li class="d-block font-weight-bolder pt-2">
+												<span class="text-left"><a href="cart.html">view cart</a></span>
+												<span class="float-right"><a href="checkout.html">结账</a></span>
+											</li>
+										</ul>
+									</div>
+								</li>
+
+							</ul>
 						</div> <!-- col-sm-4 head-right text-right -->
 
-						</div> <!-- row -->
-					</div> <!-- col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 head-search -->
-				</div> <!-- row -->
-			</div> <!--  container custom_container -->
-		</div> <!-- header-top py-4 border-bottom bg-white -->
+					</div> <!-- row -->
+				</div> <!-- col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 head-search -->
+			</div> <!-- row -->
+		</div> <!--  container custom_container -->
+	</div> <!-- header-top py-4 border-bottom bg-white -->
 
-																			<!-- third row -->
+	<!-- third row -->
 
-		<div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
-			<div class="container custom_container">
-				<div class="row">
-					
-					<div class="col-lg-9 text-left sp_hz_menu">
-						<ul class="main-menu navbar">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="shop-left-sidebar.html">Shop</a></li>
-							<li><a href="blog.html">blog</a></li>
-							<li><a href="portfolio-grid-4.html">gallery</a></li>
-							<li><a href="about-us.html">about us</a></li>
-							<li><a class="dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-expanded="false">pages  <i class="fas fa-angle-down"></i></a>
-							    <ul class="dropdown-menu">
-							    	<li class="d-block"><a class="dropdown-item font-weight-bolder" href="about-us.html">about us</a></li>
-							    	<li class="d-block"><a class="dropdown-item font-weight-bolder" href="single-product.html">single product</a></li>
-							    	<li class="d-block"><a class="dropdown-item font-weight-bolder" href="single-blog.html">single blog</a></li>
-							        <li class="d-block"><a class="dropdown-item font-weight-bolder" href="login.html">login</a></li>
-						            <li class="d-block"><a class="dropdown-item font-weight-bolder" href="registration.html">registration</a></li>
-						            <li class="d-block"><a class="dropdown-item font-weight-bolder" href="cart.html">cart</a></li>
-						            <li class="d-block"><a class="dropdown-item font-weight-bolder" href="compare.html">compare</a></li>
-						            <li class="d-block"><a class="dropdown-item font-weight-bolder" href="wishlist.html">wishlist</a></li>
-						            <li class="d-block"><a class="dropdown-item font-weight-bolder" href="checkout.html">check out</a></li>
-						            <li class="d-block"><a class="dropdown-item font-weight-bolder" href="forgot.html">forgot password</a></li>
-							    </ul>
-						    </li>
-						</ul>
-					</div> <!-- col-lg-9 text-left -->
-			
-				</div> <!-- row -->
-			</div> <!-- container custom_container -->
-		</div> <!-- header_bottom shadow-sm bg-white rounded bg-white -->
+	<div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
+		<div class="container custom_container">
+			<div class="row">
 
-	</header> <!-- header -->
+				<div class="col-lg-9 text-left sp_hz_menu">
+					<ul class="main-menu navbar">
+						<li><a th:href="@{/}">主页</a></li>
+						<li><a th:href="@{/searchAll}">商店</a></li>
+
+						<li><a href="about-us.html">关于我们</a></li>
+						<li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+							   aria-expanded="false">其他&nbsp;<i class="fas fa-angle-down"></i></a>
+							<ul class="dropdown-menu">
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="about-us.html">关于我们</a></li>
+
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="login.html">登录</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="registration.html">注册</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="cart.html">购物车</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="wishlist.html">心愿清单</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="forgot.html">忘记密码</a></li>
+							</ul>
+						</li>
+						<style>
+
+							.fabu1{
+								position: absolute;
+								top:-8px;
+								left: 250px;
+								border-width: 0px; /* 边框宽度 */
+								border-radius: 3px; /* 边框半径 */
+								width:105px;
+								height:38px;
+							}
+						</style>
+						<li style="background-color:#FFC107" class="fabu1">
+
+
+
+							<a class="dropdown-item font-weight-bolder2"
+							   href="/admin/user_init" style="color: black;font-weight:600"> &nbsp;&nbsp;商品管理</a></li>
+
+
+
+
+						<style>
+
+							.fabu2{
+								position: absolute;
+								top:-8px;
+								left: 250px;
+								border-width: 0px; /* 边框宽度 */
+								border-radius: 3px; /* 边框半径 */
+								width:105px;
+								height:38px;
+							}
+						</style>
+						<li style="background-color:#FFC107" class="fabu2">
+
+
+
+							<a class="dropdown-item font-weight-bolder2"
+							   th:href="@{/admin/addinit}" style="color: black;font-weight:600"> &nbsp;&nbsp;发布商品</a></li></ul>
+				</div> <!-- col-lg-9 text-left -->
+
+			</div> <!-- row -->
+		</div> <!-- container custom_container -->
+	</div> <!-- header_bottom shadow-sm bg-white rounded bg-white -->
+
+</header> <!-- header -->
 
 <!-- header area end -->
 
 <!-- vertical menu -->
 
-	<div  id="sp_vertical_menu" class="container custom_container menu_slider d-xl-none d-lg-none d-md-block my-0">
-		<div class="row">
-			<div class="col-lg-3 vertical_menu ">
-				<div class="v_menu bg-white rounded">
-				<div class="cat_menu bg-warning rounded-top"><a  class="pe-auto text-uppercase d-md-none d-sm-none d-none d-lg-block font-weight-bold" data-toggle="collapse" href="#vartical_collapse" role="button" aria-expanded="false" aria-controls="vartical_collapse"><i class="fas fa-bars"></i>all categories</a></div>
+<div  id="sp_vertical_menu" class="container custom_container menu_slider d-xl-none d-lg-none d-md-block my-0">
+	<div class="row">
+		<div class="col-lg-3 vertical_menu ">
+			<div class="v_menu bg-white rounded">
+				<div class="cat_menu bg-warning rounded-top"><a  class="pe-auto text-uppercase d-md-none d-sm-none d-none d-lg-block font-weight-bold" data-toggle="collapse" href="#vartical_collapse" role="button" aria-expanded="false" aria-controls="vartical_collapse"><i class="fas fa-bars"></i>所有分类</a></div>
 
 				<div class="navbar-header d-xl-none d-lg-none">
 					<button type="button" class="btn-navbar navbar-toggle" onclick="openNav()" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fas fa-bars"></i></button>
@@ -559,121 +646,208 @@
 				<div class="collapse" id="vartical_collapse">
 					<div id="mySidenav" class="sidenav	" >
 						<div class="close-nav d-xl-none d-lg-none">
-								<span class="categories">Category</span>
-								<a href="javascript:void(0)" class="closebtn pull-right" onclick="closeNav()"><i class="fas fa-times"></i></a>
+							<span class="categories">Category</span>
+							<a href="javascript:void(0)" class="closebtn pull-right" onclick="closeNav()"><i class="fas fa-times"></i></a>
 						</div>
 
-					<ul class="vertical_main_menu sp_menu navbar navbar-nav">
-						<li class="dropdown mega_menu m1_menu level-1 font-weight-bolder">
-							<a class="dropdown-toggle" href="single-product.html"  role="button" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-mobile-alt"></i>portfolio&nbsp;<span class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
-							    <ul class="dropdown-menu">
-							    	<li>
-								    	<ul class="row mx-0">
-								    		<li class="mg_menu col-lg-6 col-md-12 ">
-								    			<ul>
-								    				<li class="h_title text-uppercase font-weight-bold border-bottom">portfolio grid 2</li>
-									    			<li><a class="dropdown-item font-weight-bolder" href="portfolio-grid-2.html">portfolio grid 2</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="portfolio-grid-3.html">portfolio grid 3</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="portfolio-grid-4.html">portfolio grid 4</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="mesonary-grid-2.html">mesonary grid 2</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="mesonary-grid-3.html">mesonary grid 3</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="mesonary-grid-4.html">mesonary grid 4</a></li>
-												</ul>
-								    		</li>
-								    		<li class="mg_menu col-lg-6 col-md-12">
-								    			<ul>
-								    				<li class="h_title text-uppercase font-weight-bold border-bottom">theme elements</li>
-									    			<li><a class="dropdown-item font-weight-bolder" href="title.html">title</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="category-style.html">category</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="services.html">services</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="product-tab.html">product tab</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="multi-slider-product.html">multi slider product</a></li>
-												</ul>
-								    		</li>						 
-							    		</ul>
-						    		</li>
-							    </ul>
-						</li>
-						<li class="dropdown level-1 font-weight-bolder">
-							<a class="dropdown-toggle" href="blog.html"  role="button" data-toggle="dropdown" aria-expanded="false"><i class="far fa-hourglass"></i>blog&nbsp;<span class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
-							    <ul class="dropdown-menu">
-							      <li><a class="dropdown-item font-weight-bolder" href="blog.html">blog</a></li>
-							      <li><a class="dropdown-item font-weight-bolder" href="blog-left-sidebar.html">left sidebar</a></li>
-							      <li><a class="dropdown-item font-weight-bolder" href="blog-right-sidebar.html">right sidebar</a></li>
-							    </ul>
-						</li>
-						<li class="dropdown level-1 font-weight-bolder">
-							<a class="dropdown-toggle" href="shop-left-sidebar.html"  role="button" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-laptop"></i>shop&nbsp;<span class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
-							    <ul class="dropdown-menu">
-							      <li><a class="dropdown-item font-weight-bolder" href="shop-left-sidebar.html">left sidebar</a></li>
-							      <li><a class="dropdown-item font-weight-bolder" href="shop-right-sidebar.html">right sidebar</a></li>
-							    </ul>
-						</li>
-						<li class="dropdown mega_menu level-1 font-weight-bolder">
-							<a class="dropdown-toggle" href="single-product.html" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-mobile-alt"></i>Smartphone&nbsp;<span class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
-							    <ul class="dropdown-menu">
-							    	<li>
-								    	<ul class="row mx-0">
-								    		<li class="mg_menu col-lg-4 col-md-12 ">
-								    			<ul>
-								    				<li class="h_title text-uppercase font-weight-bold border-bottom">fashion</li>
-									    			<li><a class="dropdown-item font-weight-bolder" href="single-product.html">Laptop</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="single-product.html">head phone</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="single-product.html">computer</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="single-product.html">chair</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="single-product.html">mobile</a></li>
-												</ul>
-								    		</li>
-								    		<li class="mg_menu col-lg-4 col-md-12">
-								    			<ul>
-								    				<li class="h_title text-uppercase font-weight-bold border-bottom">fashion</li>
-									    			<li><a class="dropdown-item font-weight-bolder" href="single-product.html">Laptop</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="single-product.html">head phone</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="single-product.html">computer</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="single-product.html">chair</a></li>
-												    <li><a class="dropdown-item font-weight-bolder" href="single-product.html">mobile</a></li>
-												</ul>
-								    		</li>
-								    		<li class="mg_menu col-lg-4 col-md-12">
-								    			<ul>
-									    			<li><a href="single-product.html"><img src="assets/img/product/deal2.jpg" class="fst-image mx-auto d-block mb-1 img-fluid" alt="deal2"></a></li>
-												</ul>
-								    		</li>
-							    		</ul>
-						    		</li>
-							    </ul>
-						</li>
-						<li class="dropdown level-1 font-weight-bolder">
-							<a class="dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-laptop"></i>pages&nbsp;<span class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
-							    <ul class="dropdown-menu" >
-							    	<li><a class="dropdown-item font-weight-bolder" href="about-us.html">about us</a></li>
-							        <li><a class="dropdown-item font-weight-bolder" href="login.html">login</a></li>
-						            <li><a class="dropdown-item font-weight-bolder" href="registration.html">registration</a></li>
-						            <li><a class="dropdown-item font-weight-bolder" href="single-product.html">single product</a></li>
-						            <li><a class="dropdown-item font-weight-bolder" href="single-blog.html">single blog</a></li>
-						            <li><a class="dropdown-item font-weight-bolder" href="cart.html">cart</a></li>
-						            <li><a class="dropdown-item font-weight-bolder" href="compare.html">compare</a></li>
-						            <li><a class="dropdown-item font-weight-bolder" href="wishlist.html">wishlist</a></li>
-						            <li><a class="dropdown-item font-weight-bolder" href="checkout.html">check out</a></li>
-						            <li><a class="dropdown-item font-weight-bolder" href="forgot.html">forgot password</a></li>
-							    </ul>
-						</li>
-						<li class="level-1 font-weight-bolder"><a href="single-product.html"><i class="fas fa-tv"></i>TV & Audio</a></li>
-						<li class="level-1 font-weight-bolder"><a href="single-product.html"><i class="fas fa-headphones-alt"></i>Headphone</a></li>
-						<li class="level-1 font-weight-bolder"><a href="single-product.html"><i class="far fa-clock"></i>Smart watch</a></li>
-						<li class="level-1 font-weight-bolder"><a href="shop-left-sidebar.html"><i class="far fa-keyboard"></i>Accessories</a></li>
-						<li class="level-1 font-weight-bolder"><a href="single-product.html"><i class="fas fa-tshirt"></i>Fashion</a></li>
-						<li class="level-1 font-weight-bolder"><a href="single-product.html"><i class="fas fa-universal-access"></i>Sale and Offers</a></li>
-						<li class="level-1 font-weight-bolder"><a href="shop-left-sidebar.html"><i class="far fa-keyboard"></i>Accessories</a></li>
-						<li class="level-1 font-weight-bolder"><a href="single-product.html"><i class="fas fa-tshirt"></i>Fashion</a></li>
-						<li class="level-1 font-weight-bolder"><a href="single-product.html"><i class="fas fa-universal-access"></i>Sale and Offers</a></li>
-					</ul>
+						<ul class="vertical_main_menu sp_menu navbar navbar-nav">
+							<li class="dropdown level-1 font-weight-bolder">
+								<a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+								   aria-expanded="false"><img src="assets/img/分类/书籍教材.png"
+															  style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;书籍教材<span
+										class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item font-weight-bolder" href="/search?search=教材">教材</a></li>
+									<li><a class="dropdown-item font-weight-bolder" href="/search?search=文学">文学</a>
+									</li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=小说">小说</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=动漫">动漫</a></li>
+								</ul>
+							</li>
+							<li class="dropdown level-1 font-weight-bolder">
+								<a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+								   aria-expanded="false"><img src="assets/img/分类/电子产品.png"
+															  style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;电子产品<span
+										class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
+								<ul class="dropdown-menu">
+
+									<li><a class="dropdown-item font-weight-bolder" href="/search?search=平板">平板</a>
+									</li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=手表">手表</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=手机">手机</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=耳机">耳机</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=台式机">台式机</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=充电宝">充电宝</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=路由器">路由器</a></li>
+								</ul>
+							</li>
+							<li class="dropdown level-1 font-weight-bolder">
+								<a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+								   aria-expanded="false"><img src="assets/img/分类/代步工具.png"
+															  style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;代步工具<span
+										class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
+								<ul class="dropdown-menu">
+
+									<li><a class="dropdown-item font-weight-bolder" href="/search?search=滑板">滑板</a>
+									</li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=自行车">自行车</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=电动车">电动车</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=摩托车">摩托车</a></li>
+
+								</ul>
+							</li>
+							<li class="dropdown level-1 font-weight-bolder">
+								<a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+								   aria-expanded="false"><img src="assets/img/分类/衣帽鞋伞.png"
+															  style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;衣帽鞋伞<span
+										class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
+								<ul class="dropdown-menu">
+
+									<li><a class="dropdown-item font-weight-bolder" href="/search?search=衣服">衣服</a>
+									</li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=帽子">帽子</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=鞋子">鞋子</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=雨伞">雨伞</a></li>
+
+								</ul>
+							</li>
+							<li class="dropdown level-1 font-weight-bolder">
+								<a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+								   aria-expanded="false"><img src="assets/img/分类/体育健身.png"
+															  style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;体育健身<span
+										class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
+								<ul class="dropdown-menu">
+
+									<li><a class="dropdown-item font-weight-bolder" href="/search?search=球类">球类</a>
+									</li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=球拍">球拍</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=运动鞋">运动鞋</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=运动装备">运动装备</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=健身器材">健身器材</a></li>
+
+
+								</ul>
+							</li>
+							<li class="dropdown level-1 font-weight-bolder">
+								<a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+								   aria-expanded="false"><img src="assets/img/分类/家用电器.png"
+															  style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;家用电器<span
+										class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
+								<ul class="dropdown-menu">
+
+									<li><a class="dropdown-item font-weight-bolder" href="/search?search=风扇">风扇</a>
+									</li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=冰箱">冰箱</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=电磁炉">电磁炉</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=洗衣机">洗衣机</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=电吹风">电吹风</a></li>
+
+
+								</ul>
+							</li>
+							<li class="dropdown level-1 font-weight-bolder">
+								<a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+								   aria-expanded="false"><img src="assets/img/分类/虚拟产品.png"
+															  style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;虚拟产品<span
+										class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
+								<ul class="dropdown-menu">
+
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=充值卡">充值卡</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=游戏周边">游戏周边</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=各类账号">各类账号</a></li>
+
+
+
+								</ul>
+							</li>
+							<li class="dropdown level-1 font-weight-bolder">
+								<a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+								   aria-expanded="false"><img src="assets/img/分类/手工设计.png"
+															  style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;手工设计<span
+										class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
+								<ul class="dropdown-menu">
+
+									<li><a class="dropdown-item font-weight-bolder" href="/search?search=书法">书法</a>
+									</li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=绘画">绘画</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=工艺品">工艺品</a></li>
+
+
+
+								</ul>
+							</li>
+							<li class="dropdown level-1 font-weight-bolder">
+								<a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+								   aria-expanded="false"><img src="assets/img/分类/日常用品.png"
+															  style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;日常用品<span
+										class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
+								<ul class="dropdown-menu">
+
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=化妆品">化妆品</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=小工具">小工具</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=学习用品">学习用品</a></li>
+
+
+
+								</ul>
+							</li>
+							<li class="dropdown level-1 font-weight-bolder">
+								<a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+								   aria-expanded="false"><img src="assets/img/分类/音乐器材.png"
+															  style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;音乐器材<span
+										class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
+								<ul class="dropdown-menu">
+
+									<li><a class="dropdown-item font-weight-bolder" href="/search?search=吉他">吉他</a>
+									</li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=钢琴">钢琴</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=电子琴">电子琴</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=西洋管弦">西洋管弦</a></li>
+									<li><a class="dropdown-item font-weight-bolder"
+										   href="/search?search=打击乐器">打击乐器</a></li>
+
+
+								</ul>
+							</li></ul>
 					</div>
-			</div>
-				</div> <!-- v_menu bg-white rounded -->
-			</div> <!-- col-md-3 vertical_menu -->
-		</div>
+				</div>
+			</div> <!-- v_menu bg-white rounded -->
+		</div> <!-- col-md-3 vertical_menu -->
 	</div>
+</div>
 
 <!-- vertical menu end -->
 
@@ -812,94 +986,9 @@
 
 <!-- footer -->
 
-<div class="footer">
-	<div class="first_footer">
-		<div class="container custom_container">
-			<div class="row">
-				<div class="col-lg-6 col-md-7 col-12 d-none d-sm-none d-md-block">
-					<span class="d-inline-block"><svg width="110px" height="110px"><use xlink:href="#send"></use></svg></span>
-					<div class="newsletter d-inline-block align-middle">
-						<h4 class="text-light">Join Our Newsletter Now</h4>
-						<p class="mb-0">Register to get updates on promotions.</p>
-					</div>
-				</div> <!-- col-md-5 col-12 -->
-				<div class="col-lg-6 col-md-5 col-sm-12 col-12">
-					<div class="input-group">
-					  <input type="text" class="form-control border-white" placeholder="Subscribe newsletter..." aria-label="Subscribe newsletter..." aria-describedby="button-addon2">
-					  <div class="input-group-append">
-					    <button class="btn btn-outline-secondary text-uppercase" type="button" id="button-addon2">submit</button>
-					  </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> <!-- row first_footer -->
+<div class="footer animate__animated animate__fadeInUp">
 
-	<div class="second_footer ">
-		<div class="container custom_container">
-			<div class="row">
-				<div id="logo_carousel" class="owl-carousel owl-theme ">
 
-					<div class="item">
-					    <div class="col-12">
-							<a href="#">
-									<img src="assets/img/logo1.png" class="second-img mx-auto d-block img-fluid" alt="logo1">												
-							</a>							
-						</div>
-					</div> <!-- item -->
-
-					<div class="item">
-					    <div class="col-12">
-							<a href="#">
-									<img src="assets/img/logo2.png" class="second-img mx-auto d-block img-fluid" alt="logo2">												
-							</a>							
-						</div>
-					</div> <!-- item -->
-
-					<div class="item">
-					    <div class="col-12">
-							<a href="#">
-									<img src="assets/img/logo3.png" class="second-img mx-auto d-block img-fluid" alt="logo3">												
-							</a>							
-						</div>
-					</div> <!-- item -->
-
-					<div class="item">
-					    <div class="col-12">
-							<a href="#">
-									<img src="assets/img/logo4.png" class="second-img mx-auto d-block img-fluid" alt="logo4">												
-							</a>							
-						</div>
-					</div> <!-- item -->
-
-					<div class="item">
-					    <div class="col-12">
-							<a href="#">
-									<img src="assets/img/logo1.png" class="second-img mx-auto d-block img-fluid" alt="logo1">												
-							</a>							
-						</div>
-					</div> <!-- item -->
-
-					<div class="item">
-					    <div class="col-12">
-							<a href="#">
-									<img src="assets/img/logo2.png" class="second-img mx-auto d-block img-fluid" alt="logo2"> 												
-							</a>							
-						</div>
-					</div> <!-- item -->
-
-					<div class="item">
-					    <div class="col-12">
-							<a href="#">
-									<img src="assets/img/logo3.png" class="second-img mx-auto d-block img-fluid" alt="logo3">												
-							</a>							
-						</div>
-					</div> <!-- item -->
-
-				</div>
-			</div>
-		</div>
-	</div> <!-- row first_footer -->
 
 	<div class="third_footer">
 
@@ -910,105 +999,104 @@
 					<div class="col-xl-4 col-lg-3 col-md-3 col-12 f_col">
 						<div class="fst_col">
 							<div class="footer_title">
-								<h5 class="text-uppercase text-white">contact us<button class="toggle collapsed" data-toggle="collapse" data-target="#fproduct"></button></h5>
+								<h5 class="text-uppercase text-white">联系我们<button class="toggle collapsed" data-toggle="collapse" data-target="#fproduct"></button></h5>
 							</div>
 							<div class="categorie collapse " id="fproduct">
-							<ul class="add_row">
-								<li>
-									<div>
-										<a href="#"><svg width="18px" height="18px"><use xlink:href="#map"></use></svg></a>
-									</div>
-									<div class="data1 add">
-									 <a href="#">1093,  Marigold Lane,<br> Coral Way, Miami,<br>Florida, 33169</a>
-									</div>
-								</li>
-								<li>
-									<div>
-										<a href="#"><svg height="16px" width="16px"><use xlink:href="#call" ></use></svg></a>
-									</div>
-									<div>
-									<a href="#">610-403-403</a>
-									</div>
-								</li>
-  								<li>
-									<div>
-										<a href="#"><svg height="16px" width="16px"><use xlink:href="#mail" ></use></svg></a>
-									</div>
-									<div>
-									<a href="#" class="mail_f">company@example.com</a>
-									</div>
-								</li>
-							</ul>
-							<ul class="foo_pay">
-								<li>
-									<a href="#"><i class="fab fa-cc-mastercard"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fab fa-cc-visa"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fas fa-credit-card"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fab fa-cc-paypal"></i></a>
-								</li>
-							</ul>
-						</div>
+								<ul class="add_row">
+									<li>
+										<div>
+											<a href="#"><svg width="18px" height="18px"><use xlink:href="#map"></use></svg></a>
+										</div>
+										<div class="data1 add">
+											<a href="#">新店镇翔安南路4221号<br>厦门 翔安区<br>中国 福建</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<a href="#"><svg height="16px" width="16px"><use xlink:href="#call" ></use></svg></a>
+										</div>
+										<div>
+											<a href="#">×××-××××-××××</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<a href="#"><svg height="16px" width="16px"><use xlink:href="#mail" ></use></svg></a>
+										</div>
+										<div>
+											<a href="#" class="mail_f">××××@×××.com</a>
+										</div>
+									</li>
+									<li>
+										(当然以下的支付方式都还不支持)
+									</li>
+								</ul>
+								<ul class="foo_pay">
+									<li>
+										<a href="#"><i class="fab fa-cc-mastercard"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-cc-visa"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fas fa-credit-card"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-cc-paypal"></i></a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 
 					<div class="col-xl-3 col-lg-3 col-md-3 col-12">
 						<div class="sec_col">
 							<div class="footer_title">
-								<h5 class="text-uppercase text-white">my account<button class="toggle collapsed" data-toggle="collapse" data-target="#sproduct"></button></h5>
+								<h5 class="text-uppercase text-white">我的<button class="toggle collapsed" data-toggle="collapse" data-target="#sproduct"></button></h5>
 							</div>
 							<div class="categorie collapse" id="sproduct">
-							<ul>
-								<li><a href="about-us.html">About Us</a></li>
-								<li><a href="#">Delivery Infomations</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Discount</a></li>
-								<li><a href="#">Custom Service</a></li>
-								<li><a href="#">Terms & Condition</a></li>
-							</ul>
-						</div>
+								<ul>
+									<li><a href="/admin/userInfo">我的主页</a></li>
+									<li><a href="/admin/shoppingCarInit">我的购物车</a></li>
+									<li><a href="#">我的愿望清单</a></li>
+									<li><a href="#">我的订单</a></li>
+									<li><a href="#">回到顶部</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-3 col-md-3 col-12">
 						<div class="th_col">
 							<div class="footer_title">
-								<h5 class="text-uppercase text-white">categories<button class="toggle collapsed" data-toggle="collapse" data-target="#tproduct"></button></h5>
+								<h5 class="text-uppercase text-white">商品类别<button class="toggle collapsed" data-toggle="collapse" data-target="#tproduct"></button></h5>
 							</div>
 							<div class="categorie collapse" id="tproduct">
-							<ul>
-								<li><a href="#">airplanes</a></li>
-								<li><a href="#">cars</a></li>
-								<li><a href="#">Helicopters</a></li>
-								<li><a href="#">Quadcopters</a></li>
-								<li><a href="#">RC Boats & Yachts</a></li>
-								<li><a href="#">RC Vehicle Parts</a></li>
-								<li><a href="#">Drones Mini Drones</a></li>
-								<li><a href="#">My personal info</a></li>
+								<ul>
+									<li><a href="#">电子产品</a></li>
+									<li><a href="#">书籍教材</a></li>
+									<li><a href="#">衣帽鞋伞</a></li>
+									<li><a href="#">日常用品</a></li>
+									<li><a href="#">代步工具</a></li>
+									<li><a href="#">体育健身</a></li>
 
-							</ul>
-						</div>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="col-xl-2 col-lg-3 col-md-3 col-12">
 						<div class="fth_col">
 							<div class="footer_title">
-								<h5 class="text-uppercase text-white">information<button class="toggle collapsed" data-toggle="collapse" data-target="#fh_product"></button></h5>
+								<h5 class="text-uppercase text-white">本站信息<button class="toggle collapsed" data-toggle="collapse" data-target="#fh_product"></button></h5>
 							</div>
 							<div class="categorie collapse" id="fh_product">
-							<ul>
-								<li><a href="#">About</a></li>
-								<li><a href="#">Delivery</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Discount</a></li>
-								<li><a href="#">Custom Service</a></li>
-								<li><a href="#">Terms & Condition</a></li>
-							</ul>
-						</div>
+								<ul>
+									<li><a href="#">关于开发团队</a></li>
+									<li><a href="#">关于厦大二手交易平台</a></li>
+									<li><a href="#">隐私政策</a></li>
+									<li><a href="#">在线客服</a></li>
+									<li><a href="#">用户条款</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 
@@ -1018,73 +1106,12 @@
 
 	</div> <!-- row first_footer -->
 
-	<div class="fourth_footer">
-		<div class="container custom_container">
-			<div class="fth_foo">
-				<div class="row">
-					<div class="col-md-8 col-12 item_row d-sm-none d-none d-md-block">
-						<div>
-							<ul class="item_name1">
-								<li class="text-uppercase text-white font-weight-bolder">fashion-</li>
-								<li><a href="#"> Sofa</a></li>
-								<li><a href="#">Chair</a></li>
-								<li><a href="#">Dining table</a></li>
-								<li><a href="#">Desk</a></li>
-								<li><a href="#">Table</a></li>
-								<li><a href="#">Lowline TV Units</a></li>
-								<li><a href="#">Living room</a></li>
-								<li><a href="#">Bathroom</a></li>
-								<li><a href="#">Stool  </a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="item_name1">
-								<li class="text-uppercase text-white font-weight-bolder">furniture-</li>
-								<li><a href="#">Living room</a></li>
-								<li><a href="#">Bathroom</a></li>
-								<li><a href="#">Stool  </a></li>
-								<li><a href="#"> bedroom</a></li>
-								<li><a href="#">Table lamp</a></li>
-								<li><a href="#">Nightstand</a></li>
-								<li><a href="#">Pillow</a></li>
-								<li><a href="#"> computer desk</a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="item_name1">
-								<li class="text-uppercase text-white font-weight-bolder">fashion-</li>
-								<li><a href="#"> Sofa</a></li>
-								<li><a href="#">Chair</a></li>
-								<li><a href="#">Dining table</a></li>
-								<li><a href="#"> computer desk</a></li>
-								<li><a href="#"> nightstand</a></li>
-								<li><a href="#"> pillow</a></li>
-								<li><a href="#"> Clock</a></li> 
-								<li><a href="#">Bathroom</a></li>
-								<li><a href="#">Stool  </a></li>
-								<li><a href="#"> bedroom</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-12 col-12">
-						<ul class="item_name2">
-						 	<li><h6  class="text-uppercase text-white font-weight-bold pb-3">download the app</h6></li>
-						 	<li>
-						 		<a href="#"><img src="assets/img/foo_icon1.png" class="second-img img-fluid " alt="foo_icon1"></a>
-						 		<a href="#"><img src="assets/img/foo_icon2.png" class="second-img img-fluid " alt="foo_icon2"></a>
-						 	</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> <!-- row first_footer -->
 
 	<div class="fifth_footer">
 		<div class="container custom_container">
 			<div class="row">
 				<div class="col-12">
-					<div class="text-center demo_link d-block">2020 @ All rights reserved Powered By <a href="http://www.bootstrapmb.com/">bootstrapmb</a></div>
+					<div class="text-center demo_link d-block">2021 @ Java程序设计实践-WinterBoot小组 保留所有权利 Powered By <a href="http://www.bootstrapmb.com/">bootstrapmb</a></div>
 				</div>
 			</div>
 		</div>
