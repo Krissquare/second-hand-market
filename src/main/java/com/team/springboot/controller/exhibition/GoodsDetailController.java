@@ -34,15 +34,19 @@ public class GoodsDetailController   {
 
    //添加商品到购物车
    @PostMapping("/addIntoShoppingCar")
-   public String shoppingCar(@RequestParam("p_Id") int p_Id, HttpSession session){
+   public String shoppingCar(@RequestParam("p_Id") int p_Id,@RequestParam("quant[1]")int num, HttpSession session){
        String account = (String) session.getAttribute("u_Account");
 
        if(account == null)
            return "redirect:/login";
-
-       shoppingCarService.insertOne(account, p_Id);//添加商品p到购物车
-       session.setAttribute("shoppingCartList", shoppingCarService.selectShoppingCarProductById(account));
-       session.setAttribute("shoppingCarPrice", shoppingCarService.getTotalPrice(account));
+       ShoppingCar sc=shoppingCarService.selectByAccountId(account,p_Id);
+       if(sc==null) {
+           shoppingCarService.insertOne(account, p_Id);//添加商品p到购物车
+           session.setAttribute("shoppingCartList", shoppingCarService.selectShoppingCarProductById(account));
+           session.setAttribute("shoppingCarPrice", shoppingCarService.getTotalPrice(account));
+       }
+       else
+           shoppingCarService.updateByAccountId(account,p_Id,num);
 
        return "redirect:/goodsDetail?pid=" + p_Id;
    }
