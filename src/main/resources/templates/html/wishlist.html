@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Hitech</title>
+	<title>厦大二手交易平台</title>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -565,21 +565,44 @@
 
 						<style>
 
-							.fabu{
+							.fabu1{
 								position: absolute;
 								top:-8px;
-								left: 400px;
-
+								left: 250px;
+								border-width: 0px; /* 边框宽度 */
+								border-radius: 3px; /* 边框半径 */
 								width:105px;
 								height:38px;
 							}
 						</style>
-						<li style="background-color:#FFC107" class="fabu">
+						<li style="background-color:#FFC107" class="fabu1">
 
 
 
-							<a class="dropdown-item font-weight-bolder1"
-							   th:href="@{/admin/addinit}" style="color: black"> &nbsp;发布商品</a></li></ul>
+							<a class="dropdown-item font-weight-bolder2"
+							   href="/admin/user_init" style="color: black;font-weight:600"> &nbsp;&nbsp;商品管理</a></li>
+
+
+
+
+						<style>
+
+							.fabu2{
+								position: absolute;
+								top:-8px;
+								left: 250px;
+								border-width: 0px; /* 边框宽度 */
+								border-radius: 3px; /* 边框半径 */
+								width:105px;
+								height:38px;
+							}
+						</style>
+						<li style="background-color:#FFC107" class="fabu2">
+
+
+
+							<a class="dropdown-item font-weight-bolder2"
+							   th:href="@{/admin/addinit}" style="color: black;font-weight:600"> &nbsp;&nbsp;发布商品</a></li></ul>
 				</div> <!-- col-lg-9 text-left -->
 
 			</div> <!-- row -->
@@ -811,138 +834,7 @@
 
 
 
-<!-- wishlist page -->
 
-	<div id="wishlist_page" class="wishlist-page animate__animated animate__fadeInUp">
-
-		<div class="sp_header bg-white p-3 ">
-			<div class="container custom_container ">	
-				<div class="row ">
-					<div class="col-12 ">
-						<ul>
-							<li class="d-inline-block font-weight-bolder"><a href="/">主页</a></li>
-							<li class="d-inline-block hr_ font-weight-bolder"><a href="#">心愿清单</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="container custom_container">
-
-<!-- 			<div class="row w_head sh_page border-bottom">
-				<div class="col-12 col-md-6 pr-0">
-					<div class="d-flex">
-						<div class=" col-xl-4 col-lg-5 col-md-5 col-4">
-							<span class="font-weight-bold">image</span>
-						</div>
-						<div class=" col-xl-8 col-lg-7 col-md-7 col-8">
-							<span class="font-weight-bold">product name</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-md-6 pl-0">
-					<div class="d-flex">
-						<div class="col-md-4 col-sm-4 col-5 ">
-							<span class="font-weight-bold">price</span>
-						</div>
-						<div class="col-md-4 col-sm-4 col-5">
-							<span class="font-weight-bold">availability</span>
-						</div>
-						<div class="col-md-4 col-sm-4 col-2">
-							<span class="font-weight-bold">action</span>
-						</div>
-					</div>
-				</div>
-			</div> -->
-
-
-			<div class="row sh_page border-bottom">
-				<div class="col-12">
-					<span class="font-weight-bold">wishlist</span>
-				</div>
-			</div>
-			<div class="row sh_page border-bottom">
-				<div class="col-12 col-md-6 pr-0">
-					<div class="d-flex">
-						<div class=" col-xl-4 col-lg-5 col-md-5 col-4 px-0">
-							<a href="#"><img src="assets/img/product/product_13.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_13"></a>
-						</div>
-						<div class=" col-xl-8 col-lg-7 col-md-7 col-8 pr-0">
-							<h5 class="w_product_name font-weight-bold mb-2 mb-sm-3 mb-xl-3 mt-sm-2 mt-md-2"><a href="#">Aliquam Top Erat Volutpat</a></h5>
-							<ul>
-								<li class="my-1 f_13">
-									<span>size:</span>
-									<span>s</span>
-								</li>
-								<li class="f_13">
-									<span>color:</span>
-									<span>white</span>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-md-6 mt-4 pl-0">
-					<div class="d-flex">
-						<div class="col-md-4 col-sm-4 col-4 ">
-							<span class="font-weight-bold">$45.00</span>
-						</div>
-						<div class="col-md-4 col-sm-4 col-5 text-center">
-							<span class="font-weight-bolder"><span class="d-xl-inline-block d-none">availability : </span> in stock</span>
-						</div>
-						<div class="col-md-4 col-sm-4 col-3 text-right">
-							<a href="#"><i class="fas fa-trash-alt "></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row sh_page">
-				<div class="col-12 col-md-6 pr-0">
-					<div class="d-flex">
-						<div class=" col-xl-4 col-lg-5 col-md-5 col-4 px-0">
-							<a href="#"><img src="assets/img/product/product_16.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_16"></a>
-						</div>
-						<div class=" col-xl-8 col-lg-7 col-md-7 col-8 pr-0">
-							<h5 class="w_product_name font-weight-bold mb-2 mb-sm-3 mb-xl-3 mt-sm-2 mt-md-2"><a href="#">Aliquam Top Erat Volutpat</a></h5>
-							<ul>
-								<li class="my-1 f_13">
-									<span>size:</span>
-									<span>s</span>
-								</li>
-								<li class="f_13">
-									<span>color:</span>
-									<span>white</span>
-								</li>
-							</ul>
-						</div>
-
-					</div>
-				</div>
-				<div class="col-12 col-md-6 mt-4 pl-0">
-					<div class="d-flex">
-						<div class="col-md-4 col-sm-4 col-4 ">
-							<span class="font-weight-bold">$45.00</span>
-						</div>
-						<div class="col-md-4 col-sm-4 col-5 text-center">
-							<span class="font-weight-bolder"><span class="d-xl-inline-block d-none">availability : </span> in stock</span>
-						</div>
-						<div class="col-md-4 col-sm-4 col-3 text-right">
-							<a href="#"><i class="fas fa-trash-alt "></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div> <!-- container custom_container -->
-
-	</div> <!-- portfolio_2_page -->
-	
-	
-
-
-<!-- wishlist page end -->
 
 
 

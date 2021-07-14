@@ -416,7 +416,7 @@
         <div class="container custom_container header-top-container">
             <div class="row">
                 <div class="col-xl-2 col-lg-2 col-6  head-logo">
-                    <div class="text-left header-top-left pt-2"><a href="/"><img src="assets/img/logo.png"
+                    <div class="text-left header-top-left pt-2"><a href="/"><img src="../assets/img/logo.png"
                                                                                           class="img-responsive img" alt="Hitech"></a></div>
                 </div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
                 <div class="col-xl-10 col-lg-10 col-6  head-search">
@@ -456,7 +456,7 @@
                                     <a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
                                                     width="34px" height="40px"></svg></span>
-                                        <img src="assets/img/订单.png" style="height: 33px;width: 30px" alt="">
+                                        <img src="../assets/img/订单.png" style="height: 33px;width: 30px" alt="">
                                         <span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
                                             <a th:if="${session.u_Account != null}" href="/showMyTransactionOrders">订单管理</a></span>
                                         <a th:if="${session.u_Account == null}" href="/login">订单管理</a></span>
@@ -558,26 +558,26 @@
 
                 <div class="col-lg-9 text-left sp_hz_menu">
                     <ul class="main-menu navbar">
-                        <li><a th:href="@{/showAll}">主页</a></li>
+                        <li><a href="../index.html">主页</a></li>
                         <li><a th:href="@{/searchAll}">商店</a></li>
 
-                        <li><a href="about-us.html">关于我们</a></li>
+                        <li><a href="../about-us.html">关于我们</a></li>
                         <li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                                aria-expanded="false">其他&nbsp;<i class="fas fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="about-us.html">关于我们</a></li>
+                                                       href="../about-us.html">关于我们</a></li>
 
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="login.html">登录</a></li>
+                                                       href="../login.html">登录</a></li>
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="registration.html">注册</a></li>
+                                                       href="../registration.html">注册</a></li>
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="cart.html">购物车</a></li>
+                                                       href="../cart.html">购物车</a></li>
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="wishlist.html">心愿清单</a></li>
+                                                       href="../wishlist.html">心愿清单</a></li>
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="forgot.html">忘记密码</a></li>
+                                                       href="../forgot.html">忘记密码</a></li>
                             </ul>
                         </li>
                         <li><a href="/showMyTransactionOrders">返回</a></li>
@@ -869,6 +869,14 @@
         </textarea>
         </div>
     </div>
+<!--    <div class="layui-input-inline ">-->
+<!--        <button  class="layui-btn-xs"  style="margin-left: 120px" lay-event="imgUpload">添加图片</button>-->
+<!--    </div>-->
+    <div class="layui-input-inline">
+        <script type="text/html" id="imgBar">
+            <a class="layui-btn layui-btn-xs" lay-event="imgUpload">上传图片</a>
+        </script>
+    </div>
     <div class="layui-input-inline login-btn">
         <button  class="layui-btn" id="btn1" style="margin-left: 120px">添加</button>
     </div>
@@ -1042,6 +1050,207 @@
             }
         });
     })
+</script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+<script th:inline="javascript">
+    layui.use(['table','form'], function(){
+        var table = layui.table;
+        const form = layui.form;
+        table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+            const $=layui.$;
+
+            if(layEvent === 'detail'){ //查看
+                layer.confirm('确认查看', function(index){
+                    $.ajax({
+                        url: '/admin/detail/info',
+                        type: 'POST',
+                        data:{p_Id:data.p_Id},
+                        success:function (res){
+                            if(res.code===200) {
+                                tableIns.reload();
+                                layer.open({
+                                    type: 2,
+                                    content: '/admin/detail',
+                                    title:false,
+                                    area: ['500px', '400px'],
+                                    success: function(layero, index){
+                                        layer.msg('正在查看物品编号为:'+data.p_Id+'的信息');
+                                    }
+                                });
+                            }
+                            else
+                                layer.msg('查看失败');
+                        }
+                        ,error(error){
+                            layer.msg(error);
+                        }
+                    });
+                    layer.close(index);
+                });
+            } else if(layEvent === 'del'){ //删除
+                layer.confirm('确定要下架嘛', function(index){
+                    $.ajax({
+                        url: '/admin/delete',
+                        type: 'POST',
+                        data:{p_Id:data.p_Id},
+                        success:function (res){
+                            if(res.code===200) {
+                                tableIns.reload();
+                                layer.msg('删除成功');
+                            }
+                            else
+                                layer.msg('删除失败');
+                        }
+                        ,error(error){
+                            layer.msg(error);
+                        }
+                    });
+                    layer.close(index);
+                });
+            } else if (layEvent === 'edit') { //编辑
+                layer.confirm('确认查看', function(index){
+                    var count=0;
+                    $.ajax({
+                        url: '/admin/edit/info',
+                        type: 'POST',
+                        data:{p_Id:data.p_Id},
+                        success:function (res){
+                            if(res.code===200) {
+                                layer.open({
+                                    type: 2,
+                                    content: '/admin/edit',
+                                    title:false,
+                                    area: ['500px', '500px'],
+                                    success: function(layero, index){
+                                        if(count==0) {
+                                            count++;
+                                            layer.msg('正在修改物品编号为:' + data.p_Id + '的信息');
+                                        }
+                                        else {
+                                            layer.msg("更新成功");
+                                            tableIns.reload();
+                                        }
+                                    }
+                                });
+                            }
+                            else
+                                layer.msg('查看失败');
+                        }
+                        ,error(error){
+                            layer.msg(error);
+                        }
+                    });
+                    layer.close(index);
+                });
+            } else if(layEvent === 'LAYTABLE_TIPS'){
+                layer.alert('Hi，头部工具栏扩展的右侧图标。');
+            }else if(layEvent === 'imgUpload'){ // 上传图片
+                layer.open({
+                    type: 2,
+                    area: ['740px','375px'],
+                    // resize: false,
+                    content: '/imgUploadInit',
+                    cancel: function (index, layero){
+                        tableIns.reload();
+                    },
+                    success: function (layero, index){
+                        const body = layer.getChildFrame('body', index);
+                        body.find('#p_Id').val(data.p_Id);
+                        console.log(data.p_Id);
+                    }
+                });
+            }else if(layEvent == 'imgDel'){ // 编辑图片
+                layer.open({
+                    type: 2,
+                    area: ['740px','375px'],
+                    // resize: false,
+                    content: '/imgUpdateInit',
+                    cancel: function (index, layero){
+                        tableIns.reload();
+                    },
+                    success: function (layero, index){
+                        const body = layer.getChildFrame('body', index);
+                        body.find('#p_Id').val(data.p_Id);
+                    }
+                });
+            }
+        });
+        // 监听搜索按钮
+        var $ = layui.$, active = {
+            reload: function(){
+                var demoReload = $('#demoReload');
+
+                table.reload('testReload', {
+                    where: {
+                        p_Name: demoReload.val()
+                    }
+                });
+            }
+        };
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        table.on('toolbar(test)', function(obj){
+            const $=layui.$;
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'add':
+                    var count=0;
+                    layer.open({
+                        type: 2,
+                        content: '/admin/addinit',
+                        area: ['600px', '600px'],
+                        title: false,
+                        success: function(layero, index){
+                            if(count==0) {
+                                layer.msg("请添加信息");
+                                count++;
+                            }
+                            else{
+                                layer.msg("添加成功");
+                                tableIns.reload();
+                            }
+                        }
+                    });
+                    break;
+            };
+        });
+        //第一个实例
+        var tableIns = table.render({
+            elem: '#demo'
+            ,url: '/admin/productInfo' //数据接口
+            ,toolbar: '#toolbarDemo'
+            , page: true
+            ,limit:10
+            ,limits:[10,30,50]
+            , id: 'testReload'
+            ,response: {
+                statusCode: 200 //规定成功的状态码，默认：0
+            }
+            ,cols: [[ //表头
+                {field: 'p_Id', title: '物品编号', sort: true}
+                ,{field: 'p_href', title: '物品图片', templet: "<div><img  src=\"{{ d.p_href }}\"></div>"}
+                ,{field: 'p_Account', title: '用户账号',sort: true}
+                // ,{field: 'p_Name', title: '物品名称'}
+                ,{field: 'c_Name', title: '物品类别'}
+                ,{field: 'p_Title', title: '物品标题'}
+                ,{field: 'p_Price', title: '价格',sort: true}
+                ,{field: 'imgLoad',title:'图片操作',toolbar: "#imgBar"}
+                ,{title: '操作', toolbar: '#barDemo'}
+            ]]
+        });
+    });
 </script>
 </body>
 </html>
