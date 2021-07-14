@@ -59,6 +59,13 @@ public class CheckOutController {
 
         orderService.insertOne(newOrder);
 
+        if (product.getP_num() > 1){
+            product.setP_num(product.getP_num()-1);
+            productService.updateProduct(product);
+        }else{
+            productService.deleteProductById(product.getP_Id());
+        }
+
         System.out.println("新订单--");//debug
         System.out.println("订单号:"+orderId);
         System.out.println("商品号:"+pid);
