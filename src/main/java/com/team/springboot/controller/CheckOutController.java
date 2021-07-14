@@ -41,7 +41,7 @@ public class CheckOutController {
                                 @RequestParam("pid") String pid,
                                 HttpSession session){
         String account = (String) session.getAttribute("u_Account");
-        String orderId = String.valueOf( orderService.selectOrderCount() + 1);//新订单编号-递增规则
+        String orderId = "o" + String.valueOf( orderService.selectOrderCount() + 1);//新订单编号-递增规则
         int p_id = Integer.valueOf(pid);
 
         Product product = productService.selectProductById(p_id);
