@@ -1081,11 +1081,11 @@
 							</div>
 							<div class="categorie collapse" id="sproduct">
 								<ul>
-									<li><a href="/admin/userInfo">我的主页</a></li>
-									<li><a href="/admin/shoppingCarInit">我的购物车</a></li>
-									<li><a href="#">我的愿望清单</a></li>
-									<li><a href="#">我的订单</a></li>
-									<li><a href="#">回到顶部</a></li>
+									<li><a th:href="@{/}">我的主页</a></li>
+									<li><a href="cart.html">我的购物车</a></li>
+									<li><a href="wishlist.html">我的心愿清单</a></li>
+									<li><a href="/showMyTransactionOrders">我的订单</a></li>
+									<li><a th:href="@{/}">回到顶部</a></li>
 								</ul>
 							</div>
 						</div>
@@ -1097,12 +1097,12 @@
 							</div>
 							<div class="categorie collapse" id="tproduct">
 								<ul>
-									<li><a href="#">电子产品</a></li>
-									<li><a href="#">书籍教材</a></li>
-									<li><a href="#">衣帽鞋伞</a></li>
-									<li><a href="#">日常用品</a></li>
-									<li><a href="#">代步工具</a></li>
-									<li><a href="#">体育健身</a></li>
+									<li><a href="/search?search=电子产品">电子产品</a></li>
+									<li><a href="/search?search=书籍教材">书籍教材</a></li>
+									<li><a href="/search?search=衣帽鞋伞">衣帽鞋伞</a></li>
+									<li><a href="/search?search=日常用品">日常用品</a></li>
+									<li><a href="/search?search=代步工具">代步工具</a></li>
+									<li><a href="/search?search=体育健身">体育健身</a></li>
 
 								</ul>
 							</div>
@@ -1115,7 +1115,7 @@
 							</div>
 							<div class="categorie collapse" id="fh_product">
 								<ul>
-									<li><a href="#">关于开发团队</a></li>
+									<li><a href="about-us.html">关于开发团队</a></li>
 									<li><a href="#">关于厦大二手交易平台</a></li>
 									<li><a href="#">隐私政策</a></li>
 									<li><a href="#">在线客服</a></li>
