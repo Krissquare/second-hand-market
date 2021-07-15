@@ -1183,7 +1183,7 @@
 					                <span class="input-group-btn">
 					              		<button type="button" class="btn btn-default btn-number p-0" disabled="disabled" data-type="minus" data-field="quant[1]"><span class="minus">-</span></button>
 					                </span>
-											<input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+											<input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" th:max="${product.getP_num()}">
 											<span class="input-group-btn">
 					                	<button type="button" class="btn btn-default btn-number p-0" data-type="plus" data-field="quant[1]"><span class="plus">+</span></button>
 					                </span>
