@@ -73,7 +73,7 @@ public class GoodsDetailController   {
         list.add(a.getA_Address3());
         list.add(a.getA_Address4());
         m.addAttribute("list",list);
-        return "admin/BuyGoods";
+        return "html/checkout";
 
    }
 

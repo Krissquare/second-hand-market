@@ -560,12 +560,14 @@
 								</span>
 						</div>
 						<div class="dropdown right1 md_1 hr_" th:if="${session.u_Account != null}">
-								<span class="dropdown-toggle">
-                                    <a th:href="@{/admin/userInfo}" class="font-weight-bolder">修改个人信息</a>
-								</span>
-
+							  <span class="dropdown-toggle" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder"> 修改个人信息&nbsp;<i class="fas fa-angle-down"></i></a>
+							  </span>
+							<div class="dropdown-menu r_menu dropdown-menu-right" >
+								<a class="dropdown-item font-weight-bolder" th:href="@{/admin/userInfo}">修改信息</a>
+								<a class="dropdown-item font-weight-bolder" th:href="@{/admin/userPassword}">修改密码</a>
+								<a class="dropdown-item font-weight-bolder" th:href="@{/admin/userAdd}">修改地址</a>
+							</div>
 						</div>
-
 					</nav>
 
 				</div> <!-- col-lg-7 col-md-8 col-sm-8 text-xs-right hidden-md-down topbar_right text-right -->
