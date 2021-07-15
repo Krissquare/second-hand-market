@@ -8,6 +8,16 @@
 <body>
 <blockquote class=layui-elem-quote>物品信息</blockquote>
 <form class="layui-form" th:action="@{/admin/edit/update}" method="post">
+    <div class="layui-form-item">
+        <a class="layui-btn layui-btn-xs" lay-event="imgUpload" style="height: 30px;width:80px; ">上传图片</a>
+        <a class="layui-btn layui-btn-xs" lay-event="imgUpload" style="height: 30px;width:80px; ">编辑图片</a>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">物品序号</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${session.product.getP_Id()}"  name="p_Id" readonly lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
 <div class="layui-form-item">
     <label class="layui-form-label">物品编号</label>
     <div class="layui-input-inline">
@@ -15,17 +25,12 @@
     </div>
 </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">用户名</label>
+        <label class="layui-form-label">发布者名</label>
         <div class="layui-input-inline">
             <input type="text" th:value="${session.product.getP_Account()}"  name="p_Account" readonly lay-verify="required" autocomplete="off" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">物品名称</label>
-        <div class="layui-input-inline">
-            <input type="text" th:value="${session.product.getP_Name()}"  name="p_Name" required autocomplete="off" class="layui-input">
-        </div>
-    </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label">物品标题</label>
         <div class="layui-input-inline">
@@ -51,10 +56,44 @@
         </textarea>
     </div>
 </div>
+
+
     <div class="layui-input-inline login-btn">
         <button  class="layui-btn" id="btn" style="margin-left: 120px">修改</button>
     </div>
 </form>
+<script>
+    if(layEvent === 'imgUpload'){ // 上传图片
+        layer.open({
+            type: 2,
+            area: ['740px','375px'],
+            // resize: false,
+            content: '/imgUploadInit',
+            cancel: function (index, layero){
+                tableIns.reload();
+            },
+            success: function (layero, index){
+                const body = layer.getChildFrame('body', index);
+                body.find('#p_Id').val(data.p_Id);
+                console.log(data.p_Id);
+            }
+        });
+    }else if(layEvent == 'imgDel'){ // 编辑图片
+        layer.open({
+            type: 2,
+            area: ['740px','375px'],
+            // resize: false,
+            content: '/imgUpdateInit',
+            cancel: function (index, layero){
+                tableIns.reload();
+            },
+            success: function (layero, index){
+                const body = layer.getChildFrame('body', index);
+                body.find('#p_Id').val(data.p_Id);
+            }
+        });
+    }
+</script>
 <script th:src="@{/layui/layui.all.js}"></script>
 </body>
 </html>
