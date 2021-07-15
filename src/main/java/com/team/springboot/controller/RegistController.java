@@ -2,6 +2,7 @@ package com.team.springboot.controller;
 
 
 import com.team.springboot.pojo.BaseResponse;
+import com.team.springboot.pojo.Cipher;
 import com.team.springboot.pojo.User;
 import com.team.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class RegistController {
             baseResponse.setMsg("用户名已存在");
             return baseResponse;
         }
+        //encipher
+        u.setU_Password(Cipher.Encipher(u.getU_Password()));
+
         userService.insertOne(u);
         if(userService.selectUserById(u.getU_Account()) != null){
             baseResponse.setCode(200);
