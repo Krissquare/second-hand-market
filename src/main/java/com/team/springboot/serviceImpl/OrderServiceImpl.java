@@ -15,13 +15,13 @@ public class OrderServiceImpl implements OrderService {
     OrderMapper orderMapper;
 
     @Override
-    public List<Order> selectOrderAndProductBuy(String Buy_Account, int page, int limit) {
-        return orderMapper.selectOrderAndProductBuy(Buy_Account, page, limit);
+    public List<Order> selectOrderAndProductBuy(String Buy_Account) {
+        return orderMapper.selectOrderAndProductBuy(Buy_Account);
     }
 
     @Override
-    public List<Order> selectOrderAndProductSell(String account, int page, int limit) {
-        return orderMapper.selectOrderAndProductSell(account, page, limit);
+    public List<Order> selectOrderAndProductSell(String account) {
+        return orderMapper.selectOrderAndProductSell(account);
     }
 
     @Override

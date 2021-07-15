@@ -62,7 +62,7 @@ public class OrderController {
 
         if(SearchName == null){
             System.out.println("test");
-            List<Order> list = orderService.selectOrderAndProductBuy(account, (page - 1) * limit, limit);
+            List<Order> list = orderService.selectOrderAndProductBuy(account);
             req.getSession().setAttribute("StatusCode1","Buy");
             req.getSession().setAttribute("StatusCode2","Buy");
             baseResponse.setCode(0);
@@ -94,7 +94,7 @@ public class OrderController {
         BaseResponse<List<Order>> baseResponse = new BaseResponse<>();
         String account = (String)req.getSession().getAttribute("u_Account");
         int count = orderService.orderSellerCount(account);
-        List<Order> list = orderService.selectOrderAndProductSell(account, (page - 1) * limit, limit);
+        List<Order> list = orderService.selectOrderAndProductSell(account);
         String SearchName = req.getParameter("SearchName");
         String Search = "%" + SearchName + "%";
 

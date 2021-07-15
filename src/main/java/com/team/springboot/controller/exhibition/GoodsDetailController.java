@@ -25,6 +25,9 @@ public class GoodsDetailController   {
 
    @Autowired OrderService orderService;
 
+    @Autowired
+    private UserService userService;
+
    //商品信息页面初始化
    @RequestMapping("/goodsDetail")
     public  String goodsDetail(@RequestParam("pid") String pid, Model model){
@@ -90,12 +93,10 @@ public class GoodsDetailController   {
 
 
        Product product = productService.selectProductById(b.getP_Id());
-       if (product.getP_num() > 1){
            product.setP_num(product.getP_num()-1);
            productService.updateProduct(product);
-       }else{
-           productService.deleteProductById(product.getP_Id());
-       }
+
+       Address address1 = userService.selectAddressAll(product.getP_Account());
 
 
        if(account == null || account.equals("")){
@@ -107,17 +108,17 @@ public class GoodsDetailController   {
        o.setO_ItemId(b.getP_Id());
        o.setO_Buyer(account);
        o.setO_Seller(b.getO_Seller());
-
+       o.setO_Date(String.format("%tF",new Date()));//java的Date和sql的date用哪个
+       o.setO_Saddress(address1.getA_Address1());
+       o.setO_Baddress(b.getO_Baddress());
+       o.setO_Status("0");
+       orderService.insertOne(o);
        if(b.getO_Baddress().equals("无"))
        {
            baseResponse.setCode(500);
            baseResponse.setMsg("收货地址不能为空");
            return baseResponse;
        }
-
-       o.setO_Baddress(b.getO_Baddress());
-       o.setO_Status("0");
-       orderService.insertOne(o);
        if(String.valueOf(b.getS_Id()) != null){
            shoppingCarService.deleteById(b.getS_Id());
        }
