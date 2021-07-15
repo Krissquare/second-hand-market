@@ -3,8 +3,10 @@ package com.team.springboot.controller;
 import com.team.springboot.pojo.Address;
 import com.team.springboot.pojo.Order;
 import com.team.springboot.pojo.Product;
+import com.team.springboot.pojo.ShoppingCarProduct;
 import com.team.springboot.service.OrderService;
 import com.team.springboot.service.ProductService;
+import com.team.springboot.service.ShoppingCarService;
 import com.team.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -24,6 +27,8 @@ public class CheckOutController {
     private OrderService orderService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ShoppingCarService shoppingCarService;
 
 
     @PostMapping("/checkOutWithSingleProduct")
@@ -35,6 +40,24 @@ public class CheckOutController {
         Product p  = productService.selectById(Integer.valueOf(pid));
         model.addAttribute("product",p);
         return "html/checkout";
+    }
+
+    @RequestMapping("/checkOutWithCart")
+    public String checkOutWithCartProcessor(Model model, HttpSession session){
+        String account = (String) session.getAttribute("u_Account");
+        Order virtualOrder = new Order();
+        ArrayList<ShoppingCarProduct> myShoppingCar
+                = (ArrayList<ShoppingCarProduct>) shoppingCarService.selectShoppingCarProductById(account);
+        int totalPrice = 0;
+        for (ShoppingCarProduct item: myShoppingCar){
+            totalPrice += item.getP_Price();
+        }
+        virtualOrder.setP_Price(totalPrice);
+
+        model.addAttribute("total",virtualOrder);
+        model.addAttribute("myShoppingCar",myShoppingCar);
+
+        return "html/CartCheckOut";
     }
 
     @RequestMapping("/buyOneProduct")
@@ -77,4 +100,5 @@ public class CheckOutController {
         System.out.println("--新订单");
         return "html/buySuccessfully";
     }
+
 }
