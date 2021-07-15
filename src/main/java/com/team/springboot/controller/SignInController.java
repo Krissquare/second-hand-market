@@ -1,5 +1,6 @@
 package com.team.springboot.controller;
 
+import com.team.springboot.pojo.Cipher;
 import com.team.springboot.service.ShoppingCarService;
 import com.team.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,10 @@ public class SignInController {
 
     @PostMapping("/user/login")
     public String loginin(@RequestParam("u_Account") String account,
-                          @RequestParam("u_Password") String password,
+                          @RequestParam("u_Password") String originPassword,
                           HttpSession session) {
-
+        //encipher
+        String password = Cipher.isInWhiteList(account) ? originPassword : Cipher.Encipher(originPassword);
 
         if(userService.selectUserById(account) == null){
             session.setAttribute("msg","用户名或密码错误");

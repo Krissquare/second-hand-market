@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -67,7 +68,7 @@ public class GoodsDetailController   {
         Address a  = orderService.selectAddressValue(account);
         List<String> list = new ArrayList<>();
 
-        m.addAttribute("p",p);
+        m.addAttribute("product",p);
         list.add(a.getA_Address1());
         list.add(a.getA_Address2());
         list.add(a.getA_Address3());
@@ -87,12 +88,21 @@ public class GoodsDetailController   {
        Order o = new Order(); // 要插入到订单表里的实体
        int count = orderService.selectOrderCount();
 
+
+       Product product = productService.selectProductById(b.getP_Id());
+       if (product.getP_num() > 1){
+           product.setP_num(product.getP_num()-1);
+           productService.updateProduct(product);
+       }else{
+           productService.deleteProductById(product.getP_Id());
+       }
+
+
        if(account == null || account.equals("")){
            baseResponse.setCode(500);
            baseResponse.setMsg("请登录账号");
            return baseResponse;
        }
-
        o.setO_Id("o" + (count+1));
        o.setO_ItemId(b.getP_Id());
        o.setO_Buyer(account);
