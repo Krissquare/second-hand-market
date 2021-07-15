@@ -1183,7 +1183,7 @@
 					                <span class="input-group-btn">
 					              		<button type="button" class="btn btn-default btn-number p-0" disabled="disabled" data-type="minus" data-field="quant[1]"><span class="minus">-</span></button>
 					                </span>
-											<input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+											<input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" th:max="${product.getP_num()}">
 											<span class="input-group-btn">
 					                	<button type="button" class="btn btn-default btn-number p-0" data-type="plus" data-field="quant[1]"><span class="plus">+</span></button>
 					                </span>
@@ -1192,7 +1192,7 @@
 								</div>
 							</div>
 
-							<div th:if="${session.u_Account != product.getP_Account()}"th:if="${session.u_Account != product.getP_Account()}"th:if="${session.u_Account != product.getP_Account()}"th:if="${session.u_Account != product.getP_Account()}"th:if="${session.u_Account != product.getP_Account()}"th:if="${session.u_Account != product.getP_Account()}"th:if="${session.u_Account != product.getP_Account()}">
+							<div th:if="${session.u_Account != product.getP_Account()}">
 								<form class="layui-form" method="post">
 									<span class="sp_c_count2">
 										<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none">
@@ -1243,141 +1243,141 @@
 
 <!-- single product img and detail -->
 
-		<!-- footer -->
+<!-- footer -->
 
-		<div class="footer animate__animated animate__fadeInUp">
+<div class="footer animate__animated animate__fadeInUp">
 
 
 
-			<div class="third_footer">
+	<div class="third_footer">
 
-				<div class="container custom_container">
-					<div class="th_foo">
-						<div class="row">
+		<div class="container custom_container">
+			<div class="th_foo">
+				<div class="row">
 
-							<div class="col-xl-4 col-lg-3 col-md-3 col-12 f_col">
-								<div class="fst_col">
-									<div class="footer_title">
-										<h5 class="text-uppercase text-white">联系我们<button class="toggle collapsed" data-toggle="collapse" data-target="#fproduct"></button></h5>
-									</div>
-									<div class="categorie collapse " id="fproduct">
-										<ul class="add_row">
-											<li>
-												<div>
-													<a href="#"><svg width="18px" height="18px"><use xlink:href="#map"></use></svg></a>
-												</div>
-												<div class="data1 add">
-													<a href="#">新店镇翔安南路4221号<br>厦门 翔安区<br>中国 福建</a>
-												</div>
-											</li>
-											<li>
-												<div>
-													<a href="#"><svg height="16px" width="16px"><use xlink:href="#call" ></use></svg></a>
-												</div>
-												<div>
-													<a href="#">×××-××××-××××</a>
-												</div>
-											</li>
-											<li>
-												<div>
-													<a href="#"><svg height="16px" width="16px"><use xlink:href="#mail" ></use></svg></a>
-												</div>
-												<div>
-													<a href="#" class="mail_f">××××@×××.com</a>
-												</div>
-											</li>
-											<li>
-												(当然以下的支付方式都还不支持)
-											</li>
-										</ul>
-										<ul class="foo_pay">
-											<li>
-												<a href="#"><i class="fab fa-cc-mastercard"></i></a>
-											</li>
-											<li>
-												<a href="#"><i class="fab fa-cc-visa"></i></a>
-											</li>
-											<li>
-												<a href="#"><i class="fas fa-credit-card"></i></a>
-											</li>
-											<li>
-												<a href="#"><i class="fab fa-cc-paypal"></i></a>
-											</li>
-										</ul>
-									</div>
-								</div>
+					<div class="col-xl-4 col-lg-3 col-md-3 col-12 f_col">
+						<div class="fst_col">
+							<div class="footer_title">
+								<h5 class="text-uppercase text-white">联系我们<button class="toggle collapsed" data-toggle="collapse" data-target="#fproduct"></button></h5>
 							</div>
-
-							<div class="col-xl-3 col-lg-3 col-md-3 col-12">
-								<div class="sec_col">
-									<div class="footer_title">
-										<h5 class="text-uppercase text-white">我的<button class="toggle collapsed" data-toggle="collapse" data-target="#sproduct"></button></h5>
-									</div>
-									<div class="categorie collapse" id="sproduct">
-										<ul>
-											<li><a href="/admin/userInfo">我的主页</a></li>
-											<li><a href="/admin/shoppingCarInit">我的购物车</a></li>
-											<li><a href="#">我的愿望清单</a></li>
-											<li><a href="#">我的订单</a></li>
-											<li><a href="#">回到顶部</a></li>
-										</ul>
-									</div>
-								</div>
+							<div class="categorie collapse " id="fproduct">
+								<ul class="add_row">
+									<li>
+										<div>
+											<a href="#"><svg width="18px" height="18px"><use xlink:href="#map"></use></svg></a>
+										</div>
+										<div class="data1 add">
+											<a href="#">新店镇翔安南路4221号<br>厦门 翔安区<br>中国 福建</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<a href="#"><svg height="16px" width="16px"><use xlink:href="#call" ></use></svg></a>
+										</div>
+										<div>
+											<a href="#">×××-××××-××××</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<a href="#"><svg height="16px" width="16px"><use xlink:href="#mail" ></use></svg></a>
+										</div>
+										<div>
+											<a href="#" class="mail_f">××××@×××.com</a>
+										</div>
+									</li>
+									<li>
+										(当然以下的支付方式都还不支持)
+									</li>
+								</ul>
+								<ul class="foo_pay">
+									<li>
+										<a href="#"><i class="fab fa-cc-mastercard"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-cc-visa"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fas fa-credit-card"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-cc-paypal"></i></a>
+									</li>
+								</ul>
 							</div>
-							<div class="col-xl-3 col-lg-3 col-md-3 col-12">
-								<div class="th_col">
-									<div class="footer_title">
-										<h5 class="text-uppercase text-white">商品类别<button class="toggle collapsed" data-toggle="collapse" data-target="#tproduct"></button></h5>
-									</div>
-									<div class="categorie collapse" id="tproduct">
-										<ul>
-											<li><a href="#">电子产品</a></li>
-											<li><a href="#">书籍教材</a></li>
-											<li><a href="#">衣帽鞋伞</a></li>
-											<li><a href="#">日常用品</a></li>
-											<li><a href="#">代步工具</a></li>
-											<li><a href="#">体育健身</a></li>
-
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-2 col-lg-3 col-md-3 col-12">
-								<div class="fth_col">
-									<div class="footer_title">
-										<h5 class="text-uppercase text-white">本站信息<button class="toggle collapsed" data-toggle="collapse" data-target="#fh_product"></button></h5>
-									</div>
-									<div class="categorie collapse" id="fh_product">
-										<ul>
-											<li><a href="#">关于开发团队</a></li>
-											<li><a href="#">关于厦大二手交易平台</a></li>
-											<li><a href="#">隐私政策</a></li>
-											<li><a href="#">在线客服</a></li>
-											<li><a href="#">用户条款</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-
 						</div>
 					</div>
-				</div>
 
-			</div> <!-- row first_footer -->
-
-
-			<div class="fifth_footer">
-				<div class="container custom_container">
-					<div class="row">
-						<div class="col-12">
-							<div class="text-center demo_link d-block">2021 @ Java程序设计实践-WinterBoot小组 保留所有权利 Powered By <a href="http://www.bootstrapmb.com/">bootstrapmb</a></div>
+					<div class="col-xl-3 col-lg-3 col-md-3 col-12">
+						<div class="sec_col">
+							<div class="footer_title">
+								<h5 class="text-uppercase text-white">我的<button class="toggle collapsed" data-toggle="collapse" data-target="#sproduct"></button></h5>
+							</div>
+							<div class="categorie collapse" id="sproduct">
+								<ul>
+									<li><a th:href="@{/}">我的主页</a></li>
+									<li><a href="cart.html">我的购物车</a></li>
+									<li><a href="wishlist.html">我的心愿清单</a></li>
+									<li><a href="/showMyTransactionOrders">我的订单</a></li>
+									<li><a th:href="@{/}">回到顶部</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div> <!-- row first_footer -->
-		</div> <!-- footer -->
+					<div class="col-xl-3 col-lg-3 col-md-3 col-12">
+						<div class="th_col">
+							<div class="footer_title">
+								<h5 class="text-uppercase text-white">商品类别<button class="toggle collapsed" data-toggle="collapse" data-target="#tproduct"></button></h5>
+							</div>
+							<div class="categorie collapse" id="tproduct">
+								<ul>
+									<li><a href="/search?search=电子产品">电子产品</a></li>
+									<li><a href="/search?search=书籍教材">书籍教材</a></li>
+									<li><a href="/search?search=衣帽鞋伞">衣帽鞋伞</a></li>
+									<li><a href="/search?search=日常用品">日常用品</a></li>
+									<li><a href="/search?search=代步工具">代步工具</a></li>
+									<li><a href="/search?search=体育健身">体育健身</a></li>
 
-		<!-- footer end -->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2 col-lg-3 col-md-3 col-12">
+						<div class="fth_col">
+							<div class="footer_title">
+								<h5 class="text-uppercase text-white">本站信息<button class="toggle collapsed" data-toggle="collapse" data-target="#fh_product"></button></h5>
+							</div>
+							<div class="categorie collapse" id="fh_product">
+								<ul>
+									<li><a href="about-us.html">关于开发团队</a></li>
+									<li><a href="#">关于厦大二手交易平台</a></li>
+									<li><a href="#">隐私政策</a></li>
+									<li><a href="#">在线客服</a></li>
+									<li><a href="#">用户条款</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div> <!-- row first_footer -->
+
+
+	<div class="fifth_footer">
+		<div class="container custom_container">
+			<div class="row">
+				<div class="col-12">
+					<div class="text-center demo_link d-block">2021 @ Java程序设计实践-WinterBoot小组 保留所有权利 Powered By <a href="http://www.bootstrapmb.com/">bootstrapmb</a></div>
+				</div>
+			</div>
+		</div>
+	</div> <!-- row first_footer -->
+</div> <!-- footer -->
+
+<!-- footer end -->
 
 
 

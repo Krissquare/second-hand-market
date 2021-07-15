@@ -9,11 +9,11 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
 
-    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0} limit #{1}, #{2}")
-    List<Order> selectOrderAndProductBuy(String Buy_Account, int page, int limit);
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0}")
+    List<Order> selectOrderAndProductBuy(String Buy_Account);
 
-    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0} limit #{1}, #{2} ")
-    List<Order> selectOrderAndProductSell(String account, int page, int limit);
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0}")
+    List<Order> selectOrderAndProductSell(String account);
 
     //给下拉框赋值
     @Select("select * from address where a_Account = #{a_Account}")
