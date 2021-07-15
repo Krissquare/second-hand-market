@@ -1207,21 +1207,21 @@
 <!--							下面这个东西是为了制造空隙用的，别删-->
 							<div class="sp_wish_com my-3"></div>
 
-							<div class="sp_buy">
-								<!--							<button type="button" class="btn btn-primary primary" th:href="@{/checkOutWithSingleProduct}" th:text="立即购买"></button>-->
-								<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form" th:action="@{/checkOutWithSingleProduct}" method="post">
+
+						</form>
+
+						<div class="sp_buy">
+							<!--							<button type="button" class="btn btn-primary primary" th:href="@{/checkOutWithSingleProduct}" th:text="立即购买"></button>-->
+							<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form" th:action="@{/checkOutWithSingleProduct}" method="post">
 									<span class="sp_c_count2">
 										<input type="hidden" id="pid" name="pid" th:value="${product.getP_Id()}" style="display: none">
 										<input type="submit" value="立即购买" class="btn btn-primary primary">
 									</span>
-								</form>
-								<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
+							</form>
+							<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
 									<div class="btn btn-primary primary" th:text="立即购买" onclick="alert('不能买自己发布的商品！')"></div>
 								</span>
-							</div>
-
-
-						</form>
+						</div>
 
 						</div>
 
