@@ -9,6 +9,7 @@ import com.team.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,7 +26,7 @@ public class CheckOutController {
     private UserService userService;
 
 
-    @RequestMapping("/checkOutWithSingleProduct")
+    @PostMapping("/checkOutWithSingleProduct")
     public String checkOutWithSingleProductProcessor(@RequestParam("pid") String pid,
                                                      Model model,
                                                      HttpSession session
@@ -59,12 +60,12 @@ public class CheckOutController {
 
         orderService.insertOne(newOrder);
 
-//        if (product.getP_num() > 1){
-//            product.setP_num(product.getP_num()-1);
-//            productService.updateProduct(product);
-//        }else{
-//            productService.deleteProductById(product.getP_Id());
-//        }
+        if (product.getP_num() > 1){
+            product.setP_num(product.getP_num()-1);
+            productService.updateProduct(product);
+        }else{
+            productService.deleteProductById(product.getP_Id());
+        }
 
         System.out.println("新订单--");//debug
         System.out.println("订单号:"+orderId);
