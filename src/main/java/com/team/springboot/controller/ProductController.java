@@ -35,6 +35,13 @@ public class ProductController {
         m.addAttribute("userHead", userHead);
         return "admin/productInfo";
     }
+    @RequestMapping("/user_init")
+    public String user_showproductInfo(HttpSession session, Model m) {
+        String account = (String) session.getAttribute("u_Account");
+        UserHead userHead = userHeadService.selectHead(account);
+        m.addAttribute("userHead", userHead);
+        return "admin/user_productInfo";
+    }
 
     @RequestMapping("/productInfo")
     @ResponseBody
@@ -235,6 +242,7 @@ public class ProductController {
         else
             return "admin/productadd";
     }
+
     @RequestMapping("/typeValue")
     @ResponseBody
     public BaseResponse selectproductTypeValue(){

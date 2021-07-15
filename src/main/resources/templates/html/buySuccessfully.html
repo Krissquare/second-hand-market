@@ -1,5 +1,6 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"><html>
 <head>
     <title>厦大二手交易平台</title>
     <meta charset="utf-8"/>
@@ -399,14 +400,12 @@
 								</span>
                         </div>
                         <div class="dropdown right1 md_1 hr_" th:if="${session.u_Account != null}">
-							  <span class="dropdown-toggle" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder"> 修改个人信息&nbsp;<i class="fas fa-angle-down"></i></a>
-							  </span>
-                            <div class="dropdown-menu r_menu dropdown-menu-right" >
-                                <a class="dropdown-item font-weight-bolder" th:href="@{/admin/userInfo}">修改信息</a>
-                                <a class="dropdown-item font-weight-bolder" th:href="@{/admin/userPassword}">修改密码</a>
-                                <a class="dropdown-item font-weight-bolder" th:href="@{/admin/userAdd}">修改地址</a>
-                            </div>
+								<span class="dropdown-toggle">
+                                    <a href="userInfo.html" class="font-weight-bolder">修改个人信息</a>
+								</span>
+
                         </div>
+
                     </nav>
 
                 </div> <!-- col-lg-7 col-md-8 col-sm-8 text-xs-right hidden-md-down topbar_right text-right -->
@@ -421,7 +420,7 @@
             <div class="row">
                 <div class="col-xl-2 col-lg-2 col-6  head-logo">
                     <div class="text-left header-top-left pt-2"><a href="/"><img src="assets/img/logo.png"
-                                                                                          class="img-responsive img" alt="Hitech"></a></div>
+                                                                                 class="img-responsive img" alt="Hitech"></a></div>
                 </div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
                 <div class="col-xl-10 col-lg-10 col-6  head-search">
                     <div class="d-flex navbar">
@@ -538,7 +537,7 @@
                                                       th:text="'￥' + ${session.shoppingCarPrice}"></span>
                                             </li>
                                             <li class="d-block font-weight-bolder pt-2">
-                                                <span class="text-left"><a href="cart.html">查看购物车</a></span>
+                                                <span class="text-left"><a href="cart.html">view cart</a></span>
                                                 <span class="float-right"><a href="checkout.html">结账</a></span>
                                             </li>
                                         </ul>
@@ -845,28 +844,15 @@
     </div>
 
     <div class="container custom_container ">
-        <h3 class="text-center">登录您的账号</h3>
-        <div id="login" class="page-content card card-block p-3 p-sm-4 ">
-            <form class="layui-form" th:action="@{/user/login}" method="post">
 
-                <div class="form-group">
-                    <label for="user_email" class="font-weight-bolder">用户名</label>
-                    <input class="form-control" id="user_email" name="u_Account" aria-describedby="emailHelp" required>
+        <div class="page-content card card-block p-3 p-sm-4 ">
+                <h3 class="text-center">您的购买已经成功！卖家将很快为您发货</h3>
+                <div class="form-group"></div>
+                <div>
+                    <div class="btn btn-primary primary" th:href="@{/showAll}">回到主页</div>
+                    <div class="btn btn-primary primary" th:href="@{/showMyTransactionOrders}">查看我的所有订单</div>
                 </div>
 
-                <div class="form-group font-weight-bolder">
-                    <label for="user_password" class="font-weight-bolder">密码</label>
-                    <input type="password" class="form-control" name="u_Password" id="user_password" required>
-                    <div class="invalid-feedback">Please enter your password.</div>
-                </div>
-
-                <input type="submit" name="submit" class="btn btn-primary mb-3" value="提交">
-                <div class="pass_acc border-top pt-3">
-                    <span class="forgot_password font-weight-bolder"><a
-                            href="forgot.html">忘记密码 </a></span>
-                    <span class="no_account float-right font-weight-bolder"><a href="registration.html">注册</a></span>
-                </div>
-            </form>
         </div>
     </div>
 
@@ -1012,35 +998,6 @@
 </div> <!-- footer -->
 
 <!-- footer end -->
-
-<script src="assets/js/jquery-3.4.1.min.js"></script>
-<script src="assets/js/owl.carousel.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/all.min.js"></script>
-<script src="assets/js/index.js"></script>
-<script src="assets/js/wow.min.js"></script>
-
-<script>
-    // Disable form submissions if there are invalid fields
-    (function () {
-        'use strict';
-        window.addEventListener('load', function () {
-            // Get the forms we want to add validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-</script>
 
 </body>
 </html>

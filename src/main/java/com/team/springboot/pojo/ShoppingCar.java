@@ -4,6 +4,15 @@ public class ShoppingCar {
     private int s_Id;
     private String u_Account;
     private int p_Id;
+    private int p_Num;
+
+    public int getP_Num() {
+        return p_Num;
+    }
+
+    public void setP_Num(int p_Num) {
+        this.p_Num = p_Num;
+    }
 
     public int getS_Id() {
         return s_Id;

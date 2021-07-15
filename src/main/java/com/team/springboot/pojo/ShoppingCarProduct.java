@@ -6,8 +6,17 @@ public class ShoppingCarProduct {
     private String p_href;
     private double p_Price;
     private int p_Id;
+    private int p_Num;
 
     public ShoppingCarProduct() {
+    }
+
+    public int getP_Num() {
+        return p_Num;
+    }
+    public void setP_Num(int p_Num)
+    {
+        this.p_Num=p_Num;
     }
 
     public int getP_Id() {

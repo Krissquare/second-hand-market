@@ -17,4 +17,8 @@ public interface ShoppingCarService  {
     double getTotalPrice(String u_Account);
 
     void deleteById(int s_Id);
+
+    void updateByAccountId(String u_Account,int p_Id,int num);
+
+    ShoppingCar selectByAccountId(String u_Account,int p_Id);
 }

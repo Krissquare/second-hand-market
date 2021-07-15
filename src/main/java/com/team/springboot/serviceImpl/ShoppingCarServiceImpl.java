@@ -42,4 +42,15 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
     public void deleteById(int s_Id){
         shoppingCarMapper.deleteById(s_Id);
     }
+
+    @Override
+    public void updateByAccountId(String u_Account,int p_Id,int num){
+        shoppingCarMapper.updateByAccountId(u_Account,p_Id,num);
+    }
+
+    @Override
+    public ShoppingCar selectByAccountId(String u_Account,int p_Id)
+    {
+        return shoppingCarMapper.selectByAccountId(u_Account,p_Id);
+    }
 }

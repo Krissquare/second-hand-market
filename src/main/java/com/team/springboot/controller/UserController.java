@@ -60,6 +60,31 @@ public class UserController {
         return "admin/userInfo";
     }
 
+    @RequestMapping("/userPassword")
+    public String showUserPassword(Model m, HttpSession session)
+    {
+        String account = (String) session.getAttribute("u_Account");
+        Address addr = userService.selectAddressAll(account);
+        if (addr == null) {
+            addressService.insertAddressOne(account, "无", "无", "无", "无");
+            addr = userService.selectAddressAll(account);
+        }
+        m.addAttribute("addressList", addr);
+        return "admin/userPassword";
+    }
+    @RequestMapping("/userAdd")
+    public String showAdd(Model m, HttpSession session)
+    {
+        String account = (String) session.getAttribute("u_Account");
+        Address addr = userService.selectAddressAll(account);
+        if (addr == null) {
+            addressService.insertAddressOne(account, "无", "无", "无", "无");
+            addr = userService.selectAddressAll(account);
+        }
+        m.addAttribute("addressList", addr);
+        return "admin/userAddress";
+    }
+
     // 更新用户信息
     @RequestMapping(value = "/userUpdate", method = {RequestMethod.POST})
     @ResponseBody
