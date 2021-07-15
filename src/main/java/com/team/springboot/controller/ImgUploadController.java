@@ -38,6 +38,7 @@ public class ImgUploadController {
     public BaseResponse imgUpload(@RequestParam("file") MultipartFile file, HttpServletRequest req, @RequestParam("p_Id") String p_Id){
         System.out.println(p_Id); // p_Id的传值与绑定参考imgUpload.html的隐藏表单<input id="p_Id" name ="p_Id">和layui上传接口中的data参数
                                 // 与productInfo.html中的layEvent监听imgUpload
+        System.out.println(file);
         String path = req.getServletContext().getRealPath("/images/product");
         File realPath = new File(path);
         BaseResponse baseResponse = null;
@@ -67,7 +68,6 @@ public class ImgUploadController {
 //            return baseResponse;
 //        }
 
-        //两张图片已插满，不能插入
         baseResponse = new BaseResponse<>();
         baseResponse.setCode(500);
         baseResponse.setMsg("添加图片失败！请删除原有图片");
