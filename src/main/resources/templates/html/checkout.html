@@ -902,21 +902,21 @@
 										<div class="layui-form-item">
 											<label class="layui-form-label">商品标题：</label>
 											<div class="layui-input-inline">
-												<input type="text" th:value="${p.p_Title}" id="p_Title" name="p_Title" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
+												<input type="text" th:value="${product.p_Title}" id="p_Title" name="p_Title" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
 											</div>
 										</div>
 
 										<div class="layui-form-item">
 											<label class="layui-form-label">订单金额：</label>
 											<div class="layui-input-inline">
-												<input type="text" th:value="${p.p_Price}" id="p_Price" name="p_Price" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
+												<input type="text" th:value="${product.p_Price}" id="p_Price" name="p_Price" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
 											</div>
 										</div>
 
 										<div class="layui-form-item">
 											<label class="layui-form-label">（店铺）卖家ID：</label>
 											<div class="layui-input-inline">
-												<input type="text" th:value="${p.p_Account}" id="o_Seller" name="o_Seller" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
+												<input type="text" th:value="${product.p_Account}" id="o_Seller" name="o_Seller" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
 											</div>
 										</div>
 
@@ -999,14 +999,14 @@
 							<p class="text-muted">商品个数</p>
 							<p class="font-weight-bolder">详情</p>
 							<div>
-								<span class="font-weight-bold" th:text="${p.getP_Title()}"></span>
-								<span class="float-right font-weight-bold" th:text="'￥'+${p.getP_Price()}"></span>
+								<span class="font-weight-bold" th:text="${product.getP_Title()}"></span>
+								<span class="float-right font-weight-bold" th:text="'￥'+${product.getP_Price()}"></span>
 							</div>
 						</div>
 						<div class="card-body ">
 							<div>
 								<span class="font-weight-bold">总价</span>
-								<span class="float-right font-weight-bold" th:text="'￥'+${p.getP_Price()}"></span>
+								<span class="float-right font-weight-bold" th:text="'￥'+${product.getP_Price()}"></span>
 							</div>
 						</div>
 					</div>

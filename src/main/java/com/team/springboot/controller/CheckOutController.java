@@ -9,6 +9,7 @@ import com.team.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,7 +26,7 @@ public class CheckOutController {
     private UserService userService;
 
 
-    @RequestMapping("/checkOutWithSingleProduct")
+    @PostMapping("/checkOutWithSingleProduct")
     public String checkOutWithSingleProductProcessor(@RequestParam("pid") String pid,
                                                      Model model,
                                                      HttpSession session
