@@ -162,8 +162,8 @@ public class showController {
         ArrayList<Order> sellOrderList;
         String account = (String) req.getSession().getAttribute("u_Account");
 
-        buyOrderList = (ArrayList<Order>) orderService.selectOrderAndProductBuy(account,1,100);
-        sellOrderList = (ArrayList<Order>) orderService.selectOrderAndProductSell(account,1,100);
+        buyOrderList = (ArrayList<Order>) orderService.selectOrderAndProductBuy(account);
+        sellOrderList = (ArrayList<Order>) orderService.selectOrderAndProductSell(account);
         m.addAttribute("myAllOrdersBuy",buyOrderList);
         m.addAttribute("myAllOrderSell",sellOrderList);
 

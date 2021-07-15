@@ -36,6 +36,9 @@ public class CheckOutController {
                                                      Model model,
                                                      HttpSession session
     ){
+        String account = (String) session.getAttribute("u_Account");
+        if(account == null)
+            return "redirect:/login";
 //        System.out.println(pid);//debug
         Product p  = productService.selectById(Integer.valueOf(pid));
         model.addAttribute("product",p);

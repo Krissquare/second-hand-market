@@ -98,7 +98,7 @@
                     layer.close(index);
                 });
             } else if(layEvent === 'del'){ //删除
-                layer.confirm('真的要删除行么', function(index){
+                layer.confirm('确认删除？', function(index){
                     $.ajax({
                         url: '/admin/userdelete',
                         type: 'POST',
@@ -118,7 +118,7 @@
                     layer.close(index);
                 });
             } else if (layEvent === 'edit') { //编辑
-                layer.confirm('确认查看', function(index){
+                layer.confirm('确认编辑？', function(index){
                     var count=0;
                     $.ajax({
                         url: '/admin/user/edit',
@@ -206,7 +206,7 @@
             ,cols: [[ //表头
                 {field: 'u_Account', title: '用户名', sort: true, fixed: 'left'}
                 ,{field: 'u_Name', title: '姓名',sort: true}
-                ,{field: 'u_Password', title: '密码'}
+
                 ,{field: 'u_Sex', title: '性别'}
                 ,{field: 'u_Email', title: '电子邮箱'}
                 ,{field: 'u_Phone', title: '手机号码',sort: true}
@@ -222,7 +222,7 @@
     });
 </script>
 <script type="text/html" id="barDemo" th:if="${session.u_Account} eq 'admin'">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" style="background-color: #f38d1e;color: white">查看</a>
+
     <a class="layui-btn layui-btn-xs" lay-event="edit" style="background-color: #e72d2d;color: white">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs " lay-event="del" style="background-color: #e72d2d;color: white">删除</a>
 </script>

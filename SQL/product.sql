@@ -31,7 +31,7 @@ CREATE TABLE `product` (
   `p_href` varchar(255) DEFAULT NULL,
   `p_num` int(100) DEFAULT NULL,
   PRIMARY KEY (`p_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product
