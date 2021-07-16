@@ -45,7 +45,7 @@
         <!--                        <dd><a th:href="@{/admin/SellOrderInit}" >我是卖家</a></dd>-->
         <!--                    </dl>-->
         <!--                </li>-->
-        <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/admin/BuyOrderInit}" style="color: #0C0C0C">订单管理</a></li>
+        <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/admin/BuyOrderInit}" style="color: #0C0C0C">历史订单查询</a></li>
         <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/}" style="color: #0C0C0C">返回主页</a></li>
       </ul>
     </div>
@@ -249,7 +249,7 @@
     var tableIns = table.render({
       elem: '#demo'
       ,url: '/admin/orderInfo' //数据接口
-      ,toolbar: '#toolbarDemo'
+      ,toolbar: false
       , page: true
       ,limit:10
       ,limits:[10,30,50]
@@ -259,19 +259,18 @@
       }
       ,cols: [[ //表头
         {field: 'o_Id', title: '订单序号', sort: true},
-
         {field: 'p_href', title: '物品图片', templet: "<div><img  src=\"{{ d.p_href }}\"></div>"}
         ,{field: 'p_Title', title: '物品信息'}
-        , {field: 'o_ItemId', title: '物品编号', sort: true}
-        ,{field: 'o_Seller', title: '发布者',sort: true}
-        ,{field: 'o_Saddress', title: '发布者地址'}
+        , {field: 'o_ItemId', title: '物品ID', sort: true}
+        ,{field: 'o_Seller', title: '卖家',sort: true}
+        ,{field: 'o_Saddress', title: '卖家地址'}
          ,{field: 'o_Buyer', title: '买家'}
         ,{field: 'o_Baddress', title: '买家地址'}
         ,{field: 'o_Date', title: '交易日期'}
-        ,{field: 'p_Price', title: '价格',sort: true}
-        ,{field: 'o_Status', title: '订单状态'}
-
-        ,{title: '操作', toolbar: '#barDemo'}
+        ,{field: "p_Price", title: '价格',sort: true,templet: function (d){
+                return "￥"+d.p_Price;
+          }
+      }
       ]]
     });
   });
