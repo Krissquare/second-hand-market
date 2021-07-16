@@ -149,7 +149,18 @@ public class showController {
                         @RequestParam("maxRange") int maxRange, Model model)
     {
         Integer pageSize = 15;
-        List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(minRange,maxRange);
+        int min,max;
+        if(minRange>maxRange)
+        {
+            min=maxRange;
+            max=minRange;
+        }
+        else
+        {
+            min=minRange;
+            max=maxRange;
+        }
+        List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(min,max);
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
         model.addAttribute("productList", pageInfo);
         return "html/shop-left-sidebar";
