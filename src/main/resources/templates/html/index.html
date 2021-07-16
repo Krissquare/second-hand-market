@@ -1430,7 +1430,7 @@
                                                     <i class="fa fa-star" aria-hidden="true"></i>
                                                 </div>
                                                 <span>
-														<span th:text="'￥'+${p.getP_Price()}"
+														<span th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"
                                                               class="font-weight-bolder price"style="color: red">
 														</span>
 													</span>
@@ -1494,7 +1494,7 @@
                                                     <i class="fa fa-star" aria-hidden="true"></i>
                                                 </div>
                                                 <span>
-														<span th:text="'￥'+${p.getP_Price()}"
+														<span th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"
                                                               class="font-weight-bolder price"style="color: red">
 														</span>
 													</span>
@@ -1567,7 +1567,7 @@
                                                     <i class="fa fa-star" aria-hidden="true"></i>
                                                 </div>
                                                 <span>
-														<span th:text="'￥'+${p.getP_Price()}"
+														<span th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"
                                                               class="font-weight-bolder price"style="color: red">
 														</span>
                                                     <!--														<del class="text-muted">$100.00</del>-->
