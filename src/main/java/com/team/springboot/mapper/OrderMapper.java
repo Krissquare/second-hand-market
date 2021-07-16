@@ -15,6 +15,18 @@ public interface OrderMapper {
     @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0}")
     List<Order> selectOrderAndProductSell(String account);
 
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress,o.o_Saddress,o.o_Date, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and p.p_Name like #{0}")
+    List<Order> selectBypName(String p_Name);
+
+    @Select("select count(o.o_Id) from order2 o,product p where o_ItemId = p.p_Id and p.p_Name like #{0}")
+    int countBypName(String p_Name);
+
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress,o.o_Saddress, o.o_Date,o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id")
+    List<Order> selectAll();
+
+    @Select("select count(o.o_Id) from order2 o,product p where o_ItemId = p.p_Id")
+    int countAll();
+
     //给下拉框赋值
     @Select("select * from address where a_Account = #{a_Account}")
     Address selectAddressValue(String a_Account);
