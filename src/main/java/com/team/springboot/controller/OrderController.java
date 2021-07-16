@@ -1,18 +1,13 @@
 package com.team.springboot.controller;
 
-import com.team.springboot.pojo.Address;
-import com.team.springboot.pojo.BaseResponse;
-import com.team.springboot.pojo.Order;
-import com.team.springboot.pojo.UserHead;
+import com.mysql.cj.util.StringUtils;
+import com.team.springboot.pojo.*;
 import com.team.springboot.service.OrderService;
 import com.team.springboot.service.UserHeadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -35,6 +30,51 @@ public class OrderController {
         return "admin/OrderStatusUpdate";
     }
 
+
+    @RequestMapping("/order")
+    public String allOrder()
+    {
+        return "admin/orderinfo";
+
+    }
+    @RequestMapping("/orderInfo")
+    @ResponseBody
+    public BaseResponse productinfo (@RequestParam String page,
+                                     @RequestParam String limit,
+                                     HttpServletRequest request) {
+        String p_Name = request.getParameter("p_Name");
+        BaseResponse<List<Order>> baseResponse = new BaseResponse<>();
+        List<Order> olist = null;
+        HttpSession session = request.getSession();
+        //通过商品名称查询
+        if (p_Name != null) {
+            p_Name = "%" + p_Name + "%";
+            if (session.getAttribute("u_Account").equals("admin")) {
+                olist = orderService.selectBypName(p_Name);
+                baseResponse.setCount(orderService.countBypName(p_Name));
+                baseResponse.setData(olist);
+                baseResponse.setCode(200);
+                baseResponse.setMsg("请求成功");
+                return baseResponse;
+            }
+        }
+            //分页查询每页10条
+            if (session.getAttribute("u_Account").equals("admin")) {
+                olist = orderService.selectAll();
+                baseResponse.setCount(orderService.countAll());
+            }
+            //判断product是否为空
+            if (olist != null) {
+                baseResponse.setData(olist);
+                baseResponse.setCode(200);
+                baseResponse.setMsg("请求成功");
+            } else {
+                baseResponse.setCode(500);
+                baseResponse.setMsg("请求出错");
+            }
+            return baseResponse;
+
+    }
     //订单收货地址修改页面转跳
     @RequestMapping("/OrderAddressUpdate")
     public String OrderAddressUpdate(){
@@ -47,7 +87,7 @@ public class OrderController {
         String account = (String) session.getAttribute("u_Account");
         UserHead userHead = userHeadService.selectHead(account);
         m.addAttribute("userHead", userHead);
-        return "admin/BuyOrder";
+        return "admin/orderinfo";
     }
     //买入-订单表格初始化
     @RequestMapping("/BuyOrderInfo")
