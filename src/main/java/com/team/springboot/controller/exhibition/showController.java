@@ -149,7 +149,18 @@ public class showController {
                         @RequestParam("maxRange") int maxRange, Model model)
     {
         Integer pageSize = 15;
-        List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(minRange,maxRange);
+        int min,max;
+        if(minRange>maxRange)
+        {
+            min=maxRange;
+            max=minRange;
+        }
+        else
+        {
+            min=minRange;
+            max=maxRange;
+        }
+        List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(min,max);
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
         model.addAttribute("productList", pageInfo);
         return "html/shop-left-sidebar";
@@ -169,6 +180,28 @@ public class showController {
 
         System.out.println(buyOrderList.size());//debug
         return "html/transactionRecord";
+    }
+    @PostMapping("/selectCategory")
+    public String selectCategory(@RequestParam("category") String category,@RequestParam("txt") String txt,Model m,HttpServletRequest req)
+    {
+        //System.out.println(category);
+        Integer pageSize = 15;
+        txt = "%" + txt+ "%";
+        if(category.equals("selected"))
+        {
+            List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name1(txt);
+            PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
+            req.getSession().setAttribute("search",txt);
+            m.addAttribute("productList",pageInfo);
+        }
+        else
+        {
+            List<ProductCategory> list=productCategoryService.selectCategory(category,txt);
+            PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
+            req.getSession().setAttribute("search",txt);
+            m.addAttribute("productList",pageInfo);
+        }
+        return "html/shop-left-sidebar";
     }
 
 }

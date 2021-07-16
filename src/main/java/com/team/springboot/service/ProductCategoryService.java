@@ -11,6 +11,7 @@ public interface ProductCategoryService {
     List<ProductCategory> selectProductCategorys(int page, int limit);
     List<ProductCategory> selectProductCategorysByaccount(String p_Account,int page, int limit);
     List<ProductCategory> selectProductAll();
+    List<ProductCategory> selectCategory(String category,String txt);
 
     List<ProductCategory>selectProductCategorysByp_name(int page, int limit,String p_Name);
     List<ProductCategory>selectProductCategorysByp_nameAndaccount(int page, int limit,String p_Name,String p_Account);

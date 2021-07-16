@@ -67,4 +67,10 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     {
         return productCategoryMapper.selectProductCategorysByRange(min,max);
     }
+
+    @Override
+    public List<ProductCategory> selectCategory(String category,String txt)
+    {
+        return productCategoryMapper.selectCategory(category,txt);
+    }
 }
