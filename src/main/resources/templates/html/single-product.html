@@ -1132,7 +1132,7 @@
 							<a href="#"></a>
 						</h1>
 
-						<span class="sp_price font-weight-bold" th:text="'￥'+${product.getP_Price()}"></span>
+						<span class="sp_price font-weight-bold" th:text="'￥'+${#numbers.formatDecimal(product.getP_Price(),1,'COMMA',2,'POINT')}"></span>
 
 <!--						<div class="text-secondary sp_tax">Tax included.</div>-->
 
