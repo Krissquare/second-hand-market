@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <title>商品管理</title>
+  <link rel="stylesheet" th:href="@{/layui/css/layui4.css}"/>
+  <link rel="stylesheet" th:href="@{/layui/css/login.css}">
+  <style type="text/css">
+    .layui-table-cell{
+      height: auto!important;
+      white-space: normal;
+    }
+  </style>
+</head>
+<body class="layui-layout-body" >
+<div class="layui-layout layui-layout-admin ">
+  <div class="layui-header" style="background-color: #ffb65a" >
+    <div class="layui-logo" style="font-weight:bolder;font-style: italic" style="color: #000000">厦门大学二手市场后台</div>
+    <ul class="layui-nav layui-layout-right " style="background-color:  #ffb65a" >
+      <li class="layui-nav-item" >
+        <a href="javascript:" style="font-weight:bolder;color: #0C0C0C">
+          <img th:src= "${userHead.getU_Url()}" class="layui-nav-img">
+          我的
+        </a>
+        <!--                <dl class="layui-nav-child">-->
+        <!--                    <dd><a href="/admin/userInfo" style="font-weight:bolder;color: #0C0C0C">基本资料</a></dd>-->
+        <!--                </dl>-->
+      </li>
+      <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: #0C0C0C">退出</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-side " >
+    <div class="layui-side-scroll " style="background-color: #EEEEEE">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree "  lay-filter="test">
+        <li class="layui-nav-item" style="background-color: #eeeeee "><a th:if="${session.u_Account eq 'admin'}" href="/admin/userinit" style="color: #0C0C0C">用户管理</a></li>
+        <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/init" style="color: #0C0C0C">商品管理</a></li>
+        <!--                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/shoppingCarInit"style="color: #0C0C0C">购物车管理</a></li>-->
+        <!--                <li class="layui-nav-item" style="background-color: #EEEEEE">-->
+        <!--                    <a href="javascript:" style="color: #0C0C0C">订单管理</a>-->
+        <!--                    <dl class="layui-nav-child">-->
+        <!--                        <dd><a th:href="@{/admin/BuyOrderInit}" >我是买家</a></dd>-->
+        <!--                        <dd><a th:href="@{/admin/SellOrderInit}" >我是卖家</a></dd>-->
+        <!--                    </dl>-->
+        <!--                </li>-->
+        <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/admin/BuyOrderInit}" style="color: #0C0C0C">订单管理</a></li>
+        <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/}" style="color: #0C0C0C">返回主页</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div class="demoTable" style="margin-top: 10px;margin-left: 10px;">
+      <div class="layui-col-md4">
+        <input class="layui-input" name="productId" id="demoReload" autocomplete="off" placeholder="请输入商品名称">
+      </div>
+      <button class="layui-btn" data-type="reload" >搜索</button>
+    </div>
+    <table id="demo" lay-filter="test"></table>
+
+  </div>
+
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © xmu-secondhandmarket
+  </div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+  //JavaScript代码区域
+  layui.use('element', function(){
+    var element = layui.element;
+
+  });
+</script>
+<script th:inline="javascript">
+  layui.use(['table','form'], function(){
+    var table = layui.table;
+    const form = layui.form;
+    table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+      var data = obj.data; //获得当前行数据
+      var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+      var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+      const $=layui.$;
+
+      if(layEvent === 'detail'){ //查看
+        layer.confirm('确认查看', function(index){
+          $.ajax({
+            url: '/admin/detail/info',
+            type: 'POST',
+            data:{p_Id:data.p_Id},
+            success:function (res){
+              if(res.code===200) {
+                tableIns.reload();
+                layer.open({
+                  type: 2,
+                  content: '/admin/detail',
+                  title:false,
+                  area: ['500px', '400px'],
+                  success: function(layero, index){
+                    layer.msg('正在查看物品编号为:'+data.p_Id+'的信息');
+                  }
+                });
+              }
+              else
+                layer.msg('查看失败');
+            }
+            ,error(error){
+              layer.msg(error);
+            }
+          });
+          layer.close(index);
+        });
+      } else if(layEvent === 'del'){ //删除
+        layer.confirm('确定删除商品吗', function(index){
+          $.ajax({
+            url: '/admin/delete',
+            type: 'POST',
+            data:{p_Id:data.p_Id},
+            success:function (res){
+              if(res.code===200) {
+                tableIns.reload();
+                layer.msg('删除成功');
+              }
+              else
+                layer.msg('删除失败');
+            }
+            ,error(error){
+              layer.msg(error);
+            }
+          });
+          layer.close(index);
+        });
+      } else if (layEvent === 'edit') { //编辑
+        layer.confirm('确认编辑', function(index){
+          var count=0;
+          $.ajax({
+            url: '/admin/edit/info',
+            type: 'POST',
+            data:{p_Id:data.p_Id},
+            success:function (res){
+              if(res.code===200) {
+                layer.open({
+                  type: 2,
+                  content: '/admin/edit',
+                  title:false,
+                  area: ['500px', '500px'],
+                  success: function(layero, index){
+                    if(count==0) {
+                      count++;
+                      layer.msg('正在修改物品编号为:' + data.p_Id + '的信息');
+                    }
+                    else {
+                      layer.msg("更新成功");
+                      tableIns.reload();
+                    }
+                  }
+                });
+              }
+              else
+                layer.msg('编辑失败');
+            }
+            ,error(error){
+              layer.msg(error);
+            }
+          });
+          layer.close(index);
+        });
+      } else if(layEvent === 'LAYTABLE_TIPS'){
+        layer.alert('Hi，头部工具栏扩展的右侧图标。');
+      }else if(layEvent === 'imgUpload'){ // 上传图片
+        layer.open({
+          type: 2,
+          area: ['740px','375px'],
+          // resize: false,
+          content: '/imgUploadInit',
+          cancel: function (index, layero){
+            tableIns.reload();
+          },
+          success: function (layero, index){
+            const body = layer.getChildFrame('body', index);
+            body.find('#p_Id').val(data.p_Id);
+            console.log(data.p_Id);
+          }
+        });
+      }else if(layEvent == 'imgDel'){ // 编辑图片
+        layer.open({
+          type: 2,
+          area: ['740px','375px'],
+          // resize: false,
+          content: '/imgUpdateInit',
+          cancel: function (index, layero){
+            tableIns.reload();
+          },
+          success: function (layero, index){
+            const body = layer.getChildFrame('body', index);
+            body.find('#p_Id').val(data.p_Id);
+          }
+        });
+      }
+    });
+
+
+    // 监听搜索按钮
+    var $ = layui.$, active = {
+      reload: function(){
+        var demoReload = $('#demoReload');
+
+        table.reload('testReload', {
+          where: {
+            p_Name: demoReload.val()
+          }
+        });
+      }
+    };
+    $('.demoTable .layui-btn').on('click', function(){
+      var type = $(this).data('type');
+      active[type] ? active[type].call(this) : '';
+    });
+
+    table.on('toolbar(test)', function(obj){
+      const $=layui.$;
+      var checkStatus = table.checkStatus(obj.config.id);
+      switch(obj.event){
+        case 'add':
+          var count=0;
+          layer.open({
+            type: 2,
+            content: '/admin/addinit',
+            area: ['600px', '600px'],
+            title: false,
+            success: function(layero, index){
+              if(count==0) {
+                layer.msg("请添加信息");
+                count++;
+              }
+              else{
+                layer.msg("添加成功");
+                tableIns.reload();
+              }
+            }
+          });
+          break;
+      };
+    });
+    //第一个实例
+    var tableIns = table.render({
+      elem: '#demo'
+      ,url: '/admin/orderInfo' //数据接口
+      ,toolbar: '#toolbarDemo'
+      , page: true
+      ,limit:10
+      ,limits:[10,30,50]
+      , id: 'testReload'
+      ,response: {
+        statusCode: 200 //规定成功的状态码，默认：0
+      }
+      ,cols: [[ //表头
+        {field: 'o_Id', title: '订单序号', sort: true},
+
+        {field: 'p_href', title: '物品图片', templet: "<div><img  src=\"{{ d.p_href }}\"></div>"}
+        ,{field: 'p_Title', title: '物品信息'}
+        , {field: 'o_ItemId', title: '物品编号', sort: true}
+        ,{field: 'o_Seller', title: '发布者',sort: true}
+        ,{field: 'o_Saddress', title: '发布者地址'}
+         ,{field: 'o_Buyer', title: '买家'}
+        ,{field: 'o_Baddress', title: '买家地址'}
+        ,{field: 'o_Date', title: '交易日期'}
+        ,{field: 'p_Price', title: '价格',sort: true}
+        ,{field: 'o_Status', title: '订单状态'}
+
+        ,{title: '操作', toolbar: '#barDemo'}
+      ]]
+    });
+  });
+</script>
+
+<style type="text/css">
+  .laytable-cell-1-p_href{
+    height:90%;
+    max-width:100%;
+  }
+  .layui-table-cell{
+    text-align:center;
+  }
+</style>
+
+
+
+<script type="text/html" id="barDemo">
+
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm"  >  <a href="/admin/addinit" style="font-weight:bolder">
+      添加
+    </a></button>
+  </div>
+</script>
+</body>
+</html>

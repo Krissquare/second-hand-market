@@ -73,4 +73,27 @@ public class OrderServiceImpl implements OrderService {
     public void insertOne(Order o) {
         orderMapper.insertOne(o);
     }
+
+    @Override
+    public List<Order> selectBypName(String p_Name){
+        return orderMapper.selectBypName(p_Name);
+    }
+
+    @Override
+    public int countBypName(String p_Name)
+    {
+        return orderMapper.countBypName(p_Name);
+    }
+
+    @Override
+    public List<Order> selectAll()
+    {
+        return orderMapper.selectAll();
+    }
+
+    @Override
+    public int countAll()
+    {
+        return orderMapper.countAll();
+    }
 }
