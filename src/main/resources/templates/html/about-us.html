@@ -352,9 +352,7 @@
 
 
 
-
 <!-- header area -->
-
 
 <header>
 	<!-- first row -->
@@ -386,26 +384,27 @@
                                     <a th:if="${session.u_Account == null}" href="/login" class="font-weight-bolder">登录</a>
 								</span>
 						</div>
-
-
-
 						<div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
                                     <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
-									>退出</a>
+									>个人主页</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
 						</div>
-						<div class="dropdown right1 md_1 hr_" th:if="${session.u_Account != null}">
-							  <span class="dropdown-toggle" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder"> 修改个人信息&nbsp;<i class="fas fa-angle-down"></i></a>
-							  </span>
-							<div class="dropdown-menu r_menu dropdown-menu-right" >
-								<a class="dropdown-item font-weight-bolder" th:href="@{/admin/userInfo}">修改信息</a>
-								<a class="dropdown-item font-weight-bolder" th:href="@{/admin/userPassword}">修改密码</a>
-								<a class="dropdown-item font-weight-bolder" th:href="@{/admin/userAdd}">修改地址</a>
-							</div>
+						<div class="dropdown right1 md_1 hr_">
+
+                            <span class="dropdown-toggle">
+                         <a th:if="${session.u_Account == null}" href="forgot.html" class="font-weight-bolder"
+						 >忘记密码</a>
+								</span>
+							<a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
+							>退出</a>
+							</span>
 						</div>
+
+
+
 
 					</nav>
 
@@ -421,37 +420,36 @@
 			<div class="row">
 				<div class="col-xl-2 col-lg-2 col-6  head-logo">
 					<div class="text-left header-top-left pt-2"><a href="/"><img src="assets/img/logo.png"
-																						  class="img-responsive img" alt="Hitech"></a></div>
+																				 class="img-responsive img" alt="Hitech"></a></div>
 				</div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
 				<div class="col-xl-10 col-lg-10 col-6  head-search">
 					<div class="d-flex navbar">
 						<div class="input-class  text-left col-xl-8 col-lg-7 col-md-12  ">
 							<div class="between-header border border-danger rounded mb-0 head-left">
 
-								<form class="layui-form" th:action="@{/selectCategory}" method="post">
-									<select class="select-menu form-select d-none d-sm-block" name="category" id="category">
-										<option value="selected">所有分类</option>
-										<option value="书籍教材">书籍教材</option>
-										<option value="电子产品">电子产品</option>
-										<option value="代步工具">代步工具</option>
-										<option value="衣帽鞋伞">衣帽鞋伞</option>
-										<option value="体育健身">体育健身</option>
-										<option value="家用电器">家用电器</option>
-										<option value="虚拟产品">虚拟产品</option>
-										<option value="手工设计">手工设计</option>
-										<option value="日常用品">日常用品</option>
-										<option value="音乐器材">音乐器材</option>
-									</select>
+								<select class="select-menu form-select d-none d-sm-block">
+									<option value="selected">所有分类</option>
+									<option value="1">书籍教材</option>
+									<option value="2">电子产品</option>
+									<option value="3">代步工具</option>
+									<option value="4">衣帽鞋伞</option>
+									<option value="5">体育健身</option>
+									<option value="6">家用电器</option>
+									<option value="7">虚拟产品</option>
+									<option value="8">手工设计</option>
+									<option value="9">日常用品</option>
+									<option value="10">音乐器材</option>
+								</select>
 
-									<div class="input-group">
-										<input type="text" placeholder="搜索" class="form-control" aria-label="search"
-											   aria-describedby="button-addon2" id="txt" name="txt">
-										<div class="input-group-btn"><button type="submit"
-																			 class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
-										</div>
+
+
+								<div class="input-group">
+									<input type="text" placeholder="搜索" class="form-control" aria-label="search"
+										   aria-describedby="button-addon2" id="txt">
+									<div class="input-group-btn"><button type="button"
+																		 class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
 									</div>
-
-								</form>
+								</div>
 							</div>
 							<!-- between-header text-left col-sm-8 head-left border border-danger rounded mb-0 -->
 						</div>
@@ -462,27 +460,18 @@
 									<a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
 													width="34px" height="40px"></svg></span>
-										<img src="assets/img/订单.png" style="height: 33px;width: 30px" alt="">
+										<img src="assets/img/发布商品.png" style="height: 33px;width: 30px" alt="">
 										<span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
-                                            <a th:if="${session.u_Account != null}" href="/showMyTransactionOrders">订单管理</a></span>
-										<a th:if="${session.u_Account == null}" href="/login">订单管理</a></span>
+                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品</a></span>
+										<a th:if="${session.u_Account == null}" href="/login">发布商品</a></span>
 									</a>
 								</li>
-								<li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
-									<a href="wishlist.html">
-											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
-													width="35px" height="35px">
-													<use xlink:href="#favourite"></use>
-												</svg></span>
-										<span
-												class="comp_wish align-middle d-lg-inline-block font-weight-bolder">心愿清单</span>
-									</a>
-								</li>
+
 
 								<li class="d-lg-none d-md-inline-block user">
 										<span>
 											<a href="#"><span><svg width="35px" height="35px">
-														<use xlink:href="#header_user"></use>
+														<use xlink:href="#header_user">购物车</use>
 													</svg></span></a>
 										</span>
 									<div class="head_ border rounded bg-white text-left">
@@ -497,7 +486,7 @@
 												<span><svg width="35px" height="35px">
 														<use xlink:href="#cart"></use>
 													</svg></span>
-												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
+												<span >购物车</span>
 
 											</a>
                                     </span>
@@ -508,9 +497,8 @@
 												<span><svg width="35px" height="35px">
 														<use xlink:href="#cart"></use>
 													</svg></span>
-												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
-                                                <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
-													  th:text="${session.shoppingCartList.size()}"></span>
+												<span >购物车</span>
+
 										</span>
 
 									<div class="dropdown-menu s_cart dropdown-menu-right">
@@ -541,7 +529,7 @@
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
 												<span class="text-left"><a href="cart.html">查看购物车</a></span>
-												<span class="float-right"><a href="checkout.html">结账</a></span>
+												<span class="float-right"><a href="/checkOutWithCart">结账</a></span>
 											</li>
 										</ul>
 									</div>
@@ -558,81 +546,28 @@
 
 	<!-- third row -->
 
-		<div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
-			<div class="container custom_container">
-				<div class="row">
+	<div class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
+		<div class="container custom_container">
+			<div class="row">
+				<div class="col-lg-9 text-left">
+					<ul class="main-menu navbar">
+						<li><a th:href="@{/}">首页</a></li>
+						<li><a th:href="@{/searchAll}">市场</a></li>
 
-					<div class="col-lg-9 text-left sp_hz_menu">
-						<ul class="main-menu navbar">
-							<li><a th:href="@{/}">主页</a></li>
-							<li><a th:href="@{/searchAll}">商店</a></li>
-
-							<li><a href="about-us.html">关于我们</a></li>
-							<li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-								   aria-expanded="false">其他&nbsp;<i class="fas fa-angle-down"></i></a>
-								<ul class="dropdown-menu">
-									<li class="d-block"><a class="dropdown-item font-weight-bolder"
-														   href="about-us.html">关于我们</a></li>
-
-									<li class="d-block"><a class="dropdown-item font-weight-bolder"
-														   href="login.html">登录</a></li>
-									<li class="d-block"><a class="dropdown-item font-weight-bolder"
-														   href="registration.html">注册</a></li>
-									<li class="d-block"><a class="dropdown-item font-weight-bolder"
-														   href="cart.html">购物车</a></li>
-									<li class="d-block"><a class="dropdown-item font-weight-bolder"
-														   href="wishlist.html">心愿清单</a></li>
-									<li class="d-block"><a class="dropdown-item font-weight-bolder"
-														   href="forgot.html">忘记密码</a></li>
-								</ul>
-							</li>
-							<style>
-
-								.fabu1{
-									position: absolute;
-									top:-8px;
-									left: 250px;
-									border-width: 0px; /* 边框宽度 */
-									border-radius: 3px; /* 边框半径 */
-									width:105px;
-									height:38px;
-								}
-							</style>
-							<li style="background-color:#FFC107" class="fabu1">
-
-
-
-								<a class="dropdown-item font-weight-bolder2"
-								   href="/admin/user_init" style="color: black;font-weight:600"> &nbsp;&nbsp;商品管理</a></li>
+						<li><a href="about-us.html">关于我们</a></li>
 
 
 
 
-							<style>
 
-								.fabu2{
-									position: absolute;
-									top:-8px;
-									left: 250px;
-									border-width: 0px; /* 边框宽度 */
-									border-radius: 3px; /* 边框半径 */
-									width:105px;
-									height:38px;
-								}
-							</style>
-							<li style="background-color:#FFC107" class="fabu2">
+					</ul>
+				</div> <!-- col-lg-9 text-left -->
 
+			</div> <!-- row -->
+		</div> <!-- container custom_container -->
+	</div> <!-- header_bottom shadow-sm bg-white rounded bg-white -->
 
-
-								<a class="dropdown-item font-weight-bolder2"
-								   th:href="@{/admin/addinit}" style="color: black;font-weight:600"> &nbsp;&nbsp;发布商品</a></li></ul>
-					</div> <!-- col-lg-9 text-left -->
-
-				</div> <!-- row -->
-			</div> <!-- container custom_container -->
-		</div> <!-- header_bottom shadow-sm bg-white rounded bg-white -->
-
-	</header> <!-- header -->
+</header> <!-- header -->
 
 <!-- header area end -->
 
