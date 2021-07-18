@@ -1010,11 +1010,32 @@
 					<div class="col-xl-6 col-sm-10 col-8 pr-0 sortpro">
 						<div class="sort-by text-right">
 							<div class="sort">
-								<button value="3" id="Num">数量升序</button>
-								<button value="3" id="Low">价格升序</button>
+								<nav class="navbar " >
+								<div >
+						  <span  role="menu"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">数量<i class="fas fa-angle-down"></i></a>
+						  </span>
+									<div class="dropdown-menu r_menu dropdown-menu-right" >
+										<a href="#" class="dropdown-item font-weight-bolder" value="3" id="Num" >数量升序</a>
+										<a href="#" class="dropdown-item font-weight-bolder" >数量降序</a>
+									</div>
+								</div>
+									</nav>
+
+								<nav class="navbar ">
+									<div >
+						  <span  role="menu"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价格<i class="fas fa-angle-down"></i></a>
+						  </span>
+										<div class="dropdown-menu r_menu dropdown-menu-right" >
+											<a class="dropdown-item font-weight-bolder"  href="#" value="3" id="Low">价格升序</a>
+											<a class="dropdown-item font-weight-bolder" href="#">价格降序</a>
+										</div>
+									</div>
+								</nav>
 							</div>
 						</div>
 					</div>
+
+
 				</div>
 
 				<div id="products" class="row">
