@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>用户管理</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/media.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/Favicon.ico">
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="assets/layui4.css">
+    <link rel="stylesheet" th:href="@{/layui/css/layui4.css}"/>
+</head>
+<body class="layui-layout-body" >
+<div class="layui-layout layui-layout-admin ">
+    <div class="layui-header" style="background-color: #FFC107" >
+        <div class="layui-logo" style="font-weight:bolder;font-style: italic" style="color: #000000"><img src="assets/img/个人主页.png"
+                                                                                                         ></a></div>
+        <ul class="layui-nav layui-layout-right " style="background-color:  #FFC107" >
+            <style>
+                .dropdown {
+                    position: relative;
+                    display: inline-block;
+                }
+                .dropdown-content {
+                    display: none;
+                    position: absolute;
+                    background-color: #f9f9f9;
+                    min-width: 120px;
+                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                    padding: 12px 16px;
+                }
+                .dropdown:hover .dropdown-content {
+                    display: block;
+                }
+            </style>
+            [mycode3]
+            [mycode3 type="html"]
+            <div class="dropdown">
+                <li class="layui-nav-item" style="font-weight:bolder;color: #0C0C0C">修改个人信息</li>
+                <div class="dropdown-content">
+                    <a class="dropdown-item font-weight-bolder" th:href="@{/admin/userInfo}">修改信息</a>
+                    <a class="dropdown-item font-weight-bolder" th:href="@{/admin/userPassword}">修改密码</a>
+                    <a class="dropdown-item font-weight-bolder" th:href="@{/admin/userAdd}">修改地址</a>
+                </div>
+            </div>
+            <div class="dropdown">
+            <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: #0C0C0C">退出</a></li>
+            </div>
+        </ul>
+    </div>
+
+    <div class="layui-side " >
+        <div class="layui-side-scroll " style="background-color: #EEEEEE">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree "  lay-filter="test">
+                <li class="layui-nav-item" style="background-color: #eeeeee "><a th:if="${session.u_Account eq 'admin'}" href="/user_cart" style="color: #0C0C0C">我的购物车</a></li>
+                <li class="layui-nav-item" style="background-color: #eeeeee "><a  href="cart.html" style="color: #0C0C0C">我的购物车</a></li>
+
+                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/showMyTransactionOrders" style="color: #0C0C0C">我的订单</a></li>
+
+                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/user_init" style="color: #0C0C0C">商品管理</a></li>
+                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="wishlist.html" style="color: #0C0C0C">我的收藏</a></li>
+
+                <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/}" style="color: #0C0C0C">返回主页</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © xmu-secondhandmarket
+    </div>
+</div>
+
+</body>
+</html>

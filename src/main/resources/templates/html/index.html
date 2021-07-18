@@ -705,6 +705,7 @@
                                                                 class="float-right cart_cross">X</span></h6>
                                                         <p><span class="f_13"
                                                                  th:text="'&nbsp;￥' + ${p.getP_Price()}"></span></p>
+
                                                     </div>
                                                 </div>
                                             </li>
@@ -1363,6 +1364,7 @@
 														<span th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"
                                                               class="font-weight-bolder price"style="color: red">
 														</span>
+                                                     <del class="text-muted">$100.00</del>
 													</span>
                                             </div>
                                         </div>
@@ -1427,6 +1429,7 @@
 														<span th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"
                                                               class="font-weight-bolder price"style="color: red">
 														</span>
+                                                     <del class="text-muted">$100.00</del>
 													</span>
                                             </div>
                                         </div>
@@ -1500,6 +1503,7 @@
 														<span th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"
                                                               class="font-weight-bolder price"style="color: red">
 														</span>
+                                                     <del class="text-muted">$100.00</del>
                                                     <!--														<del class="text-muted">$100.00</del>-->
 													</span>
                                             </div>
