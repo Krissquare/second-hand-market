@@ -574,7 +574,7 @@
                         <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
+                                    <a th:if="${session.u_Account != null}" href="/userIndex" class="font-weight-bolder"
                                     >个人主页</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
@@ -1600,7 +1600,7 @@
                             </div>
                             <div class="categorie collapse" id="sproduct">
                                 <ul>
-                                    <li><a th:href="@{/}">我的主页</a></li>
+                                    <li><a th:href="@{/}">我的首页</a></li>
                                     <li><a href="cart.html">我的购物车</a></li>
                                     <li><a href="wishlist.html">我的心愿清单</a></li>
                                     <li><a href="/showMyTransactionOrders">我的订单</a></li>
