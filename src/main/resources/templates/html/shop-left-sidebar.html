@@ -3,6 +3,7 @@
 <head>
 	<title>厦大二手交易平台</title>
 	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
@@ -14,7 +15,6 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/animate.min.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{assets/css/all.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{assets/css/owl.theme.default.min.css}">
@@ -545,27 +545,23 @@
                                     <a th:if="${session.u_Account == null}" href="/login" class="font-weight-bolder">登录</a>
 								</span>
 						</div>
+
+
+
 						<div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
                                     <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
-									>个人主页</a>
+									>退出</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
 						</div>
-						<div class="dropdown right1 md_1 hr_">
-
-                            <span class="dropdown-toggle">
-                         <a th:if="${session.u_Account == null}" href="forgot.html" class="font-weight-bolder"
-						 >忘记密码</a>
+						<div class="dropdown right1 md_1 hr_" th:if="${session.u_Account != null}">
+								<span class="dropdown-toggle">
+                                    <a href="userInfo.html" class="font-weight-bolder">修改个人信息</a>
 								</span>
-							<a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
-							>退出</a>
-							</span>
+
 						</div>
-
-
-
 
 					</nav>
 
@@ -603,7 +599,6 @@
 								</select>
 
 
-
 								<div class="input-group">
 									<input type="text" placeholder="搜索" class="form-control" aria-label="search"
 										   aria-describedby="button-addon2" id="txt">
@@ -621,18 +616,27 @@
 									<a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
 													width="34px" height="40px"></svg></span>
-										<img src="assets/img/发布商品.png" style="height: 33px;width: 30px" alt="">
+										<img src="assets/img/订单.png" style="height: 33px;width: 30px" alt="">
 										<span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
-                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品</a></span>
-										<a th:if="${session.u_Account == null}" href="/login">发布商品</a></span>
+                                            <a th:if="${session.u_Account != null}" href="/showMyTransactionOrders">订单管理</a></span>
+										<a th:if="${session.u_Account == null}" href="/login">订单管理</a></span>
 									</a>
 								</li>
-
+								<li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
+									<a href="wishlist.html">
+											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
+													width="35px" height="35px">
+													<use xlink:href="#favourite"></use>
+												</svg></span>
+										<span
+												class="comp_wish align-middle d-lg-inline-block font-weight-bolder">心愿清单</span>
+									</a>
+								</li>
 
 								<li class="d-lg-none d-md-inline-block user">
 										<span>
 											<a href="#"><span><svg width="35px" height="35px">
-														<use xlink:href="#header_user">购物车</use>
+														<use xlink:href="#header_user"></use>
 													</svg></span></a>
 										</span>
 									<div class="head_ border rounded bg-white text-left">
@@ -647,7 +651,7 @@
 												<span><svg width="35px" height="35px">
 														<use xlink:href="#cart"></use>
 													</svg></span>
-												<span >购物车</span>
+												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
 
 											</a>
                                     </span>
@@ -658,8 +662,9 @@
 												<span><svg width="35px" height="35px">
 														<use xlink:href="#cart"></use>
 													</svg></span>
-												<span >购物车</span>
-
+												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
+                                                <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
+													  th:text="${session.shoppingCartList.size()}"></span>
 										</span>
 
 									<div class="dropdown-menu s_cart dropdown-menu-right">
@@ -689,8 +694,8 @@
 													  th:text="'￥' + ${session.shoppingCarPrice}"></span>
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
-												<span class="text-left"><a href="cart.html">查看购物车</a></span>
-												<span class="float-right"><a href="/checkOutWithCart">结账</a></span>
+												<span class="text-left"><a href="cart.html">view cart</a></span>
+												<span class="float-right"><a href="checkout.html">结账</a></span>
 											</li>
 										</ul>
 									</div>
@@ -707,21 +712,74 @@
 
 	<!-- third row -->
 
-	<div class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
+	<div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
 		<div class="container custom_container">
 			<div class="row">
-				<div class="col-lg-9 text-left">
+
+				<div class="col-lg-9 text-left sp_hz_menu">
 					<ul class="main-menu navbar">
-						<li><a th:href="@{/}">首页</a></li>
-						<li><a th:href="@{/searchAll}">市场</a></li>
+						<li><a th:href="@{/}">主页</a></li>
+						<li><a th:href="@{/searchAll}">商店</a></li>
 
 						<li><a href="about-us.html">关于我们</a></li>
+						<li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+							   aria-expanded="false">其他&nbsp;<i class="fas fa-angle-down"></i></a>
+							<ul class="dropdown-menu">
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="about-us.html">关于我们</a></li>
+
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="login.html">登录</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="registration.html">注册</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="cart.html">购物车</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="wishlist.html">心愿清单</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="forgot.html">忘记密码</a></li>
+							</ul>
+						</li>
+						<style>
+
+							.fabu1{
+								position: absolute;
+								top:-8px;
+								left: 250px;
+								border-width: 0px; /* 边框宽度 */
+								border-radius: 3px; /* 边框半径 */
+								width:105px;
+								height:38px;
+							}
+						</style>
+						<li style="background-color:#FFC107" class="fabu1">
+
+
+
+							<a class="dropdown-item font-weight-bolder2"
+							   href="/admin/user_init" style="color: black;font-weight:600"> &nbsp;&nbsp;商品管理</a></li>
 
 
 
 
+						<style>
 
-					</ul>
+							.fabu2{
+								position: absolute;
+								top:-8px;
+								left: 250px;
+								border-width: 0px; /* 边框宽度 */
+								border-radius: 3px; /* 边框半径 */
+								width:105px;
+								height:38px;
+							}
+						</style>
+						<li style="background-color:#FFC107" class="fabu2">
+
+
+
+							<a class="dropdown-item font-weight-bolder2"
+							   th:href="@{/admin/addinit}" style="color: black;font-weight:600"> &nbsp;&nbsp;发布商品</a></li></ul>
 				</div> <!-- col-lg-9 text-left -->
 
 			</div> <!-- row -->
@@ -963,8 +1021,8 @@
 			<div class="row ">
 				<div class="col-12 ">
 					<ul>
-						<li class="d-inline-block font-weight-bolder"><a th:href="@{/}">首页</a></li>
-						<li class="d-inline-block hr_ font-weight-bolder"><a href="#">市场</a></li>
+						<li class="d-inline-block font-weight-bolder"><a th:href="@{/}">主页</a></li>
+						<li class="d-inline-block hr_ font-weight-bolder"><a href="#">商店</a></li>
 					</ul>
 				</div>
 			</div>
@@ -974,52 +1032,71 @@
 	<div class="container custom_container">
 		<div class="row">
 			<div class="col-lg-3 col-md-4">
+				<div class="shop_sidebar border card-body rounded bg-white">
 
+					<h2 class="text-uppercase card-title  font-weight-bold d-md-block d-none">价格区间</h2>
+
+
+						<a class="dropdown-item font-weight-bolder"
+						   href="" style="font-size: small" >&nbsp;&nbsp;0~100</a>
+						<a class="dropdown-item font-weight-bolder"
+						   href=""style="font-size: small">100~200</a>
+						<a class="dropdown-item font-weight-bolder"
+						   href=""style="font-size: small">200~300</a>
+					<a class="dropdown-item font-weight-bolder"
+					   href=""style="font-size: small">300~400</a>
+					<p>    </p>
+					<div class="s_filter mt-0">  </div>
+					<div class="s_filter mt-0">
+
+						<form class="layui-form" th:action="@{/range}" method="post">
+							<div class="layui-input-inline">
+
+								<input type="number" id="minRange" name="minRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px">
+
+								<input type="number" id="maxRange" name="maxRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px">
+
+							</div>
+							<button data-search-url="#" class="btn btn-primary clear_btn " id="range">确定</button>
+
+
+						</form>
+
+
+					</div>
+
+
+				</div>
 
 			</div>
 
 			<div class="col-lg-9 col-md-8">
-				<style>
 
-					.row shop_grid_list_row mb-5 bg-white p-2 p-md-1 mb-lg-3 mx-0{
-						position: relative;
-
-						left: 10px;
-
-
-
-					}
-				</style>
-
-				<div class="row shop_grid_list_row mb-5 bg-white p-2 p-md-1 mb-lg-3 mx-0"style="width: 1200px">
-					<div>
-						<form th:action="@{/range}" method="post">
-
-
-							<input type="number" id="minRange" name="minRange" placeholder="¥" class="layui-input"style="height: 30px;width: 60px">
-
-
-
-							<input type="number" id="maxRange" name="maxRange" placeholder="¥" class="layui-input"style="height: 30px;width: 60px">
-
-							<button data-search-url="#" class="btn btn-primary clear_btn " id="range"style="height: 30px;width: 60px">搜索全部</button>
-						</form>
+				<div class="row shop_grid_list_row mb-5 bg-white p-2 p-md-1 mb-lg-3 mx-0">
+					<div class="col-xl-2 col-sm-2 col-4 pl-0">
+						<a href="#" id="grid" class="btn">
+							<span class="grid_icon  p-1"><i class="fas fa-th"></i></span>
+						</a>
+						<a href="#" id="list" class="btn">
+							<span class="list_icon  p-1"><i class="fas fa-list"></i></span>
+						</a>
 					</div>
-
-
+					<div class="col-xl-4 d-xl-inline-block d-lg-none d-sm-none d-none">
+						<div class="show-product pt-1"><a href="#"> </a></div>
+					</div>
 					<div class="col-xl-6 col-sm-10 col-8 pr-0 sortpro">
 						<div class="sort-by text-right">
 							<div class="sort">
 								<nav class="navbar " >
-								<div >
+									<div >
 						  <span  role="menu"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">数量<i class="fas fa-angle-down"></i></a>
 						  </span>
-									<div class="dropdown-menu r_menu dropdown-menu-right" >
-										<a href="#" class="dropdown-item font-weight-bolder" value="3" id="Num" >数量升序</a>
-										<a href="#" class="dropdown-item font-weight-bolder" >数量降序</a>
+										<div class="dropdown-menu r_menu dropdown-menu-right" >
+											<a href="#" class="dropdown-item font-weight-bolder" value="3" id="Num" >数量升序</a>
+											<a href="#" class="dropdown-item font-weight-bolder" >数量降序</a>
+										</div>
 									</div>
-								</div>
-									</nav>
+								</nav>
 
 								<nav class="navbar ">
 									<div >
@@ -1034,8 +1111,6 @@
 							</div>
 						</div>
 					</div>
-
-
 				</div>
 
 				<div id="products" class="row">
@@ -1043,7 +1118,7 @@
 						<div class="product_thumb bg-white rounded">
 							<div class="pro_image">
 								<a th:href="@{/goodsDetail(pid=${p.getP_Id()})}">
-									<img th:src="${p.getP_href()}"  style="width: 150px;height: 150px;margin: 25px"/>
+									<img th:src="${p.getP_href()}"  style="width: 150px;height: 150px;margin: 20px"/>
 								</a>
 							</div>
 							<div class="text-center main_text pt-3">
@@ -1056,11 +1131,9 @@
 										<i class="fa fa-star" aria-hidden="true"></i>
 									</div>
 
-									<span th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}" style="color: red;font-weight: bold;font-size: 28px"></span>
+									<span th:text="${p.getP_Price()}" style="color: red;font-weight: bold;font-size: 25px"></span>
 									<del class="text-muted">$100.00</del>
 									<p class="line-limit-length"> <a href="#" th:text="${p.getP_Title()}"></a></p>
-
-									<p class="line-limit-length" th:text="'卖家:'+${p.getP_Account()}"></p>
 
 									<div class="button-group">
 										<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>
@@ -1196,11 +1269,11 @@
 							</div>
 							<div class="categorie collapse" id="sproduct">
 								<ul>
-									<li><a th:href="@{/}">我的主页</a></li>
-									<li><a href="cart.html">我的购物车</a></li>
-									<li><a href="wishlist.html">我的心愿清单</a></li>
-									<li><a href="/showMyTransactionOrders">我的订单</a></li>
-									<li><a th:href="@{/}">回到顶部</a></li>
+									<li><a href="/admin/userInfo">我的主页</a></li>
+									<li><a href="/admin/shoppingCarInit">我的购物车</a></li>
+									<li><a href="#">我的愿望清单</a></li>
+									<li><a href="#">我的订单</a></li>
+									<li><a href="#">回到顶部</a></li>
 								</ul>
 							</div>
 						</div>
@@ -1212,12 +1285,12 @@
 							</div>
 							<div class="categorie collapse" id="tproduct">
 								<ul>
-									<li><a href="/search?search=电子产品">电子产品</a></li>
-									<li><a href="/search?search=书籍教材">书籍教材</a></li>
-									<li><a href="/search?search=衣帽鞋伞">衣帽鞋伞</a></li>
-									<li><a href="/search?search=日常用品">日常用品</a></li>
-									<li><a href="/search?search=代步工具">代步工具</a></li>
-									<li><a href="/search?search=体育健身">体育健身</a></li>
+									<li><a href="#">电子产品</a></li>
+									<li><a href="#">书籍教材</a></li>
+									<li><a href="#">衣帽鞋伞</a></li>
+									<li><a href="#">日常用品</a></li>
+									<li><a href="#">代步工具</a></li>
+									<li><a href="#">体育健身</a></li>
 
 								</ul>
 							</div>
@@ -1230,7 +1303,7 @@
 							</div>
 							<div class="categorie collapse" id="fh_product">
 								<ul>
-									<li><a href="about-us.html">关于开发团队</a></li>
+									<li><a href="#">关于开发团队</a></li>
 									<li><a href="#">关于厦大二手交易平台</a></li>
 									<li><a href="#">隐私政策</a></li>
 									<li><a href="#">在线客服</a></li>

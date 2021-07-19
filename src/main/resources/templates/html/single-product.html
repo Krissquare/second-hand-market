@@ -746,7 +746,10 @@
 															th:text="${p.getP_Title()}"><span
 																class="float-right cart_cross">X</span></h6>
 														<p><span class="f_13"
-																 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span></p>
+																 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span>
+
+														</p>
+
 													</div>
 												</div>
 											</li>
@@ -755,6 +758,8 @@
 												<span class="text-left">总计:</span>
 												<span class="float-right f_13"
 													  th:text="'￥' + ${session.shoppingCarPrice}"></span>
+
+
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
 												<span class="text-left"><a href="cart.html">查看购物车</a></span>
@@ -1069,7 +1074,7 @@
 						</h1>
 
 						<span class="sp_price font-weight-bold" th:text="'￥'+${#numbers.formatDecimal(product.getP_Price(),1,'COMMA',2,'POINT')}"></span>
-
+						<del class="text-muted">$100.00</del>
 <!--						<div class="text-secondary sp_tax">Tax included.</div>-->
 
 						<div class="sp_add_info my-3">
