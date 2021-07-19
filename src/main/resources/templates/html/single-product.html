@@ -760,7 +760,7 @@
 
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
-												<span class="text-left"><a href="cart.html">查看购物车</a></span>
+												<span class="text-left"><a href="/shopProduct">查看购物车</a></span>
 												<span class="float-right"><a href="/checkOutWithCart">结账</a></span>
 											</li>
 										</ul>
@@ -1071,8 +1071,13 @@
 							<a href="#"></a>
 						</h1>
 
+						<div class="sp_add_info my-3" >
+							<div th:text="'发布者：'+${product.getP_Account()}"></div>
+						</div>
+
+
 						<span class="sp_price font-weight-bold" th:text="'￥'+${#numbers.formatDecimal(product.getP_Price(),1,'COMMA',2,'POINT')}"></span>
-						<del class="text-muted">$100.00</del>
+						<del class="text-muted" th:text="'￥'+${#numbers.formatDecimal(product.getP_originalPrice(),1,'COMMA',2,'POINT')}"></del>
 <!--						<div class="text-secondary sp_tax">Tax included.</div>-->
 
 						<div class="sp_add_info my-3">

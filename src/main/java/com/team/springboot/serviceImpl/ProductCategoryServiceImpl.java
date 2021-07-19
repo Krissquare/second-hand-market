@@ -63,6 +63,11 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     }
 
     @Override
+    public List<ProductCategory> selectProductCategorysByp_name2(String p_Name) {
+        return productCategoryMapper.selectProductCategorysByp_name2(p_Name);
+    }
+
+    @Override
     public List<ProductCategory> selectProductCategorysByRange(int min,int max)
     {
         return productCategoryMapper.selectProductCategorysByRange(min,max);
