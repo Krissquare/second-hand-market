@@ -1037,13 +1037,13 @@
 
 
 						<a class="dropdown-item font-weight-bolder"
-						   href="" style="font-size: small" >&nbsp;&nbsp;0~100</a>
+						   href="/zeroToOne" style="font-size: small" >&nbsp;&nbsp;0~100</a>
 						<a class="dropdown-item font-weight-bolder"
-						   href=""style="font-size: small">100~200</a>
+						   href="/oneToTwo" style="font-size: small">100~200</a>
 						<a class="dropdown-item font-weight-bolder"
-						   href=""style="font-size: small">200~300</a>
+						   href="/twoToThree" style="font-size: small">200~300</a>
 					<a class="dropdown-item font-weight-bolder"
-					   href=""style="font-size: small">300~400</a>
+					   href="/threeToFour" style="font-size: small">300~400</a>
 					<p>    </p>
 					<div class="s_filter mt-0">  </div>
 					<div class="s_filter mt-0">
@@ -1092,7 +1092,7 @@
 						  </span>
 										<div class="dropdown-menu r_menu dropdown-menu-right" >
 											<a href="#" class="dropdown-item font-weight-bolder" value="3" id="Num" >数量升序</a>
-											<a href="#" class="dropdown-item font-weight-bolder" >数量降序</a>
+											<a href="#" class="dropdown-item font-weight-bolder" id="Numlow">数量降序</a>
 										</div>
 									</div>
 								</nav>
@@ -1103,7 +1103,7 @@
 						  </span>
 										<div class="dropdown-menu r_menu dropdown-menu-right" >
 											<a class="dropdown-item font-weight-bolder"  href="#" value="3" id="Low">价格升序</a>
-											<a class="dropdown-item font-weight-bolder" href="#">价格降序</a>
+											<a class="dropdown-item font-weight-bolder" href="#" id="High">价格降序</a>
 										</div>
 									</div>
 								</nav>
@@ -1365,6 +1365,16 @@
 	let oBtn = document.getElementById("btn");
 	let rBtn=document.getElementById("range");
 	let nBtn=document.getElementById("Num");
+	let nBtnlow=document.getElementById("Numlow");
+	let Hbtn=document.getElementById("High");
+	Hbtn.onclick=function ()
+	{
+		location.href="/ByHighPrice";
+	}
+	nBtnlow.onclick=function ()
+	{
+		location.href="/ByNumlow";
+	}
 	nBtn.onclick=function ()
 	{
 		location.href="/ByNum";
