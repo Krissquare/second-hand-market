@@ -14,6 +14,7 @@ public class ShoppingCarProduct {
     public int getP_Num() {
         return p_Num;
     }
+
     public void setP_Num(int p_Num)
     {
         this.p_Num=p_Num;
