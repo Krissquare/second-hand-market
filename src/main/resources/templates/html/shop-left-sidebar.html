@@ -1138,17 +1138,12 @@
 									</div>
 									<div>&nbsp;</div>
 
-									<div>
-<!--										[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}]]-->
-										<span style="font-size: small">发布于</span>
-										<a th:text="${#numbers.formatDecimal((new java.util.Date().getTime()-p.getP_Date().getTime())/86400000,1,'COMMA',0,'POINT')}"></a>
-<!--										<a th:text="${p.getP_Date()}"></a>-->
-										<span style="font-size: small">天前</span>
-									</div>
+
 
 									<div class="star mb-2">
-										<img th:src="${p.getP_href()}"  style="width: 20px;height: 20px"/>
-										<span style="font-size: small">用户名</span>
+<!--										<img th:src="${p.getP_href()}"  style="width: 20px;height: 20px"/>-->
+<!--										<span style="font-size: small"></span>-->
+										<span th:text="${p.getP_Account()}"></span>
 										<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
 
 										<i class="fa fa-star" aria-hidden="true"></i>
@@ -1156,6 +1151,14 @@
 										<i class="fa fa-star" aria-hidden="true"></i>
 										<i class="fa fa-star" aria-hidden="true"></i>
 										<i class="fa fa-star" aria-hidden="true"></i>
+									</div>
+
+									<div>
+										<!--										[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}]]-->
+										<span style="font-size: small">发布于</span>
+										<a th:text="${#numbers.formatDecimal((new java.util.Date().getTime()-p.getP_Date().getTime())/86400000,1,'COMMA',0,'POINT')}"></a>
+										<!--										<a th:text="${p.getP_Date()}"></a>-->
+										<span style="font-size: small">天前</span>
 									</div>
 
 								</div>
