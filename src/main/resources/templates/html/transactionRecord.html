@@ -590,30 +590,27 @@
 					<div class="d-flex navbar">
 						<div class="input-class  text-left col-xl-8 col-lg-7 col-md-12  ">
 							<div class="between-header border border-danger rounded mb-0 head-left">
+								<form class="layui-form" th:action="@{/selectCategory}" method="post">
+									<select class="select-menu form-select d-none d-sm-block" name="category" id="category">
+										<option value="selected">所有分类</option>
+										<option value="书籍教材">书籍教材</option>
+										<option value="电子产品">电子产品</option>
+										<option value="代步工具">代步工具</option>
+										<option value="衣帽鞋伞">衣帽鞋伞</option>
+										<option value="体育健身">体育健身</option>
+										<option value="家用电器">家用电器</option>
+										<option value="虚拟产品">虚拟产品</option>
+										<option value="手工设计">手工设计</option>
+										<option value="日常用品">日常用品</option>
+										<option value="音乐器材">音乐器材</option>
+									</select>
 
-								<select class="select-menu form-select d-none d-sm-block">
-									<option value="selected">所有分类</option>
-									<option value="1">书籍教材</option>
-									<option value="2">电子产品</option>
-									<option value="3">代步工具</option>
-									<option value="4">衣帽鞋伞</option>
-									<option value="5">体育健身</option>
-									<option value="6">家用电器</option>
-									<option value="7">虚拟产品</option>
-									<option value="8">手工设计</option>
-									<option value="9">日常用品</option>
-									<option value="10">音乐器材</option>
-								</select>
-
-
-
-								<div class="input-group">
-									<input type="text" placeholder="搜索" class="form-control" aria-label="search"
-										   aria-describedby="button-addon2" id="txt">
-									<div class="input-group-btn"><button type="button"
-																		 class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
-									</div>
-								</div>
+									<div class="input-group">
+										<input type="text" placeholder="搜索" class="form-control" aria-label="search"
+											   aria-describedby="button-addon2" id="txt" name="txt">
+										<div class="input-group-btn"><button type="submit"
+																			 class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
+										</div> </div></form>
 							</div>
 							<!-- between-header text-left col-sm-8 head-left border border-danger rounded mb-0 -->
 						</div>
