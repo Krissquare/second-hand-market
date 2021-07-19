@@ -102,7 +102,7 @@ public class ProductController {
         return baseResponse;
     }
 
-    //
+
     @RequestMapping("/detail")
     public String detailinit(){
         return "admin/detail";

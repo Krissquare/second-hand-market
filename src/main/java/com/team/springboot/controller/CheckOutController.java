@@ -1,9 +1,6 @@
 package com.team.springboot.controller;
 
-import com.team.springboot.pojo.Address;
-import com.team.springboot.pojo.Order;
-import com.team.springboot.pojo.Product;
-import com.team.springboot.pojo.ShoppingCarProduct;
+import com.team.springboot.pojo.*;
 import com.team.springboot.service.OrderService;
 import com.team.springboot.service.ProductService;
 import com.team.springboot.service.ShoppingCarService;
@@ -11,9 +8,7 @@ import com.team.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -80,7 +75,7 @@ public class CheckOutController {
         newOrder.setO_Id(orderId);
         newOrder.setO_Baddress(address);
         newOrder.setO_ItemId(Integer.valueOf(pid));
-        newOrder.setO_Status("1");//o_Status什么意思
+        newOrder.setO_Status("待交易");//o_Status什么意思
         newOrder.setO_Date(String.format("%tF",new Date()));//java的Date和sql的date用哪个
         newOrder.setO_Saddress(address1.getA_Address1());
 
@@ -102,6 +97,49 @@ public class CheckOutController {
         System.out.println("商品剩余:"+product.getP_num());
         System.out.println("--新订单");
         return "html/buySuccessfully";
+    }
+
+    @RequestMapping("/buyCartOfProducts")
+    @ResponseBody
+    public BaseResponse buyCartOfProductsProcessor(@RequestBody BuyOrderInfo b, HttpSession session){
+        BaseResponse baseResponse = new BaseResponse();
+        String account = (String) session.getAttribute("u_Account");
+        if(account == null || account.equals("")){
+            baseResponse.setCode(500);
+            baseResponse.setMsg("请登录账号");
+            return baseResponse;
+        }
+        ArrayList<ShoppingCarProduct> myShoppingCar =
+                (ArrayList<ShoppingCarProduct>) shoppingCarService.selectShoppingCarProductById(account);
+
+        String address = b.getO_Baddress();
+
+        for (ShoppingCarProduct oneProduct: myShoppingCar){
+            //库存减相应数量
+            Product product = productService.selectProductById(oneProduct.getP_Id());
+            product.setP_num(product.getP_num() - oneProduct.getP_Num());
+            productService.updateProduct(product);
+            //生成订单
+            Order oneOrder = new Order();
+            oneOrder.setO_Id("o"+(orderService.selectOrderCount()+1));
+            oneOrder.setO_ItemId(product.getP_Id());
+            oneOrder.setO_Buyer(account);
+            oneOrder.setO_Seller(product.getP_Account());
+            oneOrder.setO_Date(String.format("%tF",new Date()));
+            oneOrder.setO_Saddress(userService.selectAddressAll(product.getP_Account()).getA_Address1());
+            oneOrder.setO_Baddress(address);
+            oneOrder.setO_Status("待交易");
+            //加入订单
+            orderService.insertOne(oneOrder);
+            //清空购物车项
+            shoppingCarService.deleteById(shoppingCarService.selectByAccountId(account,oneProduct.getP_Id()).getS_Id());
+        }
+
+//        System.out.println(b.getO_Baddress());
+
+        baseResponse.setCode(200);
+        baseResponse.setMsg("购买成功");
+        return baseResponse;
     }
 
 }

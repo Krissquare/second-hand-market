@@ -118,6 +118,33 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    @RequestMapping("/ByNumlow")
+    public String byNumLow(Model model, HttpSession session, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo)
+    {
+        if(session.getAttribute("search")!=null)
+        {
+            String search=(String)session.getAttribute("search");
+            Integer pageSize = 15;
+            search = "%" + search + "%";
+            PageHelper.startPage(pageNo, pageSize);
+            List<Product> list = productService.selectProductByp_name(search);
+            Collections.sort(list);
+            Collections.reverse(list);
+            PageInfo<Product> pageInfo = new PageInfo<Product>(list, pageSize);
+            model.addAttribute("productList", pageInfo);
+        }
+        else
+        {
+            Integer pageSize = 15;
+            List<Product> list = productService.selectProductAll();
+            Collections.sort(list);
+            Collections.reverse(list);
+            PageInfo<Product> pageInfo = new PageInfo<Product>(list,pageSize);
+            model.addAttribute("productList", pageInfo);
+        }
+        return "html/shop-left-sidebar";
+    }
+
     @RequestMapping("/ByLowPrice")
             public String byLow(Model m,
                                 HttpServletRequest req,
@@ -137,6 +164,34 @@ public class showController {
             Integer pageSize = 15;
             List<ProductCategory> list = productCategoryService.selectProductAll();
             Collections.sort(list);
+            PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
+            m.addAttribute("productList", pageInfo);
+        }
+        return "html/shop-left-sidebar";
+
+    }
+
+    @RequestMapping("/ByHighPrice")
+    public String byHigh(Model m,
+                        HttpServletRequest req,
+                        @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo) {
+
+
+        if (req.getSession().getAttribute("search") != null) {
+            String search = (String) req.getSession().getAttribute("search");
+            Integer pageSize = 15;
+            search = "%" + search + "%";
+            PageHelper.startPage(pageNo, pageSize);
+            List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name1(search);
+            Collections.sort(list);
+            Collections.reverse(list);
+            PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
+            m.addAttribute("productList", pageInfo);
+        } else {
+            Integer pageSize = 15;
+            List<ProductCategory> list = productCategoryService.selectProductAll();
+            Collections.sort(list);
+            Collections.reverse(list);
             PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
             m.addAttribute("productList", pageInfo);
         }
@@ -165,6 +220,48 @@ public class showController {
         model.addAttribute("productList", pageInfo);
         return "html/shop-left-sidebar";
     }
+
+    @RequestMapping("/zeroToOne")
+    public String zeroOne(Model model)
+    {
+        Integer pageSize = 15;
+        List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(0,100);
+        PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
+        model.addAttribute("productList", pageInfo);
+        return "html/shop-left-sidebar";
+    }
+
+    @RequestMapping("/oneToTwo")
+    public String oneTwo(Model model)
+    {
+        Integer pageSize = 15;
+        List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(100,200);
+        PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
+        model.addAttribute("productList", pageInfo);
+        return "html/shop-left-sidebar";
+    }
+
+    @RequestMapping("/twoToThree")
+    public String twoThree(Model model)
+    {
+        Integer pageSize = 15;
+        List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(200,300);
+        PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
+        model.addAttribute("productList", pageInfo);
+        return "html/shop-left-sidebar";
+    }
+
+    @RequestMapping("/threeToFour")
+    public String threeFour(Model model)
+    {
+        Integer pageSize = 15;
+        List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(300,400);
+        PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
+        model.addAttribute("productList", pageInfo);
+        return "html/shop-left-sidebar";
+    }
+
+
 
     //交易记录页面的Mapping
     @RequestMapping("/showMyTransactionOrders")
