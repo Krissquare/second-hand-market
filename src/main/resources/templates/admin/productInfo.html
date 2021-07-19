@@ -75,6 +75,9 @@
 
     });
 </script>
+<script type="text/html" id="xuhao">
+    {{d.LAY_INDEX+1}}
+</script>
 <script th:inline="javascript">
     layui.use(['table','form'], function(){
         var table = layui.table;
@@ -258,8 +261,8 @@
                 statusCode: 200 //规定成功的状态码，默认：0
             }
             ,cols: [[ //表头
-                {field: 'p_Id', title: '物品序号', sort: true},
 
+                {title: '序号',templet: '#xuhao'},
                 {field: 'p_href', title: '物品图片', templet: "<div><img  src=\"{{ d.p_href }}\"></div>"}
                 , {field: 'p_Id', title: '物品编号', sort: true}
                 ,{field: 'p_Account', title: '发布者账号',sort: true}
