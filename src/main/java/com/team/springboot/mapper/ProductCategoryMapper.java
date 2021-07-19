@@ -19,7 +19,7 @@ public interface ProductCategoryMapper {
     @Select("select p_Id,p_Account,p_Name,c_Name,p_Title,p_Price,p_href from product inner join Category on product.c_Id=Category.c_Id where p_Account = #{0} limit #{1}, #{2}")
     List<ProductCategory> selectProductCategorysByaccount(String p_Account,int page, int limit);
     //
-    @Select("select p_Id,p_Account,p_Name,c_Name,p_Title,p_Price,p_href from product inner join Category on product.c_Id=Category.c_Id")
+    @Select("select p_Id,p_Account,p_Name,c_Name,p_Title,p_originalPrice,p_Price,p_href,p_Date from product inner join Category on product.c_Id=Category.c_Id")
     List<ProductCategory> selectProductAll();
 
     @Select("select p_href, p_Id,p_Account,p_Name,c_Name,p_Title,p_Price from product inner join Category on product.c_Id=Category.c_Id where (p_Title like #{2} OR p_Name like #{2}) limit #{0}, #{1}")

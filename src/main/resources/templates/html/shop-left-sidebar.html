@@ -1112,8 +1112,9 @@
 					</div>
 				</div>
 
-				<div id="products" class="row">
-					<div class="item col-xl-3"  th:each="p:${productList.list}">
+				<div id="products" class="row" >
+<!--					<div th:each="p22:${p2}">-->
+					<div class="item col-xl-3"  th:each="p:${productList.list}" >
 						<div class="product_thumb bg-white rounded">
 							<div class="pro_image">
 								<a th:href="@{/goodsDetail(pid=${p.getP_Id()})}">
@@ -1125,7 +1126,7 @@
 
 									<p class="line-limit-length"> <a href="#" style="font-size:24px"th:text="${p.getP_Title()}"></a></p>
 									<span  th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}" style="color: red;font-weight: bold;font-size: 20px"></span>
-									<del class="text-muted">$100.00</del>
+									<del class="text-muted" th:text="'￥'+${p.getP_originalPrice()}"></del>
 
 
 									<div class="button-group">
@@ -1138,9 +1139,11 @@
 									<div>&nbsp;</div>
 
 									<div>
-
-
-										<span style="font-size: small">发布于*天前</span>
+<!--										[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}]]-->
+										<span style="font-size: small">发布于</span>
+										<a th:text="${#numbers.formatDecimal((new java.util.Date().getTime()-p.getP_Date().getTime())/86400000,1,'COMMA',0,'POINT')}"></a>
+<!--										<a th:text="${p.getP_Date()}"></a>-->
+										<span style="font-size: small">天前</span>
 									</div>
 
 									<div class="star mb-2">
@@ -1162,8 +1165,8 @@
 
 
 						</div>
+<!--					</div>-->
 					</div>
-
 
 
 
