@@ -557,7 +557,7 @@
                             }
                         </style>
                             <span class="font-weight-bolder1" th:if="${session.u_Account == null}" th:text="'&nbsp;&nbsp;&nbsp;' + 亲 + ',' + 请先登录哦"></span>
-                            <span class="font-weight-bolder1" th:if="${session.u_Account != null}" th:text="'&nbsp;&nbsp;&nbsp;' +欢迎来到厦大二手交易平台+ '!'"></span>
+                            <span class="font-weight-bolder1" th:if="${session.u_Account != null}" th:text="'&nbsp;&nbsp;&nbsp;' + ${session.u_Account} +'，欢迎来到厦大二手交易平台' + '!'"></span>
                         </li>
                     </ul>
                 </div> <!-- col-lg-5 col-md-4 col-sm-4 hidden-md-down topbar_left -->
@@ -566,8 +566,6 @@
                     <nav class="navbar ">
                         <div class="dropdown right1 md_acc ">
 								<span class="dropdown-toggle">
-                                    <span th:if="${session.u_Account != null}" href="" class="font-weight-bolder"
-                                          th:text="${session.u_Account}"></span>
                                     <a th:if="${session.u_Account == null}" href="/login" class="font-weight-bolder">登录</a>
 								</span>
                         </div>
@@ -686,7 +684,7 @@
 
 										</span>
 
-                                    <div class="dropdown-menu s_cart dropdown-menu-right">
+                                    <div th:if="${session.u_Account != null}" class="dropdown-menu s_cart dropdown-menu-right">
                                         <ul class="shopping-cart p-2 ">
                                             <li th:each="p:${session.shoppingCartList}" class="pb-2 d-block">
                                                 <div class="media ">
@@ -694,24 +692,32 @@
                                                         <a href="#">
                                                             <img th:src="${p.getP_href()}"
                                                                  class="fst-image img-fluid align-self-center"
-                                                                 alt="product_13">
+                                                                 alt="product_13"
+                                                                 style="width: 75px;height: 75px;">
                                                         </a>
                                                     </div>
-                                                    <div class="media-body">&nbsp;
+                                                    <div class="media-body">
                                                         <h6 class="mt-0 f_15"
-                                                            th:text="${p.getP_Title()}"><span
-                                                                class="float-right cart_cross">X</span></h6>
-                                                        <p><span class="f_13"
-                                                                 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span></p>
+                                                            th:text="'&nbsp;&nbsp;' + ${p.getP_Title()}"
+                                                            style="max-width: 170px;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            font-size: 13px;
+                                                            font-weight: 700;
+                                                            white-space: nowrap;"></h6>
 
+                                                        <span class="float-right cart_cross">X</span>
+                                                        <span class="f_13" style="font-size: 12px;"
+                                                                 th:text="'&nbsp;&nbsp;' + ${p.getP_Num()} + '&nbsp;X&nbsp;' + '￥' + ${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"></span>
                                                     </div>
                                                 </div>
                                             </li>
+                                            <div class="border-bottom"></div>
 
                                             <li class="d-block text-muted font-weight-bolder p-2 border-bottom">
-                                                <span class="text-left">总计:</span>
-                                                <span class="float-right f_13"
-                                                      th:text="'￥' + ${session.shoppingCarPrice}"></span>
+                                                <span class="text-left" style="font-weight: 700">总计:</span>
+                                                <span class="float-right f_13" style="font-weight: 700"
+                                                      th:text="'￥' + ${#numbers.formatDecimal(session.shoppingCarPrice,1,'COMMA',2,'POINT')}"></span>
                                             </li>
                                             <li class="d-block font-weight-bolder pt-2">
                                                 <span class="text-left"><a href="/shopProduct">查看购物车</a></span>
