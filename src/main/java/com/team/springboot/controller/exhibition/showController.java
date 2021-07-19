@@ -50,9 +50,9 @@ public class showController {
     //前台展示初始化
     @RequestMapping({"/"})
     public String showAll(Model model) {
-        List<ProductCategory> digitalEquipmentList = productCategoryService.selectProductCategorysByp_name1("电子产品");
-        List<ProductCategory> dailySupplyList = productCategoryService.selectProductCategorysByp_name1("衣帽鞋伞");
-        List<ProductCategory> bookList = productCategoryService.selectProductCategorysByp_name1("书籍教材");
+        List<ProductCategory> digitalEquipmentList = productCategoryService.selectProductCategorysByp_name2("电子产品");
+        List<ProductCategory> dailySupplyList = productCategoryService.selectProductCategorysByp_name2("衣帽鞋伞");
+        List<ProductCategory> bookList = productCategoryService.selectProductCategorysByp_name2("书籍教材");
 
         model.addAttribute("digitalEquipmentList", row1ToRow2(digitalEquipmentList));
         model.addAttribute("dailySupplyList", row1ToRow2(dailySupplyList));
