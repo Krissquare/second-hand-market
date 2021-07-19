@@ -1117,30 +1117,47 @@
 						<div class="product_thumb bg-white rounded">
 							<div class="pro_image">
 								<a th:href="@{/goodsDetail(pid=${p.getP_Id()})}">
-									<img th:src="${p.getP_href()}"  style="width: 150px;height: 150px;margin: 20px"/>
+									<img th:src="${p.getP_href()}"  style="width: 150px;height: 150px;margin: 20px"class="fst-image mx-auto d-block img-fluid"/>
 								</a>
 							</div>
 							<div class="text-center main_text pt-3">
 								<div>
-									<div class="star mb-2">
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-									</div>
 
-									<span th:text="${p.getP_Price()}" style="color: red;font-weight: bold;font-size: 25px"></span>
+									<p class="line-limit-length"> <a href="#" style="font-size:24px"th:text="${p.getP_Title()}"></a></p>
+									<span  th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}" style="color: red;font-weight: bold;font-size: 20px"></span>
 									<del class="text-muted">$100.00</del>
-									<p class="line-limit-length"> <a href="#" th:text="${p.getP_Title()}"></a></p>
+
 
 									<div class="button-group">
+
 										<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>
 										<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model"><svg width="20px" height="19px"><use xlink:href="#pro_compare"></use></svg></a>
 										<a href="#" class="symbol"  data-toggle="modal" data-target="#eye_model"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>
 										<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>
 									</div>
+									<div>&nbsp;</div>
+
+									<div>
+
+
+										<span style="font-size: small">发布于*天前</span>
+									</div>
+
+									<div class="star mb-2">
+										<img th:src="${p.getP_href()}"  style="width: 20px;height: 20px"/>
+										<span style="font-size: small">用户名</span>
+										<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
+
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</div>
+
 								</div>
+
+
 							</div>
 
 
