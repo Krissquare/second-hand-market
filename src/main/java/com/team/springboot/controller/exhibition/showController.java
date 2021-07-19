@@ -6,7 +6,6 @@ import com.team.springboot.pojo.*;
 import com.team.springboot.service.OrderService;
 import com.team.springboot.service.ProductCategoryService;
 import com.team.springboot.service.ProductService;
-import com.team.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +31,6 @@ public class showController {
     @Autowired
     ProductService productService;
 
-//    @Autowired
-//    UserService userService;
 
     private List<List<ProductCategory>> row1ToRow2(List<ProductCategory> singleList) {
         List<List<ProductCategory>> doubleList = new ArrayList<>();
@@ -77,7 +74,7 @@ public class showController {
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
         req.getSession().setAttribute("search",search);
 
-//        m.addAttribute("productList2",row1ToRow2(list));
+
         m.addAttribute("productList", pageInfo);
 
         return "html/shop-left-sidebar";
@@ -159,7 +156,7 @@ public class showController {
             Integer pageSize = 15;
             search = "%" + search + "%";
             PageHelper.startPage(pageNo, pageSize);
-            List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name2(search);
+            List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name1(search);
             Collections.sort(list);
             PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
             m.addAttribute("productList", pageInfo);
@@ -185,7 +182,7 @@ public class showController {
             Integer pageSize = 15;
             search = "%" + search + "%";
             PageHelper.startPage(pageNo, pageSize);
-            List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name2(search);
+            List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name1(search);
             Collections.sort(list);
             Collections.reverse(list);
             PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
@@ -289,7 +286,7 @@ public class showController {
         txt = "%" + txt+ "%";
         if(category.equals("selected"))
         {
-            List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name2(txt);
+            List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name1(txt);
             PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
             req.getSession().setAttribute("search",txt);
             m.addAttribute("productList",pageInfo);
