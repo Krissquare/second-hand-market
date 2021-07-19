@@ -27,7 +27,7 @@ CREATE TABLE `product` (
   `p_Des` varchar(100) DEFAULT NULL,
   `p_originalPrice` double DEFAULT NULL,
   `p_Price` double DEFAULT NULL,
-  `p_Date` date DEFAULT NULL,
+  `p_Date` date NOT NULL,
   `p_href` varchar(255) DEFAULT NULL,
   `p_num` int(100) DEFAULT NULL,
   PRIMARY KEY (`p_Id`)
