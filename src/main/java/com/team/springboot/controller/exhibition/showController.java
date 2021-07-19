@@ -74,7 +74,7 @@ public class showController {
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
         req.getSession().setAttribute("search",search);
 
-
+//        m.addAttribute("productList2",row1ToRow2(list));
         m.addAttribute("productList", pageInfo);
 
         return "html/shop-left-sidebar";
