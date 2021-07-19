@@ -75,7 +75,7 @@ public class CheckOutController {
         newOrder.setO_Id(orderId);
         newOrder.setO_Baddress(address);
         newOrder.setO_ItemId(Integer.valueOf(pid));
-        newOrder.setO_Status("1");//o_Status什么意思
+        newOrder.setO_Status("待交易");//o_Status什么意思
         newOrder.setO_Date(String.format("%tF",new Date()));//java的Date和sql的date用哪个
         newOrder.setO_Saddress(address1.getA_Address1());
 
@@ -128,7 +128,7 @@ public class CheckOutController {
             oneOrder.setO_Date(String.format("%tF",new Date()));
             oneOrder.setO_Saddress(userService.selectAddressAll(product.getP_Account()).getA_Address1());
             oneOrder.setO_Baddress(address);
-            oneOrder.setO_Status("0");
+            oneOrder.setO_Status("待交易");
             //加入订单
             orderService.insertOne(oneOrder);
             //清空购物车项

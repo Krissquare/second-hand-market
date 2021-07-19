@@ -111,7 +111,7 @@ public class GoodsDetailController   {
        o.setO_Date(String.format("%tF",new Date()));//java的Date和sql的date用哪个
        o.setO_Saddress(address1.getA_Address1());
        o.setO_Baddress(b.getO_Baddress());
-       o.setO_Status("0");
+       o.setO_Status("待交易");
        orderService.insertOne(o);
        if(b.getO_Baddress().equals("无"))
        {
