@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
 public class ShoppingController {
 
     @Autowired
@@ -31,6 +30,15 @@ public class ShoppingController {
         String account = (String) session.getAttribute("u_Account");
         UserHead userHead = userHeadService.selectHead(account);
         m.addAttribute("userHead", userHead);
+        return "html/cart";
+    }
+
+    @RequestMapping("/shopProduct")
+    public String shopProduct(HttpServletRequest req,Model m)
+    {
+        String account = (String)req.getSession().getAttribute("u_Account");
+        List<ShoppingCarProduct> list = shoppingCarService.selectShoppingCarProductById(account);
+        m.addAttribute("sproduct",list);
         return "html/cart";
     }
 
