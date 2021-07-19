@@ -19,5 +19,7 @@ public interface ProductCategoryService {
     int selectMaxP_Id();
     List<ProductCategory>selectProductCategorysByp_name1(String p_Name);
 ///
+
+    List<ProductCategory>selectProductCategorysByp_name2(String p_Name);
     List<ProductCategory>selectProductCategorysByRange(int min,int max);
 }

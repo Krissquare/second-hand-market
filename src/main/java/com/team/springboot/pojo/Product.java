@@ -10,6 +10,7 @@ public class Product implements Comparable<Product>{
     private String c_Id;
     private String p_Title;
     private Date p_Date;
+    private Double p_originalPrice;
     private Double p_Price;
     private String p_Des;
     private String p_href;
@@ -20,11 +21,12 @@ public class Product implements Comparable<Product>{
         this.p_Date = p_Date;
     }
 
-    public Product(int p_Id, String p_Account, String p_Name, String p_Title,String p_Des, Double p_Price, Date p_Date,int p_num) {
+    public Product(int p_Id, String p_Account, String p_Name, String p_Title,String p_Des, Double p_originalPrice,Double p_Price, Date p_Date,int p_num) {
         this.p_Id = p_Id;
         this.p_Account = p_Account;
         this.p_Name = p_Name;
         this.p_Title = p_Title;
+        this.p_originalPrice=p_originalPrice;
         this.p_Price = p_Price;
         this.p_Des = p_Des;
         this.p_Date = p_Date;
@@ -44,11 +46,12 @@ public class Product implements Comparable<Product>{
         this.p_href = p_href;
     }
 
-    public Product(int p_Id, String p_Account, String p_Name, String p_Title, Date p_Date, Double p_Price, String p_Des) {
+    public Product(int p_Id, String p_Account, String p_Name, String p_Title, Date p_Date,Double p_originalPrice ,Double p_Price, String p_Des) {
         this.p_Id = p_Id;
         this.p_Account = p_Account;
         this.p_Name = p_Name;
         this.p_Title = p_Title;
+        this.p_originalPrice=p_originalPrice;
         this.p_Price = p_Price;
         this.p_Des = p_Des;
         this.p_Date = p_Date;
@@ -105,6 +108,10 @@ public class Product implements Comparable<Product>{
         return p_Name;
     }
 
+    public Double getP_originalPrice() {
+        return p_originalPrice;
+    }
+
     public void setP_Name(String p_Name) {
         this.p_Name = p_Name;
     }
@@ -141,6 +148,9 @@ public class Product implements Comparable<Product>{
         this.p_Des = p_Des;
     }
 
+    public void setP_originalPrice(Double p_originalPrice) {
+        this.p_originalPrice = p_originalPrice;
+    }
 
     public Date getP_Date() {
         return p_Date;
