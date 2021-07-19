@@ -70,7 +70,7 @@ public class showController {
         int pageSize = 15;
         search = "%" + search + "%";
         PageHelper.startPage(pageNo, pageSize);
-        List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name1(search);
+        List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name2(search);
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
         req.getSession().setAttribute("search",search);
 
