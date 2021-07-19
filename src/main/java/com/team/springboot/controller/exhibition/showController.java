@@ -74,7 +74,7 @@ public class showController {
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
         req.getSession().setAttribute("search",search);
 
-//        m.addAttribute("productList2",row1ToRow2(list));
+
         m.addAttribute("productList", pageInfo);
 
         return "html/shop-left-sidebar";
@@ -146,9 +146,9 @@ public class showController {
     }
 
     @RequestMapping("/ByLowPrice")
-            public String byLow(Model m,
-                                HttpServletRequest req,
-                                @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo) {
+    public String byLow(Model m,
+                        HttpServletRequest req,
+                        @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo) {
 
 
         if (req.getSession().getAttribute("search") != null) {
@@ -173,8 +173,8 @@ public class showController {
 
     @RequestMapping("/ByHighPrice")
     public String byHigh(Model m,
-                        HttpServletRequest req,
-                        @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo) {
+                         HttpServletRequest req,
+                         @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo) {
 
 
         if (req.getSession().getAttribute("search") != null) {
