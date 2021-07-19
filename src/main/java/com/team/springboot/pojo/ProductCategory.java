@@ -8,6 +8,7 @@ public class ProductCategory implements Comparable<ProductCategory>{
     private String p_Name;
     private String c_Id;
     private String p_Title;
+    private String p_originalPrice;
     private String c_Name;
     private Date p_Date;
     private Double p_Price;
@@ -102,7 +103,16 @@ public class ProductCategory implements Comparable<ProductCategory>{
     public int getP_num() {
         return p_num;
     }
-//
+
+    public String getP_originalPrice() {
+        return p_originalPrice;
+    }
+
+    public void setP_originalPrice(String p_originalPrice) {
+        this.p_originalPrice = p_originalPrice;
+    }
+
+    //
     @Override
     public int compareTo(ProductCategory o)
     {
