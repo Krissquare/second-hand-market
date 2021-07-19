@@ -106,7 +106,7 @@ public class UserController {
     // 更改密码
     @RequestMapping("/passwordUpdate")
     @ResponseBody
-    public BaseResponse updatePassword(@RequestBody Password pojo,HttpServletRequest request){
+    public BaseResponse updatePassword(@RequestBody Password pojo,HttpServletRequest request) {
         BaseResponse<Integer> baseResponse = new BaseResponse<Integer>();
         //2021.7.1
         pojo.setU_Account((String) request.getSession().getAttribute("u_Account"));
@@ -115,25 +115,25 @@ public class UserController {
         String rightPassword = userService.selectPasswordById(u_Account); //通过账号查询正确的密码
 
         //修改失败！与原密码一致
-        if(pojo.getNewPassword().equals(pojo.getNewPasswordAgain()) && pojo.getNewPassword().equals(pojo.getU_Password()) && pojo.getU_Password().equals(rightPassword)){
+        if (pojo.getNewPassword().equals(pojo.getNewPasswordAgain()) && pojo.getNewPassword().equals(pojo.getU_Password()) && pojo.getU_Password().equals(rightPassword)) {
             baseResponse.setCode(500);
             baseResponse.setMsg("修改失败！与原密码一致");
             return baseResponse;
         }
         //修改失败！密码为空
-        if(pojo.getU_Password().equals("") || pojo.getNewPassword().equals("") || pojo.getNewPasswordAgain().equals("")){
+        if (pojo.getU_Password().equals("") || pojo.getNewPassword().equals("") || pojo.getNewPasswordAgain().equals("")) {
             baseResponse.setCode(500);
             baseResponse.setMsg("密码为空，请重新填写");
             return baseResponse;
         }
         // 修改失败！原密码不正确
-        if(!pojo.getU_Password().equals(rightPassword)){
+        if (!pojo.getU_Password().equals(rightPassword)) {
             baseResponse.setCode(500);
             baseResponse.setMsg("修改失败！原密码不正确");
             return baseResponse;
         }
         // 修改失败！两遍新密码不一致
-        if(!pojo.getNewPassword().equals(pojo.getNewPasswordAgain())){
+        if (!pojo.getNewPassword().equals(pojo.getNewPasswordAgain())) {
             baseResponse.setCode(500);
             baseResponse.setMsg("修改失败！两遍新密码不一致");
             return baseResponse;

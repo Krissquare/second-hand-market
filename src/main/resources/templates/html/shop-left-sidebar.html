@@ -4,6 +4,17 @@
 	<title>厦大二手交易平台</title>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/Favicon.ico">
+	<link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/fontawesome.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/media.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/animate.min.css">
 	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{assets/css/all.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{assets/css/owl.theme.default.min.css}">
@@ -546,13 +557,10 @@
 								</span>
 						</div>
 						<div class="dropdown right1 md_1 hr_" th:if="${session.u_Account != null}">
-							  <span class="dropdown-toggle" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder"> 修改个人信息&nbsp;<i class="fas fa-angle-down"></i></a>
-							  </span>
-							<div class="dropdown-menu r_menu dropdown-menu-right" >
-								<a class="dropdown-item font-weight-bolder" th:href="@{/admin/userInfo}">修改信息</a>
-								<a class="dropdown-item font-weight-bolder" th:href="@{/admin/userPassword}">修改密码</a>
-								<a class="dropdown-item font-weight-bolder" th:href="@{/admin/userAdd}">修改地址</a>
-							</div>
+								<span class="dropdown-toggle">
+                                    <a href="userInfo.html" class="font-weight-bolder">修改个人信息</a>
+								</span>
+
 						</div>
 
 					</nav>
@@ -569,7 +577,7 @@
 			<div class="row">
 				<div class="col-xl-2 col-lg-2 col-6  head-logo">
 					<div class="text-left header-top-left pt-2"><a href="/"><img src="assets/img/logo.png"
-																						  class="img-responsive img" alt="Hitech"></a></div>
+																				 class="img-responsive img" alt="Hitech"></a></div>
 				</div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
 				<div class="col-xl-10 col-lg-10 col-6  head-search">
 					<div class="d-flex navbar">
@@ -596,10 +604,7 @@
 											   aria-describedby="button-addon2" id="txt" name="txt">
 										<div class="input-group-btn"><button type="submit"
 																			 class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
-										</div>
-									</div>
-
-								</form>
+										</div> </div></form>
 							</div>
 							<!-- between-header text-left col-sm-8 head-left border border-danger rounded mb-0 -->
 						</div>
@@ -688,7 +693,7 @@
 													  th:text="'￥' + ${session.shoppingCarPrice}"></span>
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
-												<span class="text-left"><a href="cart.html">查看购物车</a></span>
+												<span class="text-left"><a href="/shopProduct">查看购物车</a></span>
 												<span class="float-right"><a href="checkout.html">结账</a></span>
 											</li>
 										</ul>
@@ -1028,22 +1033,33 @@
 			<div class="col-lg-3 col-md-4">
 				<div class="shop_sidebar border card-body rounded bg-white">
 
-					<h2 class="text-uppercase card-title  font-weight-bold d-md-block d-none">排序</h2>
+					<h2 class="text-uppercase card-title  font-weight-bold d-md-block d-none">价格区间</h2>
 
+
+						<a class="dropdown-item font-weight-bolder"
+						   href="/zeroToOne" style="font-size: small" >&nbsp;&nbsp;0~100</a>
+						<a class="dropdown-item font-weight-bolder"
+						   href="/oneToTwo" style="font-size: small">100~200</a>
+						<a class="dropdown-item font-weight-bolder"
+						   href="/twoToThree" style="font-size: small">200~300</a>
+					<a class="dropdown-item font-weight-bolder"
+					   href="/threeToFour" style="font-size: small">300~400</a>
+					<p>    </p>
+					<div class="s_filter mt-0">  </div>
 					<div class="s_filter mt-0">
-						<h6 class="text-uppercase  border-bottom font-weight-bold">范围<button class="toggle collapsed" data-toggle="collapse" data-target="#shop_range_collapse"></button></h6>
 
 						<form class="layui-form" th:action="@{/range}" method="post">
 							<div class="layui-input-inline">
-								<label for="minRange">最小值</label>
-								<input type="number" id="minRange" name="minRange" placeholder="$0" class="layui-input">
+
+								<input type="number" id="minRange" name="minRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px">
+
+								<input type="number" id="maxRange" name="maxRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px">
+
 							</div>
-							<div class="layui-input-inline">
-								<label for="maxRange">最大值</label>
-								<input type="number" id="maxRange" name="maxRange" placeholder="$0" class="layui-input">
-							</div>
-							<button data-search-url="#" class="btn btn-primary clear_btn " id="range">搜索全部</button>
-						</form>>
+							<button data-search-url="#" class="btn btn-primary clear_btn " id="range">确定</button>
+
+
+						</form>
 
 
 					</div>
@@ -1070,8 +1086,27 @@
 					<div class="col-xl-6 col-sm-10 col-8 pr-0 sortpro">
 						<div class="sort-by text-right">
 							<div class="sort">
-								<button value="3" id="Num">数量升序</button>
-								<button value="3" id="Low">价格升序</button>
+								<nav class="navbar  " >
+									<div >
+						  <span  role="menu"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">数量<i class="fas fa-angle-down"></i></a>
+						  </span>
+										<div class="dropdown-menu r_menu dropdown-menu-right" >
+											<a href="#" class="dropdown-item font-weight-bolder" value="3" id="Num" >数量升序</a>
+											<a href="#" class="dropdown-item font-weight-bolder" id="Numlow">数量降序</a>
+										</div>
+									</div>
+								</nav>
+
+								<nav class="navbar ">
+									<div >
+						  <span  role="menu"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价格<i class="fas fa-angle-down"></i></a>
+						  </span>
+										<div class="dropdown-menu r_menu dropdown-menu-right" >
+											<a class="dropdown-item font-weight-bolder"  href="#" value="3" id="Low">价格升序</a>
+											<a class="dropdown-item font-weight-bolder" href="#" id="High">价格降序</a>
+										</div>
+									</div>
+								</nav>
 							</div>
 						</div>
 					</div>
@@ -1082,32 +1117,47 @@
 						<div class="product_thumb bg-white rounded">
 							<div class="pro_image">
 								<a th:href="@{/goodsDetail(pid=${p.getP_Id()})}">
-									<img th:src="${p.getP_href()}"  style="width: 150px;height: 150px;margin: 25px"/>
+									<img th:src="${p.getP_href()}"  style="width: 150px;height: 150px;margin: 20px"class="fst-image mx-auto d-block img-fluid"/>
 								</a>
 							</div>
 							<div class="text-center main_text pt-3">
 								<div>
-									<div class="star mb-2">
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-									</div>
 
-									<span th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}" style="color: red;font-weight: bold;font-size: 28px"></span>
-<!---->
-									<p class="line-limit-length"> <a href="#" th:text="${p.getP_Title()}"></a></p>
+									<p class="line-limit-length"> <a href="#" style="font-size:24px"th:text="${p.getP_Title()}"></a></p>
+									<span  th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}" style="color: red;font-weight: bold;font-size: 20px"></span>
+									<del class="text-muted">$100.00</del>
 
-									<p class="line-limit-length" th:text="'卖家:'+${p.getP_Account()}"></p>
 
 									<div class="button-group">
+
 										<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>
 										<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model"><svg width="20px" height="19px"><use xlink:href="#pro_compare"></use></svg></a>
 										<a href="#" class="symbol"  data-toggle="modal" data-target="#eye_model"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>
 										<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>
 									</div>
+									<div>&nbsp;</div>
+
+									<div>
+
+
+										<span style="font-size: small">发布于*天前</span>
+									</div>
+
+									<div class="star mb-2">
+										<img th:src="${p.getP_href()}"  style="width: 20px;height: 20px"/>
+										<span style="font-size: small">用户名</span>
+										<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
+
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</div>
+
 								</div>
+
+
 							</div>
 
 
@@ -1235,11 +1285,11 @@
 							</div>
 							<div class="categorie collapse" id="sproduct">
 								<ul>
-									<li><a th:href="@{/}">我的主页</a></li>
-									<li><a href="cart.html">我的购物车</a></li>
-									<li><a href="wishlist.html">我的心愿清单</a></li>
-									<li><a href="/showMyTransactionOrders">我的订单</a></li>
-									<li><a th:href="@{/}">回到顶部</a></li>
+									<li><a href="/admin/userInfo">我的主页</a></li>
+									<li><a href="/admin/shoppingCarInit">我的购物车</a></li>
+									<li><a href="#">我的愿望清单</a></li>
+									<li><a href="#">我的订单</a></li>
+									<li><a href="#">回到顶部</a></li>
 								</ul>
 							</div>
 						</div>
@@ -1251,12 +1301,12 @@
 							</div>
 							<div class="categorie collapse" id="tproduct">
 								<ul>
-									<li><a href="/search?search=电子产品">电子产品</a></li>
-									<li><a href="/search?search=书籍教材">书籍教材</a></li>
-									<li><a href="/search?search=衣帽鞋伞">衣帽鞋伞</a></li>
-									<li><a href="/search?search=日常用品">日常用品</a></li>
-									<li><a href="/search?search=代步工具">代步工具</a></li>
-									<li><a href="/search?search=体育健身">体育健身</a></li>
+									<li><a href="#">电子产品</a></li>
+									<li><a href="#">书籍教材</a></li>
+									<li><a href="#">衣帽鞋伞</a></li>
+									<li><a href="#">日常用品</a></li>
+									<li><a href="#">代步工具</a></li>
+									<li><a href="#">体育健身</a></li>
 
 								</ul>
 							</div>
@@ -1269,7 +1319,7 @@
 							</div>
 							<div class="categorie collapse" id="fh_product">
 								<ul>
-									<li><a href="about-us.html">关于开发团队</a></li>
+									<li><a href="#">关于开发团队</a></li>
 									<li><a href="#">关于厦大二手交易平台</a></li>
 									<li><a href="#">隐私政策</a></li>
 									<li><a href="#">在线客服</a></li>
@@ -1315,6 +1365,16 @@
 	let oBtn = document.getElementById("btn");
 	let rBtn=document.getElementById("range");
 	let nBtn=document.getElementById("Num");
+	let nBtnlow=document.getElementById("Numlow");
+	let Hbtn=document.getElementById("High");
+	Hbtn.onclick=function ()
+	{
+		location.href="/ByHighPrice";
+	}
+	nBtnlow.onclick=function ()
+	{
+		location.href="/ByNumlow";
+	}
 	nBtn.onclick=function ()
 	{
 		location.href="/ByNum";
