@@ -494,7 +494,7 @@ $(document).ready(function(){
     }
 });
 
-/* menu more */
+/* menu  more */
 
 /* responsive menu */
 function openNav() {
