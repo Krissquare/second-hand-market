@@ -1,31 +1,33 @@
 ﻿<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"><html>
-<html class="" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>厦大二手交易平台</title>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/Favicon.ico">
-	<link rel="stylesheet" type="text/css" href="assets/css/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/fontawesome.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/media.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/animate.min.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/all.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/owl.theme.default.min.css}">
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{assets/img/Favicon.ico}">
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/animate.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/fontawesome.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/fontawesome.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/media.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/responsive.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/owl.carousel.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/owl.theme.default.css}">
 
-	<script>
-
-
-
-
-	</script>
 
 </head>
 <body>
@@ -356,6 +358,13 @@
 	    c0-2.951,0.002-5.003,0.005-6.399C308.062,304.575,308.018,303.664,307.935,298.397z"></path>
 	</symbol>
 
+	<symbol viewBox="0 0 408.576 408.576" id="checked">
+		<path d="M204.288,0C91.648,0,0,91.648,0,204.288s91.648,204.288,204.288,204.288s204.288-91.648,204.288-204.288
+		S316.928,0,204.288,0z M318.464,150.528l-130.56,129.536c-7.68,7.68-19.968,8.192-28.16,0.512L90.624,217.6
+		c-8.192-7.68-8.704-20.48-1.536-28.672c7.68-8.192,20.48-8.704,28.672-1.024l54.784,50.176L289.28,121.344
+		c8.192-8.192,20.992-8.192,29.184,0C326.656,129.536,326.656,142.336,318.464,150.528z"></path>
+	</symbol>
+
 </svg>
 
 <!-- cart-model -->
@@ -372,7 +381,7 @@
 
 				<div class="row">
 					<div class="col-sm-4 col-xs-12 mb-3	">
-						<img src="../assets/img/product/product_13.jpg" class="fst-image mx-auto d-block img-fluid border rounded" alt="product_13">
+						<img th:src="@{assets/img/product/product_13.jpg}" class="fst-image mx-auto d-block img-fluid border rounded" alt="product_13">
 					</div>
 					<div class="col-sm-8 col-xs-12 ">
 						<h6 class="font-weight-bold">Hummingbird printed t-shirt</h6>
@@ -431,7 +440,7 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-sm-5 col-12">
-						<img src="assets/img/product/product_13.jpg" class="fst-image mx-auto d-block img-fluid border rounded" alt="product_13">
+						<img th:src="@{assets/img/product/product_13.jpg}" class="fst-image mx-auto d-block img-fluid border rounded" alt="product_13">
 					</div>
 					<div class="col-sm-7 col-12">
 						<h5 class="font-weight-bold border-bottom me_name">Aliquam Top Erat Volutpat</h5>
@@ -502,83 +511,6 @@
 	</div>
 </div> <!-- heart_model -->
 
-<!-- shipping -->
-<div class="modal fade" id="shippingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content ">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<ul>
-					<li>Fashion has been creating well-designed collections since 2010. </li>
-					<li>The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-to-wear collection in which every item is a vital part of a woman's wardrobe. </li>
-					<li>The result? Cool, easy, chic looks with youthful elegance and unmistakable signature style. </li>
-					<li>All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories including shoes, hats, belts and more!</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- shipping -->
-
-<!-- ask about product -->
-<div class="modal fade" id="question_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title " id="exampleModalLabel">shipping</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body que_form">
-				<h6>have a any question?</h6>
-				<form>
-					<div>
-						<div class="col-12 sp_form pl-0 pb-3">
-							<textarea class="form-control"  rows="3" placeholder="Enter Your Message"></textarea>
-						</div>
-						<div class="col-12 sp_form pl-0 pb-3">
-							<input type="text" class="form-control" placeholder="Enter Your Name">
-						</div>
-						<div class="col-12 sp_form pl-0 pb-3">
-							<input type="email" class="form-control" placeholder="Enter Your Mail">
-						</div>
-						<div class="col-12 sp_form pl-0 pb-3 ">
-							<input type="tel" pattern=".{10}" class="form-control" id="other_number" oninput="check(this)" required placeholder="Enter Your Phone">
-						</div>
-						<div class="col-12 sp_form pl-0 pb-3">
-							<button type="submit" class="btn btn-primary">submit review</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- ask about product -->
-
-<!-- add to wishlist -->
-<div class="modal fade" id="wish_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-body">
-				Please login and you will add product to your wishlist
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Sign In</button>
-				<button type="submit" class="btn btn-primary">Register</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- add to wishlist -->
 
 
 <!-- header area -->
@@ -613,27 +545,23 @@
                                     <a th:if="${session.u_Account == null}" href="/login" class="font-weight-bolder">登录</a>
 								</span>
 						</div>
+
+
+
 						<div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
                                     <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
-									>个人主页</a>
+									>退出</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
 						</div>
-						<div class="dropdown right1 md_1 hr_">
-
-                            <span class="dropdown-toggle">
-                         <a th:if="${session.u_Account == null}" href="forgot.html" class="font-weight-bolder"
-						 >忘记密码</a>
+						<div class="dropdown right1 md_1 hr_" th:if="${session.u_Account != null}">
+								<span class="dropdown-toggle">
+                                    <a href="userInfo.html" class="font-weight-bolder">修改个人信息</a>
 								</span>
-							<a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
-							>退出</a>
-							</span>
+
 						</div>
-
-
-
 
 					</nav>
 
@@ -687,18 +615,27 @@
 									<a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
 													width="34px" height="40px"></svg></span>
-										<img src="assets/img/发布商品.png" style="height: 33px;width: 30px" alt="">
+										<img src="assets/img/订单.png" style="height: 33px;width: 30px" alt="">
 										<span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
-                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品</a></span>
-										<a th:if="${session.u_Account == null}" href="/login">发布商品</a></span>
+                                            <a th:if="${session.u_Account != null}" href="/showMyTransactionOrders">订单管理</a></span>
+										<a th:if="${session.u_Account == null}" href="/login">订单管理</a></span>
 									</a>
 								</li>
-
+								<li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
+									<a href="wishlist.html">
+											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
+													width="35px" height="35px">
+													<use xlink:href="#favourite"></use>
+												</svg></span>
+										<span
+												class="comp_wish align-middle d-lg-inline-block font-weight-bolder">心愿清单</span>
+									</a>
+								</li>
 
 								<li class="d-lg-none d-md-inline-block user">
 										<span>
 											<a href="#"><span><svg width="35px" height="35px">
-														<use xlink:href="#header_user">购物车</use>
+														<use xlink:href="#header_user"></use>
 													</svg></span></a>
 										</span>
 									<div class="head_ border rounded bg-white text-left">
@@ -713,7 +650,7 @@
 												<span><svg width="35px" height="35px">
 														<use xlink:href="#cart"></use>
 													</svg></span>
-												<span >购物车</span>
+												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
 
 											</a>
                                     </span>
@@ -724,8 +661,9 @@
 												<span><svg width="35px" height="35px">
 														<use xlink:href="#cart"></use>
 													</svg></span>
-												<span >购物车</span>
-
+												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
+                                                <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
+													  th:text="${session.shoppingCartList.size()}"></span>
 										</span>
 
 									<div class="dropdown-menu s_cart dropdown-menu-right">
@@ -744,10 +682,7 @@
 															th:text="${p.getP_Title()}"><span
 																class="float-right cart_cross">X</span></h6>
 														<p><span class="f_13"
-																 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span>
-
-														</p>
-
+																 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span></p>
 													</div>
 												</div>
 											</li>
@@ -756,12 +691,10 @@
 												<span class="text-left">总计:</span>
 												<span class="float-right f_13"
 													  th:text="'￥' + ${session.shoppingCarPrice}"></span>
-
-
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
 												<span class="text-left"><a href="/shopProduct">查看购物车</a></span>
-												<span class="float-right"><a href="/checkOutWithCart">结账</a></span>
+												<span class="float-right"><a href="checkout.html">结账</a></span>
 											</li>
 										</ul>
 									</div>
@@ -778,21 +711,74 @@
 
 	<!-- third row -->
 
-	<div class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
+	<div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
 		<div class="container custom_container">
 			<div class="row">
-				<div class="col-lg-9 text-left">
+
+				<div class="col-lg-9 text-left sp_hz_menu">
 					<ul class="main-menu navbar">
-						<li><a th:href="@{/}">首页</a></li>
-						<li><a th:href="@{/searchAll}">市场</a></li>
+						<li><a th:href="@{/}">主页</a></li>
+						<li><a th:href="@{/searchAll}">商店</a></li>
 
 						<li><a href="about-us.html">关于我们</a></li>
+						<li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+							   aria-expanded="false">其他&nbsp;<i class="fas fa-angle-down"></i></a>
+							<ul class="dropdown-menu">
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="about-us.html">关于我们</a></li>
+
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="login.html">登录</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="registration.html">注册</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="cart.html">购物车</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="wishlist.html">心愿清单</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="forgot.html">忘记密码</a></li>
+							</ul>
+						</li>
+						<style>
+
+							.fabu1{
+								position: absolute;
+								top:-8px;
+								left: 250px;
+								border-width: 0px; /* 边框宽度 */
+								border-radius: 3px; /* 边框半径 */
+								width:105px;
+								height:38px;
+							}
+						</style>
+						<li style="background-color:#FFC107" class="fabu1">
+
+
+
+							<a class="dropdown-item font-weight-bolder2"
+							   href="/admin/user_init" style="color: black;font-weight:600"> &nbsp;&nbsp;商品管理</a></li>
 
 
 
 
+						<style>
 
-					</ul>
+							.fabu2{
+								position: absolute;
+								top:-8px;
+								left: 250px;
+								border-width: 0px; /* 边框宽度 */
+								border-radius: 3px; /* 边框半径 */
+								width:105px;
+								height:38px;
+							}
+						</style>
+						<li style="background-color:#FFC107" class="fabu2">
+
+
+
+							<a class="dropdown-item font-weight-bolder2"
+							   th:href="@{/admin/addinit}" style="color: black;font-weight:600"> &nbsp;&nbsp;发布商品</a></li></ul>
 				</div> <!-- col-lg-9 text-left -->
 
 			</div> <!-- row -->
@@ -1022,184 +1008,174 @@
 
 <!-- vertical menu end -->
 
-<!-- single product header area -->
 
-<div id="single_product" class="single_product_page animate__animated animate__fadeInUp">
-
-	<!--		<div class="sp_header bg-white p-3">-->
-	<!--			<div class="container custom_container">	-->
-	<!--				<div class="row">-->
-	<!--					<div class="col-12">-->
-	<!--						<ul>-->
-	<!--							<li class="d-inline-block font-weight-bolder"><a href="index.html">home</a></li>-->
-	<!--							<li class="d-inline-block hr_ font-weight-bolder"><a href="#">clothes</a></li>-->
-	<!--						</ul>-->
-	<!--					</div>-->
-	<!--				</div>-->
-	<!--			</div>-->
-	<!--		</div>-->
-
-	<!-- single product header area -->
-
-	<!-- single product img and detail -->
-
-	<div class="container custom_container sp_pro_container ">
-		<div class="row sh_page">
-			<div class="col-xl-5 col-md-6 col-12">
-				<div id="content" class="page-content">
+<!-- shop page -->
 
 
-					<div id="photo-view-container">
-						<div id="photo-display" class="gallery"></div>
-						<div id="left" onclick=leftRight(this)></div>
-						<div id="photo-container-holder"style="height:145px">
-							<div id="photo-container" style="margin-left:0;">
-								<div class="photo-holder"><img th:src="${product.getP_href()}" onclick=viewPhoto(this)
-															   class="photo-item" alt="product_13"></div>
-							</div>
-						</div>
-						<div id="right" onclick=leftRight(this)></div>
-					</div>
+<div id="shop_page" class="shop-page animate__animated animate__fadeInUp">
 
+
+	<div class="sp_header bg-white p-3">
+		<div class="container custom_container ">
+			<div class="row ">
+				<div class="col-12 ">
+					<ul>
+						<li class="d-inline-block font-weight-bolder"><a th:href="@{/}">主页</a></li>
+						<li class="d-inline-block hr_ font-weight-bolder"><a href="#">商店</a></li>
+					</ul>
 				</div>
 			</div>
-			<div class="col-xl-7 col-md-6 col-12">
+		</div>
+	</div>
 
-				<div class="sp_product_detail">
+	<div class="container custom_container">
+		<div class="row">
+			<div class="col-lg-3 col-md-4">
+				<div class="shop_sidebar border card-body rounded bg-white">
 
-					<h1 class="font-weight-bold text-uppercase" th:text="${product.getP_Title()}">
-						<a href="#"></a>
-					</h1>
+					<h2 class="text-uppercase card-title  font-weight-bold d-md-block d-none">价格区间</h2>
 
 
+					<a class="dropdown-item font-weight-bolder"
+					   href="/zeroToOne" style="font-size: small" >&nbsp;&nbsp;0~100</a>
+					<a class="dropdown-item font-weight-bolder"
+					   href="/oneToTwo" style="font-size: small">100~200</a>
+					<a class="dropdown-item font-weight-bolder"
+					   href="/twoToThree" style="font-size: small">200~300</a>
+					<a class="dropdown-item font-weight-bolder"
+					   href="/threeToFour" style="font-size: small">300~400</a>
+					<p>    </p>
+					<div class="s_filter mt-0">  </div>
+					<div class="s_filter mt-0">
 
-					<div class="sp_add_info my-3" ></div>
-					<span class="sp_price font-weight-bold" th:text="'￥'+${#numbers.formatDecimal(product.getP_Price(),1,'COMMA',2,'POINT')}"></span>
-					<del class="text-muted" th:text="'￥'+${#numbers.formatDecimal(product.getP_originalPrice(),1,'COMMA',2,'POINT')}"></del>
-					<!--						<div class="text-secondary sp_tax">Tax included.</div>-->
-					<div class="sp_add_info my-3" th:text="${product.getP_Des()}"style="font-size: 15px">
-						<!--							<ul>-->
-						<!--								 <li class="my-2">Fashion has been creating well-designed collections since 2010. </li>-->
-						<!--								 <li class="my-2">The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-tcollection in which every item is a vital part of a woman's wardrobe. </li>								-->
-						<!--							</ul>-->
-					</div>
-					<div >&nbsp;</div>
-					<div class="star mb-2">
-						<span style="font-size: 13px"th:text="'发布者：'+${product.getP_Account()}"></span>
-						<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
+						<form class="layui-form" th:action="@{/range}" method="post">
+							<div class="layui-input-inline">
 
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
-					</div>
-					<div class="sp_add_info my-3" >
-						<div style="font-size: 13px" th:text="'发布时间:'+${product.getP_Date()}"></div>
-					</div>
-					<div >&nbsp;</div>
-					<div class="sp_wish_com my-3">
-						<form  method="post">
-								<span >
-										<input type="hidden"  th:value="${product.getP_Id()}" style="display: none">
-							<span class="sp_comp1"><a href="#" class="text-uppercase font-weight-bolder " data-toggle="modal" data-target="#wish_Modal"><i class="far fa-heart"></i>加入心愿清单</a></span>
-									</span>
+								<input type="number" id="minRange" name="minRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px">
+
+								<input type="number" id="maxRange" name="maxRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px">
+
+							</div>
+							<button data-search-url="#" class="btn btn-primary clear_btn " id="range">确定</button>
+
+
 						</form>
 
+
 					</div>
 
 
+				</div>
 
-					<div id="clockdiv" class="sp_clockdiv">
-						<div class="main_box rounded"><span class="days"></span><div class="smalltext">天</div></div>
-						<div class="main_box rounded"><span class="hours"></span><div class="smalltext">小时</div></div>
-						<div class="main_box rounded"><span class="minutes"></span><div class="smalltext">分钟</div></div>
-						<div class="main_box rounded"><span class="seconds"></span><div class="smalltext">秒</div></div>
+			</div>
+
+			<div class="col-lg-9 col-md-8">
+
+				<div class="row shop_grid_list_row mb-5 bg-white p-2 p-md-1 mb-lg-3 mx-0">
+					<div class="col-xl-2 col-sm-2 col-4 pl-0">
+						<a href="#" id="grid" class="btn">
+							<span class="grid_icon  p-1"><i class="fas fa-th"></i></span>
+						</a>
+						<a href="#" id="list" class="btn">
+							<span class="list_icon  p-1"><i class="fas fa-list"></i></span>
+						</a>
 					</div>
-
-					<div class="sp_color my-4">
+					<div class="col-xl-4 d-xl-inline-block d-lg-none d-sm-none d-none">
+						<div class="show-product pt-1"><a href="#"> </a></div>
 					</div>
-
-					<form class="layui-form" th:action="@{/addIntoShoppingCar}" method="post">
-						<div class="sp_counter">
-							<div class="sp_c_count1">
-								<div class="number">
-									<div class="sp_counter ">
-
-										<div class=input-group">
-
-					                           <span class="input-group-btn">
-					              		           <button type="button" class="btn btn-default btn-number p-0" disabled="disabled" data-type="minus" data-field="quant[1]"><span class="minus">-</span></button>
-					                            </span>
-
-											<input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" th:max="${product.getP_num()}">
-											<span class="input-group-btn">
-					                	              <button type="button" class="btn btn-default btn-number p-0" data-type="plus" data-field="quant[1]"><span class="plus">+</span></button>
-
-											   </span>
-
+					<div class="col-xl-6 col-sm-10 col-8 pr-0 sortpro">
+						<div class="sort-by text-right">
+							<div class="sort">
+								<nav class="navbar  " >
+									<div >
+						  <span  role="menu"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">数量<i class="fas fa-angle-down"></i></a>
+						  </span>
+										<div class="dropdown-menu r_menu dropdown-menu-right" >
+											<a href="#" class="dropdown-item font-weight-bolder" value="3" id="Num" >数量升序</a>
+											<a href="#" class="dropdown-item font-weight-bolder" id="Numlow">数量降序</a>
 										</div>
+									</div>
+								</nav>
 
+								<nav class="navbar ">
+									<div >
+						  <span  role="menu"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价格<i class="fas fa-angle-down"></i></a>
+						  </span>
+										<div class="dropdown-menu r_menu dropdown-menu-right" >
+											<a class="dropdown-item font-weight-bolder"  href="#" value="3" id="Low">价格升序</a>
+											<a class="dropdown-item font-weight-bolder" href="#" id="High">价格降序</a>
+										</div>
+									</div>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="products" class="row" >
+					<!--					<div th:each="p22:${p2}">-->
+					<div class="item col-xl-3"  th:each="p:${productList.list}" >
+						<div class="product_thumb bg-white rounded">
+							<div class="pro_image">
+								<a th:href="@{/goodsDetail(pid=${p.getP_Id()})}">
+									<img th:src="${p.getP_href()}"  style="width: 150px;height: 150px;margin: 20px"class="fst-image mx-auto d-block img-fluid"/>
+								</a>
+							</div>
+							<div class="text-center main_text pt-3">
+								<div>
+									<style>
+										.line-limit-length {
+											overflow: hidden;
+											text-overflow: ellipsis;
+											display: -webkit-box;
+											-webkit-line-clamp: 1;
+											-webkit-box-orient: vertical;
+										}
+									</style>
+									<p class="line-limit-length"> <a th:href="@{/goodsDetail(pid=${p.getP_Id()})}"style="font-size:20px"th:text="${p.getP_Title()}"></a></p>
+									<span  th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}" style="color: red;font-weight: bold;font-size: 20px"></span>
+									<del class="text-muted" th:text="'￥'+${p.getP_originalPrice()}"></del>
+
+
+									<div class="button-group">
+
+										<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>
+										<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model"><svg width="20px" height="19px"><use xlink:href="#pro_compare"></use></svg></a>
+										<a href="#" class="symbol"  data-toggle="modal" data-target="#eye_model"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>
+										<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>
+									</div>
+									<div>&nbsp;</div>
+
+									<div>
+										<!--										[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}]]-->
+										<span style="font-size: small">发布于</span>
+										<a th:text="${#numbers.formatDecimal((new java.util.Date().getTime()-p.getP_Date().getTime())/86400000,1,'COMMA',0,'POINT')}"></a>
+										<!--										<a th:text="${p.getP_Date()}"></a>-->
+										<span style="font-size: small">天前</span>
+									</div>
+
+									<div class="star mb-2">
+										<img th:src="${p.getP_href()}"  style="width: 20px;height: 20px"/>
+										<span style="font-size: small">用户名</span>
+										<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
+
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
 									</div>
 
 								</div>
 
+
 							</div>
-							<span class="sp_c_count2" style="font-size: 13px" th:text="'&nbsp;&nbsp;(库存量：' +  ${product.getP_num()}+')'">
 
-					      </span>
+
 						</div>
-						<div >&nbsp;</div>
-						<style>
-
-							.cart{
-								position: absolute;
-								top:463px;
-								left: 45px;
-
-
-							}
-						</style>
-						<div class="cart">
-							<div th:if="${session.u_Account != product.getP_Account()}">
-								<form class="layui-form" method="post">
-									<span class="sp_c_count2">
-										<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none">
-										<input type="submit" value="加入购物车" class="btn btn-primary primary"style="height: 50px;width: 120px;background-color: orange">
-									</span>
-								</form>
-							</div>
-							<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
-								<div class="btn btn-primary primary" th:text="加入购物车" onclick="alert('不能买自己发布的商品！')"></div>
-							</span>
-						</div>
-						<!--							下面这个东西是为了制造空隙用的，别删-->
-						<div class="sp_wish_com my-3"></div>
-
-
-					</form>
-					<style>
-
-						.sp_bu{
-							position: absolute;
-							top:463px;
-							left: 255px;
-
-
-						}
-					</style>
-					<div class="sp_bu">
-						<!--							<button type="button" class="btn btn-primary primary" th:href="@{/checkOutWithSingleProduct}" th:text="立即购买"></button>-->
-						<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form" th:action="@{/checkOutWithSingleProduct}" method="post">
-									<span class="sp_c_count2">
-										<input type="hidden" id="pid" name="pid" th:value="${product.getP_Id()} "  style="display: none">
-										<input type="submit" value="立即购买" class="btn btn-primary primary"style="height: 50px;width: 120px">
-									</span>
-						</form>
-						<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
-									<div class="btn btn-primary primary" th:text="立即购买" onclick="alert('不能买自己发布的商品！')"></div>
-								</span>
+						<!--					</div>-->
 					</div>
+
 
 
 
@@ -1207,21 +1183,46 @@
 
 			</div>
 
-
-			<div class="sp_wish_com my-3">
-				<!--					      	<span class="sp_comp1"><a href="#" class="text-uppercase font-weight-bolder " data-toggle="modal" data-target="#wish_Modal"><i class="far fa-heart"></i>加入愿望单</a></span>-->
-				<!--					      	<span class="sp_comp2"><a href="#" class="text-uppercase font-weight-bolder"><i class="fas fa-tasks"></i>ADD TO COMPARE</a></span>-->
-			</div>
-			<div class="sp_ad_info"></div>
-			<div class="sp_collapse_block my-4"></div>
 		</div>
-
 	</div>
-</div>
-</div>
+
+	<div class="container custom_container">
+		<div class="row">
+			<div class="col-12">
+				<nav class="float-right mt-5 mt-col-3">
+					<ul class="pagination">
+						<li class="page-item">
+							<a class="page-link" href="#">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item">
+							<a class="page-link" href="#">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
 
 
-<!-- single product img and detail -->
+</div>	<!-- shop_page -->
+
+
+<!-- shop page -->
+
+
+
+
+
+
+
+
 
 <!-- footer -->
 
@@ -1295,11 +1296,11 @@
 							</div>
 							<div class="categorie collapse" id="sproduct">
 								<ul>
-									<li><a th:href="@{/}">我的主页</a></li>
-									<li><a href="cart.html">我的购物车</a></li>
-									<li><a href="wishlist.html">我的心愿清单</a></li>
-									<li><a href="/showMyTransactionOrders">我的订单</a></li>
-									<li><a th:href="@{/}">回到顶部</a></li>
+									<li><a href="/admin/userInfo">我的主页</a></li>
+									<li><a href="/admin/shoppingCarInit">我的购物车</a></li>
+									<li><a href="#">我的愿望清单</a></li>
+									<li><a href="#">我的订单</a></li>
+									<li><a href="#">回到顶部</a></li>
 								</ul>
 							</div>
 						</div>
@@ -1311,12 +1312,12 @@
 							</div>
 							<div class="categorie collapse" id="tproduct">
 								<ul>
-									<li><a href="/search?search=电子产品">电子产品</a></li>
-									<li><a href="/search?search=书籍教材">书籍教材</a></li>
-									<li><a href="/search?search=衣帽鞋伞">衣帽鞋伞</a></li>
-									<li><a href="/search?search=日常用品">日常用品</a></li>
-									<li><a href="/search?search=代步工具">代步工具</a></li>
-									<li><a href="/search?search=体育健身">体育健身</a></li>
+									<li><a href="#">电子产品</a></li>
+									<li><a href="#">书籍教材</a></li>
+									<li><a href="#">衣帽鞋伞</a></li>
+									<li><a href="#">日常用品</a></li>
+									<li><a href="#">代步工具</a></li>
+									<li><a href="#">体育健身</a></li>
 
 								</ul>
 							</div>
@@ -1329,7 +1330,7 @@
 							</div>
 							<div class="categorie collapse" id="fh_product">
 								<ul>
-									<li><a href="about-us.html">关于开发团队</a></li>
+									<li><a href="#">关于开发团队</a></li>
 									<li><a href="#">关于厦大二手交易平台</a></li>
 									<li><a href="#">隐私政策</a></li>
 									<li><a href="#">在线客服</a></li>
@@ -1361,134 +1362,44 @@
 
 
 
+<script th:src="@{assets/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{assets/js/owl.carousel.js}"></script>
+<script th:src="@{assets/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/js/popper.min.js}"></script>
+<script th:src="@{assets/js/all.min.js}"></script>
+<script th:src="@{assets/js/index.js}"></script>
+<script th:src="@{assets/js/wow.min.js}"></script>
 
-
-
-</div> <!-- single_product_page -->
-
-<script src="assets/js/jquery-3.4.1.min.js"></script>
-<script src="assets/js/owl.carousel.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.magnific-popup.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/all.min.js"></script>
-<script src="assets/js/index.js"></script>
-<script src="assets/js/wow.min.js"></script>
-
-<script>
-	function getTimeRemaining(endtime) {
-		var t = Date.parse(endtime) - Date.now();
-		var seconds = Math.floor((t / 1000) % 60);
-		var minutes = Math.floor((t / 1000 / 60) % 60);
-		var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-		var days = Math.floor(t / (1000 * 60 * 60 * 24));
-		return {
-			'total': t,
-			'days': days,
-			'hours': hours,
-			'minutes': minutes,
-			'seconds': seconds
-		};
+<script type="text/javascript">
+	let Lbtn=document.getElementById("Low");
+	let oTxt = document.getElementById("txt");
+	let oBtn = document.getElementById("btn");
+	let rBtn=document.getElementById("range");
+	let nBtn=document.getElementById("Num");
+	let nBtnlow=document.getElementById("Numlow");
+	let Hbtn=document.getElementById("High");
+	Hbtn.onclick=function ()
+	{
+		location.href="/ByHighPrice";
 	}
-
-	function initializeClock(id, endtime) {
-		var clock = document.getElementById(id);
-		var daysSpan = clock.querySelector('.days');
-		var hoursSpan = clock.querySelector('.hours');
-		var minutesSpan = clock.querySelector('.minutes');
-		var secondsSpan = clock.querySelector('.seconds');
-
-		function updateClock() {
-			var t = getTimeRemaining(endtime);
-
-			if (t.total <= 0) {
-				document.getElementById("clockdiv").className = "hidden-div";
-				document.getElementById("timeIsNow").className = "visible-div";
-				clearInterval(timeinterval);
-				return true;
-			}
-
-			daysSpan.innerHTML = t.days;
-			hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-			minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-			secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-		}
-
-		updateClock();
-		var timeinterval = setInterval(updateClock, 1000);
+	nBtnlow.onclick=function ()
+	{
+		location.href="/ByNumlow";
 	}
-
-
-	var deadline = '2022-12-14T20:14:00+02:00';
-
-	initializeClock('clockdiv', deadline);
-
-
-
-
-	window.onload = function(){
-		// load thumbnails
-		photo       = document.querySelectorAll('.photo-item');
-		photoLength = photo.length;
-		for(i=0; i<photoLength; i++){
-			photoW = photo[i].naturalWidth;
-			photoH = photo[i].naturalHeight;
-			if(photoW >= photoH){
-				photo[i].style.height = '100px';
-			}
-			else{
-				photo[i].style.width = '100px';
-			}
-		}
-		conentW = photoLength * 115;
-		document.getElementById('photo-container').style.width = conentW+'px';
-
-		// load first photo
-		firstPhoto    = document.querySelectorAll('.photo-item');
-		firstPhoto    = firstPhoto[0];
-		firstPhotoUrl = firstPhoto.src;
-		firstPhotoAlt = firstPhoto.alt;
-		document.getElementById('photo-display').innerHTML = '<a href="'+firstPhotoUrl+'" id="selected-photo"><img src="'+firstPhotoUrl+'" id="selected-photo" alt=""></a>';
+	nBtn.onclick=function ()
+	{
+		location.href="/ByNum";
 	}
-
-
-	marginL = 0;
-	function leftRight(obj){
-		spaceLeft   = document.getElementById('photo-container').style.marginLeft;
-		spaceLeft   = spaceLeft.replace('px', null);
-		spaceLeft   = parseInt(spaceLeft);
-		step        = 300;
-		totalLength = document.querySelectorAll('.photo-item').length;
-		totalLength *= -115;
-		objId = obj.id;
-		if(objId == 'left'){
-			if(spaceLeft >= -step){
-				marginL = 0;
-			}
-			else{
-				marginL += step;
-			}
-		}
-		if(objId == 'right'){
-			if(spaceLeft <= totalLength + 500 + step){
-				marginL = totalLength  + 500;
-			}
-			else{
-				marginL -= step;
-			}
-		}
-		document.getElementById('photo-container').style.marginLeft = marginL+'px';
+	/*rBtn.onclick=function (){
+		location.href="/range";
+	}*/
+	oBtn.onclick = function(){
+		location.href = "/search?search="+oTxt.value;
+		//location.href = "/search?search="+oTxt.value;
 	}
-	function viewPhoto(obj){
-		objUrl = obj.src;
-		objAlt = obj.alt;
-		document.getElementById('photo-display').innerHTML = '<a href="'+objUrl+'" id="selected-photo"><img src="'+objUrl+'" id="selected-photo" alt=""></a>';
+	Lbtn.onclick=function (){
+		location.href="/ByLowPrice";
 	}
-
 </script>
-
 </body>
 </html>
-
-
