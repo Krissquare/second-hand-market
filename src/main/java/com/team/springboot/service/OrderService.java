@@ -10,6 +10,9 @@ public interface OrderService {
     List<Order> selectOrderAndProductBuy(String Buy_Account);
     List<Order> selectOrderAndProductSell(String account);
     List<Order> selectBypName(String p_Name);
+    List<Order> selectBySeller(String Seller);
+    List<Order> selectByBuyer(String Buyer);
+    List<Order> selectByBuyerAndSeller(String Seller,String Buyer);
     List<Order> selectAll();
     Address selectAddressValue(String a_Account);
     void addressUpdate(String o_Baddress, String o_Id);
@@ -22,5 +25,6 @@ public interface OrderService {
     int selectOrderCount();
     void insertOne(Order o);
     int countBypName(String p_Name);
+    int countBySeller(String Seller);
     int countAll();
 }

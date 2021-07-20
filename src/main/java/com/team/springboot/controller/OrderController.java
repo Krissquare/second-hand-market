@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/admin")
@@ -42,26 +43,53 @@ public class OrderController {
     public BaseResponse productinfo (@RequestParam String page,
                                      @RequestParam String limit,
                                      HttpServletRequest request) {
-        String p_Name = request.getParameter("p_Name");
+        String o_Buyer=request.getParameter("o_Buyer");
+        String o_Seller = request.getParameter("o_Seller");
+        System.out.println("seller"+o_Seller);
+        System.out.println("buyer"+o_Buyer);
         BaseResponse<List<Order>> baseResponse = new BaseResponse<>();
         List<Order> olist = null;
         HttpSession session = request.getSession();
         //通过商品名称查询
-        if (p_Name != null) {
-            p_Name = "%" + p_Name + "%";
+        if (o_Seller != null && Objects.equals(o_Buyer, "")) {
+            o_Seller = "%" + o_Seller + "%";
             if (session.getAttribute("u_Account").equals("admin")) {
-                olist = orderService.selectBypName(p_Name);
-                baseResponse.setCount(orderService.countBypName(p_Name));
+                olist = orderService.selectBySeller(o_Seller);
+                baseResponse.setCount(10);
                 baseResponse.setData(olist);
                 baseResponse.setCode(200);
                 baseResponse.setMsg("请求成功");
                 return baseResponse;
             }
         }
+        if (o_Buyer != null && Objects.equals(o_Seller, "")) {
+            o_Buyer = "%" + o_Buyer + "%";
+            o_Seller = "%" + o_Seller + "%";
+            if (session.getAttribute("u_Account").equals("admin")) {
+                olist = orderService.selectByBuyerAndSeller(o_Seller,o_Buyer);
+                baseResponse.setCount(10);
+                baseResponse.setData(olist);
+                baseResponse.setCode(200);
+                baseResponse.setMsg("请求成功");
+                return baseResponse;
+            }
+        }
+        if (o_Buyer != null && o_Seller!=null) {
+            o_Buyer = "%" + o_Buyer + "%";
+            if (session.getAttribute("u_Account").equals("admin")) {
+                olist = orderService.selectByBuyer(o_Buyer);
+                baseResponse.setCount(10);
+                baseResponse.setData(olist);
+                baseResponse.setCode(200);
+                baseResponse.setMsg("请求成功");
+                return baseResponse;
+            }
+        }
+
             //分页查询每页10条
             if (session.getAttribute("u_Account").equals("admin")) {
                 olist = orderService.selectAll();
-                baseResponse.setCount(orderService.countAll());
+                baseResponse.setCount(10);
             }
             //判断product是否为空
             if (olist != null) {
