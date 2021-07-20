@@ -969,10 +969,14 @@
       <div class="col-lg-4 col-12 ">
         <div class="border rounded bg-white final_payment">
           <div class="card-body  border-bottom">
-            <p class="text-muted">商品个数</p>
-            <p class="font-weight-bolder">详情</p>
+            <p class="text-muted">购物车清单</p>
+            <div class="container">
+              <span class="font-weight-bolder">详情</span>
+              <span style="position: absolute;right: 30px">单价</span>
+              <p></p>
+            </div>
             <div th:each="oneItem:${myShoppingCar}">
-              <span class="font-weight-bold" th:text="${oneItem.getP_Title()} + '×' + ${oneItem.getP_Num()}"></span>
+              <span class="font-weight-bold" th:text="${oneItem.getP_Title()} + ' × ' + ${oneItem.getP_Num()}"></span>
               <span class="float-right font-weight-bold" th:text="'￥'+${oneItem.getP_Price()}"></span>
             </div>
           </div>
