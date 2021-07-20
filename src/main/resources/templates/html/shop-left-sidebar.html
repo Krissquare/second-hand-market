@@ -1036,24 +1036,26 @@
 					<h2 class="text-uppercase card-title  font-weight-bold d-md-block d-none">价格区间</h2>
 
 
-						<a class="dropdown-item font-weight-bolder"
-						   href="/zeroToOne" style="font-size: small" >&nbsp;&nbsp;0~100</a>
-						<a class="dropdown-item font-weight-bolder"
-						   href="/oneToTwo" style="font-size: small">100~200</a>
-						<a class="dropdown-item font-weight-bolder"
-						   href="/twoToThree" style="font-size: small">200~300</a>
+					<a class="dropdown-item font-weight-bolder"
+					   href="/zeroToOne" style="font-size: small">&nbsp;&nbsp;0~100</a>
+					<a class="dropdown-item font-weight-bolder"
+					   href="/oneToTwo" style="font-size: small">100~200</a>
+					<a class="dropdown-item font-weight-bolder"
+					   href="/twoToThree" style="font-size: small">200~300</a>
 					<a class="dropdown-item font-weight-bolder"
 					   href="/threeToFour" style="font-size: small">300~400</a>
-					<p>    </p>
-					<div class="s_filter mt-0">  </div>
+					<p></p>
+					<div class="s_filter mt-0"></div>
 					<div class="s_filter mt-0">
 
 						<form class="layui-form" th:action="@{/range}" method="post">
 							<div class="layui-input-inline">
 
-								<input type="number" id="minRange" name="minRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px">
+								<input type="number" id="minRange" name="minRange" placeholder="¥" class="layui-input"
+									   style="width: 60px;height: 30px">
 
-								<input type="number" id="maxRange" name="maxRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px">
+								<input type="number" id="maxRange" name="maxRange" placeholder="¥" class="layui-input"
+									   style="width: 60px;height: 30px">
 
 							</div>
 							<button data-search-url="#" class="btn btn-primary clear_btn " id="range">确定</button>
@@ -1086,23 +1088,28 @@
 					<div class="col-xl-6 col-sm-10 col-8 pr-0 sortpro">
 						<div class="sort-by text-right">
 							<div class="sort">
-								<nav class="navbar  " >
-									<div >
-						  <span  role="menu"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">数量<i class="fas fa-angle-down"></i></a>
+								<nav class="navbar  ">
+									<div>
+						  <span role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a
+								  href="#" class="font-weight-bolder">数量<i class="fas fa-angle-down"></i></a>
 						  </span>
-										<div class="dropdown-menu r_menu dropdown-menu-right" >
-											<a href="#" class="dropdown-item font-weight-bolder" value="3" id="Num" >数量升序</a>
+										<div class="dropdown-menu r_menu dropdown-menu-right">
+											<a href="#" class="dropdown-item font-weight-bolder" value="3"
+											   id="Num">数量升序</a>
 											<a href="#" class="dropdown-item font-weight-bolder" id="Numlow">数量降序</a>
 										</div>
 									</div>
 								</nav>
 
 								<nav class="navbar ">
-									<div >
-						  <span  role="menu"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价格<i class="fas fa-angle-down"></i></a>
+									<div>
+						  <span role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a
+								  href="#" class="font-weight-bolder">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价格<i
+								  class="fas fa-angle-down"></i></a>
 						  </span>
-										<div class="dropdown-menu r_menu dropdown-menu-right" >
-											<a class="dropdown-item font-weight-bolder"  href="#" value="3" id="Low">价格升序</a>
+										<div class="dropdown-menu r_menu dropdown-menu-right">
+											<a class="dropdown-item font-weight-bolder" href="#" value="3"
+											   id="Low">价格升序</a>
 											<a class="dropdown-item font-weight-bolder" href="#" id="High">价格降序</a>
 										</div>
 									</div>
@@ -1112,37 +1119,55 @@
 					</div>
 				</div>
 
-				<div id="products" class="row" >
-<!--					<div th:each="p22:${p2}">-->
-					<div class="item col-xl-3"  th:each="p:${productList.list}" >
+				<div id="products" class="row">
+					<!--					<div th:each="p22:${p2}">-->
+					<div class="item col-xl-3" th:each="p:${productList.list}">
 						<div class="product_thumb bg-white rounded">
 							<div class="pro_image">
 								<a th:href="@{/goodsDetail(pid=${p.getP_Id()})}">
-									<img th:src="${p.getP_href()}"  style="width: 150px;height: 150px;margin: 20px"class="fst-image mx-auto d-block img-fluid"/>
+									<img th:src="${p.getP_href()}" style="width: 150px;height: 150px;margin: 20px"
+										 class="fst-image mx-auto d-block img-fluid"/>
 								</a>
 							</div>
 							<div class="text-center main_text pt-3">
 								<div>
 
-									<p class="line-limit-length"> <a href="#" style="font-size:24px"th:text="${p.getP_Title()}"></a></p>
-									<span  th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}" style="color: red;font-weight: bold;font-size: 20px"></span>
+									<p class="line-limit-length"><a href="#" style="font-size:24px"
+																	th:text="${p.getP_Title()}"></a></p>
+									<span th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"
+										  style="color: red;font-weight: bold;font-size: 20px"></span>
 									<del class="text-muted" th:text="'￥'+${p.getP_originalPrice()}"></del>
 
 
 									<div class="button-group">
 
-										<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>
-										<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model"><svg width="20px" height="19px"><use xlink:href="#pro_compare"></use></svg></a>
-										<a href="#" class="symbol"  data-toggle="modal" data-target="#eye_model"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>
-										<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>
+										<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model">
+											<svg width="20px" height="19px">
+												<use xlink:href="#pro_cart"></use>
+											</svg>
+										</a>
+										<a href="#" class="symbol" data-toggle="modal" data-target="#compare_model">
+											<svg width="20px" height="19px">
+												<use xlink:href="#pro_compare"></use>
+											</svg>
+										</a>
+										<a href="#" class="symbol" data-toggle="modal" data-target="#eye_model">
+											<svg width="20px" height="19px">
+												<use xlink:href="#pro_eye"></use>
+											</svg>
+										</a>
+										<a href="#" class="symbol" data-toggle="modal" data-target="#heart_model">
+											<svg width="20px" height="19px">
+												<use xlink:href="#pro_heart"></use>
+											</svg>
+										</a>
 									</div>
 									<div>&nbsp;</div>
 
 
-
 									<div class="star mb-2">
-<!--										<img th:src="${p.getP_href()}"  style="width: 20px;height: 20px"/>-->
-<!--										<span style="font-size: small"></span>-->
+										<!--										<img th:src="${p.getP_href()}"  style="width: 20px;height: 20px"/>-->
+										<!--										<span style="font-size: small"></span>-->
 										<span th:text="${p.getP_Account()}"></span>
 										<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
 
@@ -1153,13 +1178,7 @@
 										<i class="fa fa-star" aria-hidden="true"></i>
 									</div>
 
-									<div>
-										<!--										[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}]]-->
-										<span style="font-size: small">发布于</span>
-										<a th:text="${#numbers.formatDecimal((new java.util.Date().getTime()-p.getP_Date().getTime())/86400000,1,'COMMA',0,'POINT')}"></a>
-										<!--										<a th:text="${p.getP_Date()}"></a>-->
-										<span style="font-size: small">天前</span>
-									</div>
+
 
 								</div>
 
@@ -1168,10 +1187,8 @@
 
 
 						</div>
-<!--					</div>-->
+						<!--					</div>-->
 					</div>
-
-
 
 
 				</div>
@@ -1179,9 +1196,7 @@
 			</div>
 
 		</div>
-	</div>
 
-	<div class="container custom_container">
 		<div class="row">
 			<div class="col-12">
 				<nav class="float-right mt-5 mt-col-3">
