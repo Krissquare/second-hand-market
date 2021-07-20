@@ -1147,9 +1147,8 @@
 									<div>&nbsp;</div>
 
 									<div>
-<!--										[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}]]-->
+<!--										[[${#dates.format(new java.util.Date() .getTime(), 'yyyy-MM-dd')}]]-->
 										<span style="font-size: small">发布于</span>
-										<a th:text="${#numbers.formatDecimal((new java.util.Date().getTime()-p.getP_Date().getTime())/86400000,1,'COMMA',0,'POINT')}"></a>
 <!--										<a th:text="${p.getP_Date()}"></a>-->
 										<span style="font-size: small">天前</span>
 									</div>
