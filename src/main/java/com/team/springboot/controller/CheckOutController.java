@@ -48,7 +48,7 @@ public class CheckOutController {
                 = (ArrayList<ShoppingCarProduct>) shoppingCarService.selectShoppingCarProductById(account);
         int totalPrice = 0;
         for (ShoppingCarProduct item: myShoppingCar){
-            totalPrice += item.getP_Price();
+            totalPrice += item.getP_Price() * item.getP_Num();
         }
         virtualOrder.setP_Price(totalPrice);
 

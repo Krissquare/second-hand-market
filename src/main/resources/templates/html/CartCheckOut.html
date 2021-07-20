@@ -972,7 +972,7 @@
             <p class="text-muted">商品个数</p>
             <p class="font-weight-bolder">详情</p>
             <div th:each="oneItem:${myShoppingCar}">
-              <span class="font-weight-bold" th:text="${oneItem.getP_Title()}"></span>
+              <span class="font-weight-bold" th:text="${oneItem.getP_Title()} + '×' + ${oneItem.getP_Num()}"></span>
               <span class="float-right font-weight-bold" th:text="'￥'+${oneItem.getP_Price()}"></span>
             </div>
           </div>
