@@ -1032,14 +1032,14 @@
 <!--					<div class="col-12">-->
 <!--						<ul>-->
 <!--							<li class="d-inline-block font-weight-bolder"><a href="index.html">home</a></li>-->
-<!--							<li class= "d-inline-block hr_ font-weight-bolder"><a href="#">clothes</a></li>-->
+<!--							<li class="d-inline-block hr_ font-weight-bolder"><a href="#">clothes</a></li>-->
 <!--						</ul>-->
 <!--					</div>-->
 <!--				</div>-->
 <!--			</div>-->
 <!--		</div>-->
 
-<!-- single product  header area -->
+<!-- single product header area -->
 
 <!-- single product img and detail -->
 
@@ -1052,7 +1052,7 @@
 						<div id="photo-view-container">
 							<div id="photo-display" class="gallery"></div>
 							<div id="left" onclick=leftRight(this)></div>
-							<div id="photo-container-holder"style="height:145px">
+							<div id="photo-container-holder">
 								<div id="photo-container" style="margin-left:0;">
 									<div class="photo-holder"><img th:src="${product.getP_href()}" onclick=viewPhoto(this)
 																   class="photo-item" alt="product_13"></div>
@@ -1066,49 +1066,49 @@
 				<div class="col-xl-7 col-md-6 col-12">
 
 					<div class="sp_product_detail">
-
+						
 						<h1 class="font-weight-bold text-uppercase" th:text="${product.getP_Title()}">
 							<a href="#"></a>
 						</h1>
 
+						<div class="sp_add_info my-3" >
+							<div th:text="'发布者：'+${product.getP_Account()}"></div>
+						</div>
 
 
-						<div class="sp_add_info my-3" ></div>
 						<span class="sp_price font-weight-bold" th:text="'￥'+${#numbers.formatDecimal(product.getP_Price(),1,'COMMA',2,'POINT')}"></span>
 						<del class="text-muted" th:text="'￥'+${#numbers.formatDecimal(product.getP_originalPrice(),1,'COMMA',2,'POINT')}"></del>
 <!--						<div class="text-secondary sp_tax">Tax included.</div>-->
-						<div class="sp_add_info my-3" th:text="${product.getP_Des()}"style="font-size: 15px">
-							<!--							<ul>-->
-							<!--								 <li class="my-2">Fashion has been creating well-designed collections since 2010. </li>-->
-							<!--						 		  <li class="my-2">The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-tcollection in which every item is a vital part of a woman's wardrobe. </li>								-->
-							<!--							</ul>-->
-						</div>
-						<div >&nbsp;</div>
-						<div class="star mb-2">
-							<span style="font-size: 13px"th:text="'发布者：'+${product.getP_Account()}"></span>
-							<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
 
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-						</div>
-						<div class="sp_add_info my-3" >
-							<div style="font-size: 13px" th:text="'发布时间:'+${product.getP_Date()}"></div>
-						</div>
-						<div >&nbsp;</div>
-						<div class="sp_wish_com my-3">
-							<form  method="post">
-								<span >
-										<input type="hidden"  th:value="${product.getP_Id()}" style="display: none">
-							<span class="sp_comp1"><a href="#" class="text-uppercase font-weight-bolder " data-toggle="modal" data-target="#wish_Modal"><i class="far fa-heart"></i>加入心愿清单</a></span>
-									</span>
-							</form>
-
+						<div class="sp_add_info my-3">
+							<div th:text="'商品剩余数：' +  ${product.getP_num()}"></div>
+<!--							<ul>-->
+<!--								<li class="sku my-2">-->
+<!--									<span class="text-uppercase font-weight-bolder">sku:</span>-->
+<!--									<span>5010</span>-->
+<!--								</li>-->
+<!--								<li class="availability my-2">-->
+<!--									<span class="font-weight-bolder">Availability:</span>-->
+<!--									<span class="p_quantity">1</span>-->
+<!--									<span>in stock</span>-->
+<!--								</li>-->
+<!--							</ul>-->
 						</div>
 
+						<div class="sp_text" th:text="${product.getP_Des()}">
+<!--							<ul>-->
+<!--								 <li class="my-2">Fashion has been creating well-designed collections since 2010. </li>-->
+<!--								 <li class="my-2">The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-tcollection in which every item is a vital part of a woman's wardrobe. </li>								-->
+<!--							</ul>-->
+						</div>
 
+						<div class="sp_rating">
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</div>
 
 						<div id="clockdiv" class="sp_clockdiv">
 					        <div class="main_box rounded"><span class="days"></span><div class="smalltext">天</div></div>
@@ -1121,79 +1121,47 @@
 					    </div>
 
 						<form class="layui-form" th:action="@{/addIntoShoppingCar}" method="post">
-							<div class="sp_counter">
-							   <div class="sp_c_count1">
-								 <div class="number">
+							<div class="sp_c_count1">
+								<div class="number">
 									<div class="sp_counter ">
 
-										<div class=input-group">
-
-					                           <span class="input-group-btn">
-					              		           <button type="button" class="btn btn-default btn-number p-0" disabled="disabled" data-type="minus" data-field="quant[1]"><span class="minus">-</span></button>
-					                            </span>
-
-											 <input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" th:max="${product.getP_num()}">
-											   <span class="input-group-btn">
-					                	              <button type="button" class="btn btn-default btn-number p-0" data-type="plus" data-field="quant[1]"><span class="plus">+</span></button>
-
-											   </span>
-
+										<div class="input-group">
+					                <span class="input-group-btn">
+					              		<button type="button" class="btn btn-default btn-number p-0" disabled="disabled" data-type="minus" data-field="quant[1]"><span class="minus">-</span></button>
+					                </span>
+											<input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" th:max="${product.getP_num()}">
+											<span class="input-group-btn">
+					                	<button type="button" class="btn btn-default btn-number p-0" data-type="plus" data-field="quant[1]"><span class="plus">+</span></button>
+					                </span>
 										</div>
-
 									</div>
-
 								</div>
-
 							</div>
-								<span class="sp_c_count2" style="font-size: 13px" th:text="'&nbsp;&nbsp;(库存量：' +  ${product.getP_num()}+')'">
 
-					      </span>
-							</div>
-							<div >&nbsp;</div>
-							<style>
-
-								.cart{
-									position: absolute;
-									top:463px;
-									left: 45px;
-
-
-								}
-							</style>
-							<div class="cart">
 							<div th:if="${session.u_Account != product.getP_Account()}">
 								<form class="layui-form" method="post">
 									<span class="sp_c_count2">
 										<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none">
-										<input type="submit" value="加入购物车" class="btn btn-primary primary"style="height: 50px;width: 120px;background-color: orange">
+										<input type="submit" value="加入购物车" class="btn btn-primary primary">
 									</span>
 								</form>
 							</div>
 							<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
 								<div class="btn btn-primary primary" th:text="加入购物车" onclick="alert('不能买自己发布的商品！')"></div>
 							</span>
-							</div>
+
 <!--							下面这个东西是为了制造空隙用的，别删-->
 							<div class="sp_wish_com my-3"></div>
 
 
 						</form>
-						<style>
 
-							.sp_bu{
-								position: absolute;
-								top:463px;
-								left: 255px;
-
-
-							}
-						</style>
-						<div class="sp_bu">
+						<div class="sp_buy">
 							<!--							<button type="button" class="btn btn-primary primary" th:href="@{/checkOutWithSingleProduct}" th:text="立即购买"></button>-->
 							<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form" th:action="@{/checkOutWithSingleProduct}" method="post">
 									<span class="sp_c_count2">
-										<input type="hidden" id="pid" name="pid" th:value="${product.getP_Id()} "  style="display: none">
-										<input type="submit" value="立即购买" class="btn btn-primary primary"style="height: 50px;width: 120px">
+										<input type="hidden" id="pid" name="pid" th:value="${product.getP_Id()}" style="display: none">
+										<input type="submit" value="立即购买" class="btn btn-primary primary">
 									</span>
 							</form>
 							<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
@@ -1202,7 +1170,15 @@
 						</div>
 
 
+						<div class="sp_wish_com my-3">
+							<form  method="post">
+								<span >
+										<input type="hidden"  th:value="${product.getP_Id()}" style="display: none">
+							<span class="sp_comp1"><a href="#" class="text-uppercase font-weight-bolder " data-toggle="modal" data-target="#wish_Modal"><i class="far fa-heart"></i>加入心愿清单</a></span>
+									</span>
+							</form>
 
+						</div>
 						</div>
 
 					    </div>

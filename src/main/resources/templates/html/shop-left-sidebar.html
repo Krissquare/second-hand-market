@@ -568,7 +568,7 @@
 				</div> <!-- col-lg-7 col-md-8 col-sm-8 text-xs-right hidden-md-down topbar_right text-right -->
 			</div> <!-- row -->
 		</div> <!-- container custom_container -->
-	</div> <!-- topbar-outer py-2 border-bottom bg-white  -->
+	</div> <!-- topbar-outer py-2 border-bottom bg-white -->
 
 	<!-- second row -->
 
@@ -1006,7 +1006,7 @@
 	</div>
 </div>
 
-<!-- vertical menu   end -->
+<!-- vertical menu end -->
 
 
 <!-- shop page -->
@@ -1123,16 +1123,8 @@
 							</div>
 							<div class="text-center main_text pt-3">
 								<div>
-                                       <style>
-										   .line-limit-length {
-											   overflow: hidden;
-											   text-overflow: ellipsis;
-											   display: -webkit-box;
-											   -webkit-line-clamp: 1;
-											   -webkit-box-orient: vertical;
-										   }
-									   </style>
-									<p class="line-limit-length"> <a th:href="@{/goodsDetail(pid=${p.getP_Id()})}"style="font-size:20px"th:text="${p.getP_Title()}"></a></p>
+
+									<p class="line-limit-length"> <a href="#" style="font-size:24px"th:text="${p.getP_Title()}"></a></p>
 									<span  th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}" style="color: red;font-weight: bold;font-size: 20px"></span>
 									<del class="text-muted" th:text="'￥'+${p.getP_originalPrice()}"></del>
 
@@ -1147,10 +1139,10 @@
 									<div>&nbsp;</div>
 
 									<div>
-<!--										[[${#dates.format(new java.util.Date() .getTime(), 'yyyy-MM-dd')}]]-->
+<!--										[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}]]-->
 										<span style="font-size: small">发布于</span>
-<!--										<a th:text="${p.getP_Date()}"></a>-->
 										<a th:text="${#numbers.formatDecimal((new java.util.Date().getTime()-p.getP_Date().getTime())/86400000,1,'COMMA',0,'POINT')}"></a>
+<!--										<a th:text="${p.getP_Date()}"></a>-->
 										<span style="font-size: small">天前</span>
 									</div>
 

@@ -19,7 +19,7 @@ public interface ProductMapper {
     @Select("select count(*) from product where p_Account = #{0} AND p_Name like #{1}")
     int selectCountByp_nameAndaccount(String p_Account,String p_Name);
 
-    @Select("select p_href,p_Id,p_Account,p_Name,p_Title,p_Price,p_num from product inner join Category on product.c_Id=Category.c_Id where (p_Title like #{0} OR p_Name like #{0} OR c_Name like #{0})")
+    @Select("select p_href,p_Id,p_Account,p_Name,p_Title,p_originalPrice,p_Price,p_num,p_Date from product inner join Category on product.c_Id=Category.c_Id where (p_Title like #{0} OR p_Name like #{0} OR c_Name like #{0})")
     List<Product> selectProductByp_name(String p_Name);
     //根据ID查找产品的部分信息
     @Select("select p_Id,p_Account,p_Name,p_Title,p_Price,p_num from product where p_Id = #{0}")
@@ -49,7 +49,7 @@ public interface ProductMapper {
     @Select("select * from product where p_Id = #{p_Id}")
     Product selectById(int p_Id);
 
-    @Select("select p_Id,p_Account,p_Name,c_Name,p_Title,p_Price,p_href,p_num from product inner join Category on product.c_Id=Category.c_Id")
+    @Select("select p_Id,p_Account,p_Name,c_Name,p_Title,p_originalPrice,p_Price,p_href,p_num,p_Date from product inner join Category on product.c_Id=Category.c_Id")
     List<Product> selectProductAll();
 
 }
