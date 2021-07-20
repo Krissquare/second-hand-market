@@ -13,10 +13,19 @@ public class Order {
     private String o_Status;
     private String p_href;
     private double p_Price;
+    private int p_Num;
 
 
     public Order() {
 
+    }
+
+    public int getP_Num() {
+        return p_Num;
+    }
+
+    public void setP_Num(int p_Num) {
+        this.p_Num = p_Num;
     }
 
     public String getO_Date() {

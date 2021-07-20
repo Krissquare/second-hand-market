@@ -129,6 +129,7 @@ public class CheckOutController {
             oneOrder.setO_Saddress(userService.selectAddressAll(product.getP_Account()).getA_Address1());
             oneOrder.setO_Baddress(address);
             oneOrder.setO_Status("待交易");
+            oneOrder.setP_Num(oneProduct.getP_Num());
             //加入订单
             orderService.insertOne(oneOrder);
             //清空购物车项
