@@ -1,12 +1,14 @@
 package com.team.springboot.controller.exhibition;
 
 import com.team.springboot.pojo.BaseResponse;
+import com.team.springboot.pojo.ShoppingCar;
 import com.team.springboot.pojo.ShoppingCarProduct;
 import com.team.springboot.pojo.UserHead;
 import com.team.springboot.service.ShoppingCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,6 +43,31 @@ public class ShoppingController {
         m.addAttribute("sproduct",list);
         return "html/cart";
     }
+
+    @RequestMapping("/minus")
+    public String minus(@RequestParam("ID") String pid,HttpServletRequest req,Model m)
+    {
+        int Id=Integer.parseInt(pid);
+        String account = (String)req.getSession().getAttribute("u_Account");
+        shoppingCarService.updateByAccountId(account,Id,-1);
+        ShoppingCar sp=shoppingCarService.selectByAccountId(account,Id);
+        if(sp.getP_Num()==0)
+        {
+            shoppingCarService.deleteById(sp.getS_Id());
+        }
+        return "redirect:/shopProduct";
+    }
+
+    @RequestMapping("/plus")
+    public String plus(@RequestParam("ID") String pid,HttpServletRequest req,Model m)
+    {
+        int Id=Integer.parseInt(pid);
+        System.out.println(pid);
+        String account = (String)req.getSession().getAttribute("u_Account");
+        shoppingCarService.updateByAccountId(account,Id,1);
+        return "redirect:/shopProduct";
+    }
+
 
     @RequestMapping("/shoppingCarAll")
     @ResponseBody
