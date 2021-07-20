@@ -4,6 +4,7 @@ import com.team.springboot.pojo.ShoppingCar;
 import com.team.springboot.pojo.ShoppingCarProduct;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ShoppingCarService  {
     void insertOne (String u_Account, int p_Id);
@@ -14,7 +15,7 @@ public interface ShoppingCarService  {
 
     int getCountByAccount(String u_Account);
 
-    double getTotalPrice(String u_Account);
+    Double getTotalPrice(String u_Account);
 
     void deleteById(int s_Id);
 

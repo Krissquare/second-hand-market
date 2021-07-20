@@ -5,6 +5,7 @@ import com.team.springboot.pojo.ShoppingCarProduct;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface ShoppingCarMapper {
@@ -26,7 +27,7 @@ public interface ShoppingCarMapper {
     int getCountByAccount(String u_Account);
 
     @Select("select sum(p_Price * shoppingcar.p_num) from shoppingcar, product where u_Account = #{u_Account} and shoppingcar.p_Id = product.p_Id")
-    double getTotalPrice(String u_Account);
+    Double getTotalPrice(String u_Account);
 
     @Delete("Delete from shoppingcar where s_Id = #{0} ")
     void deleteById(int s_Id);

@@ -681,7 +681,8 @@
 														<use xlink:href="#cart"></use>
 													</svg></span>
 												<span >购物车</span>
-
+                                                <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
+                                                      th:text="${session.shoppingCartList.size()}"></span>
 										</span>
 
                                     <div th:if="${session.u_Account != null}" class="dropdown-menu s_cart dropdown-menu-right">

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShoppingCarServiceImpl implements ShoppingCarService {
@@ -34,8 +35,11 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
     }
 
     @Override
-    public double getTotalPrice(String u_Account) {
-        return shoppingCarMapper.getTotalPrice(u_Account);
+    public Double getTotalPrice(String u_Account) {
+        if (shoppingCarMapper.getTotalPrice(u_Account) == null) {
+            return 0.0;
+        }
+        else return shoppingCarMapper.getTotalPrice(u_Account);
     }
 
     @Override

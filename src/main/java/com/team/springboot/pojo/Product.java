@@ -14,6 +14,7 @@ public class Product implements Comparable<Product>{
     private Double p_Price;
     private String p_Des;
     private String p_href;
+    private String p_Status;
     private int p_num;
     public Product(int p_Id, String p_Des, Date p_Date) {
         this.p_Id = p_Id;
@@ -21,7 +22,7 @@ public class Product implements Comparable<Product>{
         this.p_Date = p_Date;
     }
 
-    public Product(int p_Id, String p_Account, String p_Name, String p_Title,String p_Des, Double p_originalPrice,Double p_Price, Date p_Date,int p_num) {
+    public Product(int p_Id, String p_Account, String p_Name, String p_Title,String p_Des, Double p_originalPrice,Double p_Price, Date p_Date,int p_num,String p_Status) {
         this.p_Id = p_Id;
         this.p_Account = p_Account;
         this.p_Name = p_Name;
@@ -31,6 +32,7 @@ public class Product implements Comparable<Product>{
         this.p_Des = p_Des;
         this.p_Date = p_Date;
         this.p_num=p_num;
+        this.p_Status=p_Status;
     }
 
     public Product() {

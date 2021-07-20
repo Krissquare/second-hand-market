@@ -54,9 +54,13 @@
     <!-- 内容主体区域 -->
     <div class="demoTable" style="margin-top: 10px;margin-left: 10px;">
       <div class="layui-col-md4">
-        <input class="layui-input" name="productId" id="demoReload" autocomplete="off" placeholder="请输入商品名称">
+        <input class="layui-input" name="productId" id="demoReload" autocomplete="off" placeholder="请输入卖家ID">
       </div>
-      <button class="layui-btn" data-type="reload" >搜索</button>
+      <button class="layui-btn"  data-type="reload" >搜索</button>
+      <div class="layui-col-md4">
+        <input class="layui-input" name="productId" id="demoReload2" autocomplete="off" placeholder="请输入买家ID">
+      </div>
+<!--      <button class="layui-btn"  data-type="reload2" >搜买家</button>-->
     </div>
     <table id="demo" lay-filter="test"></table>
 
@@ -207,18 +211,47 @@
     var $ = layui.$, active = {
       reload: function(){
         var demoReload = $('#demoReload');
-
+        var demoReload2= $('#demoReload2');
         table.reload('testReload', {
           where: {
-            p_Name: demoReload.val()
+            o_Seller: demoReload.val(),
+            o_Buyer: demoReload2.val()
+          }
+        });
+      },
+      reload2: function(){
+        var demoReload = $('#demoReload');
+        var demoReload2= $('#demoReload2');
+        table.reload('testReload', {
+          where: {
+            o_Seller: demoReload.val(),
+            o_Buyer: demoReload2.val()
           }
         });
       }
     };
-    $('.demoTable .layui-btn').on('click', function(){
+    $('.demoTable .layui-btn  ').on('click', function(){
       var type = $(this).data('type');
       active[type] ? active[type].call(this) : '';
     });
+
+
+    // 监听搜索按钮2
+    // var $ = layui.$, active = {
+    //   reload: function(){
+    //     var demoReload = $('#demoReload2');
+    //
+    //     table.reload('testReload', {
+    //       where: {
+    //         o_Buyer: demoReload.val()
+    //       }
+    //     });
+    //   }
+    // };
+    // $('.search_buyer').on('click', function(){
+    //   var type = $(this).data('type');
+    //   active[type] ? active[type].call(this) : '';
+    // });
 
     table.on('toolbar(test)', function(obj){
       const $=layui.$;
@@ -252,7 +285,7 @@
       ,toolbar: false
       , page: true
       ,limit:10
-      ,limits:[10,30,50]
+      ,limits:[10,30]
       , id: 'testReload'
       ,response: {
         statusCode: 200 //规定成功的状态码，默认：0
@@ -262,9 +295,9 @@
         {field: 'p_href', title: '物品图片', templet: "<div><img  src=\"{{ d.p_href }}\"></div>"}
         ,{field: 'p_Title', title: '物品信息'}
         , {field: 'o_ItemId', title: '物品ID', sort: true}
-        ,{field: 'o_Seller', title: '卖家',sort: true}
+        ,{field: 'o_Seller', title: '卖家ID',sort: true}
         ,{field: 'o_Saddress', title: '卖家地址'}
-         ,{field: 'o_Buyer', title: '买家'}
+         ,{field: 'o_Buyer', title: '买家ID'}
         ,{field: 'o_Baddress', title: '买家地址'}
         ,{field: 'o_Date', title: '交易日期'}
         ,{field: "p_Price", title: '价格',sort: true,templet: function (d){

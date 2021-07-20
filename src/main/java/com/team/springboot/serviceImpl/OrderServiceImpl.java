@@ -80,6 +80,32 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public  List<Order> selectBySeller(String Seller)
+    {
+        return orderMapper.selectBySeller(Seller);
+    }
+
+    @Override
+    public int countBySeller(String Seller)
+    {
+        return orderMapper.countBySeller(Seller);
+    }
+
+
+    @Override
+    public List<Order> selectByBuyer(String Buyer)
+    {
+        return orderMapper.selectByBuyer(Buyer);
+    }
+
+    @Override
+    public List<Order> selectByBuyerAndSeller(String Seller,String Buyer)
+    {
+        return orderMapper.selectByBuyerAndSeller(Seller, Buyer);
+    }
+
+
+    @Override
     public int countBypName(String p_Name)
     {
         return orderMapper.countBypName(p_Name);
