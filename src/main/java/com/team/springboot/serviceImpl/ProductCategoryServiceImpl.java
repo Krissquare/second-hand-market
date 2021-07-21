@@ -78,4 +78,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     {
         return productCategoryMapper.selectCategory(category,txt);
     }
+    @Override
+    public List<ProductCategory> selectProductCategorysByStatus(int page, int limit,String Status)
+    {
+        return productCategoryMapper.selectProductCategorysByStatus(page,limit,Status);
+    }
 }
