@@ -23,7 +23,8 @@ CREATE TABLE `address` (
   `a_Address1` varchar(100) NOT NULL,
   `a_Address2` varchar(100) DEFAULT NULL,
   `a_Address3` varchar(100) DEFAULT NULL,
-  `a_Address4` varchar(100) DEFAULT NULL
+  `a_Address4` varchar(100) DEFAULT NULL,
+  foreign key(a_Account) references `user`(`u_Account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
