@@ -3,6 +3,7 @@ package com.team.springboot.serviceImpl;
 import com.team.springboot.mapper.ProductMapper;
 import com.team.springboot.mapper.userMapper;
 import com.team.springboot.pojo.Product;
+import com.team.springboot.pojo.ProductCategory;
 import com.team.springboot.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,4 +99,5 @@ public class ProductServiceImpl implements ProductService {
     {
         productMapper.setStatusById(p_Status,p_ID);
     }
+
 }

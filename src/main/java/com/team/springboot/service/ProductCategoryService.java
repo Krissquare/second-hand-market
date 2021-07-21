@@ -22,4 +22,5 @@ public interface ProductCategoryService {
 
     List<ProductCategory>selectProductCategorysByp_name2(String p_Name);
     List<ProductCategory>selectProductCategorysByRange(int min,int max);
+    List<ProductCategory> selectProductCategorysByStatus(int page, int limit,String Status);
 }
