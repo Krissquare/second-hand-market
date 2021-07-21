@@ -53,13 +53,17 @@
   <div class="layui-body">
     <!-- 内容主体区域 -->
     <div class="demoTable" style="margin-top: 10px;margin-left: 10px;">
-      <div class="layui-col-md4">
+      <div class="layui-col-md3">
+        <input class="layui-input" name="productId" id="demoReload3" autocomplete="off" placeholder="请输入商品信息">
+      </div>
+      <div class="layui-col-md3">
         <input class="layui-input" name="productId" id="demoReload" autocomplete="off" placeholder="请输入卖家ID">
       </div>
       <button class="layui-btn"  data-type="reload" >搜索</button>
-      <div class="layui-col-md4">
+      <div class="layui-col-md3">
         <input class="layui-input" name="productId" id="demoReload2" autocomplete="off" placeholder="请输入买家ID">
       </div>
+
 <!--      <button class="layui-btn"  data-type="reload2" >搜买家</button>-->
     </div>
     <table id="demo" lay-filter="test"></table>
@@ -212,10 +216,12 @@
       reload: function(){
         var demoReload = $('#demoReload');
         var demoReload2= $('#demoReload2');
+        var demoReload3= $('#demoReload3');
         table.reload('testReload', {
           where: {
             o_Seller: demoReload.val(),
-            o_Buyer: demoReload2.val()
+            o_Buyer: demoReload2.val(),
+            p_Name:demoReload3.val()
           }
         });
       },

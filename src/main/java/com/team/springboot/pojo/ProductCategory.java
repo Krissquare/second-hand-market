@@ -14,6 +14,7 @@ public class ProductCategory implements Comparable<ProductCategory>{
     private Double p_Price;
     private String p_Des;
     private String p_href;
+    private String p_Status;
     private int p_num;
 
     public String getP_href() {
@@ -118,5 +119,13 @@ public class ProductCategory implements Comparable<ProductCategory>{
     {
         return (int)(this.p_Price-o.p_Price);
 
+    }
+
+    public String getP_Status() {
+        return p_Status;
+    }
+
+    public void setP_Status(String p_Status) {
+        this.p_Status = p_Status;
     }
 }

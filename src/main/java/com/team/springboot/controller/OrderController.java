@@ -45,12 +45,25 @@ public class OrderController {
                                      HttpServletRequest request) {
         String o_Buyer=request.getParameter("o_Buyer");
         String o_Seller = request.getParameter("o_Seller");
+        String p_Name=request.getParameter("p_Name");
         System.out.println("seller"+o_Seller);
         System.out.println("buyer"+o_Buyer);
+        System.out.println("pname"+p_Name);
         BaseResponse<List<Order>> baseResponse = new BaseResponse<>();
         List<Order> olist = null;
         HttpSession session = request.getSession();
         //通过商品名称查询
+        if (p_Name != null ) {
+            p_Name = "%" + p_Name + "%";
+            if (session.getAttribute("u_Account").equals("admin")) {
+                olist = orderService.selectBypName(p_Name);
+                baseResponse.setCount(10);
+                baseResponse.setData(olist);
+                baseResponse.setCode(200);
+                baseResponse.setMsg("请求成功");
+                return baseResponse;
+            }
+        }
         if (o_Seller != null && Objects.equals(o_Buyer, "")) {
             o_Seller = "%" + o_Seller + "%";
             if (session.getAttribute("u_Account").equals("admin")) {
@@ -62,7 +75,7 @@ public class OrderController {
                 return baseResponse;
             }
         }
-        if (o_Buyer != null && Objects.equals(o_Seller, "")) {
+        else if (o_Buyer != null && Objects.equals(o_Seller, "")) {
             o_Buyer = "%" + o_Buyer + "%";
             o_Seller = "%" + o_Seller + "%";
             if (session.getAttribute("u_Account").equals("admin")) {
