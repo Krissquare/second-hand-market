@@ -42,6 +42,9 @@ public interface ProductMapper {
     //更新href
     @Update("update product set p_href = #{0} where p_Id = #{1}")
     void setHref(String p_href, int p_Id);
+
+    @Update("update product set p_Status = #{0} where p_Id = #{1}")
+    void setStatusById(String p_Status,int p_ID);
     //更新href1
     @Update("update product set p_href1 = #{0} where p_Id = #{1}")
     void setHref1(String p_href, int p_Id);

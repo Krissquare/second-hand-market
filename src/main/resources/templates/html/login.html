@@ -547,21 +547,39 @@
 
     <!-- third row -->
 
-    <div class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
+    <div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
         <div class="container custom_container">
             <div class="row">
-                <div class="col-lg-9 text-left">
+
+                <div class="col-lg-9 text-left sp_hz_menu">
                     <ul class="main-menu navbar">
                         <li><a th:href="@{/}">首页</a></li>
                         <li><a th:href="@{/searchAll}">市场</a></li>
 
-                        <li><a href="about-us.html">关于我们</a></li>
+                        <li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                               aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                                       href="cart.html">我的购物车</a></li>
+
+                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                                       href="/showMyTransactionOrders">我的订单</a></li>
+                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                                       href="wishlist.html">我的收藏</a></li>
+                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                                       href="/admin/user_init" >商品管理</a></li>
+
+                            </ul>
+                        </li>
 
 
 
 
 
-                    </ul>
+
+
+
+                        </ul>
                 </div> <!-- col-lg-9 text-left -->
 
             </div> <!-- row -->
@@ -574,29 +592,23 @@
 
 <!-- vertical menu -->
 
-<div id="sp_vertical_menu" class="container custom_container menu_slider d-xl-none d-lg-none d-md-block my-0">
+<div  id="sp_vertical_menu" class="container custom_container menu_slider d-xl-none d-lg-none d-md-block my-0">
     <div class="row">
         <div class="col-lg-3 vertical_menu ">
             <div class="v_menu bg-white rounded">
-                <div class="cat_menu bg-warning rounded-top"><a
-                        class="pe-auto text-uppercase d-md-none d-sm-none d-none d-lg-block font-weight-bold"
-                        data-toggle="collapse" href="#vartical_collapse" role="button" aria-expanded="false"
-                        aria-controls="vartical_collapse"><i class="fas fa-bars"></i>所有分类</a></div>
+                <div class="cat_menu bg-warning rounded-top"><a  class="pe-auto text-uppercase d-md-none d-sm-none d-none d-lg-block font-weight-bold" data-toggle="collapse" href="#vartical_collapse" role="button" aria-expanded="false" aria-controls="vartical_collapse"><i class="fas fa-bars"></i>所有分类</a></div>
 
                 <div class="navbar-header d-xl-none d-lg-none">
-                    <button type="button" class="btn-navbar navbar-toggle" onClick="openNav()" data-toggle="collapse"
-                            data-target=".navbar-ex1-collapse"><i class="fas fa-bars"></i></button>
+                    <button type="button" class="btn-navbar navbar-toggle" onclick="openNav()" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fas fa-bars"></i></button>
                 </div>
                 <div class="collapse" id="vartical_collapse">
-                    <div id="mySidenav" class="sidenav	">
+                    <div id="mySidenav" class="sidenav	" >
                         <div class="close-nav d-xl-none d-lg-none">
                             <span class="categories">Category</span>
-                            <a href="javascript:void(0)" class="closebtn pull-right" onClick="closeNav()"><i
-                                    class="fas fa-times"></i></a>
+                            <a href="javascript:void(0)" class="closebtn pull-right" onclick="closeNav()"><i class="fas fa-times"></i></a>
                         </div>
 
-                        <ul class="vertical_main_menu h_menu navbar navbar-nav">
-
+                        <ul class="vertical_main_menu sp_menu navbar navbar-nav">
                             <li class="dropdown level-1 font-weight-bolder">
                                 <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/书籍教材.png"
@@ -787,10 +799,7 @@
 
 
                                 </ul>
-                            </li>
-
-
-                        </ul>
+                            </li></ul>
                     </div>
                 </div>
             </div> <!-- v_menu bg-white rounded -->
@@ -836,7 +845,7 @@
                     <div class="invalid-feedback">Please enter your password.</div>
                 </div>
 
-                <input type="submit" name="submit" class="btn btn-primary mb-3" value="提交">
+                <input type="submit" name="submit" class="btn btn-primary mb-3" style="position: relative;left: 40%" value="登录">
                 <div class="pass_acc border-top pt-3">
                     <span class="forgot_password font-weight-bolder"><a
                             href="forgot.html">忘记密码 </a></span>

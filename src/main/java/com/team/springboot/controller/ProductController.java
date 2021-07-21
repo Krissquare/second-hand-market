@@ -145,6 +145,25 @@ public class ProductController {
         }
         return baseResponse;
     }
+    @RequestMapping("/pass")
+    @ResponseBody
+    public BaseResponse pass(@RequestParam String p_Id){
+        BaseResponse baseResponse = new BaseResponse();
+        Product product=productService.selectProductById(Integer.valueOf(p_Id));
+        if(product==null || product.getP_Status().equals("上架中")||product.getP_Status().equals("已下架"))
+        {
+            baseResponse.setCode(500);
+            baseResponse.setMsg("上架失败，商品已在售卖或者已下架");
+            return baseResponse;
+        }
+        if(product!=null){
+            productService.setStatusById("上架中", Integer.parseInt(p_Id));
+        }
+        product=productService.selectProductById(Integer.valueOf(p_Id));
+        baseResponse.setCode(200);
+        baseResponse.setMsg("上架成功");
+        return baseResponse;
+    }
     @RequestMapping("/edit")
     public String editinit(){
         return "admin/edit";
@@ -233,7 +252,7 @@ public class ProductController {
             case "手工设计":productCategory.setC_Id("c08");break;
             case "音乐器材":productCategory.setC_Id("c10");break;
         }
-        productCategory.setP_Status("上架中");
+        productCategory.setP_Status("待审核");
         productCategoryService.insertProductCategory(productCategory);
         if(productService.selectProductById(Integer.valueOf(productCategory.getP_Id()))!=null){
             return "admin/productadd";
