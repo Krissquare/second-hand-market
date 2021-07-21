@@ -963,6 +963,7 @@
 						<ul>
 							<li class="d-inline-block font-weight-bolder"><a th:href="@{/}">首页</a></li>
 							<li class="d-inline-block hr_ font-weight-bolder"><a href="#">交易记录</a></li>
+							<li class="d-inline-block hr_ font-weight-bolder"><a href="/userIndex">个人主页</a></li>
 						</ul>
 					</div>
 				</div>
@@ -994,7 +995,7 @@
 										<span th:text="${oneOrder.getO_Status()}"></span>
 									</li>
 									<li class="f_13">
-										<span>卖家:</span>
+										<span>买家:</span>
 										<span th:text="${oneOrder.getO_Seller()}"></span>
 									</li>
 								</ul>

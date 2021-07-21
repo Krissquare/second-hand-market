@@ -12,8 +12,14 @@ public interface OrderMapper {
     @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0}")
     List<Order> selectOrderAndProductBuy(String Buy_Account);
 
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0} and o.o_Status=#{1}")
+    List<Order> selectOrderAndProductBuyByStatus(String Buy_Account,String Status);
+
     @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0}")
     List<Order> selectOrderAndProductSell(String account);
+
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0} and o.o_Status=#{1}")
+    List<Order> selectOrderAndProductSellByStatus(String account,String Status);
 
     @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress,o.o_Saddress,o.o_Date, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and p.p_Name like #{0}")
     List<Order> selectBypName(String p_Name);
@@ -71,4 +77,11 @@ public interface OrderMapper {
 
     @Insert("insert into order2(o_Id, o_ItemId, o_Buyer, o_Seller, o_Baddress, o_Saddress, o_Date, o_Status) values(#{o_Id},#{o_ItemId}, #{o_Buyer}, #{o_Seller}, #{o_Baddress}, #{o_Saddress}, #{o_Date}, #{o_Status})")
     void insertOne(Order o);
+
+    @Select("select o_ExpressId from order2 where o_Id = #{0}")
+    String selectExpressIdById(String o_Id);
+
+    @Update("update order2 set o_ExpressId = #{1} where o_Id = #{0}")
+    void updateExpressIdById(String o_Id, String expressId);
+
 }

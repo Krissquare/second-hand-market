@@ -27,20 +27,22 @@ CREATE TABLE `order2` (
   `o_Baddress` varchar(100) DEFAULT NULL,
   `o_Saddress` varchar(100) DEFAULT NULL,
   `o_Date` date DEFAULT NULL,
-  `o_Status` enum('已完成','待交易') DEFAULT NULL,
-  PRIMARY KEY (`o_Id`)
+  `o_Status` enum('未发货','已发货','已收货') DEFAULT NULL,
+  `o_ExpressId` varchar(100) not null default 'no_shipment',
+  PRIMARY KEY (`o_Id`),
+  foreign key(o_ItemId) references product(p_Id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order2
 -- ----------------------------
-INSERT INTO `order2` VALUES ('o01', '01', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '待交易');
-INSERT INTO `order2` VALUES ('o02', '02', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已完成');
-INSERT INTO `order2` VALUES ('o03', '03', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '待交易');
-INSERT INTO `order2` VALUES ('o04', '04', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已完成');
-INSERT INTO `order2` VALUES ('o05', '05', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '待交易');
-INSERT INTO `order2` VALUES ('o06', '05', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已完成');
-INSERT INTO `order2` VALUES ('o07', '07', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '待交易');
-INSERT INTO `order2` VALUES ('o08', '08', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已完成');
-INSERT INTO `order2` VALUES ('o09', '09', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '待交易');
-INSERT INTO `order2` VALUES ('o10', '10', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已完成');
+INSERT INTO `order2` VALUES ('o01', '01', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '未发货','no_shipment');
+INSERT INTO `order2` VALUES ('o02', '02', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已发货','no_shipment');
+INSERT INTO `order2` VALUES ('o03', '03', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '未发货','no_shipment');
+INSERT INTO `order2` VALUES ('o04', '04', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已发货','no_shipment');
+INSERT INTO `order2` VALUES ('o05', '05', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '未发货','no_shipment');
+INSERT INTO `order2` VALUES ('o06', '05', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已发货','no_shipment');
+INSERT INTO `order2` VALUES ('o07', '07', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '未发货','no_shipment');
+INSERT INTO `order2` VALUES ('o08', '08', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已收货','no_shipment');
+INSERT INTO `order2` VALUES ('o09', '09', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已收货','no_shipment');
+INSERT INTO `order2` VALUES ('o10', '10', 1, 'user1', 'user2', '福建省厦门市厦门大学翔安校区', '福建省厦门市厦门大学翔安校区', '2021-7-5', '已收货','no_shipment');
