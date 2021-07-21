@@ -169,6 +169,15 @@ public class Product implements Comparable<Product>{
     public void setP_num(int p_num) {
         this.p_num = p_num;
     }
+
+    public String getP_Status() {
+        return p_Status;
+    }
+
+    public void setP_Status(String p_Status) {
+        this.p_Status = p_Status;
+    }
+
     @Override
     public int compareTo(Product o)
     {
