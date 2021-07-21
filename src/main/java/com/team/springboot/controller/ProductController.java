@@ -52,7 +52,6 @@ public class ProductController {
         BaseResponse<List<ProductCategory>> baseResponse = new BaseResponse<>();
         List<ProductCategory> product;
         HttpSession session =request.getSession();
-        //通过商品名称查询
         if(p_Name!=null){
             p_Name="%"+p_Name+"%";
             if (session.getAttribute("u_Account").equals("admin")) {
@@ -234,7 +233,7 @@ public class ProductController {
             case "手工设计":productCategory.setC_Id("c08");break;
             case "音乐器材":productCategory.setC_Id("c10");break;
         }
-        //productCategory.setC_Id();
+        productCategory.setP_Status("上架中");
         productCategoryService.insertProductCategory(productCategory);
         if(productService.selectProductById(Integer.valueOf(productCategory.getP_Id()))!=null){
             return "admin/productadd";

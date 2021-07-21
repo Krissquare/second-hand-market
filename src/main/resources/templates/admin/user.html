@@ -197,18 +197,17 @@
         //第一个实例
         var tableIns = table.render({
             elem: '#demo'
-            ,url: '/admin/userdata' //数据接口
-            ,toolbar: '#toolbarDemo'
+            ,url: '/admin/userdata'
+            ,toolbar: false
             , page: true
             ,limit:10
             ,limits:[10,30,50]
             ,response: {
-                statusCode: 200 //规定成功的状态码，默认：0
+                statusCode: 200
             }
             ,cols: [[ //表头
                 {field: 'u_Account', title: '用户名', sort: true, fixed: 'left'}
                 ,{field: 'u_Name', title: '姓名',sort: true}
-
                 ,{field: 'u_Sex', title: '性别'}
                 ,{field: 'u_Email', title: '电子邮箱'}
                 ,{field: 'u_Phone', title: '手机号码',sort: true}
