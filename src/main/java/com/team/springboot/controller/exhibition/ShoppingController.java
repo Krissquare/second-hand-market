@@ -48,6 +48,7 @@ public class ShoppingController {
     public String minus(@RequestParam("ID") String pid,HttpServletRequest req,Model m)
     {
         int Id=Integer.parseInt(pid);
+        System.out.println(Id);
         String account = (String)req.getSession().getAttribute("u_Account");
         shoppingCarService.updateByAccountId(account,Id,-1);
         ShoppingCar sp=shoppingCarService.selectByAccountId(account,Id);
