@@ -94,6 +94,10 @@ public class GoodsDetailController   {
 
        Product product = productService.selectProductById(b.getP_Id());
            product.setP_num(product.getP_num()-1);
+           if(product.getP_num()==0)
+           {
+               product.setP_Status("上架中");
+           }
            productService.updateProduct(product);
 
        Address address1 = userService.selectAddressAll(product.getP_Account());
