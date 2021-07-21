@@ -65,8 +65,6 @@ public class showController {
     @RequestMapping("/search")
     public String search(Model m, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo,
                          @RequestParam("search") String search, HttpServletRequest req) {
-
-
         int pageSize = 15;
         search = "%" + search + "%";
         PageHelper.startPage(pageNo, pageSize);
@@ -77,6 +75,16 @@ public class showController {
 
         m.addAttribute("productList", pageInfo);
 
+        return "html/shop-left-sidebar";
+    }
+
+    @RequestMapping("/searchPage")
+    public String searchPage(Model m, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo, HttpServletRequest req) {
+        int pageSize = 16;
+        PageHelper.startPage(pageNo, pageSize);
+        List<ProductCategory> list = productCategoryService.selectProductAll();
+        PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
+        m.addAttribute("productList", pageInfo);
         return "html/shop-left-sidebar";
     }
 
