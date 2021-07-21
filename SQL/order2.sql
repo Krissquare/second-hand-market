@@ -29,7 +29,8 @@ CREATE TABLE `order2` (
   `o_Date` date DEFAULT NULL,
   `o_Status` enum('未发货','已发货','已收货') DEFAULT NULL,
   `o_ExpressId` varchar(100) not null default 'no_shipment',
-  PRIMARY KEY (`o_Id`)
+  PRIMARY KEY (`o_Id`),
+  foreign key(o_ItemId) references product(p_Id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
