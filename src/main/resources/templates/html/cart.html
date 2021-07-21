@@ -693,10 +693,10 @@
 											<span class="font-weight-bold" th:text="'￥'+${p.getP_Price()}"></span>
 										</div>
 										<div class="col-md-4 col-sm-4 col-5 text-center">
-											<input type="hidden" id="ID" name="ID" th:value="${p.getP_Id()}">
-					              		<button type="button" class="btn btn-default btn-number p-0" id="minus" >-</button>
+											<input type="hidden" th:id="'ID'+${p.getP_Id()}" th:name="'ID_'+${p.getP_Id()}" th:value="${p.getP_Id()}">
+					              		<button type="button" class="btn btn-default btn-number p-0" th:id="'minus'+${p.getP_Id()}" >-</button>
 											<input type="number" name="quant[1]" class="form-control input-number" th:value="${p.getP_Num()}">
-					                	<button type="button" class="btn btn-default btn-number p-0" id="plus">+</button>
+					                	<button type="button" class="btn btn-default btn-number p-0" th:id="'plus'+${p.getP_Id()}">+</button>
 
 										</div>
 										<div class="col-md-4 col-sm-4 col-3 text-right">
@@ -706,7 +706,26 @@
 								</div>
 							</div>
 						</div>
+						<script th:inline="javascript">
+							let sproduct = [[${sproduct}]];
+							sproduct.forEach((p)=>{
+								// console.log(p.p_Id);
+								let pid = document.getElementById('ID' + p.p_Id);
+								let mbtn=document.getElementById("minus" + p.p_Id);
+								let pbtn=document.getElementById("plus" + p.p_Id);
+								mbtn.onclick=function ()
+								{
+									//location.href="/minus?ID="+pid.value;
+									console.log(p);
+								}
+								pbtn.onclick=function ()
+								{
+									//location.href="/plus?ID="+pid.value;
+									console.log(p);
+								}
+							})
 
+						</script>
 					</div>
 
 					<div class="card-footer">
@@ -878,17 +897,7 @@
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/layui/jquery.min.js}"></script>
 <script>
-	let pid=document.getElementById("ID");
-	let mbtn=document.getElementById("minus");
-	let pbtn=document.getElementById("plus");
-	mbtn.onclick=function ()
-	{
-		location.href="/minus?ID="+pid.value;
-	}
-	pbtn.onclick=function ()
-	{
-		location.href="/plus?ID="+pid.value;
-	}
-	</script>
+
+</script>
 </body>
 </html>
