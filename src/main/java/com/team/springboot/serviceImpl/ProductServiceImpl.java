@@ -92,4 +92,10 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.selectProductAll();
     }
 
+
+    @Override
+    public void setStatusById(String p_Status,int p_ID)
+    {
+        productMapper.setStatusById(p_Status,p_ID);
+    }
 }

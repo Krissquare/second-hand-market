@@ -30,7 +30,7 @@ CREATE TABLE `product` (
   `p_Date` date NOT NULL,
   `p_href` varchar(255) DEFAULT NULL,
   `p_num` int(100) DEFAULT NULL,
-  `p_Status` enum('上架中','已下架'),
+  `p_Status` enum('上架中','已下架','待审核'),
   PRIMARY KEY (`p_Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
