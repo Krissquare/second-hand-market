@@ -1202,15 +1202,15 @@
 				<nav class="float-right mt-5 mt-col-3">
 					<ul class="pagination">
 						<li class="page-item">
-							<a class="page-link" href="#">
+							<a class="page-link" th:href="@{/searchPage(pageNo=${productList.prePage})}">
 								<span aria-hidden="true">&laquo;</span>
 							</a>
 						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/searchPage(pageNo=${productList.firstPage})}">1</a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/searchPage(pageNo=2)}">2</a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/searchPage(pageNO=3)}">3</a></li>
 						<li class="page-item">
-							<a class="page-link" href="#">
+							<a class="page-link" th:href="@{/searchPage(pageNo=${productList.nextPage})}">
 								<span aria-hidden="true">&raquo;</span>
 							</a>
 						</li>
