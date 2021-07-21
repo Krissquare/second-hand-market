@@ -122,4 +122,15 @@ public class OrderServiceImpl implements OrderService {
     {
         return orderMapper.countAll();
     }
+
+    @Override
+    public String selectExpressIdById(String o_Id){
+        return  orderMapper.selectExpressIdById(o_Id);
+    }
+
+    @Override
+    public void updateExpressIdById(String o_Id, String expressId){
+        orderMapper.updateExpressIdById(o_Id,expressId);
+    }
+
 }

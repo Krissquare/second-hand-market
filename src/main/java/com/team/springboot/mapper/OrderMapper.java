@@ -71,4 +71,11 @@ public interface OrderMapper {
 
     @Insert("insert into order2(o_Id, o_ItemId, o_Buyer, o_Seller, o_Baddress, o_Saddress, o_Date, o_Status) values(#{o_Id},#{o_ItemId}, #{o_Buyer}, #{o_Seller}, #{o_Baddress}, #{o_Saddress}, #{o_Date}, #{o_Status})")
     void insertOne(Order o);
+
+    @Select("select o_ExpressId from order2 where o_Id = #{0}")
+    String selectExpressIdById(String o_Id);
+
+    @Update("update order2 set o_ExpressId = #{1} where o_Id = #{0}")
+    void updateExpressIdById(String o_Id, String expressId);
+
 }

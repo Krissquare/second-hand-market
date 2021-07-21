@@ -27,4 +27,7 @@ public interface OrderService {
     int countBypName(String p_Name);
     int countBySeller(String Seller);
     int countAll();
+
+    String selectExpressIdById(String o_Id);
+    void updateExpressIdById(String o_Id, String expressId);
 }
