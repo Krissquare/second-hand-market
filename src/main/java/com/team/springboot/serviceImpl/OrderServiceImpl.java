@@ -133,4 +133,14 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.updateExpressIdById(o_Id,expressId);
     }
 
+    @Override
+    public List<Order> selectOrderAndProductBuyByStatus(String Buy_Account,String Status)
+    {
+        return orderMapper.selectOrderAndProductBuyByStatus(Buy_Account,Status);
+    }
+    @Override
+    public  List<Order> selectOrderAndProductSellByStatus(String account,String Status)
+    {
+        return orderMapper.selectOrderAndProductSellByStatus(account,Status);
+    }
 }

@@ -12,8 +12,14 @@ public interface OrderMapper {
     @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0}")
     List<Order> selectOrderAndProductBuy(String Buy_Account);
 
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0} and o.o_Status=#{1}")
+    List<Order> selectOrderAndProductBuyByStatus(String Buy_Account,String Status);
+
     @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0}")
     List<Order> selectOrderAndProductSell(String account);
+
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0} and o.o_Status=#{1}")
+    List<Order> selectOrderAndProductSellByStatus(String account,String Status);
 
     @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress,o.o_Saddress,o.o_Date, o.o_ItemId, o.o_Status from order2 o, product p where o_ItemId = p.p_Id and p.p_Name like #{0}")
     List<Order> selectBypName(String p_Name);
