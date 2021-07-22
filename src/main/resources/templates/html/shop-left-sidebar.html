@@ -404,26 +404,36 @@
 						<img th:src="${p.getP_href()}" class="fst-image mx-auto d-block img-fluid border rounded" alt="product_13">
 					</div>
 					<div class="col-sm-7 col-12">
-						<h5 class="font-weight-bold border-bottom me_name" th:text="${p.getP_Title()}"></h5>
-						<div class="font-weight-bold border-bottom me_price" th:text="'￥' + ${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"></div>
-						<div class="my-2 border-bottom me_des" th:text="${p.getP_Des()}"></div>
-						<div class="me_quan">
-							<div class="sp_counter ">
-								<div class="input-group">
-		                <span class="input-group-btn">
-		              		<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]"><span class="minus">-</span></button>
-		                </span>
-									<input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
-									<span class="input-group-btn">
-		                	<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]"><span class="plus">+</span></button>
-		                </span>
-								</div>
+						<h5  style="font-size:20px"th:text="${p.getP_Title()}"></h5>
+						<div>&nbsp;</div>
+						<span  th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}" style="color: red;font-weight: bold;font-size: 20px"></span>
+						<del class="text-muted" th:text="'￥'+${p.getP_originalPrice()}"></del>
 
-							</div>
-							<span>
-			      	<a href="cart.html" class="btn btn-primary primary mt-3">加入购物车</a>
-			      </span>
+						<div>&nbsp;</div>
+						<div class="star mb-2">
+							<span th:text="${p.getP_Account()}"></span>
+							<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
+
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
 						</div>
+
+
+						<div>
+							<!--										[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}]]-->
+							<span style="font-size: small">发布于</span>
+							<a th:text="${#numbers.formatDecimal((new java.util.Date().getTime()-p.getP_Date().getTime())/86400000,1,'COMMA',0,'POINT')}"></a>
+							<!--										<a th:text="${p.getP_Date()}"></a>-->
+							<span style="font-size: small">天前</span>
+						</div>
+
+						<div>&nbsp;</div>
+
+						<div  th:text="${p.getP_Des()}"></div>
+
 					</div>
 				</div>
 			</div>
