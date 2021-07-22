@@ -49,7 +49,6 @@ public class ShoppingController {
     public String minus(@RequestParam("ID") String pid,HttpServletRequest req,Model m)
     {
         int Id=Integer.parseInt(pid);
-        System.out.println(Id);
         String account = (String)req.getSession().getAttribute("u_Account");
         shoppingCarService.updateByAccountId(account,Id,-1);
         ShoppingCar sp=shoppingCarService.selectByAccountId(account,Id);
@@ -67,7 +66,6 @@ public class ShoppingController {
     public String plus(@RequestParam("ID") String pid,HttpServletRequest req,Model m)
     {
         int Id=Integer.parseInt(pid);
-        System.out.println(pid);
         String account = (String)req.getSession().getAttribute("u_Account");
         ShoppingCar sp=shoppingCarService.selectByAccountId(account,Id);
         Product p=productService.selectProductById(sp.getP_Id());
@@ -75,6 +73,15 @@ public class ShoppingController {
         ShoppingCar spn=shoppingCarService.selectByAccountId(account,Id);
         if(p.getP_num()<spn.getP_Num())
             shoppingCarService.updateNum(account,Id,p.getP_num());
+        return "redirect:/shopProduct";
+    }
+
+    @RequestMapping("/delete")
+    public String delete(@RequestParam("ID") String pid,HttpServletRequest req)
+    {
+        int Id=Integer.parseInt(pid);
+        String account = (String)req.getSession().getAttribute("u_Account");
+        shoppingCarService.deleteByAccountId(account,Id);
         return "redirect:/shopProduct";
     }
 
