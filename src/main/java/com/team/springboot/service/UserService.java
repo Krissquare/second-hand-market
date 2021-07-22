@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface UserService {
     User selectUserById(String u_Account);
+    User selectUserByEmail(String u_Email);
     void updateUser(User u);
     String selectPasswordById(String u_Account);
     void updatePassword(Password p);

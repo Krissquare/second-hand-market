@@ -12,6 +12,9 @@ public interface userMapper {
     @Select("select * from user where u_Account = #{u_Account}") //用于查询一个User
     User selectUserById(String u_Account);
 
+    @Select("select * from user where u_Email = #{u_Email}")
+    User selectUserByEmail(String u_Email);
+
     @Update("update user set u_Name = #{u_Name}, u_Email = #{u_Email}, u_Sex = #{u_Sex}, u_Phone = #{u_Phone} where u_Account = #{u_Account}")
     void updateUser(User u); // 用于更新User实体
 
