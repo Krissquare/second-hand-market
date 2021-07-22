@@ -63,4 +63,10 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
     {
         shoppingCarMapper.updateNum(u_Account,p_Id,num);
     }
+
+    @Override
+    public void deleteByAccountId(String u_Account,int p_Id)
+    {
+        shoppingCarMapper.deleteByAccountId(u_Account,p_Id);
+    }
 }

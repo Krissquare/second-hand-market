@@ -700,7 +700,7 @@
 
 										</div>
 										<div class="col-md-4 col-sm-4 col-3 text-right">
-											<a href="#"><i class="fas fa-trash-alt "></i></a>
+											<a th:id="'delete'+${p.getP_Id()}"><i class="fas fa-trash-alt "></i></a>
 										</div>
 									</div>
 								</div>
@@ -713,6 +713,7 @@
 								let pid = document.getElementById('ID' + p.p_Id);
 								let mbtn=document.getElementById("minus" + p.p_Id);
 								let pbtn=document.getElementById("plus" + p.p_Id);
+								let a=document.getElementById("delete"+p.p_Id);
 								mbtn.onclick=function ()
 								{
 									location.href="/minus?ID="+pid.value;
@@ -721,6 +722,10 @@
 								pbtn.onclick=function ()
 								{
 									location.href="/plus?ID="+pid.value;
+								}
+								a.onclick=function ()
+								{
+									location.href="/delete?ID="+pid.value;
 								}
 							})
 
