@@ -468,7 +468,7 @@
 									</a>
 								</li>
 								<li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
-									<a href="wishlist.html">
+									<a href="/showWishList">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
 													width="35px" height="35px">
 													<use xlink:href="#favourite"></use>
@@ -583,7 +583,7 @@
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
 													   href="cart.html">购物车</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
-													   href="wishlist.html">心愿清单</a></li>
+													   href="/showWishList">心愿清单</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
 													   href="forgot.html">忘记密码</a></li>
 							</ul>
@@ -718,7 +718,7 @@
 										</div>
 
 										<div class="col-md-4 col-sm-4 col-3 text-right">
-											<a href="#"><i class="fas fa-trash-alt "></i></a>
+											<a th:id="'delete'+${p.getP_Id()}"><i class="fas fa-trash-alt "></i></a>
 										</div>
 									</div>
 
@@ -732,6 +732,7 @@
 								let pid = document.getElementById('ID' + p.p_Id);
 								let mbtn=document.getElementById("minus" + p.p_Id);
 								let pbtn=document.getElementById("plus" + p.p_Id);
+								let a=document.getElementById("delete"+p.p_Id);
 								mbtn.onclick=function ()
 								{
 									location.href="/minus?ID="+pid.value;
@@ -740,6 +741,10 @@
 								pbtn.onclick=function ()
 								{
 									location.href="/plus?ID="+pid.value;
+								}
+								a.onclick=function ()
+								{
+									location.href="/delete?ID="+pid.value;
 								}
 							})
 
@@ -843,7 +848,7 @@
 								<ul>
 									<li><a th:href="@{/}">我的主页</a></li>
 									<li><a href="cart.html">我的购物车</a></li>
-									<li><a href="wishlist.html">我的心愿清单</a></li>
+									<li><a href="/showWishList">我的心愿清单</a></li>
 									<li><a href="/showMyTransactionOrders">我的订单</a></li>
 									<li><a th:href="@{/}">回到顶部</a></li>
 								</ul>
