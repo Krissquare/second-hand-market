@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>厦大二手交易平台</title>
@@ -211,23 +211,18 @@
     </symbol>
 
     <symbol viewBox="0 0 504.124 504.124" id="gift">
-        <path style="fill:#DB5449;"
-              d="M15.754,133.909l236.308,118.154L488.37,133.909v252.062L252.062,504.123L15.754,385.969V133.909z"></path>
-        <path style="fill:#C54B42;"
-              d="M15.754,157.538v73.649l235.52,115.397l237.095-115.791v-73.255L252.062,273.33L15.754,157.538z"></path>
+        <path style="fill:#DB5449;" d="M15.754,133.909l236.308,118.154L488.37,133.909v252.062L252.062,504.123L15.754,385.969V133.909z"></path>
+        <path style="fill:#C54B42;" d="M15.754,157.538v73.649l235.52,115.397l237.095-115.791v-73.255L252.062,273.33L15.754,157.538z"></path>
         <path style="fill:#D05045;" d="M252.062,504.123V252.063L31.508,141.786H15.754v244.185L252.062,504.123z"></path>
-        <path style="fill:#BB483E;"
-              d="M15.754,157.538v73.649l235.52,115.397l0.788-0.394v-73.255v0.394L15.754,157.538z"></path>
-        <path style="fill:#EB6258;"
-              d="M0,125.638L252.062,0.001l252.062,125.637v16.542L252.062,267.815L0,142.573V125.638z"></path>
+        <path style="fill:#BB483E;" d="M15.754,157.538v73.649l235.52,115.397l0.788-0.394v-73.255v0.394L15.754,157.538z"></path>
+        <path style="fill:#EB6258;" d="M0,125.638L252.062,0.001l252.062,125.637v16.542L252.062,267.815L0,142.573V125.638z"></path>
         <path style="fill:#EFEFEF;" d="M396.603,39.779c-8.271-14.966-25.994-24.025-46.868-24.025c-47.655,0-81.132,44.505-97.674,72.862
 	    c-16.542-28.357-50.412-72.468-97.674-72.468c-30.326,0-51.988,18.511-51.988,43.717c0,44.898,49.231,74.043,148.086,74.043
 	    s151.237-37.415,151.237-73.649C401.723,53.17,400.148,46.081,396.603,39.779z M164.628,88.223
 	    c-11.028-7.483-14.966-15.754-14.966-21.268c0-6.695,6.302-11.815,15.36-11.815c21.268,0,38.203,27.963,47.655,47.262
 	    C187.865,100.432,173.292,93.736,164.628,88.223z M339.495,88.223c-8.665,5.514-23.237,12.209-48.049,14.178
 	    c9.058-19.298,25.994-47.262,47.655-47.262c9.058,0,15.36,5.12,15.36,11.815C354.462,72.469,350.523,80.739,339.495,88.223z"></path>
-        <path style="fill:#E2574C;"
-              d="M0,126.032l252.062,123.274l252.062-123.274v81.526l-252.85,123.274L0,207.558V126.032z"></path>
+        <path style="fill:#E2574C;" d="M0,126.032l252.062,123.274l252.062-123.274v81.526l-252.85,123.274L0,207.558V126.032z"></path>
         <path style="fill:#EFEFEF;" d="M346.585,213.859v-9.058l-94.523-51.2l-94.523,51.2v9.058L94.524,186.29v-12.603l154.387-81.526
         l3.151,1.575l3.151-1.575L409.6,173.293v12.603L346.585,213.859z"></path>
         <path style="fill:#DCDCDC;" d="M346.585,204.801v251.668l63.015-31.508V173.293L346.585,204.801z"></path>
@@ -355,6 +350,8 @@
 </svg>
 
 
+
+
 <!-- header area -->
 
 <header>
@@ -390,15 +387,19 @@
                         <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder">个人主页</a>
+                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
+                                    >个人主页</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
                         </div>
                         <div class="dropdown right1 md_1 hr_">
+
                             <span class="dropdown-toggle">
-                           <a th:if="${session.u_Account == null}" href="/forgot" class="font-weight-bolder">忘记密码</a>
-                            </span>
-                            <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder">退出</a>
+                         <a th:if="${session.u_Account == null}" href="forgot.html" class="font-weight-bolder"
+                         >忘记密码</a>
+								</span>
+                            <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
+                            >退出</a>
                             </span>
                         </div>
 
@@ -543,39 +544,21 @@
 
     <!-- third row -->
 
-    <div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
+    <div class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
         <div class="container custom_container">
             <div class="row">
-
-                <div class="col-lg-9 text-left sp_hz_menu">
+                <div class="col-lg-9 text-left">
                     <ul class="main-menu navbar">
                         <li><a th:href="@{/}">首页</a></li>
                         <li><a th:href="@{/searchAll}">市场</a></li>
 
-                        <li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                               aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="cart.html">我的购物车</a></li>
-
-                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="/showMyTransactionOrders">我的订单</a></li>
-                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="wishlist.html">我的收藏</a></li>
-                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="/admin/user_init" >商品管理</a></li>
-
-                            </ul>
-                        </li>
+                        <li><a href="about-us.html">关于我们</a></li>
 
 
 
 
 
-
-
-
-                        </ul>
+                    </ul>
                 </div> <!-- col-lg-9 text-left -->
 
             </div> <!-- row -->
@@ -806,19 +789,21 @@
 <!-- vertical menu end -->
 
 
-<!-- login page -->
+
+<!-- forgot page -->
 
 
-<div id="login_page" class="login-page animate__animated animate__fadeInUp">
+<div id="forgot_page" class="forgot-page animate__animated animate__fadeInUp">
 
 
-    <div class="sp_header bg-white p-3 ">
+    <div class="sp_header bg-white p-3">
         <div class="container custom_container">
             <div class="row ">
                 <div class="col-12 ">
                     <ul>
                         <li class="d-inline-block font-weight-bolder"><a href="/">首页</a></li>
-                        <li class="d-inline-block hr_ font-weight-bolder"><a href="#">登录</a></li>
+                        <li class="d-inline-block hr_ font-weight-bolder"><a href="#">忘记密码</a></li>
+                        <li class="d-inline-block hr_ font-weight-bolder"><a href="">验证</a></li>
                     </ul>
                 </div>
             </div>
@@ -826,37 +811,38 @@
     </div>
 
     <div class="container custom_container ">
-        <h3 class="text-center">登录您的账号</h3>
-        <div id="login" class="page-content card card-block p-3 p-sm-4 ">
-            <form class="layui-form" th:action="@{/user/login}" method="post">
-
+        <h3 class="text-center">验证</h3>
+        <div id="forgot" class="page-content card card-block p-3 p-sm-4">
+            <form  class="needs-validation " method="post" novalidate>
                 <div class="form-group">
-                    <label for="user_email" class="font-weight-bolder">用户名</label>
-                    <input class="form-control" id="user_email" name="u_Account" aria-describedby="emailHelp" required>
+                    <p class="text-muted">我们已将邮件发送至您的邮箱1036******@qq.com</p>
+                    <p class="text-muted"></p>
+                    <label class="font-weight-bolder">请输入邮件中的验证码：</label>
+                    <input type="email" class="form-control" required>
+                    <div class="invalid-feedback">请输入您的验证码</div>
                 </div>
 
-                <div class="form-group font-weight-bolder">
-                    <label for="user_password" class="font-weight-bolder">密码</label>
-                    <input type="password" class="form-control" name="u_Password" id="user_password" required>
-                    <div class="invalid-feedback">请输入您的密码</div>
-                </div>
+                <input type="submit" name="submit" class="btn btn-primary mt-3" value="确认">
 
-                <input type="submit" name="submit" class="btn btn-primary mb-3" style="position: relative;left: 40%" value="登录">
-                <div class="pass_acc border-top pt-3">
-                    <span class="forgot_password font-weight-bolder"><a
-                            href="/forgot">忘记密码 </a></span>
-                    <span class="no_account float-right font-weight-bolder"><a href="registration.html">注册</a></span>
-                </div>
             </form>
         </div>
     </div>
 
 
-</div>
-<!-- login_page -->
 
 
-<!-- login page -->
+
+</div>	<!-- login_page -->
+
+
+<!-- forgot page  -->
+
+
+
+
+
+
+
 
 
 <!-- footer -->
@@ -1005,14 +991,14 @@
 
 <script>
     // Disable form submissions if there are invalid fields
-    (function () {
+    (function() {
         'use strict';
-        window.addEventListener('load', function () {
+        window.addEventListener('load', function() {
             // Get the forms we want to add validation styles to
             var forms = document.getElementsByClassName('needs-validation');
             // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener('submit', function (event) {
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
