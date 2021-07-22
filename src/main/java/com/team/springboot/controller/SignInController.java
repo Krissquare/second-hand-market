@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class SignInController {
+
     @Autowired
     UserService userService;
 
@@ -26,7 +27,6 @@ public class SignInController {
     @RequestMapping("/logout")
     public String logout( HttpSession session) {
         session.setAttribute("u_Account",null);
-
         return "redirect:/";
     }
 
