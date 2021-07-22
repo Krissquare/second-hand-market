@@ -1,9 +1,7 @@
 package com.team.springboot.controller.exhibition;
 
-import com.team.springboot.pojo.BaseResponse;
-import com.team.springboot.pojo.ShoppingCar;
-import com.team.springboot.pojo.ShoppingCarProduct;
-import com.team.springboot.pojo.UserHead;
+import com.team.springboot.pojo.*;
+import com.team.springboot.service.ProductService;
 import com.team.springboot.service.ShoppingCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +24,9 @@ public class ShoppingController {
 
     @Autowired
     UserHeadService userHeadService;
+
+    @Autowired
+    ProductService productService;
 
     @RequestMapping("/shoppingCarInit")
     public String shoppingCarInit(Model m, HttpSession session){
@@ -52,10 +53,13 @@ public class ShoppingController {
         String account = (String)req.getSession().getAttribute("u_Account");
         shoppingCarService.updateByAccountId(account,Id,-1);
         ShoppingCar sp=shoppingCarService.selectByAccountId(account,Id);
+        Product p=productService.selectProductById(sp.getP_Id());
         if(sp.getP_Num()==0)
         {
             shoppingCarService.deleteById(sp.getS_Id());
         }
+        if(p.getP_num()<sp.getP_Num())
+            shoppingCarService.updateNum(account,Id,p.getP_num());
         return "redirect:/shopProduct";
     }
 
@@ -65,7 +69,12 @@ public class ShoppingController {
         int Id=Integer.parseInt(pid);
         System.out.println(pid);
         String account = (String)req.getSession().getAttribute("u_Account");
+        ShoppingCar sp=shoppingCarService.selectByAccountId(account,Id);
+        Product p=productService.selectProductById(sp.getP_Id());
         shoppingCarService.updateByAccountId(account,Id,1);
+        ShoppingCar spn=shoppingCarService.selectByAccountId(account,Id);
+        if(p.getP_num()<spn.getP_Num())
+            shoppingCarService.updateNum(account,Id,p.getP_num());
         return "redirect:/shopProduct";
     }
 

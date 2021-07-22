@@ -57,4 +57,10 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
     {
         return shoppingCarMapper.selectByAccountId(u_Account,p_Id);
     }
+
+    @Override
+    public void updateNum(String u_Account,int p_Id,int num)
+    {
+        shoppingCarMapper.updateNum(u_Account,p_Id,num);
+    }
 }

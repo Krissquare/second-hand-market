@@ -1065,7 +1065,29 @@
                     });
                     layer.close(index);
                 });
-            } else if(layEvent === 'del'){ //删除
+            }   else if(layEvent==='soldout')//下架
+            {
+                layer.confirm('确定下架该商品吗', function(index){
+                    $.ajax({
+                        url: '/admin/soldout',
+                        type: 'POST',
+                        data:{p_Id:data.p_Id},
+                        success:function (res){
+                            if(res.code===200) {
+                                tableIns.reload();
+                                layer.msg('下架成功');
+                            }
+                            else
+                                layer.msg('下架失败，物品已下架或正在审核');
+                        }
+                        ,error(error){
+                            layer.msg(error);
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+            else if(layEvent === 'del'){ //删除
                 layer.confirm('确定要下架嘛', function(index){
                     $.ajax({
                         url: '/admin/delete',
@@ -1085,7 +1107,29 @@
                     });
                     layer.close(index);
                 });
-            } else if (layEvent === 'edit') { //编辑
+            }else if(layEvent==='pass')//上架
+            {
+                layer.confirm('确定上架该商品吗', function(index){
+                    $.ajax({
+                        url: '/admin/pass',
+                        type: 'POST',
+                        data:{p_Id:data.p_Id},
+                        success:function (res){
+                            if(res.code===200) {
+                                tableIns.reload();
+                                layer.msg('上架成功');
+                            }
+                            else
+                                layer.msg('上架失败，物品正在售卖或者正在审核');
+                        }
+                        ,error(error){
+                            layer.msg(error);
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+            else if (layEvent === 'edit') { //编辑
                 layer.confirm('确认查看', function(index){
                     var count=0;
                     $.ajax({
@@ -1217,6 +1261,7 @@
                 ,{field: "p_Price", title: '价格',sort: true,templet: function (d){
                         return "￥"+d.p_Price;
                     }}
+                ,{field: 'p_Status',title:'商品状态',sort: true}
                 ,{field: 'imgLoad',title:'图片操作',toolbar: "#imgBar"}
                 ,{title: '操作', toolbar: '#barDemo'}
             ]]
@@ -1242,7 +1287,9 @@
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">下架</a>
+    <a class="layui-btn layui-btn-xs" lay-event="pass">上架</a>
+    <a class="layui-btn layui-btn-xs" lay-event="soldout">下架</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
 <script type="text/html" id="toolbarDemo">
