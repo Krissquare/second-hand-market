@@ -164,6 +164,25 @@ public class ProductController {
         baseResponse.setMsg("上架成功");
         return baseResponse;
     }
+    @RequestMapping("/soldout")
+    @ResponseBody
+    public BaseResponse soldout(@RequestParam String p_Id){
+        BaseResponse baseResponse = new BaseResponse();
+        Product product=productService.selectProductById(Integer.valueOf(p_Id));
+        if(product==null || product.getP_Status().equals("已下架"))
+        {
+            baseResponse.setCode(500);
+            baseResponse.setMsg("下架失败，商品已下架");
+            return baseResponse;
+        }
+        if(product!=null){
+            productService.setStatusById("已下架", Integer.parseInt(p_Id));
+        }
+        product=productService.selectProductById(Integer.valueOf(p_Id));
+        baseResponse.setCode(200);
+        baseResponse.setMsg("下架成功");
+        return baseResponse;
+    }
     @RequestMapping("/edit")
     public String editinit(){
         return "admin/edit";
