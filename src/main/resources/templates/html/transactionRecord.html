@@ -1287,7 +1287,7 @@
 									<li class="my-1 f_13">
 
 
-										<span style="color: black">收货地址：</span>
+										<span style="color: black">发货地址：</span>
 
 									</li>
 									<li class="my-1 f_13">
@@ -1339,6 +1339,9 @@
 									</li>
 									</li>
 									<li >
+									<li class="my-1 f_13" th:if="1==等待买家收货">
+										<span style="color: black;font-size: 16px">等待买家收货</span>
+									</li>
 									<li class="my-1 f_13" th:if="1==交易完成">
 										<span style="color: black;font-size: 16px">交易完成</span>
 									</li>
