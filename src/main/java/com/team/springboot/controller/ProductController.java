@@ -147,13 +147,19 @@ public class ProductController {
     }
     @RequestMapping("/pass")
     @ResponseBody
-    public BaseResponse pass(@RequestParam String p_Id){
+    public BaseResponse pass(@RequestParam String p_Id,HttpServletRequest request){
         BaseResponse baseResponse = new BaseResponse();
         Product product=productService.selectProductById(Integer.valueOf(p_Id));
-        if(product==null || product.getP_Status().equals("上架中")||product.getP_Status().equals("已下架"))
+        if(product==null || product.getP_Status().equals("上架中"))
         {
             baseResponse.setCode(500);
-            baseResponse.setMsg("上架失败，商品已在售卖或者已下架");
+            baseResponse.setMsg("上架失败，商品已在售卖");
+            return baseResponse;
+        }
+        if(product!=null && product.getP_Status().equals("待审核") && !request.getSession().getAttribute("u_Account").equals("admin"))
+        {
+            baseResponse.setCode(500);
+            baseResponse.setMsg("上架失败，商品正在审核");
             return baseResponse;
         }
         if(product!=null){
@@ -169,10 +175,10 @@ public class ProductController {
     public BaseResponse soldout(@RequestParam String p_Id){
         BaseResponse baseResponse = new BaseResponse();
         Product product=productService.selectProductById(Integer.valueOf(p_Id));
-        if(product==null || product.getP_Status().equals("已下架"))
+        if(product==null || product.getP_Status().equals("已下架")|| product.getP_Status().equals("待审核"))
         {
             baseResponse.setCode(500);
-            baseResponse.setMsg("下架失败，商品已下架");
+            baseResponse.setMsg("下架失败，商品已下架或正在审核");
             return baseResponse;
         }
         if(product!=null){
