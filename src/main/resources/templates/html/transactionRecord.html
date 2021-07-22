@@ -1076,7 +1076,7 @@
 										<span style="color: black" th:text="${oneOrder.getO_Baddress()}"></span>
 									</li>
 									<li class="my-1 f_13">
-										<span style="color: black">联系方式：</span>
+										<span style="color: black">卖家联系方式：</span>
 									</li>
 									<li class="my-1 f_13">
 										<span style="color: black">12343234321</span>
@@ -1093,32 +1093,29 @@
 
 									<li class="my-1 f_13">
 										&nbsp;
-
 									</li>
-                                    <li >
-									<li class="my-1 f_13" th:if="1==待发货">
-										<span style="color: black;font-size: 16px">待发货</span>
-									</li>
-									</li>
-									<li >
-									<li class="my-1 f_13" th:if="待收货">
-										<span style="color: black;font-size: 16px">待收货</span>
-
-									</li>
-									<li class="my-1 f_13" th:if="待收货">
-										<span style="color: black">物流编号：12334322123</span>
-
-									</li>
-									<li class="my-1 f_13" th:if="待收货">
-										<button type="submit"
-												class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认收货</button>
-									</li>
-									</li>
-									<li >
-									<li class="my-1 f_13" th:if="1==交易完成">
-										<span style="color: black;font-size: 16px">交易完成</span>
-									</li>
-									</li>
+                                    <div th:if="${oneOrder.getO_Status()} eq '未发货'">
+										<li class="my-1 f_13">
+											<span style="color: black;font-size: 16px">待发货</span>
+										</li>
+									</div>
+									<div th:if="${oneOrder.getO_Status()} eq '已发货'">
+										<li class="my-1 f_13">
+											<span style="color: black;font-size: 16px">待收货</span>
+										</li>
+										<li class="my-1 f_13">
+											<span style="color: black">物流编号：12334322123</span>
+										</li>
+										<li class="my-1 f_13">
+											<button type="submit"
+													class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认收货</button>
+										</li>
+									</div>
+									<div th:if="${oneOrder.getO_Status()} eq '已收货'">
+										<li class="my-1 f_13">
+											<span style="color: black;font-size: 16px">交易完成</span>
+										</li>
+									</div>
 
 
 								</ul>
@@ -1207,7 +1204,7 @@
 										<span style="color: black">国潮Ins假两件潮流潮牌纯棉宽松半袖上衣服</span>
 									</li>
 									<li class="f_13">
-										<span style="color: black">卖家:</span>
+										<span style="color: black">买家:</span>
 										<span style="color: black" th:text="${oneOrder.getO_Seller()}"></span>
 									</li>
 								</ul>
@@ -1219,14 +1216,8 @@
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul>
-									<li class="my-1 f_13">
-										&nbsp;
-
-									</li>
-									<li class="my-1 f_13">
-										&nbsp;
-
-									</li>
+									<li class="my-1 f_13">&nbsp;</li>
+									<li class="my-1 f_13">&nbsp;</li>
 									<li class="my-1 f_13">
 										<span class="font-weight-bold"style="color: red;font-size: 15px" th:text="'￥'+${oneOrder.getP_Price()}"></span>
 									</li>
@@ -1244,15 +1235,11 @@
 								<ul >
 									<li class="my-1 f_13">
 										&nbsp;
-
 									</li>
 									<li class="my-1 f_13">
 										&nbsp;
-
 									</li>
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">1</span>
 									</li>
 
@@ -1265,31 +1252,17 @@
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
-
-
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">发货地址：</span>
-
 									</li>
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">厦门市翔安区厦门大学翔安校区芙蓉</span>
-
 									</li>
 									<li class="my-1 f_13">
-
-
-										<span style="color: black">联系方式：</span>
-
+										<span style="color: black">买家联系方式：</span>
 									</li>
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">12343234321</span>
-
 									</li>
 
 								</ul>
@@ -1304,32 +1277,27 @@
 
 									<li class="my-1 f_13">
 										&nbsp;
-
 									</li>
 
-									<li >
-									<li class="my-1 f_13" th:if="待发货">
-										<span style="color: black;font-size: 16px">待发货</span>
+									<div th:if="${oneOrder.getO_Status()} eq '未发货'">
+										<li class="my-1 f_13" >
+											<span style="color: black;font-size: 16px">待发货</span>
+											<input type="text" placeholder="请输入快递编号"  aria-label="search" style="width: 170px" aria-describedby="button-addon2">
+											<button type="submit" class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认发货</button>
+										</li>
+									</div>
 
-									</li>
-									<li class="my-1 f_13" th:if="待发货">
-										<input type="text" placeholder="请输入快递编号"  aria-label="search" style="width: 170px" aria-describedby="button-addon2">
+									<div th:if="${oneOrder.getO_Status()} eq '已发货'">
+										<li class="my-1 f_13">
+											<span style="color: black;font-size: 16px">等待买家收货</span>
+										</li>
+									</div>
 
-									</li>
-									<li class="my-1 f_13" th:if="待发货">
-										<button type="submit"
-												class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认发货</button>
-									</li>
-									</li>
-									<li >
-									<li class="my-1 f_13" th:if="1==等待买家收货">
-										<span style="color: black;font-size: 16px">等待买家收货</span>
-									</li>
-									<li class="my-1 f_13" th:if="1==交易完成">
-										<span style="color: black;font-size: 16px">交易完成</span>
-									</li>
-									</li>
-
+									<div th:if="${oneOrder.getO_Status()} eq '已收货'">
+										<li class="my-1 f_13">
+											<span style="color: black;font-size: 16px">交易完成</span>
+										</li>
+									</div>
 
 								</ul>
 							</div>
