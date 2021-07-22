@@ -35,4 +35,7 @@ public interface ShoppingCarMapper {
     @Update("update shoppingcar set p_Num=p_Num+#{2} where u_Account=#{0} and p_Id=#{1}")
     void updateByAccountId(String u_Account,int p_Id,int num);
 
+    @Update("update shoppingcar set p_Num=#{2} where u_Account=#{0} and p_Id=#{1}")
+    void updateNum(String u_Account,int p_Id,int num);
+
 }

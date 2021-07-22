@@ -22,4 +22,6 @@ public interface ShoppingCarService  {
     void updateByAccountId(String u_Account,int p_Id,int num);
 
     ShoppingCar selectByAccountId(String u_Account,int p_Id);
+
+    void updateNum(String u_Account,int p_Id,int num);
 }
