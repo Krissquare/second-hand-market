@@ -6,6 +6,19 @@
     <title>商品管理</title>
     <link rel="stylesheet" th:href="@{/layui/css/layui4.css}"/>
     <link rel="stylesheet" th:href="@{/layui/css/login.css}">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/media.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/owl.carousel.css">
     <style type="text/css">
         .layui-table-cell{
             height: auto!important;
@@ -52,12 +65,22 @@
     </div>
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div class="demoTable" style="margin-top: 10px;margin-left: 10px;">
-            <div class="layui-col-md4">
-                <input class="layui-input" name="productId" id="demoReload" autocomplete="off" placeholder="请输入商品名称">
+        <div class="between-header border border-danger rounded mb-0 head-left">
+
+            <select class="select-menu form-select d-none d-sm-block" >
+                <option value="selected">商品状态</option>
+                <option value="1">已上架</option>
+                <option value="2">待审核</option>
+                <option value="3">已下架</option>
+            </select>
+
+
+            <div class="input-group">
+                <input type="text" placeholder="搜索"  aria-label="search" style="width: 270px" aria-describedby="button-addon2">
+                <div class="input-group-btn"><button type="button" style="position: relative;left: -390%" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
             </div>
-            <button class="layui-btn" data-type="reload" >搜索</button>
         </div>
+
         <table id="demo" lay-filter="test"></table>
 
     </div>
