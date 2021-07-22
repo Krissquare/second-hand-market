@@ -138,6 +138,28 @@
                     layer.close(index);
                 });
             }
+            else if(layEvent==='soldout')//下架
+            {
+                layer.confirm('确定下架该商品吗', function(index){
+                    $.ajax({
+                        url: '/admin/soldout',
+                        type: 'POST',
+                        data:{p_Id:data.p_Id},
+                        success:function (res){
+                            if(res.code===200) {
+                                tableIns.reload();
+                                layer.msg('下架成功');
+                            }
+                            else
+                                layer.msg('下架失败，物品已下架');
+                        }
+                        ,error(error){
+                            layer.msg(error);
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
             else if(layEvent === 'del'){ //删除
                 layer.confirm('确定删除商品吗', function(index){
                     $.ajax({
@@ -314,6 +336,7 @@
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="pass">上架</a>
+    <a class="layui-btn layui-btn-xs" lay-event="soldout">下架</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
