@@ -588,20 +588,32 @@
 				</div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
 				<div class="col-xl-10 col-lg-10 col-6  head-search">
 					<div class="d-flex navbar">
-						<div class="between-header border border-danger rounded mb-0 head-left">
+						<div class="input-class  text-left col-xl-8 col-lg-7 col-md-12  ">
+							<div class="between-header border border-danger rounded mb-0 head-left">
 
-							<select class="select-menu form-select d-none d-sm-block" >
-								<option value="selected">分类查询</option>
-								<option value="1">卖家ID</option>
-								<option value="2">买家ID</option>
-								<option value="3">商品信息</option>
-							</select>
+								<form class="layui-form" th:action="@{/selectCategory}" method="post">
+									<select class="select-menu form-select d-none d-sm-block" name="category" id="category">
+										<option value="selected">所有分类</option>
+										<option value="书籍教材">书籍教材</option>
+										<option value="电子产品">电子产品</option>
+										<option value="代步工具">代步工具</option>
+										<option value="衣帽鞋伞">衣帽鞋伞</option>
+										<option value="体育健身">体育健身</option>
+										<option value="家用电器">家用电器</option>
+										<option value="虚拟产品">虚拟产品</option>
+										<option value="手工设计">手工设计</option>
+										<option value="日常用品">日常用品</option>
+										<option value="音乐器材">音乐器材</option>
+									</select>
 
-
-							<div class="input-group">
-								<input type="text" placeholder="搜索"  aria-label="search" style="width: 470px" aria-describedby="button-addon2">
-								<div class="input-group-btn"><button type="button" style="position: absolute;left: 200px" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
+									<div class="input-group">
+										<input type="text" placeholder="搜索" class="form-control" aria-label="search"
+											   aria-describedby="button-addon2" id="txt" name="txt">
+										<div class="input-group-btn"><button type="submit"
+																			 class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
+										</div> </div></form>
 							</div>
+							<!-- between-header text-left col-sm-8 head-left border border-danger rounded mb-0 -->
 						</div>
 
 						<div class="col-xl-4 col-lg-5 head-right text-right">
@@ -648,35 +660,44 @@
 														<use xlink:href="#cart"></use>
 													</svg></span>
 												<span >购物车</span>
-
+                                                <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
+													  th:text="${session.shoppingCartList.size()}"></span>
 										</span>
-									<div class="dropdown-menu s_cart dropdown-menu-right">
 
+									<div th:if="${session.u_Account != null}" class="dropdown-menu s_cart dropdown-menu-right">
 										<ul class="shopping-cart p-2 ">
 											<li th:each="p:${session.shoppingCartList}" class="pb-2 d-block">
-
 												<div class="media ">
 													<div>
 														<a href="#">
 															<img th:src="${p.getP_href()}"
 																 class="fst-image img-fluid align-self-center"
-																 alt="product_13">
+																 alt="product_13"
+																 style="width: 75px;height: 75px;">
 														</a>
 													</div>
-													<div class="media-body">&nbsp;
+													<div class="media-body">
 														<h6 class="mt-0 f_15"
-															th:text="${p.getP_Title()}"><span
-																class="float-right cart_cross">X</span></h6>
-														<p><span class="f_13"
-																 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span></p>
+															th:text="'&nbsp;&nbsp;' + ${p.getP_Title()}"
+															style="max-width: 170px;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            font-size: 13px;
+                                                            font-weight: 700;
+                                                            white-space: nowrap;"></h6>
+
+														<span class="float-right cart_cross">X</span>
+														<span class="f_13" style="font-size: 12px;"
+															  th:text="'&nbsp;&nbsp;' + ${p.getP_Num()} + '&nbsp;X&nbsp;' + '￥' + ${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"></span>
 													</div>
 												</div>
 											</li>
+											<div class="border-bottom"></div>
 
 											<li class="d-block text-muted font-weight-bolder p-2 border-bottom">
-												<span class="text-left">总计:</span>
-												<span class="float-right f_13"
-													  th:text="'￥' + ${session.shoppingCarPrice}"></span>
+												<span class="text-left" style="font-weight: 700">总计:</span>
+												<span class="float-right f_13" style="font-weight: 700"
+													  th:text="'￥' + ${#numbers.formatDecimal(session.shoppingCarPrice,1,'COMMA',2,'POINT')}"></span>
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
 												<span class="text-left"><a href="/shopProduct">查看购物车</a></span>
@@ -693,7 +714,7 @@
 				</div> <!-- col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 head-search -->
 			</div> <!-- row -->
 		</div> <!--  container custom_container -->
-	</div> <!-- header-top py-4 border-bottom bg-white -->
+	</div> <!-- header-top py- 4 border-bottom bg-white -->
 
 	<!-- third row -->
 
@@ -974,8 +995,8 @@
 
 
 				<div class="input-group">
-					<input type="text" placeholder="搜索"  aria-label="search" style="width: 270px" aria-describedby="button-addon2">
-					<div class="input-group-btn"><button type="button" style="position: relative;left: -390%" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
+					<input type="text" placeholder="搜索"  aria-label="search" style="width: 300px" aria-describedby="button-addon2">
+					<div class="input-group-btn"><button type="button" style="position: relative;left: -930px" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
 				</div>
 			</div>
 <div>&nbsp;</div>
@@ -990,12 +1011,12 @@
 					<li class="f_13">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<span>购买时间</span>
-						<span>2021-07-22</span>
+						<span th:text="${oneOrder.getO_Date()}"></span>
 					</li>
 					<li class="f_13">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<span>订单号</span>
-						<span>20210722100</span>
+						<span th:text="${oneOrder.getO_Id()}"></span>
 					</li>
 				</div>
 				<div class="row sh_page col-12"><!-- border-bottom-->
@@ -1020,18 +1041,16 @@
 					</div>
 
 
-					<div class="col-6 col-md-6 pr-0">
-						<div class="d-flex" style="border:0.6px solid;position: absolute;left: 0px;height: 171.5px;width: 90px;color: #9F9F9F">
+					<div >
+						<div class="d-flex" style="border:0.6px solid;position:relative;left: 0px;height: 171.5px;width: 90px;color: #9F9F9F">
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul>
 									<li class="my-1 f_13">
                                           &nbsp;
-
 									</li>
 									<li class="my-1 f_13">
 										&nbsp;
-
 									</li>
 									<li class="my-1 f_13">
 										<span class="font-weight-bold"style="color: red;font-size: 15px" th:text="'￥'+${oneOrder.getP_Price()}"></span>
@@ -1043,8 +1062,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-6 col-md-6 pr-0">
-						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 40px;position: absolute;left: 645px;top: -171.5px;height: 171.5px">
+					<div >
+						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 40px;position: relative;height: 171.5px">
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
@@ -1066,76 +1085,58 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-6 col-md-6 pr-0">
-						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 180px;position: absolute;left: 129px;top: -171.5px;height: 171.5px">
+					<div>
+						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 180px;position: relative;height: 171.5px">
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
-
-
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">收货地址：</span>
-
 									</li>
 									<li class="my-1 f_13">
-
-
-										<span style="color: black">厦门市翔安区厦门大学翔安校区芙蓉</span>
-
+										<span style="color: black" th:text="${oneOrder.getO_Baddress()}"></span>
 									</li>
 									<li class="my-1 f_13">
-
-
-										<span style="color: black">联系方式：</span>
-
+										<span style="color: black">卖家联系方式：</span>
 									</li>
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">12343234321</span>
-
 									</li>
-
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="col-6 col-md-6 pr-0">
-						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 220px;position: absolute;left:864px;top: -171.5px;height: 171.5px">
+					<div >
+						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 220px;position: relative;height: 171.5px">
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
 
 									<li class="my-1 f_13">
 										&nbsp;
-
 									</li>
-                                    <li >
-									<li class="my-1 f_13" th:if="1==待发货">
-										<span style="color: black;font-size: 16px">待发货</span>
-									</li>
-									</li>
-									<li >
-									<li class="my-1 f_13" th:if="待收货">
-										<span style="color: black;font-size: 16px">待收货</span>
-
-									</li>
-									<li class="my-1 f_13" th:if="待收货">
-										<span style="color: black">物流编号：12334322123</span>
-
-									</li>
-									<li class="my-1 f_13" th:if="待收货">
-										<button type="submit"
-												class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认收货</button>
-									</li>
-									</li>
-									<li >
-									<li class="my-1 f_13" th:if="1==交易完成">
-										<span style="color: black;font-size: 16px">交易完成</span>
-									</li>
-									</li>
+                                    <div th:if="${oneOrder.getO_Status()} eq '未发货'">
+										<li class="my-1 f_13">
+											<span style="color: black;font-size: 16px">待发货</span>
+										</li>
+									</div>
+									<div th:if="${oneOrder.getO_Status()} eq '已发货'">
+										<li class="my-1 f_13">
+											<span style="color: black;font-size: 16px">待收货</span>
+										</li>
+										<li class="my-1 f_13">
+											<span style="color: black">物流编号：12334322123</span>
+										</li>
+										<li class="my-1 f_13">
+											<button type="submit"
+													class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认收货</button>
+										</li>
+									</div>
+									<div th:if="${oneOrder.getO_Status()} eq '已收货'">
+										<li class="my-1 f_13">
+											<span style="color: black;font-size: 16px">交易完成</span>
+										</li>
+									</div>
 
 
 								</ul>
@@ -1224,26 +1225,20 @@
 										<span style="color: black">国潮Ins假两件潮流潮牌纯棉宽松半袖上衣服</span>
 									</li>
 									<li class="f_13">
-										<span style="color: black">卖家:</span>
+										<span style="color: black">买家:</span>
 										<span style="color: black" th:text="${oneOrder.getO_Seller()}"></span>
 									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="col-6 col-md-6 pr-0">
-						<div class="d-flex" style="border:0.6px solid;position: absolute;left: 0px;height: 171.5px;width: 90px;color: #9F9F9F">
+					<div >
+						<div class="d-flex" style="border:0.6px solid;position: relative;height: 171.5px;width: 90px;color: #9F9F9F">
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul>
-									<li class="my-1 f_13">
-										&nbsp;
-
-									</li>
-									<li class="my-1 f_13">
-										&nbsp;
-
-									</li>
+									<li class="my-1 f_13">&nbsp;</li>
+									<li class="my-1 f_13">&nbsp;</li>
 									<li class="my-1 f_13">
 										<span class="font-weight-bold"style="color: red;font-size: 15px" th:text="'￥'+${oneOrder.getP_Price()}"></span>
 									</li>
@@ -1254,22 +1249,18 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-6 col-md-6 pr-0">
-						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 40px;position: absolute;left: 645px;top: -171.5px;height: 171.5px">
+					<div >
+						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 40px;position:relative;height: 171.5px">
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
 									<li class="my-1 f_13">
 										&nbsp;
-
 									</li>
 									<li class="my-1 f_13">
 										&nbsp;
-
 									</li>
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">1</span>
 									</li>
 
@@ -1277,76 +1268,57 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-6 col-md-6 pr-0">
-						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 180px;position: absolute;left: 129px;top: -171.5px;height: 171.5px">
+					<div >
+						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 180px;position: relative;height: 171.5px">
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
-
-
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">发货地址：</span>
-
 									</li>
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">厦门市翔安区厦门大学翔安校区芙蓉</span>
-
 									</li>
 									<li class="my-1 f_13">
-
-
-										<span style="color: black">联系方式：</span>
-
+										<span style="color: black">买家联系方式：</span>
 									</li>
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">12343234321</span>
-
 									</li>
 
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="col-6 col-md-6 pr-0">
-						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 220px;position: absolute;left:864px;top: -171.5px;height: 171.5px">
+					<div >
+						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 220px;position: relative;height: 171.5px">
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
 
 									<li class="my-1 f_13">
 										&nbsp;
-
 									</li>
 
-									<li >
-									<li class="my-1 f_13" th:if="待发货">
-										<span style="color: black;font-size: 16px">待发货</span>
+									<div th:if="${oneOrder.getO_Status()} eq '未发货'">
+										<li class="my-1 f_13" >
+											<span style="color: black;font-size: 16px">待发货</span>
+											<input type="text" placeholder="请输入快递编号"  aria-label="search" style="width: 170px" aria-describedby="button-addon2">
+											<button type="submit" class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认发货</button>
+										</li>
+									</div>
 
-									</li>
-									<li class="my-1 f_13" th:if="待发货">
-										<input type="text" placeholder="请输入快递编号"  aria-label="search" style="width: 170px" aria-describedby="button-addon2">
+									<div th:if="${oneOrder.getO_Status()} eq '已发货'">
+										<li class="my-1 f_13">
+											<span style="color: black;font-size: 16px">等待买家收货</span>
+										</li>
+									</div>
 
-									</li>
-									<li class="my-1 f_13" th:if="待发货">
-										<button type="submit"
-												class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认发货</button>
-									</li>
-									</li>
-									<li >
-									<li class="my-1 f_13" th:if="1==等待买家收货">
-										<span style="color: black;font-size: 16px">等待买家收货</span>
-									</li>
-									<li class="my-1 f_13" th:if="1==交易完成">
-										<span style="color: black;font-size: 16px">交易完成</span>
-									</li>
-									</li>
-
+									<div th:if="${oneOrder.getO_Status()} eq '已收货'">
+										<li class="my-1 f_13">
+											<span style="color: black;font-size: 16px">交易完成</span>
+										</li>
+									</div>
 
 								</ul>
 							</div>

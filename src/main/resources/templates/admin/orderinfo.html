@@ -4,19 +4,6 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
   <title>商品管理</title>
-  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/all.min.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/owl.theme.default.min.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/animate.min.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.min.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/media.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/owl.carousel.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/daterangepicker.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/magnific-popup.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/owl.carousel.css">
   <link rel="stylesheet" th:href="@{/layui/css/layui4.css}"/>
   <link rel="stylesheet" th:href="@{/layui/css/login.css}">
   <style type="text/css">
@@ -65,20 +52,19 @@
   </div>
   <div class="layui-body">
     <!-- 内容主体区域 -->
-    <div class="between-header border border-danger rounded mb-0 head-left">
-
-      <select class="select-menu form-select d-none d-sm-block" >
-        <option value="selected">分类查询</option>
-        <option value="1">卖家ID</option>
-        <option value="2">买家ID</option>
-        <option value="3">商品信息</option>
-      </select>
-
-
-      <div class="input-group">
-        <input type="text" placeholder="搜索"  aria-label="search" style="width: 270px" aria-describedby="button-addon2">
-        <div class="input-group-btn"><button type="button" style="position: relative;left: -390%" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
+    <div class="demoTable" style="margin-top: 10px;margin-left: 10px;">
+      <div class="layui-col-md3">
+        <input class="layui-input" name="productId" id="demoReload3" autocomplete="off" placeholder="请输入商品信息">
       </div>
+      <div class="layui-col-md3">
+        <input class="layui-input" name="productId" id="demoReload" autocomplete="off" placeholder="请输入卖家ID">
+      </div>
+      <button class="layui-btn"  data-type="reload" >搜索</button>
+      <div class="layui-col-md3">
+        <input class="layui-input" name="productId" id="demoReload2" autocomplete="off" placeholder="请输入买家ID">
+      </div>
+
+      <!--      <button class="layui-btn"  data-type="reload2" >搜买家</button>-->
     </div>
     <table id="demo" lay-filter="test"></table>
 
@@ -317,13 +303,13 @@
         , {field: 'o_ItemId', title: '物品ID', sort: true}
         ,{field: 'o_Seller', title: '卖家ID',sort: true}
         ,{field: 'o_Saddress', title: '卖家地址'}
-         ,{field: 'o_Buyer', title: '买家ID'}
+        ,{field: 'o_Buyer', title: '买家ID'}
         ,{field: 'o_Baddress', title: '买家地址'}
         ,{field: 'o_Date', title: '交易日期'}
         ,{field: "p_Price", title: '价格',sort: true,templet: function (d){
-                return "￥"+d.p_Price;
+            return "￥"+d.p_Price;
           }
-      }
+        }
       ]]
     });
   });
