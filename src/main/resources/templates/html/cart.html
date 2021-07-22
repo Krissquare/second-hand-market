@@ -513,8 +513,11 @@
 										</span>
 
 									<div class="dropdown-menu s_cart dropdown-menu-right">
+
 										<ul class="shopping-cart p-2 ">
+
 											<li th:each="p:${session.shoppingCartList}" class="pb-2 d-block">
+
 												<div class="media ">
 													<div>
 														<a href="#">
@@ -524,9 +527,9 @@
 														</a>
 													</div>
 													<div class="media-body">&nbsp;
-														<h6 class="mt-0 f_15"
-															th:text="${p.getP_Title()}"><span
-																class="float-right cart_cross">X</span></h6>
+														<span class="mt-0 f_15"
+															th:text="${p.getP_Title()}"></span>
+														<span >成色: 全新售后服务: 店铺三包产地: 港澳台地区屏幕尺寸: 14英寸屏幕比例: 16:9接口类型: HDMI 音频</span>
 														<p><span class="f_13"
 																 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span></p>
 													</div>
@@ -678,31 +681,47 @@
 						<div class="row sh_page" th:each="p:${sproduct}"><!-- border-bottom-->
 							<div class="row sh_page col-12"><!-- border-bottom-->
 								<div class="col-6 col-md-6 pr-0">
-									<div class="d-flex">
+									<div class="d-flex" >
 										<div class=" col-xl-4 col-lg-5 col-md-5 col-6 px-0">
 											<a href="#"><img th:src="${p.getP_href()}" class="fst-image mx-auto d-block img-fluid" height="150px" width="150px" alt="picture"></a>
 										</div>
 										<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 											<h5 class="w_product_name font-weight-bold mb-2 mb-sm-3 mb-xl-3 mt-sm-2 mt-md-2"><a href="#" th:text="${p.getP_Title()}"></a></h5>
+											<span style="color: black">15.6英寸游戏笔记本电脑锐龙六核R5轻薄独显4G手提游戏本便携电脑Y7000</span>
 										</div>
 									</div>
+									<HR  width="1040px" color=#987cb9 SIZE=4>
+
 								</div>
+
 								<div class="col-6 col-md-6 mt-4 pl-0">
 									<div class="d-flex">
 										<div class="col-md-4 col-sm-4 col-4 ">
-											<span class="font-weight-bold" th:text="'￥'+${p.getP_Price()}"></span>
-										</div>
-										<div class="col-md-4 col-sm-4 col-5 text-center">
-											<input type="hidden" th:id="'ID'+${p.getP_Id()}" th:name="'ID_'+${p.getP_Id()}" th:value="${p.getP_Id()}">
-					              		<button type="button" class="btn btn-default btn-number p-0" th:id="'minus'+${p.getP_Id()}" >-</button>
-											<input type="number" name="quant[1]" class="form-control input-number" th:value="${p.getP_Num()}">
-					                	<button type="button" class="btn btn-default btn-number p-0" th:id="'plus'+${p.getP_Id()}">+</button>
+											<span class="font-weight-bold" style="font-size: 18px;color: red" th:text="'&nbsp;&nbsp;&nbsp;￥'+${p.getP_Price()}"></span>
+											<del class="text-muted" th:text="'￥'+'100'"></del>
 
 										</div>
+
+										<div class="sp_counter ">
+
+											<div class="input-group">
+												<input type="hidden" th:id="'ID'+${p.getP_Id()}" th:name="'ID_'+${p.getP_Id()}" th:value="${p.getP_Id()}"style="position: relative;top: 0px">
+												<span class="input-group-btn">
+		              		<button th:id="'minus'+${p.getP_Id()}" type="button" class="btn btn-default btn-number"  data-type="minus" data-field="quant[1]"style="position: relative;left: 15px;top: -17px"><span class="minus">-</span></button>
+		                </span>
+												<input th:value="${p.getP_Num()}" type="number" name="quant[1]" class="form-control input-number" value="1" min="1" max="10"style="position: relative;left: 15px;top: -12px">
+												<span class="input-group-btn">
+		                	<button th:id="'plus'+${p.getP_Id()}" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]"style="position: relative;left: 188px;top: -70px"><span class="plus">+</span></button>
+		                </span>
+											</div>
+
+										</div>
+
 										<div class="col-md-4 col-sm-4 col-3 text-right">
 											<a href="#"><i class="fas fa-trash-alt "></i></a>
 										</div>
 									</div>
+
 								</div>
 							</div>
 						</div>
@@ -730,7 +749,7 @@
 					<div class="card-footer">
 						<div class="row">
 							<div class="col-6 col-sm-5">
-								<a href="/checkOutWithCart" class="btn btn-success btn-block f_13 font-weight-bold">结算</a>
+								<a href="/checkOutWithCart" style="background-color:red;width: 200px;position: relative;left: 450px" class="btn btn-success btn-block f_13 font-weight-bold">一键结算</a>
 							</div>
 						</div>
 					</div>
