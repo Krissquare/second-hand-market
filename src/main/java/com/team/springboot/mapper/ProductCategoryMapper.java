@@ -16,7 +16,7 @@ public interface ProductCategoryMapper {
     //2021.7.2
     @Select("select p_Id,p_Account,p_Name,c_Name,p_Title,p_Price,p_href,p_Status from product inner join Category on product.c_Id=Category.c_Id limit #{0}, #{1}")
     List<ProductCategory> selectProductCategorys(int page, int limit);
-    @Select("select p_Id,p_Account,p_Name,c_Name,p_Title,p_Price,p_href from product inner join Category on product.c_Id=Category.c_Id where p_Account = #{0} limit #{1}, #{2}")
+    @Select("select p_Id,p_Account,p_Name,c_Name,p_Title,p_Price,p_href,p_Status from product inner join Category on product.c_Id=Category.c_Id where p_Account = #{0} limit #{1}, #{2}")
     List<ProductCategory> selectProductCategorysByaccount(String p_Account,int page, int limit);
     //
     @Select("select p_Id,p_Account,p_Name,c_Name,p_Title,p_originalPrice,p_Price,p_href,p_Date from product inner join Category on product.c_Id=Category.c_Id and p_num!=0")
@@ -31,7 +31,7 @@ public interface ProductCategoryMapper {
     @Select("select p_href, p_Id,p_Account,p_Name,c_Name,p_originalPrice,p_Title,p_Price,p_Date  from category c,product p where c.c_Id=p.c_Id and c.c_Name=#{0} and p.p_Title like #{1}")
     List<ProductCategory>selectCategory(String category,String txt);
 
-    @Select("select p_href, p_Id,p_Account,p_Name,c_Name,p_Title,p_Price from product inner join Category on product.c_Id=Category.c_Id where (p_Title like #{2} OR p_Name like #{2}) AND p_Account = #{3} limit #{0}, #{1}")
+    @Select("select p_href, p_Id,p_Account,p_Name,c_Name,p_Title,p_Price,p_Status from product inner join Category on product.c_Id=Category.c_Id where (p_Title like #{2} OR p_Name like #{2}) AND p_Account = #{3} limit #{0}, #{1}")
     List<ProductCategory>selectProductCategorysByp_nameAndaccount(int page, int limit,String p_Name,String p_Account);
 
     @Select("select c_Name from category")
