@@ -990,12 +990,12 @@
 					<li class="f_13">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<span>购买时间</span>
-						<span>2021-07-22</span>
+						<span th:text="${oneOrder.getO_Date()}"></span>
 					</li>
 					<li class="f_13">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<span>订单号</span>
-						<span>20210722100</span>
+						<span th:text="${oneOrder.getO_Id()}"></span>
 					</li>
 				</div>
 				<div class="row sh_page col-12"><!-- border-bottom-->
@@ -1027,11 +1027,9 @@
 								<ul>
 									<li class="my-1 f_13">
                                           &nbsp;
-
 									</li>
 									<li class="my-1 f_13">
 										&nbsp;
-
 									</li>
 									<li class="my-1 f_13">
 										<span class="font-weight-bold"style="color: red;font-size: 15px" th:text="'￥'+${oneOrder.getP_Price()}"></span>
@@ -1071,33 +1069,18 @@
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
-
-
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">收货地址：</span>
-
 									</li>
 									<li class="my-1 f_13">
-
-
-										<span style="color: black">厦门市翔安区厦门大学翔安校区芙蓉</span>
-
+										<span style="color: black" th:text="${oneOrder.getO_Baddress()}"></span>
 									</li>
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">联系方式：</span>
-
 									</li>
 									<li class="my-1 f_13">
-
-
 										<span style="color: black">12343234321</span>
-
 									</li>
-
 								</ul>
 							</div>
 						</div>
