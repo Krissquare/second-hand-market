@@ -487,23 +487,23 @@
                                     <a th:if="${session.u_Account == null}" href="/login" class="font-weight-bolder">登录</a>
 								</span>
 						</div>
-
-
-
 						<div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
-									>退出</a>
+                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder">个人主页</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
 						</div>
-						<div class="dropdown right1 md_1 hr_" th:if="${session.u_Account != null}">
-								<span class="dropdown-toggle">
-                                    <a href="userInfo.html" class="font-weight-bolder">修改个人信息</a>
-								</span>
-
+						<div class="dropdown right1 md_1 hr_">
+                            <span class="dropdown-toggle">
+                           <a th:if="${session.u_Account == null}" href="/forgot" class="font-weight-bolder">忘记密码</a>
+                            </span>
+							<a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder">退出</a>
+							</span>
 						</div>
+
+
+
 
 					</nav>
 
@@ -557,27 +557,18 @@
 									<a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
 													width="34px" height="40px"></svg></span>
-										<img src="assets/img/订单.png" style="height: 33px;width: 30px" alt="">
+										<img src="assets/img/发布商品.png" style="height: 33px;width: 30px" alt="">
 										<span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
-                                            <a th:if="${session.u_Account != null}" href="/showMyTransactionOrders">订单管理</a></span>
-										<a th:if="${session.u_Account == null}" href="/login">订单管理</a></span>
+                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品</a></span>
+										<a th:if="${session.u_Account == null}" href="/login">发布商品</a></span>
 									</a>
 								</li>
-								<li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
-									<a href="/showWishList">
-											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
-													width="35px" height="35px">
-													<use xlink:href="#favourite"></use>
-												</svg></span>
-										<span
-												class="comp_wish align-middle d-lg-inline-block font-weight-bolder">心愿清单</span>
-									</a>
-								</li>
+
 
 								<li class="d-lg-none d-md-inline-block user">
 										<span>
 											<a href="#"><span><svg width="35px" height="35px">
-														<use xlink:href="#header_user"></use>
+														<use xlink:href="#header_user">购物车</use>
 													</svg></span></a>
 										</span>
 									<div class="head_ border rounded bg-white text-left">
@@ -592,7 +583,7 @@
 												<span><svg width="35px" height="35px">
 														<use xlink:href="#cart"></use>
 													</svg></span>
-												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
+												<span >购物车</span>
 
 											</a>
                                     </span>
@@ -603,9 +594,8 @@
 												<span><svg width="35px" height="35px">
 														<use xlink:href="#cart"></use>
 													</svg></span>
-												<span class="text-danger d-lg-inline-block d-md-none d-sm-none d-none align-middle font-weight-bolder"></span>
-                                                <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
-													  th:text="${session.shoppingCartList.size()}"></span>
+												<span >购物车</span>
+
 										</span>
 
 									<div class="dropdown-menu s_cart dropdown-menu-right">
@@ -636,7 +626,7 @@
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
 												<span class="text-left"><a href="/shopProduct">查看购物车</a></span>
-												<span class="float-right"><a href="checkout.html">结账</a></span>
+												<span class="float-right"><a href="/checkOutWithCart">结账</a></span>
 											</li>
 										</ul>
 									</div>
@@ -659,68 +649,33 @@
 
 				<div class="col-lg-9 text-left sp_hz_menu">
 					<ul class="main-menu navbar">
-						<li><a th:href="@{/}">主页</a></li>
-						<li><a th:href="@{/searchAll}">商店</a></li>
+						<li><a th:href="@{/}">首页</a></li>
+						<li><a th:href="@{/searchAll}">市场</a></li>
 
-						<li><a href="about-us.html">关于我们</a></li>
 						<li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-							   aria-expanded="false">其他&nbsp;<i class="fas fa-angle-down"></i></a>
+							   aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
 							<ul class="dropdown-menu">
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
-													   href="about-us.html">关于我们</a></li>
+													   href="cart.html">我的购物车</a></li>
 
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
-													   href="login.html">登录</a></li>
+													   href="/showMyTransactionOrders">我的订单</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
-													   href="registration.html">注册</a></li>
+													   href="wishlist.html">我的收藏</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
-													   href="cart.html">购物车</a></li>
-								<li class="d-block"><a class="dropdown-item font-weight-bolder"
-													   href="/showWishList">心愿清单</a></li>
-								<li class="d-block"><a class="dropdown-item font-weight-bolder"
-													   href="forgot.html">忘记密码</a></li>
+													   href="/admin/user_init" >商品管理</a></li>
+
 							</ul>
 						</li>
-						<style>
-
-							.fabu1{
-								position: absolute;
-								top:-8px;
-								left: 250px;
-								border-width: 0px; /* 边框宽度 */
-								border-radius: 3px; /* 边框半径 */
-								width:105px;
-								height:38px;
-							}
-						</style>
-						<li style="background-color:#FFC107" class="fabu1">
-
-
-
-							<a class="dropdown-item font-weight-bolder2"
-							   href="/admin/user_init" style="color: black;font-weight:600"> &nbsp;&nbsp;商品管理</a></li>
 
 
 
 
-						<style>
-
-							.fabu2{
-								position: absolute;
-								top:-8px;
-								left: 250px;
-								border-width: 0px; /* 边框宽度 */
-								border-radius: 3px; /* 边框半径 */
-								width:105px;
-								height:38px;
-							}
-						</style>
-						<li style="background-color:#FFC107" class="fabu2">
 
 
 
-							<a class="dropdown-item font-weight-bolder2"
-							   th:href="@{/admin/addinit}" style="color: black;font-weight:600"> &nbsp;&nbsp;发布商品</a></li></ul>
+
+					</ul>
 				</div> <!-- col-lg-9 text-left -->
 
 			</div> <!-- row -->
@@ -962,8 +917,8 @@
 			<div class="row ">
 				<div class="col-12 ">
 					<ul>
-						<li class="d-inline-block font-weight-bolder"><a th:href="@{/}">主页</a></li>
-						<li class="d-inline-block hr_ font-weight-bolder"><a href="#">商店</a></li>
+						<li class="d-inline-block font-weight-bolder"><a th:href="@{/}">首页</a></li>
+						<li class="d-inline-block hr_ font-weight-bolder"><a href="#">市场</a></li>
 					</ul>
 				</div>
 			</div>
