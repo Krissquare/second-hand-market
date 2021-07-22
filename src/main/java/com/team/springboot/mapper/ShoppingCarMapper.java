@@ -38,4 +38,7 @@ public interface ShoppingCarMapper {
     @Update("update shoppingcar set p_Num=#{2} where u_Account=#{0} and p_Id=#{1}")
     void updateNum(String u_Account,int p_Id,int num);
 
+    @Delete("Delete from shoppingcar where u_Account=#{0} and p_Id=#{1}")
+    void deleteByAccountId(String u_Account,int p_Id);
+
 }
