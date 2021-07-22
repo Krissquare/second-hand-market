@@ -552,9 +552,23 @@
 				<div class="col-lg-9 text-left">
 					<ul class="main-menu navbar">
 						<li><a th:href="@{/}">首页</a></li>
-						<li><a th:href="@{/searchAll}">市场</a></li>
+						<li><a th:href="@{/searchPage(pageNo=1)}">市场</a></li>
 
-						<li><a href="about-us.html">关于我们</a></li>
+						<li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+							   aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
+							<ul class="dropdown-menu">
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="cart.html">我的购物车</a></li>
+
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/showMyTransactionOrders">我的订单</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/showWishList">我的收藏</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/admin/user_init" >商品管理</a></li>
+
+							</ul>
+						</li>
 
 
 
