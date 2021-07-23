@@ -844,7 +844,7 @@
 								<div class="col-6 col-md-6 pr-0">
 									<div class="d-flex">
 										<div class=" col-xl-4 col-lg-5 col-md-5 col-6 px-0">
-											<a href="#"><img th:src="${w.getP_href()}" class="fst-image mx-auto d-block img-fluid" height="150px" width="150px" alt="picture"></a>
+											<a th:href="@{/goodsDetail(pid=${w.getP_Id()})}"><img th:src="${w.getP_href()}" class="fst-image mx-auto d-block img-fluid" height="150px" width="150px" alt="picture"></a>
 										</div>
 										<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 											<h5 class="w_product_name font-weight-bold mb-2 mb-sm-3 mb-xl-3 mt-sm-2 mt-md-2"><a href="#" th:text="${w.getP_Title()}"></a></h5>
@@ -867,6 +867,7 @@
 
 										</div>
 										<div class="col-md-4 col-sm-4 col-3 text-right">
+											<button th:id="'add'+${w.getP_Id()}" name="add">加入购物车</button>
 											<a th:id="'delete'+${w.getP_Id()}"><i class="fas fa-trash-alt "></i></a>
 										</div>
 									</div>
@@ -881,9 +882,14 @@
 							sproduct.forEach((p)=>{
 								let a=document.getElementById("delete"+p.p_Id);
 								let id=p.p_Id;
+								let btn=document.getElementById("add"+p.p_Id);
 								a.onclick=function ()
 								{
 									location.href="/deleteWish?ID="+id;
+								}
+								btn.onclick=function ()
+								{
+									location.href="/wishToCar?pid="+id;
 								}
 							})
 
