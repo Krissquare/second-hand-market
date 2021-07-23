@@ -14,19 +14,19 @@ public class Order {
     private String p_href;
     private double p_Price;
     private int p_Num;
-    private String expressId;
+    private String o_ExpressId;
 
 
     public Order() {
 
     }
 
-    public String getExpressId() {
-        return expressId;
+    public String getO_ExpressId() {
+        return o_ExpressId;
     }
 
-    public void setExpressId(String expressId) {
-        this.expressId = expressId;
+    public void setO_ExpressId(String o_ExpressId) {
+        this.o_ExpressId = o_ExpressId;
     }
 
     public int getP_Num() {
