@@ -28,6 +28,9 @@ public class GoodsDetailController   {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    WishListService wishListService;
+
    //商品信息页面初始化
    @RequestMapping("/goodsDetail")
     public  String goodsDetail(@RequestParam("pid") String pid, Model model){
@@ -53,6 +56,22 @@ public class GoodsDetailController   {
            shoppingCarService.updateByAccountId(account,p_Id,num);
 
        return "redirect:/goodsDetail?pid=" + p_Id;
+   }
+
+   @RequestMapping("/wishToCar")
+   public String wishToCar(@RequestParam("pid") String pid,HttpSession session)
+   {
+       String account = (String) session.getAttribute("u_Account");
+       if(account == null)
+           return "redirect:/login";
+       int pId=Integer.parseInt(pid);
+       ShoppingCar sc=shoppingCarService.selectByAccountId(account,pId);
+       if(sc==null)
+       {
+           shoppingCarService.insertOne(account, pId);
+       }
+       wishListService.deleteByAccountId(account,pId);
+       return "redirect:/showWishList";
    }
 
    //打开购物车
