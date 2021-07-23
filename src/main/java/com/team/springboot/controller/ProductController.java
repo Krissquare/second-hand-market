@@ -43,6 +43,73 @@ public class ProductController {
         return "admin/user_productInfo";
     }
 
+    @RequestMapping("/status")
+    public String showproductInfoByStatus(HttpSession session, Model m) {
+        String account = (String) session.getAttribute("u_Account");
+        UserHead userHead = userHeadService.selectHead(account);
+        m.addAttribute("userHead", userHead);
+        return "admin/productinfostatus";
+    }
+
+    @RequestMapping("/productInfoByStatus")
+    @ResponseBody
+    public BaseResponse productinfoByStatus (@RequestParam String page,
+                                     @RequestParam String limit,
+                                     HttpServletRequest request){
+        String p_Name=request.getParameter("p_Name");
+        String status=request.getParameter("p_Status");
+        BaseResponse<List<ProductCategory>> baseResponse = new BaseResponse<>();
+        List<ProductCategory> product;
+        HttpSession session =request.getSession();
+        if(p_Name!=null){
+            p_Name="%"+p_Name+"%";
+            if (session.getAttribute("u_Account").equals("admin")) {
+                product = productCategoryService.selectProductCategorysByStatus(StringUtils.isNullOrEmpty(page) ? 1 : Integer.valueOf(page),
+                        StringUtils.isNullOrEmpty(limit) ? 10 : Integer.valueOf(limit),
+                        status);
+                baseResponse.setCount(10);
+                baseResponse.setData(product);
+                baseResponse.setCode(200);
+                baseResponse.setMsg("请求成功");
+                return baseResponse;
+            }
+            else{
+                String p_Account=(String) session.getAttribute("u_Account");
+                product= productCategoryService.selectProductCategorysByp_nameAndaccount(StringUtils.isNullOrEmpty(page) ? 1 : Integer.valueOf(page),
+                        StringUtils.isNullOrEmpty(limit) ? 10 : Integer.valueOf(limit),
+                        p_Name,
+                        p_Account);
+                baseResponse.setCount(productService.selectCountByp_nameAndaccount(p_Account,p_Name));
+                baseResponse.setData(product);
+                baseResponse.setCode(200);
+                baseResponse.setMsg("请求成功");
+                return baseResponse;
+            }
+        }
+        //分页查询每页10条
+        if (session.getAttribute("u_Account").equals("admin")) {
+            product = productCategoryService.selectProductCategorysByStatus(StringUtils.isNullOrEmpty(page) ? 1 : Integer.valueOf(page),
+                    StringUtils.isNullOrEmpty(limit) ? 10 : Integer.valueOf(limit),status);
+            baseResponse.setCount(10);
+        } else {
+            product = productCategoryService.selectProductCategorysByaccount((String) session.getAttribute("u_Account"),
+                    StringUtils.isNullOrEmpty(page) ? 1 : Integer.valueOf(page),
+                    StringUtils.isNullOrEmpty(limit) ? 10 : Integer.valueOf(limit));
+            baseResponse.setCount(productService.selectCountByaccount((String) session.getAttribute("u_Account")));
+        }
+        //判断product是否为空
+        if(product!=null) {
+            baseResponse.setData(product);
+            baseResponse.setCode(200);
+            baseResponse.setMsg("请求成功");
+        }
+        else{
+            baseResponse.setCode(500);
+            baseResponse.setMsg("请求出错");
+        }
+        return baseResponse;
+    }
+
     @RequestMapping("/productInfo")
     @ResponseBody
     public BaseResponse productinfo (@RequestParam String page,
@@ -246,21 +313,22 @@ public class ProductController {
     }
 
     @RequestMapping("/add")
-    public String add (@RequestParam("p_Account") String p_Account,
-                       @RequestParam("p_Name") String p_Name,
+    public String add (@RequestParam("p_Name") String p_Name,
                        @RequestParam("p_Title") String p_Title,
                        @RequestParam("p_Date") Date p_Date,
                        @RequestParam("p_Price") Double p_Price,
+                       @RequestParam("p_originalPrice") String p_originalPrice,
                        @RequestParam("p_Des") String p_Des,
-                       @RequestParam("p_num") int p_num
+                       @RequestParam("p_num") int p_num,HttpSession session
     ){
 
         ProductCategory productCategory = new ProductCategory();
         productCategory.setP_Id(productCategoryService.selectMaxP_Id()+1);
-        productCategory.setP_Account(p_Account);
+        productCategory.setP_Account((String) session.getAttribute("u_Account"));
         productCategory.setP_Date(p_Date);
         productCategory.setP_Des(p_Des);
         productCategory.setP_Title(p_Title);
+        productCategory.setP_originalPrice(p_originalPrice);
         productCategory.setP_Name(p_Name);
         productCategory.setP_Price(p_Price);
         productCategory.setP_num(p_num);
