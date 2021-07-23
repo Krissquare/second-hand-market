@@ -999,7 +999,7 @@
 					<div class="input-group-btn"><button type="button" style="position: relative;left: -930px" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
 				</div>
 			</div>
-<div>&nbsp;</div>
+			<div>&nbsp;</div>
 			<div class="row sh_page border-bottom">
 				<div class="col-12">
 					<span class="font-weight-bold">我买的</span>
@@ -1029,7 +1029,7 @@
 								<h5 class="w_product_name font-weight-bold mb-2 mb-sm-3 mb-xl-3 mt-sm-2 mt-md-2"><a href="#" th:text="${oneOrder.getP_Title()}"></a></h5>
 								<ul >
 									<li class="my-1 f_13">
-										<span style="color: black">国潮Ins假两件潮流潮牌纯棉宽松半袖上衣服</span>
+										<span style="color: black">物品描述国潮Ins假两件潮流潮牌纯棉宽松半袖上衣服</span>
 									</li>
 									<li class="f_13">
 										<span style="color: black">卖家:</span>
@@ -1067,27 +1067,17 @@
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
+									<li class="my-1 f_13">&nbsp;</li>
+									<li class="my-1 f_13">&nbsp;</li>
 									<li class="my-1 f_13">
-										&nbsp;
-
-									</li>
-									<li class="my-1 f_13">
-										&nbsp;
-
-									</li>
-									<li class="my-1 f_13">
-
-
 										<span style="color: black">1</span>
 									</li>
-
 								</ul>
 							</div>
 						</div>
 					</div>
 					<div>
 						<div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 180px;position: relative;height: 171.5px">
-
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
 									<li class="my-1 f_13">
@@ -1111,7 +1101,6 @@
 
 							<div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
 								<ul >
-
 									<li class="my-1 f_13">
 										&nbsp;
 									</li>
@@ -1125,11 +1114,15 @@
 											<span style="color: black;font-size: 16px">待收货</span>
 										</li>
 										<li class="my-1 f_13">
-											<span style="color: black">物流编号：12334322123</span>
+											<span style="color: black" th:text="'物流编号'+${oneOrder.getO_ExpressId()}"></span>
 										</li>
 										<li class="my-1 f_13">
-											<button type="submit"
-													class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认收货</button>
+											<button type="submit" class="btn btn-danger text-uppercase font-weight-normal" th:id="'bt_buy_'+${oneOrder.getO_Id()}"
+													style="width: 95px;height: 35px;font-size: 1px" >确认收货</button>
+<!--											<form th:id="'form_buy_'+${oneOrder.getO_Id()}">-->
+<!--												<input type="submit" th:id="'bt_ack'+${oneOrder.getO_Id()}" value="确认收货" onclick=" receivedACK() ">-->
+<!--											</form>-->
+
 										</li>
 									</div>
 									<div th:if="${oneOrder.getO_Status()} eq '已收货'">
@@ -1147,44 +1140,6 @@
 
 				</div>
 			</div>
-
-<!--			<div class="row sh_page border-bottom">-->
-<!--				<div class="col-12 col-md-6 pr-0">-->
-<!--					<div class="d-flex">-->
-<!--						<div class=" col-xl-4 col-lg-5 col-md-5 col-4 px-0">-->
-<!--							<a href="#"><img src="assets/img/product/product_13.jpg" class="fst-image mx-auto d-block img-fluid" alt="product_13"></a>-->
-<!--						</div>-->
-<!--						<div class=" col-xl-8 col-lg-7 col-md-7 col-8 pr-0">-->
-<!--							<h5 class="w_product_name font-weight-bold mb-2 mb-sm-3 mb-xl-3 mt-sm-2 mt-md-2"><a href="#">Aliquam Top Erat Volutpat</a></h5>-->
-<!--							<ul>-->
-<!--								<li class="my-1 f_13">-->
-<!--									<span>size:</span>-->
-<!--									<span>s</span>-->
-<!--								</li>-->
-<!--								<li class="f_13">-->
-<!--									<span>color:</span>-->
-<!--									<span>white</span>-->
-<!--								</li>-->
-<!--							</ul>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--				<div class="col-12 col-md-6 mt-4 pl-0">-->
-<!--					<div class="d-flex">-->
-<!--						<div class="col-md-4 col-sm-4 col-4 ">-->
-<!--							<span class="font-weight-bold">$45.00</span>-->
-<!--						</div>-->
-<!--						<div class="col-md-4 col-sm-4 col-5 text-center">-->
-<!--							<span class="font-weight-bolder"><span class="d-xl-inline-block d-none">availability : </span> in stock</span>-->
-<!--						</div>-->
-<!--						<div class="col-md-4 col-sm-4 col-3 text-right">-->
-<!--							<a href="#"><i class="fas fa-trash-alt "></i></a>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-
-<!--			-->
 
 		</div> <!-- container custom_container -->
 
@@ -1222,7 +1177,7 @@
 								<h5 class="w_product_name font-weight-bold mb-2 mb-sm-3 mb-xl-3 mt-sm-2 mt-md-2"><a href="#" th:text="${oneOrder.getP_Title()}"></a></h5>
 								<ul >
 									<li class="my-1 f_13">
-										<span style="color: black">国潮Ins假两件潮流潮牌纯棉宽松半袖上衣服</span>
+										<span style="color: black">物品描述国潮Ins假两件潮流潮牌纯棉宽松半袖上衣服</span>
 									</li>
 									<li class="f_13">
 										<span style="color: black">买家:</span>
@@ -1302,9 +1257,11 @@
 
 									<div th:if="${oneOrder.getO_Status()} eq '未发货'">
 										<li class="my-1 f_13" >
-											<span style="color: black;font-size: 16px">待发货</span>
-											<input type="text" placeholder="请输入快递编号"  aria-label="search" style="width: 170px" aria-describedby="button-addon2">
-											<button type="submit" class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认发货</button>
+											<span style="color: black;font-size: 16px">待您发货</span>
+											<input type="text" placeholder="请输入快递单号" th:id="'expressID_'+${oneOrder.getO_Id()}"
+												   aria-label="search" style="width: 170px" aria-describedby="button-addon2">
+											<button type="submit" class="btn btn-danger text-uppercase font-weight-normal" th:id="'bt_sell_'+${oneOrder.getO_Id()}"
+													style="width: 95px;height: 35px;font-size: 1px">确认发货</button>
 										</li>
 									</div>
 
@@ -1334,15 +1291,8 @@
 
 	</div> <!-- portfolio_2_page -->
 	
-	
-
 
 <!-- wishlist page end -->
-
-
-
-
-
 
 
 
@@ -1492,8 +1442,30 @@
 	<script src="assets/js/all.min.js"></script>
 	<script src="assets/js/index.js"></script>
 	<script src="assets/js/wow.min.js"></script>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/layui/jquery.min.js}"></script>
 
-
+<script th:inline="javascript">
+	let buyList = [[${myAllOrdersBuy}]];
+	let sellList = [[${myAllOrderSell}]];
+	buyList.forEach((oneOrder)=>{
+		if (oneOrder.o_Status == '已发货'){
+			let btBuy = document.getElementById('bt_buy_' + oneOrder.o_Id);
+			btBuy.onclick = function () {
+				location.href = '/HasReceived?o_Id=' + oneOrder.o_Id;
+			}
+		}
+	});
+	sellList.forEach((oneOrder)=>{
+		if (oneOrder.o_Status == '未发货'){
+			let expressID = document.getElementById('expressID_'+oneOrder.o_Id);
+			let btSell = document.getElementById('bt_sell_'+oneOrder.o_Id);
+			btSell.onclick = function (){
+				location.href = '/AddExpressID?o_Id=' + oneOrder.o_Id + '&exp_Id=' + expressID.value;
+			}
+		}
+	});
+</script>
 </body>
 </html>
 

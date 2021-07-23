@@ -283,7 +283,7 @@ public class showController {
         m.addAttribute("myAllOrdersBuy",buyOrderList);
         m.addAttribute("myAllOrderSell",sellOrderList);
 
-        System.out.println(buyOrderList.size());//debug
+//        System.out.println(buyOrderList.size());//debug
         return "html/transactionRecord";
     }
     @PostMapping("/selectCategory")

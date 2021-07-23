@@ -1,6 +1,7 @@
 package com.team.springboot.controller;
 
 import com.team.springboot.pojo.BaseResponse;
+import com.team.springboot.pojo.Order;
 import com.team.springboot.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,27 +16,32 @@ public class ExpressController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping("/AddRequestID")
-    public BaseResponse addExpressID(@RequestParam("") String orderID,
-                                       @RequestParam("") String expressID,
-                                       HttpSession session
-                                       ){
-        BaseResponse baseResponse = new BaseResponse();
+    @RequestMapping("/AddExpressID")
+    public String addExpressID(@RequestParam("o_Id") String orderID,
+                               @RequestParam("exp_Id") String expressID,
+                               HttpSession session
+    ){
+        //写入物流信息
         orderService.updateExpressIdById(orderID,expressID);
+        //修改订单状态
+        Order order = new Order();
+        order.setO_Id(orderID);
+        order.setO_Status("已发货");
+        orderService.StatusUpdate(order);
 
-        baseResponse.setCode(200);
-        baseResponse.setMsg("成功");
-        return baseResponse;
+//        System.out.println(orderID);
+        return "redirect:/showMyTransactionOrders";
     }
 
-    @RequestMapping("/GetExpressID")
-    public BaseResponse getExpressID(@RequestParam("")String orderID, HttpSession session){
-        BaseResponse baseResponse = new BaseResponse();
-        String expressID = orderService.selectExpressIdById(orderID);
+    @RequestMapping("/HasReceived")
+    public String hasReceived(@RequestParam("o_Id")String orderID, HttpSession session){
+//        System.out.println(orderID);
+        Order order = new Order();
+        order.setO_Id(orderID);
+        order.setO_Status("已收货");
+        orderService.StatusUpdate(order);
 
-        baseResponse.setMsg(expressID);
-        baseResponse.setCode(200);
-        return baseResponse;
+        return "redirect:/showMyTransactionOrders";
     }
 
 }
