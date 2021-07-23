@@ -863,11 +863,10 @@
 										</div>
 
 										<div class="col-md-4 col-sm-4 col-3 text-right">
-											<input type="submit" value="加入购物车" class="btn btn-primary primary"style="position:relative;left:60px;top:-15px;height: 50px;width: 120px;background-color: orange">
+											<input type="submit" value="加入购物车" th:id="'add'+${w.getP_Id()}" class="btn btn-primary primary"style="position:relative;left:60px;top:-15px;height: 50px;width: 120px;background-color: orange">
 
 										</div>
 										<div class="col-md-4 col-sm-4 col-3 text-right">
-											<button th:id="'add'+${w.getP_Id()}" name="add">加入购物车</button>
 											<a th:id="'delete'+${w.getP_Id()}"><i class="fas fa-trash-alt "></i></a>
 										</div>
 									</div>
