@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<html xmlns:th="http://www.thymeleaf.org"><html>
 <head>
     <title>厦大二手交易平台</title>
     <meta charset="utf-8"/>
@@ -212,23 +211,18 @@
     </symbol>
 
     <symbol viewBox="0 0 504.124 504.124" id="gift">
-        <path style="fill:#DB5449;"
-              d="M15.754,133.909l236.308,118.154L488.37,133.909v252.062L252.062,504.123L15.754,385.969V133.909z"></path>
-        <path style="fill:#C54B42;"
-              d="M15.754,157.538v73.649l235.52,115.397l237.095-115.791v-73.255L252.062,273.33L15.754,157.538z"></path>
+        <path style="fill:#DB5449;" d="M15.754,133.909l236.308,118.154L488.37,133.909v252.062L252.062,504.123L15.754,385.969V133.909z"></path>
+        <path style="fill:#C54B42;" d="M15.754,157.538v73.649l235.52,115.397l237.095-115.791v-73.255L252.062,273.33L15.754,157.538z"></path>
         <path style="fill:#D05045;" d="M252.062,504.123V252.063L31.508,141.786H15.754v244.185L252.062,504.123z"></path>
-        <path style="fill:#BB483E;"
-              d="M15.754,157.538v73.649l235.52,115.397l0.788-0.394v-73.255v0.394L15.754,157.538z"></path>
-        <path style="fill:#EB6258;"
-              d="M0,125.638L252.062,0.001l252.062,125.637v16.542L252.062,267.815L0,142.573V125.638z"></path>
+        <path style="fill:#BB483E;" d="M15.754,157.538v73.649l235.52,115.397l0.788-0.394v-73.255v0.394L15.754,157.538z"></path>
+        <path style="fill:#EB6258;" d="M0,125.638L252.062,0.001l252.062,125.637v16.542L252.062,267.815L0,142.573V125.638z"></path>
         <path style="fill:#EFEFEF;" d="M396.603,39.779c-8.271-14.966-25.994-24.025-46.868-24.025c-47.655,0-81.132,44.505-97.674,72.862
 	    c-16.542-28.357-50.412-72.468-97.674-72.468c-30.326,0-51.988,18.511-51.988,43.717c0,44.898,49.231,74.043,148.086,74.043
 	    s151.237-37.415,151.237-73.649C401.723,53.17,400.148,46.081,396.603,39.779z M164.628,88.223
 	    c-11.028-7.483-14.966-15.754-14.966-21.268c0-6.695,6.302-11.815,15.36-11.815c21.268,0,38.203,27.963,47.655,47.262
 	    C187.865,100.432,173.292,93.736,164.628,88.223z M339.495,88.223c-8.665,5.514-23.237,12.209-48.049,14.178
 	    c9.058-19.298,25.994-47.262,47.655-47.262c9.058,0,15.36,5.12,15.36,11.815C354.462,72.469,350.523,80.739,339.495,88.223z"></path>
-        <path style="fill:#E2574C;"
-              d="M0,126.032l252.062,123.274l252.062-123.274v81.526l-252.85,123.274L0,207.558V126.032z"></path>
+        <path style="fill:#E2574C;" d="M0,126.032l252.062,123.274l252.062-123.274v81.526l-252.85,123.274L0,207.558V126.032z"></path>
         <path style="fill:#EFEFEF;" d="M346.585,213.859v-9.058l-94.523-51.2l-94.523,51.2v9.058L94.524,186.29v-12.603l154.387-81.526
         l3.151,1.575l3.151-1.575L409.6,173.293v12.603L346.585,213.859z"></path>
         <path style="fill:#DCDCDC;" d="M346.585,204.801v251.668l63.015-31.508V173.293L346.585,204.801z"></path>
@@ -356,6 +350,8 @@
 </svg>
 
 
+
+
 <!-- header area -->
 
 <header>
@@ -391,7 +387,7 @@
                         <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" xmlns:th="http://www.thymeleaf.org" class="font-weight-bolder"
+                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder"
                                     >个人主页</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
@@ -575,29 +571,23 @@
 
 <!-- vertical menu -->
 
-<div id="sp_vertical_menu" class="container custom_container menu_slider d-xl-none d-lg-none d-md-block my-0">
+<div  id="sp_vertical_menu" class="container custom_container menu_slider d-xl-none d-lg-none d-md-block my-0">
     <div class="row">
         <div class="col-lg-3 vertical_menu ">
             <div class="v_menu bg-white rounded">
-                <div class="cat_menu bg-warning rounded-top"><a
-                        class="pe-auto text-uppercase d-md-none d-sm-none d-none d-lg-block font-weight-bold"
-                        data-toggle="collapse" href="#vartical_collapse" role="button" aria-expanded="false"
-                        aria-controls="vartical_collapse"><i class="fas fa-bars"></i>所有分类</a></div>
+                <div class="cat_menu bg-warning rounded-top"><a  class="pe-auto text-uppercase d-md-none d-sm-none d-none d-lg-block font-weight-bold" data-toggle="collapse" href="#vartical_collapse" role="button" aria-expanded="false" aria-controls="vartical_collapse"><i class="fas fa-bars"></i>所有分类</a></div>
 
                 <div class="navbar-header d-xl-none d-lg-none">
-                    <button type="button" class="btn-navbar navbar-toggle" onClick="openNav()" data-toggle="collapse"
-                            data-target=".navbar-ex1-collapse"><i class="fas fa-bars"></i></button>
+                    <button type="button" class="btn-navbar navbar-toggle" onclick="openNav()" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fas fa-bars"></i></button>
                 </div>
                 <div class="collapse" id="vartical_collapse">
-                    <div id="mySidenav" class="sidenav	">
+                    <div id="mySidenav" class="sidenav	" >
                         <div class="close-nav d-xl-none d-lg-none">
                             <span class="categories">Category</span>
-                            <a href="javascript:void(0)" class="closebtn pull-right" onClick="closeNav()"><i
-                                    class="fas fa-times"></i></a>
+                            <a href="javascript:void(0)" class="closebtn pull-right" onclick="closeNav()"><i class="fas fa-times"></i></a>
                         </div>
 
-                        <ul class="vertical_main_menu h_menu navbar navbar-nav">
-
+                        <ul class="vertical_main_menu sp_menu navbar navbar-nav">
                             <li class="dropdown level-1 font-weight-bolder">
                                 <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/书籍教材.png"
@@ -788,10 +778,7 @@
 
 
                                 </ul>
-                            </li>
-
-
-                        </ul>
+                            </li></ul>
                     </div>
                 </div>
             </div> <!-- v_menu bg-white rounded -->
@@ -802,19 +789,21 @@
 <!-- vertical menu end -->
 
 
-<!-- login page -->
+
+<!-- forgot page -->
 
 
-<div id="login_page" class="login-page animate__animated animate__fadeInUp">
+<div id="forgot_page" class="forgot-page animate__animated animate__fadeInUp">
 
 
-    <div class="sp_header bg-white p-3 ">
+    <div class="sp_header bg-white p-3">
         <div class="container custom_container">
             <div class="row ">
                 <div class="col-12 ">
                     <ul>
                         <li class="d-inline-block font-weight-bolder"><a href="/">首页</a></li>
-                        <li class="d-inline-block hr_ font-weight-bolder"><a href="#">登录</a></li>
+                        <li class="d-inline-block hr_ font-weight-bolder"><a href="#">忘记密码</a></li>
+                        <li class="d-inline-block hr_ font-weight-bolder"><a href="">验证</a></li>
                     </ul>
                 </div>
             </div>
@@ -822,23 +811,38 @@
     </div>
 
     <div class="container custom_container ">
-
-        <div class="page-content card card-block p-3 p-sm-4 ">
-                <h3 class="text-center">您的购买已经成功！卖家将很快为您发货</h3>
-                <div class="form-group"></div>
-                <div>
-                    <div class="btn btn-primary primary" th:href="@{/showAll}">回到首页</div>
-                    <div class="btn btn-primary primary" th:href="@{/showMyTransactionOrders}">查看我的所有订单</div>
+        <h3 class="text-center">验证</h3>
+        <div id="forgot" class="page-content card card-block p-3 p-sm-4">
+            <form  class="needs-validation " method="post" novalidate>
+                <div class="form-group">
+                    <p class="text-muted">我们已将邮件发送至您的邮箱1036******@qq.com</p>
+                    <p class="text-muted"></p>
+                    <label class="font-weight-bolder">请输入邮件中的验证码：</label>
+                    <input type="email" class="form-control" required>
+                    <div class="invalid-feedback">请输入您的验证码</div>
                 </div>
 
+                <input type="submit" name="submit" class="btn btn-primary mt-3" value="确认">
+
+            </form>
         </div>
     </div>
 
 
-</div>    <!-- login_page -->
 
 
-<!-- login page -->
+
+</div>	<!-- login_page -->
+
+
+<!-- forgot page  -->
+
+
+
+
+
+
+
 
 
 <!-- footer -->
@@ -913,11 +917,11 @@
                             </div>
                             <div class="categorie collapse" id="sproduct">
                                 <ul>
-                                    <li><a href="/admin/userInfo">我的主页</a></li>
-                                    <li><a href="/admin/shoppingCarInit">我的购物车</a></li>
-                                    <li><a href="#">我的愿望清单</a></li>
-                                    <li><a href="#">我的订单</a></li>
-                                    <li><a href="#">回到顶部</a></li>
+                                    <li><a th:href="@{/}">我的主页</a></li>
+                                    <li><a href="cart.html">我的购物车</a></li>
+                                    <li><a href="/showWishList">我的心愿清单</a></li>
+                                    <li><a href="/showMyTransactionOrders">我的订单</a></li>
+                                    <li><a th:href="@{/}">回到顶部</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -929,12 +933,12 @@
                             </div>
                             <div class="categorie collapse" id="tproduct">
                                 <ul>
-                                    <li><a href="#">电子产品</a></li>
-                                    <li><a href="#">书籍教材</a></li>
-                                    <li><a href="#">衣帽鞋伞</a></li>
-                                    <li><a href="#">日常用品</a></li>
-                                    <li><a href="#">代步工具</a></li>
-                                    <li><a href="#">体育健身</a></li>
+                                    <li><a href="/search?search=电子产品">电子产品</a></li>
+                                    <li><a href="/search?search=书籍教材">书籍教材</a></li>
+                                    <li><a href="/search?search=衣帽鞋伞">衣帽鞋伞</a></li>
+                                    <li><a href="/search?search=日常用品">日常用品</a></li>
+                                    <li><a href="/search?search=代步工具">代步工具</a></li>
+                                    <li><a href="/search?search=体育健身">体育健身</a></li>
 
                                 </ul>
                             </div>
@@ -947,7 +951,7 @@
                             </div>
                             <div class="categorie collapse" id="fh_product">
                                 <ul>
-                                    <li><a href="#">关于开发团队</a></li>
+                                    <li><a href="about-us.html">关于开发团队</a></li>
                                     <li><a href="#">关于厦大二手交易平台</a></li>
                                     <li><a href="#">隐私政策</a></li>
                                     <li><a href="#">在线客服</a></li>
@@ -976,6 +980,35 @@
 </div> <!-- footer -->
 
 <!-- footer end -->
+
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+<script src="assets/js/owl.carousel.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/all.min.js"></script>
+<script src="assets/js/index.js"></script>
+<script src="assets/js/wow.min.js"></script>
+
+<script>
+    // Disable form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Get the forms we want to add validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 
 </body>
 </html>

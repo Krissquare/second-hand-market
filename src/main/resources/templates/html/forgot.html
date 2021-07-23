@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>厦大二手交易平台</title>
 	<meta charset="utf-8"/>
@@ -389,7 +389,7 @@
 						<div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
+                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder"
 									>个人主页</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
@@ -552,9 +552,23 @@
 				<div class="col-lg-9 text-left">
 					<ul class="main-menu navbar">
 						<li><a th:href="@{/}">首页</a></li>
-						<li><a th:href="@{/searchAll}">市场</a></li>
+						<li><a th:href="@{/searchPage(pageNo=1)}">市场</a></li>
 
-						<li><a href="about-us.html">关于我们</a></li>
+						<li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+							   aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
+							<ul class="dropdown-menu">
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="cart.html">我的购物车</a></li>
+
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/showMyTransactionOrders">我的订单</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/showWishList">我的收藏</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/admin/user_init" >商品管理</a></li>
+
+							</ul>
+						</li>
 
 
 
@@ -803,8 +817,9 @@
 				<div class="row ">
 					<div class="col-12 ">
 						<ul>
-							<li class="d-inline-block font-weight-bolder"><a href="index.html">首页</a></li>
-							<li class="d-inline-block hr_ font-weight-bolder"><a href="#">忘记密码</a></li>
+							<li class="d-inline-block font-weight-bolder"><a href="/">首页</a></li>
+							<li class="d-inline-block hr_ font-weight-bolder"><a href="">忘记密码</a></li>
+
 						</ul>
 					</div>
 				</div>
@@ -812,20 +827,17 @@
 		</div>
 
 			<div class="container custom_container ">
-	            <h3 class="text-center">忘记密码 </h3>
+	            <h3 class="text-center">恢复账号</h3>
 	            <div id="forgot" class="page-content card card-block p-3 p-sm-4">
-	            	<form  class="needs-validation " method="post" novalidate>
+	            	<form  class="layui-form" th:action="@{/forget/isEmailRegistered}" method="post">
 					  <div class="form-group">
-					  	<p class="renew_pass text-muted ">请输入您注册时用的邮箱，您将收到一个链接来重置密码。 </p>
-					    <label class="font-weight-bolder">邮箱</label>
-					    <input type="email" class="form-control" required>
-					    <div class="invalid-feedback">Please Enter your account name.</div>
-					  </div>
-					  
-					  
-					  
+					  	<p class="renew_pass text-muted ">请输入您注册的邮箱，您将收到一个链接来重置密码。</p>
+					    <label class="font-weight-bolder">邮箱：</label>
+					    <input type="email" class="form-control" name="u_Email" required>
+					    <div class="invalid-feedback">请正确输入您的邮箱地址。</div>
+					   </div>
 					  <input type="submit" name="submit" class="btn btn-primary mt-3" value="发送">
-					 
+
 					</form>
 	            </div>
 	        </div>
@@ -838,11 +850,6 @@
 
 
 <!-- forgot page  -->
-
-
-
-
-
 
 
 
@@ -921,7 +928,7 @@
 								<ul>
 									<li><a th:href="@{/}">我的主页</a></li>
 									<li><a href="cart.html">我的购物车</a></li>
-									<li><a href="wishlist.html">我的心愿清单</a></li>
+									<li><a href="/showWishList">我的心愿清单</a></li>
 									<li><a href="/showMyTransactionOrders">我的订单</a></li>
 									<li><a th:href="@{/}">回到顶部</a></li>
 								</ul>

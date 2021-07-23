@@ -2,6 +2,9 @@
 package com.team.springboot.controller;
 
         import com.team.springboot.pojo.BaseResponse;
+        import com.team.springboot.pojo.User;
+        import com.team.springboot.pojo.UserHead;
+        import com.team.springboot.service.UserHeadService;
         import com.team.springboot.service.UserService;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Controller;
@@ -23,8 +26,22 @@ package com.team.springboot.controller;
 
 @Controller
 public class UserIndexController {
+        @Autowired
+        UserService userService;
+
+        @Autowired
+        UserHeadService userHeadService;
+
+
     @RequestMapping("/userIndex")
-    public String login() {
-        return "html/user_index";
+    public String login(Model m, @RequestParam("u_Account") String u_Account) {
+            User u;
+            UserHead userHead;
+//            String account = (String) session.getAttribute("u_Account");
+            u=userService.selectUserById(u_Account);
+            userHead=userHeadService.selectHead(u_Account);
+            m.addAttribute("userhead",userHead);
+            m.addAttribute("user",u);
+            return "html/user_index";
     }
 }

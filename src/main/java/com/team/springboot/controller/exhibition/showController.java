@@ -91,8 +91,6 @@ public class showController {
     @RequestMapping("/searchAll")
     public String searchAll(Model m, HttpServletRequest req)
     {
-
-
         Integer pageSize = 15;
         List<ProductCategory> list = productCategoryService.selectProductAll();
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);

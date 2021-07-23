@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"><html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"><html>
 <html class="" lang="en">
 <head>
 	<title>厦大二手交易平台</title>
@@ -616,7 +616,7 @@
 						<div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
+                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder"
 									>个人主页</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
@@ -784,9 +784,23 @@
 				<div class="col-lg-9 text-left">
 					<ul class="main-menu navbar">
 						<li><a th:href="@{/}">首页</a></li>
-						<li><a th:href="@{/searchAll}">市场</a></li>
+						<li><a th:href="@{/searchPage(pageNo=1)}">市场</a></li>
 
-						<li><a href="about-us.html">关于我们</a></li>
+						<li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+							   aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
+							<ul class="dropdown-menu">
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="cart.html">我的购物车</a></li>
+
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/showMyTransactionOrders">我的订单</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/showWishList">我的收藏</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/admin/user_init" >商品管理</a></li>
+
+							</ul>
+						</li>
 
 
 
@@ -1099,14 +1113,17 @@
 					</div>
 					<div >&nbsp;</div>
 					<div class="sp_wish_com my-3">
-						<form  method="post">
+
 								<span >
-										<input type="hidden"  th:value="${product.getP_Id()}" style="display: none">
-							<span class="sp_comp1"><a href="#" class="text-uppercase font-weight-bolder " data-toggle="modal" data-target="#wish_Modal"><i class="far fa-heart"></i>加入心愿清单</a></span>
+									<form  th:action="@{/addIntoWishList}" method="post">
+										<input type="hidden"  id="wPID" name="wPID" th:value="${product.getP_Id()}" style="display: none">
+							<span ><i class="far fa-heart"></i><input style="background-color: white;border: 0px" value="收藏" type="submit"  data-toggle="modal" data-target="#wish_Modal" ></span>
+									</form>
 									</span>
-						</form>
+
 
 					</div>
+
 
 
 
@@ -1297,7 +1314,7 @@
 								<ul>
 									<li><a th:href="@{/}">我的主页</a></li>
 									<li><a href="cart.html">我的购物车</a></li>
-									<li><a href="wishlist.html">我的心愿清单</a></li>
+									<li><a href="/showWishList">我的心愿清单</a></li>
 									<li><a href="/showMyTransactionOrders">我的订单</a></li>
 									<li><a th:href="@{/}">回到顶部</a></li>
 								</ul>
