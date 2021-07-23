@@ -589,7 +589,7 @@
                                                        href="/admin/user_init" >商品管理</a></li>
                             </ul>
                         </li>
-                        <li><a href="/showMyTransactionOrders">返回</a></li>
+
                     </ul>
                 </div> <!-- col-lg-9 text-left -->
 
@@ -821,8 +821,18 @@
 <!-- vertical menu end -->
 
 
-<blockquote class=layui-elem-quote style="font-weight: bolder;color: red">发布你的待转让商品</blockquote>
-<style>
+<div class="sp_header bg-white p-3 ">
+    <div class="container custom_container">
+        <div class="row ">
+            <div class="col-12 ">
+                <ul>
+                    <li class="d-inline-block font-weight-bolder"><a href="/">首页</a></li>
+                    <li class="d-inline-block hr_ font-weight-bolder"><a href="#">发布商品</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div><style>
 
     .layui-form{
         position: relative;
@@ -832,14 +842,12 @@
 
     }
 </style>
-<form class="layui-form" th:action="@{/admin/add}" method="post">
+<form class="layui-form" th:action="@{/admin/add}" method="post"style="background-color: white;width: 810px;height: 800px;position: relative;left: 250px">
+
     <div class="layui-form-item">
-        <label class="layui-form-label">用户名</label>
-        <div class="layui-input-inline">
-            <input type="text"   name="p_Account"  th:value="${session.u_Account}" readonly autocomplete="off" class="layui-input">
-        </div>
+        <img src="/assets/img/发布.png"style="width: 810px;height: 100px">
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
         <label class="layui-form-label">物品标题</label>
         <div class="layui-input-inline">
             <input type="text"   name="p_Title" required  lay-verify="required" autocomplete="off" class="layui-input">
@@ -856,13 +864,13 @@
     <!--            </select>-->
     <!--        </div>-->
     <!--    </div>-->
-    <div class="layui-form-item">
+    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
         <label class="layui-form-label">物品数量</label>
         <div class="layui-input-inline">
             <input type="text"   name="p_num" required autocomplete="off" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
         <label class="layui-form-label">物品类别</label>
         <div class="layui-input-inline">
             <select name="p_Name" id="o_type" lay-verify="required" lay-filter="xmFilter">
@@ -871,19 +879,27 @@
         </div>
     </div>
 
-    <div class="layui-form-item">
+    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
         <label class="layui-form-label">上架时间</label>
         <div class="layui-input-inline">
             <input type="date"   name="p_Date"  required autocomplete="off" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">物品价格</label>
+    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
+        <label class="layui-form-label">物品标价</label>
+        <div class="layui-input-inline">
+            <input type="text"  name="p_Price"  required autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'')">
+        </div>
+
+    </div>
+    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
+
+        <label class="layui-form-label">物品原价</label>
         <div class="layui-input-inline">
             <input type="text"  name="p_Price"  required autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'')">
         </div>
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
         <label class="layui-form-label">物品描述</label>
         <div class="layui-input-inline">
         <textarea type="text"  name="p_Des"  required  autocomplete="off" class="layui-input">
@@ -893,12 +909,13 @@
 <!--    <div class="layui-input-inline ">-->
 <!--        <button  class="layui-btn-xs"  style="margin-left: 120px" lay-event="imgUpload">添加图片</button>-->
 <!--    </div>-->
-    <div class="layui-form-item">
+    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
              <label class="layui-form-label">物品预览</label>
-            <a class="layui-btn" data-type="reload">上传图片</a>
+            <a class="layui-btn" data-type="reload"style="width: 190px">上传图片</a>
     </div>
-    <div class="layui-input-inline login-btn">
-        <button  class="layui-btn" id="btn1" style="margin-left: 120px;width: 300px;position:relative;left: -100px">添加</button>
+    <div>&nbsp;</div>
+    <div class="layui-input-inline login-btn"style="position: relative;left: 230px;top: 50px">
+        <button  class="layui-btn" id="btn1" style="margin-left: 125px;width: 270px;position:relative;left: -100px">发布</button>
     </div>
 </form>
 
