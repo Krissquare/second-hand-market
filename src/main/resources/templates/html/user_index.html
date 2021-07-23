@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>厦大二手交易平台</title>
     <meta charset="utf-8"/>
@@ -908,7 +909,7 @@
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label">头像:</label>
 
-                                                        <img class="layui-upload-img"  width="70px" height="70px" src="/assets/img/default4.jpg">
+                                                        <img class="layui-upload-img"  width="70px" height="70px" th:src="${userhead.getU_Url()}">
 
                                                     </div>
                                                 </div>
@@ -916,7 +917,7 @@
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label">账号:</label>
 
-                                                        <label class="layui-form-label">user1</label>
+                                                        <label class="layui-form-label" th:text="${user.getU_Account()}"></label>
 
                                                     </div>
 
@@ -927,13 +928,13 @@
 
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label">用户名:</label>
-                                                        <label class="layui-form-label">张三</label>
+                                                        <label class="layui-form-label" th:text="${user.getU_Name()}"></label>
                                                     </div>
                                                 </div>
                                                 <div class="layui-form-item">
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label">邮箱:</label>
-                                                        <label class="layui-form-label">2364627@qq.com</label>
+                                                        <label class="layui-form-label" th:text="${user.getU_Email()}"></label>
                                                     </div>
 
                                                 </div>
@@ -942,14 +943,14 @@
 
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label">电话号码:</label>
-                                                        <label class="layui-form-label">12382718282</label>
+                                                        <label class="layui-form-label" th:text="${user.getU_Phone()}"></label>
 
                                                     </div>
                                                 </div>
                                                 <div class="layui-form-item">
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label">性别:</label>
-                                                        <label class="layui-form-label">女</label>
+                                                        <label class="layui-form-label" th:text="${user.getU_Sex()}"></label>
 
                                                     </div>
                                                 </div>

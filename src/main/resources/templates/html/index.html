@@ -573,7 +573,7 @@
                         <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" href="/userIndex" class="font-weight-bolder"
+                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder"
                                     >个人主页</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
