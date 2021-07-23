@@ -388,7 +388,7 @@
                         <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
+                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder"
                                     >个人主页</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
@@ -847,7 +847,7 @@
                             <div class="layui-side-scroll " style="background-color: white">
                                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                                 <ul class="layui-nav layui-nav-tree "  lay-filter="test">
-                                    <li class="layui-nav-item" style="background-color:white;width: 332px"><a href="/userIndex" style="color: #0C0C0C">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人资料</a></li>
+                                    <li class="layui-nav-item" style="background-color:white;width: 332px"><a th:href="@{/userIndex(u_Account=${session.u_Account})}" style="color: #0C0C0C">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人资料</a></li>
 
                                     <HR  width="110%" color=#987cb9 SIZE=4>
 
