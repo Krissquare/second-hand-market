@@ -718,15 +718,33 @@
 
 	<!-- third row -->
 
-	<div class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
+	<div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
 		<div class="container custom_container">
 			<div class="row">
-				<div class="col-lg-9 text-left">
+
+				<div class="col-lg-9 text-left sp_hz_menu">
 					<ul class="main-menu navbar">
 						<li><a th:href="@{/}">首页</a></li>
 						<li><a th:href="@{/searchAll}">市场</a></li>
 
-						<li><a href="about-us.html">关于我们</a></li>
+						<li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+							   aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
+							<ul class="dropdown-menu">
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="cart.html">我的购物车</a></li>
+
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/showMyTransactionOrders">我的订单</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="wishlist.html">我的收藏</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/admin/user_init" >商品管理</a></li>
+
+							</ul>
+						</li>
+
+
+
 
 
 
@@ -973,8 +991,7 @@
 					<div class="col-12 ">
 						<ul>
 							<li class="d-inline-block font-weight-bolder"><a th:href="@{/}">首页</a></li>
-							<li class="d-inline-block hr_ font-weight-bolder"><a href="#">交易记录</a></li>
-							<li class="d-inline-block hr_ font-weight-bolder"><a th:href="@{/userIndex(u_Account=${session.u_Account})}">个人主页</a></li>
+							<li class="d-inline-block hr_ font-weight-bolder"><a href="#">订单</a></li>
 						</ul>
 					</div>
 				</div>
@@ -996,7 +1013,7 @@
 
 				<div class="input-group">
 					<input type="text" placeholder="搜索"  aria-label="search" style="width: 300px" aria-describedby="button-addon2">
-					<div class="input-group-btn"><button type="button" style="position: relative;left: -930px" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
+					<div class="input-group-btn"><button type="button" style="position: relative;left: -600px" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
 				</div>
 			</div>
 <div>&nbsp;</div>
@@ -1007,7 +1024,7 @@
 			</div>
 
 			<div class="row sh_page" th:each="oneOrder:${myAllOrdersBuy}"><!-- border-bottom-->
-				<div class="row sh_page" >
+				<div class="d-flex" style="border:0.6px solid;color: #9F9F9F">
 					<li class="f_13">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<span>购买时间</span>
@@ -1302,8 +1319,11 @@
 
 									<div th:if="${oneOrder.getO_Status()} eq '未发货'">
 										<li class="my-1 f_13" >
+
 											<span style="color: black;font-size: 16px">待发货</span>
+											<div>&nbsp;</div>
 											<input type="text" placeholder="请输入快递编号"  aria-label="search" style="width: 170px" aria-describedby="button-addon2">
+											<div>&nbsp;</div>
 											<button type="submit" class="btn btn-danger text-uppercase font-weight-normal" style="width: 95px;height: 35px;font-size: 1px">确认发货</button>
 										</li>
 									</div>
