@@ -7,6 +7,25 @@ public class ShoppingCarProduct {
     private double p_Price;
     private int p_Id;
     private int p_Num;
+    private String p_Des;
+    private double p_originalPrice;
+
+    public String getP_Des()
+    {
+        return p_Des;
+    }
+    public void setP_Des(String p_Des)
+    {
+        this.p_Des=p_Des;
+    }
+    public double getP_originalPrice()
+    {
+        return p_originalPrice;
+    }
+    public void setP_originalPrice(double p_originalPrice)
+    {
+        this.p_originalPrice=p_originalPrice;
+    }
 
     public ShoppingCarProduct() {
     }
