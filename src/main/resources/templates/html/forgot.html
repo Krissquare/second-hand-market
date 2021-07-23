@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html class="" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>厦大二手交易平台</title>
 	<meta charset="utf-8"/>
@@ -389,7 +389,7 @@
 						<div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder"
+                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
 									>个人主页</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
@@ -826,26 +826,23 @@
 			</div>
 		</div>
 
-			<div class="container custom_container ">
+			<div  class="container custom_container ">
 	            <h3 class="text-center">恢复账号</h3>
 	            <div id="forgot" class="page-content card card-block p-3 p-sm-4">
 	            	<form  class="layui-form" th:action="@{/forget/isEmailRegistered}" method="post">
 					  <div class="form-group">
-					  	<p class="renew_pass text-muted ">请输入您注册的邮箱，您将收到一个链接来重置密码。</p>
+						  <p th:if="${ session.emailNeedToChangePassword != null and !session.isEmailRegistered}" class="renew_pass text-muted" th:text="'未查找到' + ${session.emailNeedToChangePassword} + '的注册信息。'"></p>
+						  <p class="renew_pass text-muted ">请输入您注册的邮箱，您将收到一个链接来重置密码。</p>
 					    <label class="font-weight-bolder">邮箱：</label>
 					    <input type="email" class="form-control" name="u_Email" required>
-					    <div class="invalid-feedback">请正确输入您的邮箱地址。</div>
+
+
 					   </div>
 					  <input type="submit" name="submit" class="btn btn-primary mt-3" value="发送">
 
 					</form>
 	            </div>
 	        </div>
-	         
-
-		
-
-
 	</div>	<!-- login_page -->
 
 
