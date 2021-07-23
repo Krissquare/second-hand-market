@@ -5,9 +5,7 @@ import com.team.springboot.service.UserService;
 import com.team.springboot.utils.SendVerificationCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
 
 
@@ -21,7 +19,6 @@ public class ForgotController {
     public String forget() {
         return "html/forgot";
     }
-
 
     @RequestMapping("/verify")
     public String verify(HttpSession session) {
@@ -46,7 +43,7 @@ public class ForgotController {
     }
 
     @PostMapping("/forget/isEmailRegistered")
-    public String isEmailRegistered(@RequestParam("u_Email") String email, Model model, HttpSession session) {
+    public String isEmailRegistered(@RequestParam("u_Email") String email, HttpSession session) {
         session.setAttribute("emailNeedToChangePassword", email);
         if(userService.selectUserByEmail(email) == null) {
             session.setAttribute("isEmailRegistered", false);
@@ -59,7 +56,7 @@ public class ForgotController {
     }
 
     @PostMapping("/verify/isValidCode")
-    public String isValidCode(@RequestParam("u_Code") String code, Model model, HttpSession session) {
+    public String isValidCode(@RequestParam("u_Code") String code, HttpSession session) {
         session.setAttribute("UserVerificationCode", code);
         if(!code.equals(session.getAttribute("VerificationCode"))) {
             session.setAttribute("isValidCode", false);
@@ -80,6 +77,5 @@ public class ForgotController {
             return "redirect:/";
 
     }
-
 
 }
