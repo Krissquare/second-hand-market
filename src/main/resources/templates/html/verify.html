@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html class="" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>厦大二手交易平台</title>
     <meta charset="utf-8"/>
@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/Favicon.ico">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.min.css">
@@ -348,7 +347,6 @@
     </symbol>
 
 </svg>
-
 
 
 
@@ -813,13 +811,12 @@
     <div class="container custom_container ">
         <h3 class="text-center">验证</h3>
         <div id="forgot" class="page-content card card-block p-3 p-sm-4">
-            <form  class="needs-validation " method="post" novalidate>
+            <form  class="layui-form" th:action="@{/verify/isValidCode}" method="post">
                 <div class="form-group">
-                    <p class="text-muted">我们已将邮件发送至您的邮箱1036******@qq.com</p>
-                    <p class="text-muted"></p>
+                    <p class="text-muted" th:text="'我们已将邮件发送至您的邮箱' + ${session.emailNeedToChangePassword} + '。'"></p>
+                    <p th:if="${session.UserVerificationCode!= null and !session.isValidCode}" class="text-muted">您输入的验证码有误，请认真查看您的邮件。</p>
                     <label class="font-weight-bolder">请输入邮件中的验证码：</label>
-                    <input type="email" class="form-control" required>
-                    <div class="invalid-feedback">请输入您的验证码</div>
+                    <input class="form-control" name="u_Code" required>
                 </div>
 
                 <input type="submit" name="submit" class="btn btn-primary mt-3" value="确认">
@@ -836,11 +833,6 @@
 
 
 <!-- forgot page  -->
-
-
-
-
-
 
 
 

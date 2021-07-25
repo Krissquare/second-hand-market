@@ -3,7 +3,6 @@ package com.team.springboot.service;
 
 import com.team.springboot.pojo.Address;
 
-import java.util.List;
 
 public interface AddressService {
 
