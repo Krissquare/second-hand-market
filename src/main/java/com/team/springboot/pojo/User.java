@@ -9,6 +9,15 @@ public class User {
     private String u_Email;
     private String u_Sex;
     private String u_Url;
+    private double wallet;
+
+    public double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(double wallet) {
+        this.wallet = wallet;
+    }
 
     public String getU_Url() {
         return u_Url;
