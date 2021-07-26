@@ -27,7 +27,7 @@ public class WishListController {
     @Autowired
     WishListService wishListService;
 
-
+    //加入愿望清单
     @PostMapping("/addIntoWishList")
     public String shoppingCar(@RequestParam("wPID") int p_Id, HttpSession session){
         String account = (String) session.getAttribute("u_Account");
@@ -40,6 +40,7 @@ public class WishListController {
         return "redirect:/goodsDetail?pid=" + p_Id;
     }
 
+    //显示愿望单界面
     @RequestMapping("/showWishList")
     public String ShowWishList(HttpSession session,Model model)
     {
@@ -49,6 +50,7 @@ public class WishListController {
         return "html/wishlist";
     }
 
+    //删除愿望单项
     @RequestMapping("/deleteWish")
     public String deleteWish(@RequestParam("ID") String pid,HttpServletRequest req)
     {
