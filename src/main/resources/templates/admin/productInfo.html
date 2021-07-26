@@ -66,13 +66,23 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div class="between-header border border-danger rounded mb-0 head-left">
-
-            <select class="select-menu form-select d-none d-sm-block" >
+            <div class="layui-form-item">
+            <select class="select-menu form-select d-none d-sm-block" onchange="javascript:window.open(this.options[this.selectedIndex].value)">
                 <option value="selected">商品状态</option>
-                <option value="1">已上架</option>
+                <option value="" >上架中</option>
                 <option value="2">待审核</option>
                 <option value="3">已下架</option>
             </select>
+            </div>
+<!--                <div class="layui-form-item">-->
+<!--                    <label class="layui-form-label">下拉选择框</label>-->
+<!--                    <div class="layui-input-block">-->
+<!--                        <select name="interest" lay-filter="ftest">-->
+<!--                            <option value="0">上架中</option>-->
+<!--                            <option value="1">已下架</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
 
 
             <div class="input-group">
@@ -80,6 +90,7 @@
                 <div class="input-group-btn"><button type="button" style="position: relative;left: -390%" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
             </div>
         </div>
+
 
         <table id="demo" lay-filter="test"></table>
 
@@ -92,14 +103,28 @@
 </div>
 <script th:src="@{/layui/layui.js}"></script>
 <script>
-    //JavaScript代码区域
-    layui.use('element', function(){
-        var element = layui.element;
-
+    function pass()
+{
+    var table=layui.table;
+    table.reload('testReload', {
+        where: {
+            p_Status: "上架中"
+        }
     });
+
+
+}
 </script>
+
+<!--<script>-->
+<!--    //JavaScript代码区域-->
+<!--    layui.use('element', function(){-->
+<!--        var element = layui.element;-->
+
+<!--    });-->
+<!--</script>-->
 <script type="text/html" id="xuhao">
-    {{d.LAY_INDEX+1}}
+    {{d.LAY_INDEX}}
 </script>
 <script th:inline="javascript">
     layui.use(['table','form'], function(){
@@ -139,7 +164,16 @@
                     });
                     layer.close(index);
                 });
-            }else if(layEvent==='pass')//上架
+            }
+            else if(layEvent==='check_pass')//
+            {
+                table.reload('testReload', {
+                    where: {
+                        p_Status: "上架中"
+                    }
+                });
+            }
+            else if(layEvent==='pass')//上架
             {
                 layer.confirm('确定上架该商品吗', function(index){
                     $.ajax({
@@ -273,6 +307,33 @@
         });
 
 
+        // var $ = layui.$, active = {
+        //     reload: function(){
+        //         table.reload('testReload', {
+        //             where: {
+        //                 p_Status: "上架中"
+        //             }
+        //         });
+        //     }
+        // };
+        // $('check_pass').on('click', function(){
+        //     var type = $(this).data('type');
+        //     active[type] ? active[type].call(this) : '';
+        // });
+
+        form.on('select', function(data){
+            var value=data.value;
+            if(value.equals("上架中"))
+            {
+                table.reload('testReload', {
+                                where: {
+                                    p_Status: "上架中"
+                                }
+                            });
+            }
+        });
+
+
         // 监听搜索按钮
         var $ = layui.$, active = {
             reload: function(){
@@ -330,15 +391,18 @@
             ,cols: [[ //表头
 
                 {title: '序号',templet: '#xuhao'},
-                {field: 'p_href', title: '物品图片', templet: "<div><img  src=\"{{ d.p_href }}\"></div>"}
-                , {field: 'p_Id', title: '物品编号', sort: true}
-                ,{field: 'p_Account', title: '发布者账号',sort: true}
-                // ,{field: 'p_Name', title: '物品名称'}
-                ,{field: 'c_Name', title: '物品类别'}
-                ,{field: 'p_Title', title: '物品标题'}
-                ,{field: 'p_Price', title: '价格',sort: true}
-                ,{field: 'p_Status',title:'商品状态',sort: true}
-
+                {field: 'p_href', title: '商品图片', templet: "<div><img  src=\"{{ d.p_href }}\"></div>"}
+                , {field: 'p_Id', title: '商品ID'}
+                ,{field: 'p_Account', title: '发布者账号'}
+                ,{field: 'c_Name', title: '类别'}
+                ,{field: 'p_Title', title: '商品标题'}
+                ,{field: "p_Price", title: '价格',width:100,sort: true,templet: function (d){
+                        return "￥"+d.p_Price+".0";
+                    }}
+                ,{field: "p_originalPrice", title: '原价',width:100,sort: true,templet: function (d){
+                        return "￥"+d.p_originalPrice;
+                    }}
+                ,{field: 'p_Status',width: 150,title:'商品状态'}
                 ,{title: '操作', toolbar: '#barDemo'}
             ]]
         });
