@@ -55,6 +55,7 @@ public class GoodsDetailController   {
        else
            shoppingCarService.updateByAccountId(account,p_Id,num);
 
+
        return "redirect:/goodsDetail?pid=" + p_Id;
    }
 

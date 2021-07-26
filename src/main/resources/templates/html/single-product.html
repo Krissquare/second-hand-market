@@ -566,14 +566,12 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-body">
-				Please login and you will add product to your wishlist
+				加入成功！
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Sign In</button>
-				<button type="submit" class="btn btn-primary">Register</button>
 			</div>
 		</div>
 	</div>
@@ -1177,12 +1175,13 @@
 
 							}
 						</style>
+
 						<div class="cart">
 							<div th:if="${session.u_Account != product.getP_Account()}">
-								<form class="layui-form" method="post">
+								<form class="layui-form">
 									<span class="sp_c_count2">
 										<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="position:relative;top:0px;height: 50px;width: 120px;background-color: orange">
-										<input type="submit" value="加入购物车" class="btn btn-primary primary"style="position:relative;top:0px;height: 50px;width: 120px;background-color: orange">
+										<input type="submit" value="加入购物车" data-toggle="modal" data-target="#wish_Modal" class="btn btn-primary primary"style="position:relative;top:0px;height: 50px;width: 120px;background-color: orange">
 									</span>
 								</form>
 							</div>
