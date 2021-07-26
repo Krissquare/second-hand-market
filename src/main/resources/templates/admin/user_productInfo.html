@@ -1249,15 +1249,18 @@
                 statusCode: 200 //规定成功的状态码，默认：0
             }
             ,cols: [[ //表头
-                {title: '物品序号' ,templet: '#xuhao'},
+                {title: '序号' ,templet: '#xuhao'},
                 {field: 'p_href', title: '物品图片', width:120,templet: "<div><img  src=\"{{ d.p_href }}\" ></div>"}
 
                 // ,{field: 'p_Account', title: '用户账号',sort: true}
                 // ,{field: 'p_Name', title: '物品名称'}
 
                 ,{field: 'p_Title', title: '物品标题',width:300}
-                ,{field: "p_Price", title: '价格',width:90,sort: true,templet: function (d){
-                        return "￥"+d.p_Price;
+                ,{field: "p_Price", title: '价格',width:100,sort: true,templet: function (d){
+                        return "￥"+d.p_Price+".0";
+                    }}
+                ,{field: "p_originalPrice", title: '原价',width:100,sort: true,templet: function (d){
+                        return "￥"+d.p_originalPrice;
                     }}
                 ,{field: 'p_Status',title:'商品状态',width:110}
                 ,{field: 'imgLoad',title:'图片操作',width:170,toolbar: "#imgBar"}
