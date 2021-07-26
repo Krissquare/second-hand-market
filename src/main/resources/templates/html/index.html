@@ -1385,7 +1385,7 @@
                                                 <h2 class="pro-heading mb-0"><a th:text="${p.getP_Title()}" th:href="@{/goodsDetail(pid=${p.getP_Id()})}"
                                                                                 class="font-weight-bolder"></a></h2>
                                                 <div class="star">
-                                                    <span>用户名&nbsp;&nbsp;</span>
+                                                    <span th:text="${p.getP_Account()}"></span>
                                                     <i class="fa fa-star" aria-hidden="true"></i>
                                                     <i class="fa fa-star" aria-hidden="true"></i>
                                                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -1451,7 +1451,7 @@
                                                 <h2 class="pro-heading mb-0"><a th:text="${p.getP_Title()}" th:href="@{/goodsDetail(pid=${p.getP_Id()})}"
                                                                                 class="font-weight-bolder"></a></h2>
                                                 <div class="star">
-                                                    <span>用户名&nbsp;&nbsp;</span>
+                                                    <span th:text="${p.getP_Account()}"></span>
 
                                                     <i class="fa fa-star" aria-hidden="true"></i>
                                                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -1527,7 +1527,7 @@
                                                 <h2 class="pro-heading mb-0"><a th:text="${p.getP_Title()}" th:href="@{/goodsDetail(pid=${p.getP_Id()})}"
                                                                                 class="font-weight-bolder"></a></h2>
                                                 <div class="star">
-                                                    <span>用户名&nbsp;&nbsp;</span>
+                                                    <span th:text="${p.getP_Account()}"></span>
 
                                                     <i class="fa fa-star" aria-hidden="true"></i>
                                                     <i class="fa fa-star" aria-hidden="true"></i>
