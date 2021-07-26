@@ -388,19 +388,15 @@
                         <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder"
-                                    >个人主页</a>
+                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder">个人中心</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
                         </div>
                         <div class="dropdown right1 md_1 hr_">
-
                             <span class="dropdown-toggle">
-                         <a th:if="${session.u_Account == null}" href="forgot.html" class="font-weight-bolder"
-                         >忘记密码</a>
-								</span>
-                            <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
-                            >退出</a>
+                           <a th:if="${session.u_Account == null}" href="/forgot" class="font-weight-bolder">忘记密码</a>
+                            </span>
+                            <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder">退出</a>
                             </span>
                         </div>
 
@@ -459,10 +455,10 @@
                                     <a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
                                                     width="34px" height="40px"></svg></span>
-                                        <img src="assets/img/发布商品.png" style="height: 33px;width: 30px" alt="">
+                                        <img src="assets/img/发布商品.png" style="height: 28px;width: 28px" alt="">
                                         <span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
-                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品</a></span>
-                                        <a th:if="${session.u_Account == null}" href="/login">发布商品</a></span>
+                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品&nbsp;&nbsp;&nbsp;</a></span>
+                                        <a th:if="${session.u_Account == null}" href="/login">发布商品&nbsp;&nbsp;&nbsp;</a></span>
                                     </a>
                                 </li>
 
@@ -545,15 +541,34 @@
 
     <!-- third row -->
 
-    <div class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
+    <div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
         <div class="container custom_container">
             <div class="row">
-                <div class="col-lg-9 text-left">
+
+                <div class="col-lg-9 text-left sp_hz_menu">
                     <ul class="main-menu navbar">
                         <li><a th:href="@{/}">首页</a></li>
                         <li><a th:href="@{/searchPage(pageNo=1)}">市场</a></li>
 
-                        <li><a href="about-us.html">个人主页</a></li>
+                        <li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                               aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                                       href="/showWishList">我的收藏</a></li>
+                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                                       href="/showMyTransactionOrders">我的订单</a></li>
+                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                                       href="/userWallet" >我的钱包</a></li>
+                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                                       href="/admin/user_init" >我的发布</a></li>
+                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                                       href="/shopProduct">我的购物车</a></li>
+
+                            </ul>
+                        </li>
+
+
+
 
 
 
