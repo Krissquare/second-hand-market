@@ -21,6 +21,7 @@ public class ExpressController {
     @Autowired
     private ProductService productService;
 
+    //加入物流信息
     @RequestMapping("/AddExpressID")
     public String addExpressID(@RequestParam("o_Id") String orderID,
                                @RequestParam("exp_Id") String expressID,
@@ -34,10 +35,10 @@ public class ExpressController {
         order.setO_Status("已发货");
         orderService.StatusUpdate(order);
 
-//        System.out.println(orderID);
         return "redirect:/showMyTransactionOrders";
     }
 
+    //确认收货
     @RequestMapping("/HasReceived")
     public String hasReceived(@RequestParam("o_Id")String orderID, HttpSession session){
         Order order = orderService.selectByOrderID(orderID);
