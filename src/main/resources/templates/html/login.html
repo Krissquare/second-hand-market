@@ -829,7 +829,9 @@
         <h3 class="text-center">登录您的账号</h3>
         <div id="login" class="page-content card card-block p-3 p-sm-4 ">
             <form class="layui-form" th:action="@{/user/login}" method="post">
-
+                <div class="layui-form"style="text-align: center;margin-bottom: 5px">
+                    <p th:text="${session.msg}" style="color: #ff0000"></p>
+                </div>
                 <div class="form-group">
                     <label for="user_email" class="font-weight-bolder">用户名</label>
                     <input class="form-control" id="user_email" name="u_Account" aria-describedby="emailHelp" required>
@@ -1023,6 +1025,7 @@
         }, false);
     })();
 </script>
+
 
 </body>
 </html>

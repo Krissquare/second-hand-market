@@ -1,5 +1,6 @@
 package com.team.springboot.controller;
 
+import com.team.springboot.pojo.BaseResponse;
 import com.team.springboot.pojo.Cipher;
 import com.team.springboot.service.ShoppingCarService;
 import com.team.springboot.service.UserService;
@@ -30,13 +31,19 @@ public class SignInController {
         return "redirect:/";
     }
 
+
     //用户登录功能控制
     @PostMapping("/user/login")
     public String loginin(@RequestParam("u_Account") String account, @RequestParam("u_Password") String originPassword, HttpSession session) {
         String password = Cipher.isInWhiteList(account) ? originPassword : Cipher.Encipher(originPassword);
 
         if(userService.selectUserById(account) == null){
-            session.setAttribute("msg","用户名或密码错误");
+            session.setAttribute("msg","用户名不存在");
+            return "redirect:/login";
+        }
+        if(!userService.selectUserById(account).getU_Password().equals(password))
+        {
+            session.setAttribute("msg","密码错误");
             return "redirect:/login";
         }
         if(userService.selectUserById(account).getU_Password().equals(password) && !userService.selectUserById(account).getU_Account().equals("admin")){
