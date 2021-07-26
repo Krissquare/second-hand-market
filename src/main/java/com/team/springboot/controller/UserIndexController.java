@@ -44,4 +44,8 @@ public class UserIndexController {
             m.addAttribute("user",u);
             return "html/user_index";
     }
+        @RequestMapping("/userWallet")
+        public String login() {
+                return "html/wallet";
+        }
 }
