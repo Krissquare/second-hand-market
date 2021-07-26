@@ -10,4 +10,8 @@ INSERT INTO `userhead` (`u_Url`, `u_Account`)
 VALUES (' / images / user / default2.jpg ', 'admin');
 INSERT INTO `userhead` (`u_Url`, `u_Account`)
 VALUES (' / images / user / default4.jpg ', 'user1');
+INSERT INTO `userhead` (`u_Url`, `u_Account`)
+VALUES (' / images / user / default4.jpg ', 'user2');
+INSERT INTO `userhead` (`u_Url`, `u_Account`)
+VALUES (' / images / user / default4.jpg ', 'user3');
 

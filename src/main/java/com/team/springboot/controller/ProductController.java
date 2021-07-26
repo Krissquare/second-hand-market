@@ -28,6 +28,7 @@ public class ProductController {
     @Autowired
     UserHeadService userHeadService;
 
+    //管理员商品管理初始化
     @RequestMapping("/init")
     public String showproductInfo(HttpSession session, Model m) {
         String account = (String) session.getAttribute("u_Account");
@@ -35,6 +36,8 @@ public class ProductController {
         m.addAttribute("userHead", userHead);
         return "admin/productInfo";
     }
+
+    //用户商品管理初始化
     @RequestMapping("/user_init")
     public String user_showproductInfo(HttpSession session, Model m) {
         String account = (String) session.getAttribute("u_Account");
@@ -43,6 +46,7 @@ public class ProductController {
         return "admin/user_productInfo";
     }
 
+    //按商品状态筛选
     @RequestMapping("/status")
     public String showproductInfoByStatus(HttpSession session, Model m) {
         String account = (String) session.getAttribute("u_Account");
@@ -51,11 +55,10 @@ public class ProductController {
         return "admin/productinfostatus";
     }
 
+    //按商品状态查找商品
     @RequestMapping("/productInfoByStatus")
     @ResponseBody
-    public BaseResponse productinfoByStatus (@RequestParam String page,
-                                     @RequestParam String limit,
-                                     HttpServletRequest request){
+    public BaseResponse productinfoByStatus (@RequestParam String page, @RequestParam String limit, HttpServletRequest request){
         String p_Name=request.getParameter("p_Name");
         String status=request.getParameter("p_Status");
         BaseResponse<List<ProductCategory>> baseResponse = new BaseResponse<>();
@@ -86,7 +89,6 @@ public class ProductController {
                 return baseResponse;
             }
         }
-        //分页查询每页10条
         if (session.getAttribute("u_Account").equals("admin")) {
             product = productCategoryService.selectProductCategorysByStatus(StringUtils.isNullOrEmpty(page) ? 1 : Integer.valueOf(page),
                     StringUtils.isNullOrEmpty(limit) ? 10 : Integer.valueOf(limit),status);
@@ -97,7 +99,6 @@ public class ProductController {
                     StringUtils.isNullOrEmpty(limit) ? 10 : Integer.valueOf(limit));
             baseResponse.setCount(productService.selectCountByaccount((String) session.getAttribute("u_Account")));
         }
-        //判断product是否为空
         if(product!=null) {
             baseResponse.setData(product);
             baseResponse.setCode(200);
@@ -110,11 +111,10 @@ public class ProductController {
         return baseResponse;
     }
 
+    //显示所有商品信息
     @RequestMapping("/productInfo")
     @ResponseBody
-    public BaseResponse productinfo (@RequestParam String page,
-                                     @RequestParam String limit,
-                                     HttpServletRequest request){
+    public BaseResponse productinfo (@RequestParam String page, @RequestParam String limit, HttpServletRequest request){
         String p_Name=request.getParameter("p_Name");
         BaseResponse<List<ProductCategory>> baseResponse = new BaseResponse<>();
         List<ProductCategory> product;
@@ -144,7 +144,6 @@ public class ProductController {
                 return baseResponse;
             }
         }
-        //分页查询每页10条
         if (session.getAttribute("u_Account").equals("admin")) {
             product = productCategoryService.selectProductCategorys(StringUtils.isNullOrEmpty(page) ? 1 : Integer.valueOf(page),
                     StringUtils.isNullOrEmpty(limit) ? 10 : Integer.valueOf(limit));
@@ -155,7 +154,6 @@ public class ProductController {
                     StringUtils.isNullOrEmpty(limit) ? 10 : Integer.valueOf(limit));
             baseResponse.setCount(productService.selectCountByaccount((String) session.getAttribute("u_Account")));
         }
-        //判断product是否为空
         if(product!=null) {
             baseResponse.setData(product);
             baseResponse.setCode(200);
@@ -174,10 +172,10 @@ public class ProductController {
         return "admin/detail";
     }
 
+    //显示选定商品
     @RequestMapping("/detail/info")
     @ResponseBody
-    public BaseResponse detail (@RequestParam String p_Id,
-                                HttpSession session){
+    public BaseResponse detail (@RequestParam String p_Id, HttpSession session){
         Product product=productService.selectProductsById(Integer.valueOf(p_Id));
         BaseResponse baseResponse = new BaseResponse();
         if(product!=null) {
@@ -193,6 +191,7 @@ public class ProductController {
         return baseResponse;
     }
 
+    //删除一个商品
     @RequestMapping("/delete")
     @ResponseBody
     public BaseResponse delete(@RequestParam String p_Id){
@@ -212,19 +211,19 @@ public class ProductController {
         }
         return baseResponse;
     }
+
+    //上架一个商品
     @RequestMapping("/pass")
     @ResponseBody
     public BaseResponse pass(@RequestParam String p_Id,HttpServletRequest request){
         BaseResponse baseResponse = new BaseResponse();
         Product product=productService.selectProductById(Integer.valueOf(p_Id));
-        if(product==null || product.getP_Status().equals("上架中"))
-        {
+        if(product==null || product.getP_Status().equals("上架中")) {
             baseResponse.setCode(500);
             baseResponse.setMsg("上架失败，商品已在售卖");
             return baseResponse;
         }
-        if(product!=null && product.getP_Status().equals("待审核") && !request.getSession().getAttribute("u_Account").equals("admin"))
-        {
+        if(product!=null && product.getP_Status().equals("待审核") && !request.getSession().getAttribute("u_Account").equals("admin")) {
             baseResponse.setCode(500);
             baseResponse.setMsg("上架失败，商品正在审核");
             return baseResponse;
@@ -237,13 +236,14 @@ public class ProductController {
         baseResponse.setMsg("上架成功");
         return baseResponse;
     }
+
+    //管理员下架一个商品
     @RequestMapping("/soldout")
     @ResponseBody
     public BaseResponse soldout(@RequestParam String p_Id){
         BaseResponse baseResponse = new BaseResponse();
         Product product=productService.selectProductById(Integer.valueOf(p_Id));
-        if(product==null || product.getP_Status().equals("已下架")|| product.getP_Status().equals("待审核"))
-        {
+        if(product==null || product.getP_Status().equals("已下架")|| product.getP_Status().equals("待审核")) {
             baseResponse.setCode(500);
             baseResponse.setMsg("下架失败，商品已下架或正在审核");
             return baseResponse;
@@ -256,15 +256,16 @@ public class ProductController {
         baseResponse.setMsg("下架成功");
         return baseResponse;
     }
+
     @RequestMapping("/edit")
     public String editinit(){
         return "admin/edit";
     }
 
+    //编辑一个商品信息
     @RequestMapping("/edit/info")
     @ResponseBody
-    public BaseResponse edit (@RequestParam("p_Id") String p_Id,
-                              HttpSession session){
+    public BaseResponse edit (@RequestParam("p_Id") String p_Id, HttpSession session){
         Product product=productService.selectProductallById(Integer.valueOf(p_Id));
         BaseResponse baseResponse = new BaseResponse();
         if(product!=null) {
@@ -279,6 +280,8 @@ public class ProductController {
         }
         return baseResponse;
     }
+
+    //更新一个商品信息
     @RequestMapping("/edit/update")
     public String realEdit (@RequestParam("p_Id") String p_Id,
                             @RequestParam("p_Account") String p_Account,
@@ -307,11 +310,13 @@ public class ProductController {
             return "admin/edit";
         }
     }
+
     @RequestMapping("/addinit")
     public String productaddInit(){
         return "admin/productadd";
     }
 
+    //发布一个新的商品
     @RequestMapping("/add")
     public String add (@RequestParam("p_Name") String p_Name,
                        @RequestParam("p_Title") String p_Title,
@@ -321,7 +326,6 @@ public class ProductController {
                        @RequestParam("p_Des") String p_Des,
                        @RequestParam("p_num") int p_num,HttpSession session
     ){
-
         ProductCategory productCategory = new ProductCategory();
         productCategory.setP_Id(productCategoryService.selectMaxP_Id()+1);
         productCategory.setP_Account((String) session.getAttribute("u_Account"));
@@ -332,8 +336,7 @@ public class ProductController {
         productCategory.setP_Name(p_Name);
         productCategory.setP_Price(p_Price);
         productCategory.setP_num(p_num);
-        switch (p_Name)
-        {
+        switch (p_Name) {
             case "日常用品":productCategory.setC_Id("c09");break;
             case "书籍教材":productCategory.setC_Id("c01");break;
             case "电子产品":productCategory.setC_Id("c02");break;
@@ -354,6 +357,7 @@ public class ProductController {
             return "admin/productadd";
     }
 
+    //按分类筛选商品
     @RequestMapping("/typeValue")
     @ResponseBody
     public BaseResponse selectproductTypeValue(){

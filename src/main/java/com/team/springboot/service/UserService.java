@@ -24,5 +24,6 @@ public interface UserService {
     void deleteUser(String u_Account);
     List<User>selectUserByIdrtlist(String u_Account);
     void updateHeadp(String url,String u_Account);
+    void updateWallet(User u);
 
 }

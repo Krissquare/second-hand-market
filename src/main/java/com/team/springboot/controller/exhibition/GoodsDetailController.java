@@ -58,6 +58,7 @@ public class GoodsDetailController   {
        return "redirect:/goodsDetail?pid=" + p_Id;
    }
 
+   //将心愿清单中的物品加入到购物车
    @RequestMapping("/wishToCar")
    public String wishToCar(@RequestParam("pid") String pid,HttpSession session)
    {
@@ -101,7 +102,7 @@ public class GoodsDetailController   {
    }
 
 
-   //购买商品
+   //购买单个商品
    @RequestMapping("/buyGoods")
    @ResponseBody
    public BaseResponse buyGoods(@RequestBody BuyOrderInfo b, HttpServletRequest req){
@@ -109,24 +110,43 @@ public class GoodsDetailController   {
        String account = (String)req.getSession().getAttribute("u_Account");
        Order o = new Order(); // 要插入到订单表里的实体
        int count = orderService.selectOrderCount();
-
-
        Product product = productService.selectProductById(b.getP_Id());
-           product.setP_num(product.getP_num()-1);
-           if(product.getP_num()==0)
-           {
-               product.setP_Status("上架中");
-           }
-           productService.updateProduct(product);
-
        Address address1 = userService.selectAddressAll(product.getP_Account());
-
 
        if(account == null || account.equals("")){
            baseResponse.setCode(500);
            baseResponse.setMsg("请登录账号");
            return baseResponse;
        }
+
+       if(b.getO_Baddress().equals("无")) {
+           baseResponse.setCode(500);
+           baseResponse.setMsg("收货地址不能为空");
+           return baseResponse;
+       }
+
+       if(String.valueOf(b.getS_Id()) != null){
+           shoppingCarService.deleteById(b.getS_Id());
+       }
+
+       //扣费
+       User userBuyer = userService.selectUserById(account);
+       if (userBuyer.getWallet() < product.getP_Price()){
+           baseResponse.setCode(500);
+           baseResponse.setMsg("钱包余额不足！");
+           return baseResponse;
+       }
+       userBuyer.setWallet(userBuyer.getWallet()-product.getP_Price());
+       userService.updateWallet(userBuyer);
+
+       //商品数量减一
+       product.setP_num(product.getP_num()-1);
+       if(product.getP_num()==0) {
+           product.setP_Status("上架中");
+       }
+       productService.updateProduct(product);
+
+       //生成订单
        o.setO_Id("o" + (count+1));
        o.setO_ItemId(b.getP_Id());
        o.setO_Buyer(account);
@@ -134,17 +154,9 @@ public class GoodsDetailController   {
        o.setO_Date(String.format("%tF",new Date()));//java的Date和sql的date用哪个
        o.setO_Saddress(address1.getA_Address1());
        o.setO_Baddress(b.getO_Baddress());
-       o.setO_Status("待交易");
+       o.setO_Status("未发货");
        orderService.insertOne(o);
-       if(b.getO_Baddress().equals("无"))
-       {
-           baseResponse.setCode(500);
-           baseResponse.setMsg("收货地址不能为空");
-           return baseResponse;
-       }
-       if(String.valueOf(b.getS_Id()) != null){
-           shoppingCarService.deleteById(b.getS_Id());
-       }
+
        baseResponse.setCode(200);
        baseResponse.setMsg("购买成功");
        return baseResponse;

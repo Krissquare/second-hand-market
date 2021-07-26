@@ -33,6 +33,9 @@ public interface userMapper {
     @Update("update user set u_Password = #{u_Password} where u_Account = #{u_Account}")
     void updatePwd(User u);
 
+    @Update("update user set wallet = #{wallet} where u_Account = #{u_Account}")
+    void updateWallet(User u);
+
 
     //查询用户总数
     @Select("select count(*) from user")

@@ -22,6 +22,7 @@ import java.util.UUID;
 
 @Controller
 public class IndexController {
+    //进入主页
     @RequestMapping("/index")
     public String login() {
         return "html/index";

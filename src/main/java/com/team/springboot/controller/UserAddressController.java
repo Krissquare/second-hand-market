@@ -21,8 +21,10 @@ import java.util.List;
 public class UserAddressController {
     @Autowired
     UserService userService;
+
     @Autowired
     UserAddressService userAddressService;
+
     @Autowired
     AddressService addressService;
 
@@ -33,8 +35,7 @@ public class UserAddressController {
 
     @RequestMapping("/detail/user")
     @ResponseBody
-    public BaseResponse detail (@RequestParam("u_Account") String u_Account,
-                                HttpSession session){
+    public BaseResponse detail (@RequestParam("u_Account") String u_Account, HttpSession session){
         UserAddress userAddressList=userAddressService.selectuserAddressById(u_Account);
         BaseResponse baseResponse = new BaseResponse();
         if(userAddressList!=null) {
@@ -50,6 +51,7 @@ public class UserAddressController {
         return baseResponse;
     }
 
+    //删除用户操作
     @RequestMapping("/userdelete")
     @ResponseBody
     public BaseResponse delete(@RequestParam("u_Account")String u_Account){
@@ -77,11 +79,10 @@ public class UserAddressController {
         return "admin/useredit";
     }
 
-    //请求打开用户表格编辑功能
+    //修改用户信息
     @RequestMapping("/user/edit")
     @ResponseBody
-    public BaseResponse edituser(@RequestParam("u_Account")String u_Account,
-                                 HttpSession session){
+    public BaseResponse edituser(@RequestParam("u_Account")String u_Account, HttpSession session){
         BaseResponse baseResponse = new BaseResponse();
         UserAddress userAddress=userAddressService.selectuserAddressById(u_Account);
         if(userAddress!=null){
@@ -95,7 +96,8 @@ public class UserAddressController {
         }
         return baseResponse;
     }
-    //用户表格进行编辑操作
+
+    //修改用户信息
     @RequestMapping("/edit/userupdate")
     public String test (@RequestParam("u_Account") String u_Account,
                         @RequestParam("u_Name") String u_Name,
@@ -130,8 +132,6 @@ public class UserAddressController {
         userAddress.setA_Address2(a_Address2);
         userAddress.setA_Address3(a_Address3);
         userAddress.setA_Address4(a_Address4);
-
-
         if(user!=null&&address!=null) {
             userService.updateUser(user);
             addressService.updateAddressByAccount(address);
@@ -142,11 +142,13 @@ public class UserAddressController {
             return "admin/useredit";
         }
     }
+
     @RequestMapping("/useraddinit")
     public String useraddInit(){
         return "admin/useradd";
     }
 
+    //添加用户
     @RequestMapping("/adduser")
     public String add (@RequestParam("u_Account") String u_Account,
                        @RequestParam("u_Name") String u_Name,

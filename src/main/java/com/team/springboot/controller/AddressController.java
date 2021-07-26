@@ -17,13 +17,12 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
+    //更新用户的收货地址
     @RequestMapping("/addressUpdate")
     @ResponseBody
     public BaseResponse addressUpdate(@RequestBody Address a, HttpSession session){
         BaseResponse<Integer> baseResponse = new BaseResponse<Integer>();
         String a_Account = (String) session.getAttribute("u_Account");
-
-        //2021.7.1
         if((a.getA_Address1().equals(a.getA_Address2())&&!a.getA_Address1().equals("无")) || (a.getA_Address1().equals(a.getA_Address3())&&!a.getA_Address1().equals("无"))
                 || (a.getA_Address1().equals(a.getA_Address4())&&!a.getA_Address1().equals("无")) || (a.getA_Address2().equals(a.getA_Address3())&&!a.getA_Address2().equals("无"))
                 || (a.getA_Address2().equals(a.getA_Address4()) &&!a.getA_Address2().equals("无"))|| (a.getA_Address3().equals(a.getA_Address4())&&!a.getA_Address3().equals("无"))){
@@ -31,9 +30,7 @@ public class AddressController {
             baseResponse.setMsg("保存失败！收货地址相同");
             return baseResponse;
         }
-        // 先删除账号中的所有收货地址
         addressService.deleteAddressAll(a_Account);
-        //重新插入4个新地址
         addressService.insertAddressOne(a_Account,a.getA_Address1(),a.getA_Address2(),a.getA_Address3(),a.getA_Address4());
         baseResponse.setCode(200);
         baseResponse.setMsg("保存成功");
