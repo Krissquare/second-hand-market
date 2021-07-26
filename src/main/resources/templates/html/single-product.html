@@ -566,12 +566,14 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-body">
-				加入成功！
+				Please login and you will add product to your wishlist
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Sign In</button>
+				<button type="submit" class="btn btn-primary">Register</button>
 			</div>
 		</div>
 	</div>
@@ -719,8 +721,8 @@
 														<use xlink:href="#cart"></use>
 													</svg></span>
 												<span >购物车</span>
-<span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
-	  th:text="${session.shoppingCartList.size()}"></span>
+ <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
+	   th:text="${session.shoppingCartList.size()}"></span>
 										</span>
 
 									<div class="dropdown-menu s_cart dropdown-menu-right">
@@ -1074,7 +1076,7 @@
 			</div>
 			<div class="col-xl-7 col-md-6 col-12">
 
-				<div class="sp_product_detail">
+				<div >
 
 					<h1 class="font-weight-bold text-uppercase" th:text="${product.getP_Title()}">
 						<a href="#"></a>
@@ -1084,35 +1086,40 @@
 
 					<div class="sp_add_info my-3" ></div>
 					<span class="sp_price font-weight-bold" th:text="'￥'+${#numbers.formatDecimal(product.getP_Price(),1,'COMMA',2,'POINT')}"></span>
-					<del class="text-muted" th:text="'￥'+${#numbers.formatDecimal(product.getP_originalPrice(),1,'COMMA',2,'POINT')}"></del>
+					<del class="text-muted" style="font-size: 16px" th:text="'￥'+${#numbers.formatDecimal(product.getP_originalPrice(),1,'COMMA',2,'POINT')}"></del>
 					<!--						<div class="text-secondary sp_tax">Tax included.</div>-->
-					<div class="sp_add_info my-3" th:text="${product.getP_Des()}"style="font-size: 15px">
+					<div class="sp_add_info my-3" th:text="${product.getP_Des()}"style="font-size: 16px">
 						<!--							<ul>-->
 						<!--								 <li class="my-2">Fashion has been creating well-designed collections since 2010. </li>-->
-						<!--								 <li class="my-2">The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-tcollection in which every item is a vital part of a woman's wardrobe. </li>								-->
+						<!--			 					 <li class="my-2">The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-tcollection in which every item is a vital part of a woman's wardrobe. </li>								-->
 						<!--							</ul>-->
 					</div>
 					<div >&nbsp;</div>
 					<div class="star mb-2">
-						<span style="font-size: 13px"th:text="'发布者：'+${product.getP_Account()}"></span>
+						<img src="/assets/img/用户.png"style="width: 25px;height: 25px">
+
+						<span style="font-size: 13px"th:text="'&nbsp;&nbsp;卖家：'+${product.getP_Account()}"></span>
 						<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
 
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
+
 					</div>
 					<div class="sp_add_info my-3" >
-						<div style="font-size: 13px" th:text="'发布时间:'+${product.getP_Date()}"></div>
+						<img src="/assets/img/电话.png"style="width: 25px;height: 25px">
+
+						<span style="font-size: 13px;position:relative;left: 0px;top: 3px"th:text="'&nbsp;&nbsp;联系方式：'+${product.getP_Account()}"></span>
+					</div>
+					<div class="sp_add_info my-3" style="width: 900px">
+						<img src="/assets/img/时间.png"style="width: 25px;height: 25px">
+
+						<div style="font-size: 13px;position:relative;left: 37px;top: -20px" th:text="'&nbsp;发布时间:'+${product.getP_Date()}"></div>
 					</div>
 					<div >&nbsp;</div>
 					<div class="sp_wish_com my-3">
 
-								<span >
+								<span style="position:relative;top: -28px;left: 0px">
 									<form  th:action="@{/addIntoWishList}" method="post">
 										<input type="hidden"  id="wPID" name="wPID" th:value="${product.getP_Id()}" style="display: none">
-							<span ><i class="far fa-heart"></i><input style="background-color: white;border: 0px" value="收藏" type="submit"  data-toggle="modal" data-target="#wish_Modal" ></span>
+							<span ><i class="far fa-heart"></i><input style="background-color: white;border: 0px;font-size: 16px" value="收藏" type="submit"  data-toggle="modal" data-target="#wish_Modal" ></span>
 									</form>
 									</span>
 
@@ -1123,17 +1130,17 @@
 
 
 					<div id="clockdiv" class="sp_clockdiv">
-						<div class="main_box rounded"><span class="days"></span><div class="smalltext">天</div></div>
-						<div class="main_box rounded"><span class="hours"></span><div class="smalltext">小时</div></div>
-						<div class="main_box rounded"><span class="minutes"></span><div class="smalltext">分钟</div></div>
-						<div class="main_box rounded"><span class="seconds"></span><div class="smalltext">秒</div></div>
+						<span class="days"style="height: 0px;width: 0px;color: white"></span>
+						<span class="hours"style="height: 0px;width: 0px;color: white"></span>
+						<span class="minutes"style="height: 0px;width: 0px;color: white"></span>
+						<span class="seconds"style="height: 0px;width: 0px;color: white"></span>
 					</div>
 
 					<div class="sp_color my-4">
 					</div>
 
 					<form class="layui-form" th:action="@{/addIntoShoppingCar}" method="post">
-						<div class="sp_counter">
+						<div class="sp_counter"style="position:relative;top: -70px;left: 0px">
 							<div class="sp_c_count1">
 								<div class="number">
 									<div class="sp_counter ">
@@ -1172,18 +1179,17 @@
 
 							}
 						</style>
-
 						<div class="cart">
 							<div th:if="${session.u_Account != product.getP_Account()}">
-								<form class="layui-form">
+								<form class="layui-form" method="post">
 									<span class="sp_c_count2">
 										<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="position:relative;top:0px;height: 50px;width: 120px;background-color: orange">
-										<input type="submit" value="加入购物车" data-toggle="modal" data-target="#wish_Modal" class="btn btn-primary primary"style="position:relative;top:0px;height: 50px;width: 120px;background-color: orange">
+										<input type="submit" value="加入购物车" class="btn btn-primary primary"style="position:relative;top:0px;left:-30px;height: 50px;width: 180px;background-color: orange">
 									</span>
 								</form>
 							</div>
 							<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
-								<div class="btn btn-primary primary" th:text="加入购物车"style="position:relative;top:0px;height: 50px;width: 120px;background-color: orange" onclick="alert('不能买自己发布的商品！')"></div>
+								<div class="btn btn-primary primary" th:text="加入购物车"style="position:relative;top:0px;left:-30px;height: 50px;width: 180px;background-color: orange" onclick="alert('不能买自己发布的商品！')"></div>
 							</span>
 						</div>
 						<!--							下面这个东西是为了制造空隙用的，别删-->
@@ -1206,11 +1212,11 @@
 						<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form" th:action="@{/checkOutWithSingleProduct}" method="post">
 									<span class="sp_c_count2">
 										<input type="hidden" id="pid" name="pid" th:value="${product.getP_Id()} "  style="display: none">
-										<input type="submit" value="立即购买" class="btn btn-primary primary"style="position:relative;top:0px;height: 50px;width: 120px">
+										<input type="submit" value="立即购买" class="btn btn-primary primary"style="position:relative;top:0px;left:20px;height: 50px;width: 190px">
 									</span>
 						</form>
 						<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
-									<div class="btn btn-primary primary" th:text="立即购买" style="position:relative;top:0px;height: 50px;width: 120px"onclick="alert('不能买自己发布的商品！')"></div>
+									<div class="btn btn-primary primary" th:text="立即购买" style="position:relative;top:0px;left:20px;height: 50px;width: 190px"onclick="alert('不能买自己发布的商品！')"></div>
 								</span>
 					</div>
 

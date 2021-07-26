@@ -356,6 +356,7 @@
 
 <!-- header area -->
 
+
 <header>
 	<!-- first row -->
 
@@ -417,7 +418,7 @@
 		<div class="container custom_container header-top-container">
 			<div class="row">
 				<div class="col-xl-2 col-lg-2 col-6  head-logo">
-					<div class="text-left header-top-left pt-2"><a href="/"><img src="assets/img/logo.png"
+					<div class="text-left header-top-left pt-2"><a href="/"><img src="../assets/img/logo.png"
 																				 class="img-responsive img" alt="Hitech"></a></div>
 				</div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
 				<div class="col-xl-10 col-lg-10 col-6  head-search">
@@ -425,30 +426,34 @@
 						<div class="input-class  text-left col-xl-8 col-lg-7 col-md-12  ">
 							<div class="between-header border border-danger rounded mb-0 head-left">
 
-								<form class="layui-form" th:action="@{/selectCategory}" method="post">
-									<select class="select-menu form-select d-none d-sm-block" name="category" id="category">
-										<option value="selected">所有分类</option>
-										<option value="书籍教材">书籍教材</option>
-										<option value="电子产品">电子产品</option>
-										<option value="代步工具">代步工具</option>
-										<option value="衣帽鞋伞">衣帽鞋伞</option>
-										<option value="体育健身">体育健身</option>
-										<option value="家用电器">家用电器</option>
-										<option value="虚拟产品">虚拟产品</option>
-										<option value="手工设计">手工设计</option>
-										<option value="日常用品">日常用品</option>
-										<option value="音乐器材">音乐器材</option>
-									</select>
+								<select class="select-menu form-select d-none d-sm-block">
+									<option value="selected">所有分类</option>
+									<option value="1">书籍教材</option>
+									<option value="2">电子产品</option>
+									<option value="3">代步工具</option>
+									<option value="4">衣帽鞋伞</option>
+									<option value="5">体育健身</option>
+									<option value="6">家用电器</option>
+									<option value="7">虚拟产品</option>
+									<option value="8">手工设计</option>
+									<option value="9">日常用品</option>
+									<option value="10">音乐器材</option>
+								</select>
 
-									<div class="input-group">
-										<input type="text" placeholder="搜索" class="form-control" aria-label="search"
-											   aria-describedby="button-addon2" id="txt" name="txt">
-										<div class="input-group-btn"><button type="submit"
-																			 class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
-										</div> </div></form>
+
+								<div class="input-group">
+									<input type="text" placeholder="搜索" class="form-control" aria-label="search"
+										   aria-describedby="button-addon2" id="txt">
+									<div class="input-group-btn"><button type="button"
+																		 class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
+									</div>
+								</div>
 							</div>
 							<!-- between-header text-left col-sm-8 head-left border border-danger rounded mb-0 -->
 						</div>
+
+
+
 
 						<div class="col-xl-4 col-lg-5 head-right text-right">
 							<ul>
@@ -456,7 +461,7 @@
 									<a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
 													width="34px" height="40px"></svg></span>
-										<img src="assets/img/发布商品.png" style="height: 28px;width: 28px" alt="">
+										<img src="../assets/img/发布商品.png" style="height: 28px;width: 28px" alt="">
 										<span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
                                             <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品&nbsp;&nbsp;&nbsp;</a></span>
 										<a th:if="${session.u_Account == null}" href="/login">发布商品&nbsp;&nbsp;&nbsp;</a></span>
@@ -494,11 +499,11 @@
 														<use xlink:href="#cart"></use>
 													</svg></span>
 												<span >购物车</span>
- <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
-	   th:text="${session.shoppingCartList.size()}"></span>
+                                                <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
+													  th:text="${session.shoppingCartList.size()}"></span>
 										</span>
 
-									<div class="dropdown-menu s_cart dropdown-menu-right">
+									<div th:if="${session.u_Account != null}" class="dropdown-menu s_cart dropdown-menu-right">
 										<ul class="shopping-cart p-2 ">
 											<li th:each="p:${session.shoppingCartList}" class="pb-2 d-block">
 												<div class="media ">
@@ -506,23 +511,32 @@
 														<a href="#">
 															<img th:src="${p.getP_href()}"
 																 class="fst-image img-fluid align-self-center"
-																 alt="product_13">
+																 alt="product_13"
+																 style="width: 75px;height: 75px;">
 														</a>
 													</div>
-													<div class="media-body">&nbsp;
+													<div class="media-body">
 														<h6 class="mt-0 f_15"
-															th:text="${p.getP_Title()}"><span
-																class="float-right cart_cross">X</span></h6>
-														<p><span class="f_13"
-																 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span></p>
+															th:text="'&nbsp;&nbsp;' + ${p.getP_Title()}"
+															style="max-width: 170px;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            font-size: 13px;
+                                                            font-weight: 700;
+                                                            white-space: nowrap;"></h6>
+
+														<span class="float-right cart_cross">X</span>
+														<span class="f_13" style="font-size: 12px;"
+															  th:text="'&nbsp;&nbsp;' + ${p.getP_Num()} + '&nbsp;X&nbsp;' + '￥' + ${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"></span>
 													</div>
 												</div>
 											</li>
+											<div class="border-bottom"></div>
 
 											<li class="d-block text-muted font-weight-bolder p-2 border-bottom">
-												<span class="text-left">总计:</span>
-												<span class="float-right f_13"
-													  th:text="'￥' + ${session.shoppingCarPrice}"></span>
+												<span class="text-left" style="font-weight: 700">总计:</span>
+												<span class="float-right f_13" style="font-weight: 700"
+													  th:text="'￥' + ${#numbers.formatDecimal(session.shoppingCarPrice,1,'COMMA',2,'POINT')}"></span>
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
 												<span class="text-left"><a href="/shopProduct">查看购物车</a></span>
@@ -565,16 +579,8 @@
 													   href="/admin/user_init" >我的发布</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
 													   href="/shopProduct">我的购物车</a></li>
-
 							</ul>
 						</li>
-
-
-
-
-
-
-
 
 					</ul>
 				</div> <!-- col-lg-9 text-left -->
@@ -834,7 +840,7 @@
 					    <div class="card-header bg-white" id="checkout_info">
 					      <h2 class="mb-0">
 					        <button class="btn btn-link btn-block text-left text-body p-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#check_info" aria-expanded="true" aria-controls="check_info">
-					          	请填写您的个人信息<span class="float-right"><i class="fas fa-angle-down"></i></span>
+					          	请确认订单信息<span class="float-right"><i class="fas fa-angle-down"></i></span>
 					        </button>
 					      </h2>
 					    </div>
@@ -848,41 +854,46 @@
 							  	<div id="Registration" class="page-content mt-4 mb-0">
 
 									<form class="layui-form">
-										<blockquote class="layui-elem-quote">订单信息</blockquote>
 
 										<div class="layui-form-item">
-											<label class="layui-form-label">商品标题：</label>
+											<label class="layui-form-label"style="width: 150px">商品标题：</label>
 											<div class="layui-input-inline">
 												<input type="text" th:value="${product.p_Title}" id="p_Title" name="p_Title" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
 											</div>
 										</div>
-
 										<div class="layui-form-item">
-											<label class="layui-form-label">订单金额：</label>
+											<label class="layui-form-label"style="width: 150px">商品详情：</label>
 											<div class="layui-input-inline">
-												<input type="text" th:value="${product.p_Price}" id="p_Price" name="p_Price" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
+												<input type="text" th:value="${product.p_Des}" id="p_Des" name="p_Des" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
 											</div>
 										</div>
 
+
 										<div class="layui-form-item">
-											<label class="layui-form-label">（店铺）卖家ID：</label>
+											<label class="layui-form-label"style="width: 150px">卖家账号：</label>
 											<div class="layui-input-inline">
 												<input type="text" th:value="${product.p_Account}" id="o_Seller" name="o_Seller" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
 											</div>
 										</div>
 
 										<div class="layui-form-item">
-											<label class="layui-form-label">收货地址：</label>
-											<div class="layui-input-inline">
-												<select name="o_Baddress" id="o_Baddress" lay-verify="required" lay-filter="xmFilter">
-													<option value="请选择" style="width: 300px;"></option>
+											<label class="layui-form-label"style="width: 150px">收货地址：</label>
+											<div class="layui-input-inline"style="width: 300px;">
+												<select name="o_Baddress" id="o_Baddress" lay-verify="required" lay-filter="xmFilter"style="width: 300px;">
+													<option value="请选择" ></option>
 												</select>
 											</div>
 										</div>
-
+										<div class="layui-form-item">
+											<label class="layui-form-label"style="width: 150px">订单金额：</label>
+											<div class="layui-input-inline">
+												<input type="text" th:value="${product.p_Price}" id="p_Price" name="p_Price" readonly  autocomplete="off" class="layui-input" style="width: 300px;">
+											</div>
+										</div>
 										<div class="layui-form-item">
 											<div class="layui-form-label">
-												<button lay-submit lay-filter="OrderInfo" type="button" class="layui-btn">确认订单</button>
+												<button type="button" class="btn btn-danger text-uppercase font-weight-normal"lay-submit lay-filter="OrderInfo"
+														style="background-color:red;width: 295px;height: 45px;font-size: 15px;position:relative;left: 135px" >提交订单</button>
 											</div>
 										</div>
 										<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none">
@@ -933,7 +944,7 @@
 				<div class="col-lg-4 col-12 ">
 					<div class="border rounded bg-white final_payment">
 						<div class="card-body  border-bottom">
-							<p class="text-muted">商品个数</p>
+
 							<p class="font-weight-bolder">详情</p>
 							<div>
 								<span class="font-weight-bold" th:text="${product.getP_Title()}"></span>
