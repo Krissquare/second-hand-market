@@ -33,21 +33,18 @@ public class ImgUploadController {
         return "admin/imgUpdate";
     }
 
+    //上传图片操作
     @RequestMapping("/imgUpload")
     @ResponseBody
     public BaseResponse imgUpload(@RequestParam("file") MultipartFile file, HttpServletRequest req, @RequestParam("p_Id") String p_Id){
-        System.out.println(p_Id); // p_Id的传值与绑定参考imgUpload.html的隐藏表单<input id="p_Id" name ="p_Id">和layui上传接口中的data参数
-                                // 与productInfo.html中的layEvent监听imgUpload
-        System.out.println(file);
         String path = req.getServletContext().getRealPath("/images/product");
         File realPath = new File(path);
         BaseResponse baseResponse = null;
-        String currentName = System.currentTimeMillis() + file.getOriginalFilename(); //为图片拼接时间戳，防止重命名
-        String fileName = realPath + "/" + currentName; // 传递到文件上传函数中真实的服务器文件夹地址
-        String href = "/images/product/" + currentName; // 添加到数据库中的图片href
-        Product p = productService.selectProductsById(Integer.valueOf(p_Id));//根据所编辑的物品Id，查询所有图片地址
-//        System.out.println(p.getP_href());
-        if(p!=null){ // p_href p_href1皆为0 默认插入p_href
+        String currentName = System.currentTimeMillis() + file.getOriginalFilename();
+        String fileName = realPath + "/" + currentName;
+        String href = "/images/product/" + currentName;
+        Product p = productService.selectProductsById(Integer.valueOf(p_Id));
+        if(p!=null){
             productService.setHref(href,Integer.valueOf(p_Id));
             baseResponse = uploadFunction(realPath, file, fileName);
             return baseResponse;
@@ -56,54 +53,30 @@ public class ImgUploadController {
         {
             System.out.println("shit");
         }
-//        if(p.getP_href().equals("0") && !p.getP_href1().equals("0")){ // p_href为0，p_href1不为0，插入p_href
-//            productService.setHref(href,Integer.valueOf(p_Id));
-//            baseResponse = uploadFunction(realPath, file, fileName);
-//            return baseResponse;
-//        }
-//
-//        if(!p.getP_href().equals("0") && p.getP_href1().equals("0")){ // p_href不为0，p_href1为0，插入p_href1
-//            productService.setHref1(href,Integer.valueOf(p_Id));
-//            baseResponse = uploadFunction(realPath, file, fileName);
-//            return baseResponse;
-//        }
-
         baseResponse = new BaseResponse<>();
         baseResponse.setCode(500);
         baseResponse.setMsg("添加图片失败！请删除原有图片");
         baseResponse.setSrc("");
         return  baseResponse;
-
     }
 
-    //layer弹出层展示图片的数据接口
+    //显示商品的所有图片
     @RequestMapping("/imgAll")
     @ResponseBody
     public BaseResponse imgAll(@RequestParam("p_Id") String p_Id){
         BaseResponse<List<Product>> baseResponse = new BaseResponse<>();
         Product p = productService.imgHref(Integer.valueOf(p_Id));
         Product p1 = new Product();
-//        Product p2 = new Product();
-
-        System.out.println(p.getP_href());
-//        System.out.println(p.getP_href1());
         List<Product> list = new ArrayList<>();
         p1.setP_Id(Integer.valueOf(p_Id));
         p1.setP_href(p.getP_href());
-
-//        p2.setP_Id(Integer.valueOf(p_Id));
-//        p2.setP_href(p.getP_href1());
-
-          list.add(p1);
-//        list.add(p2);
-
+        list.add(p1);
         baseResponse.setCode(0);
         baseResponse.setData(list);
-
         return baseResponse;
     }
 
-
+    //删除一张图片
     @RequestMapping("/imgDelete")
     @ResponseBody
     public BaseResponse imgDelete(@RequestBody Product p, HttpServletRequest req){
@@ -121,15 +94,6 @@ public class ImgUploadController {
             file.delete();
             return baseResponse;
         }
-//        }else if(compareP.getP_href1().equals(p.getP_href())){
-//            productService.setHref1("0", p.getP_Id());
-//            baseResponse.setCode(200);
-//            baseResponse.setMsg("删除成功");
-//            File file = new File( realPath + p.getP_href());
-//            file.delete();
-//            return baseResponse;
-//        }
-
         baseResponse.setCode(500);
         baseResponse.setMsg("删除失败");
         return baseResponse;

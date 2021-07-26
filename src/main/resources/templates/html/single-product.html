@@ -1066,7 +1066,7 @@
 					<div id="photo-view-container">
 						<div id="photo-display" class="gallery"></div>
 						<div id="left" onclick=leftRight(this)></div>
-						<div id="photo-container-holder"style="height:145px">
+						<div id="photo-container-holder"style="height:185px">
 							<div id="photo-container" style="margin-left:0;">
 								<div class="photo-holder"><img th:src="${product.getP_href()}" onclick=viewPhoto(this)
 															   class="photo-item" alt="product_13"></div>
@@ -1181,13 +1181,13 @@
 							<div th:if="${session.u_Account != product.getP_Account()}">
 								<form class="layui-form" method="post">
 									<span class="sp_c_count2">
-										<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="display: none">
-										<input type="submit" value="加入购物车" class="btn btn-primary primary"style="height: 50px;width: 120px;background-color: orange">
+										<input type="hidden" id="p_Id" name="p_Id" th:value="${product.getP_Id()}" style="position:relative;top:0px;height: 50px;width: 120px;background-color: orange">
+										<input type="submit" value="加入购物车" class="btn btn-primary primary"style="position:relative;top:0px;height: 50px;width: 120px;background-color: orange">
 									</span>
 								</form>
 							</div>
 							<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
-								<div class="btn btn-primary primary" th:text="加入购物车" onclick="alert('不能买自己发布的商品！')"></div>
+								<div class="btn btn-primary primary" th:text="加入购物车"style="position:relative;top:0px;height: 50px;width: 120px;background-color: orange" onclick="alert('不能买自己发布的商品！')"></div>
 							</span>
 						</div>
 						<!--							下面这个东西是为了制造空隙用的，别删-->
@@ -1210,11 +1210,11 @@
 						<form th:if="${session.u_Account != product.getP_Account()}" class="layui-form" th:action="@{/checkOutWithSingleProduct}" method="post">
 									<span class="sp_c_count2">
 										<input type="hidden" id="pid" name="pid" th:value="${product.getP_Id()} "  style="display: none">
-										<input type="submit" value="立即购买" class="btn btn-primary primary"style="height: 50px;width: 120px">
+										<input type="submit" value="立即购买" class="btn btn-primary primary"style="position:relative;top:0px;height: 50px;width: 120px">
 									</span>
 						</form>
 						<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
-									<div class="btn btn-primary primary" th:text="立即购买" onclick="alert('不能买自己发布的商品！')"></div>
+									<div class="btn btn-primary primary" th:text="立即购买" style="position:relative;top:0px;height: 50px;width: 120px"onclick="alert('不能买自己发布的商品！')"></div>
 								</span>
 					</div>
 

@@ -22,6 +22,7 @@ import java.util.UUID;
 
 @Controller
 public class CartController {
+    //显示购物车
     @RequestMapping("/cart")
     public String login() {
         return "html/cart";

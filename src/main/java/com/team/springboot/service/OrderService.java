@@ -14,6 +14,7 @@ public interface OrderService {
     List<Order> selectByBuyer(String Buyer);
     List<Order> selectByBuyerAndSeller(String Seller,String Buyer);
     List<Order> selectAll();
+    Order selectByOrderID(String o_Id);
     Address selectAddressValue(String a_Account);
     void addressUpdate(String o_Baddress, String o_Id);
     void deleteOrderById(Order o);

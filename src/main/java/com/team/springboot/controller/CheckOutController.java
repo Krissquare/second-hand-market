@@ -25,7 +25,7 @@ public class CheckOutController {
     @Autowired
     private ShoppingCarService shoppingCarService;
 
-
+    //进入单个商品结算页面
     @PostMapping("/checkOutWithSingleProduct")
     public String checkOutWithSingleProductProcessor(@RequestParam("pid") String pid,
                                                      Model model,
@@ -34,12 +34,12 @@ public class CheckOutController {
         String account = (String) session.getAttribute("u_Account");
         if(account == null)
             return "redirect:/login";
-//        System.out.println(pid);//debug
         Product p  = productService.selectById(Integer.valueOf(pid));
         model.addAttribute("product",p);
         return "html/checkout";
     }
 
+    //进入购物车结算确认页面
     @RequestMapping("/checkOutWithCart")
     public String checkOutWithCartProcessor(Model model, HttpSession session){
         String account = (String) session.getAttribute("u_Account");
@@ -58,6 +58,7 @@ public class CheckOutController {
         return "html/CartCheckOut";
     }
 
+    //单个商品结算（已弃用）
     @RequestMapping("/buyOneProduct")
     public String buyOneProduct(@RequestParam("u_Address") String address,
                                 @RequestParam("pid") String pid,
@@ -99,20 +100,40 @@ public class CheckOutController {
         return "html/buySuccessfully";
     }
 
+    //按购物车结算，买光购物车里的商品
     @RequestMapping("/buyCartOfProducts")
     @ResponseBody
     public BaseResponse buyCartOfProductsProcessor(@RequestBody BuyOrderInfo b, HttpSession session){
         BaseResponse baseResponse = new BaseResponse();
         String account = (String) session.getAttribute("u_Account");
+
+        if(b.getO_Baddress().equals("无")) {
+            baseResponse.setCode(500);
+            baseResponse.setMsg("收货地址不能为空");
+            return baseResponse;
+        }
+
         if(account == null || account.equals("")){
             baseResponse.setCode(500);
             baseResponse.setMsg("请登录账号");
             return baseResponse;
         }
+
+        User userBuyer = userService.selectUserById(account);
         ArrayList<ShoppingCarProduct> myShoppingCar =
                 (ArrayList<ShoppingCarProduct>) shoppingCarService.selectShoppingCarProductById(account);
-
         String address = b.getO_Baddress();
+
+        //检查余额是否足够
+        double totalPrice = 0.0;
+        for (ShoppingCarProduct oneItem: myShoppingCar){
+            totalPrice += oneItem.getP_Price();
+        }
+        if (userBuyer.getWallet() < totalPrice){
+            baseResponse.setCode(500);
+            baseResponse.setMsg("钱包余额不足!");
+            return baseResponse;
+        }
 
         for (ShoppingCarProduct oneProduct: myShoppingCar){
             //库存减相应数量
@@ -128,7 +149,7 @@ public class CheckOutController {
             oneOrder.setO_Date(String.format("%tF",new Date()));
             oneOrder.setO_Saddress(userService.selectAddressAll(product.getP_Account()).getA_Address1());
             oneOrder.setO_Baddress(address);
-            oneOrder.setO_Status("待交易");
+            oneOrder.setO_Status("未发货");
             oneOrder.setP_Num(oneProduct.getP_Num());
             //加入订单
             orderService.insertOne(oneOrder);
@@ -136,7 +157,9 @@ public class CheckOutController {
             shoppingCarService.deleteById(shoppingCarService.selectByAccountId(account,oneProduct.getP_Id()).getS_Id());
         }
 
-//        System.out.println(b.getO_Baddress());
+        //扣费
+        userBuyer.setWallet(userBuyer.getWallet() - totalPrice);
+        userService.updateWallet(userBuyer);
 
         baseResponse.setCode(200);
         baseResponse.setMsg("购买成功");

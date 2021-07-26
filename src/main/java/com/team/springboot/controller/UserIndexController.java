@@ -32,7 +32,7 @@ public class UserIndexController {
         @Autowired
         UserHeadService userHeadService;
 
-
+        //进入userIndex界面，给model加上userhead和user
     @RequestMapping("/userIndex")
     public String login(Model m, @RequestParam("u_Account") String u_Account) {
             User u;
@@ -44,4 +44,8 @@ public class UserIndexController {
             m.addAttribute("user",u);
             return "html/user_index";
     }
+        @RequestMapping("/userWallet")
+        public String login() {
+                return "html/wallet";
+        }
 }

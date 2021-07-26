@@ -24,6 +24,7 @@ public class RegistController {
     }
 
 
+    //注册一个新用户
     @RequestMapping(value = "/add", method = {RequestMethod.POST} )
     @ResponseBody
     public BaseResponse registerAdd(@RequestBody User u){
@@ -33,7 +34,6 @@ public class RegistController {
             baseResponse.setMsg("用户名已存在");
             return baseResponse;
         }
-        //encipher
         u.setU_Password(Cipher.Encipher(u.getU_Password()));
 
         userService.insertOne(u);

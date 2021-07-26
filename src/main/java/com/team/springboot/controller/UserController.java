@@ -37,8 +37,8 @@ public class UserController {
 
     @Autowired
     UserHeadService userHeadService;
-    //后台初始化
 
+    //后台初始化
     @RequestMapping("/userInfo")
     public String showUserInfo(Model m, HttpSession session) {
         String account = (String) session.getAttribute("u_Account");
@@ -60,9 +60,9 @@ public class UserController {
         return "admin/userInfo";
     }
 
+    //给用户加入地址列表以及给前端model发地址列表,进入userPassword界面
     @RequestMapping("/userPassword")
-    public String showUserPassword(Model m, HttpSession session)
-    {
+    public String showUserPassword(Model m, HttpSession session) {
         String account = (String) session.getAttribute("u_Account");
         Address addr = userService.selectAddressAll(account);
         if (addr == null) {
@@ -72,9 +72,10 @@ public class UserController {
         m.addAttribute("addressList", addr);
         return "admin/userPassword";
     }
+
+    //给用户加入地址列表以及给前端model发地址列表,进入userAddress界面
     @RequestMapping("/userAdd")
-    public String showAdd(Model m, HttpSession session)
-    {
+    public String showAdd(Model m, HttpSession session) {
         String account = (String) session.getAttribute("u_Account");
         Address addr = userService.selectAddressAll(account);
         if (addr == null) {
@@ -184,10 +185,12 @@ public class UserController {
         return baseResponse;
     }
 
+    //前往更换头像界面
     @RequestMapping("/userhead")
     public String userhead() {
         return "admin/uploadheadp";
     }
+
     //上传用户自定义头像
     @RequestMapping(value="/uploadSource" , method = RequestMethod.POST)
     @ResponseBody
@@ -213,6 +216,7 @@ public class UserController {
         }
         return baseResponse;
     }
+
     //上传默认头像
     @RequestMapping(value="/uploaddefault")
     @ResponseBody
