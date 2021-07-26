@@ -58,6 +58,7 @@ public class GoodsDetailController   {
        return "redirect:/goodsDetail?pid=" + p_Id;
    }
 
+   //将心愿清单中的物品加入到购物车
    @RequestMapping("/wishToCar")
    public String wishToCar(@RequestParam("pid") String pid,HttpSession session)
    {

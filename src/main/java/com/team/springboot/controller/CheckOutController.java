@@ -25,7 +25,7 @@ public class CheckOutController {
     @Autowired
     private ShoppingCarService shoppingCarService;
 
-
+    //进入单个商品结算页面
     @PostMapping("/checkOutWithSingleProduct")
     public String checkOutWithSingleProductProcessor(@RequestParam("pid") String pid,
                                                      Model model,
@@ -34,12 +34,12 @@ public class CheckOutController {
         String account = (String) session.getAttribute("u_Account");
         if(account == null)
             return "redirect:/login";
-//        System.out.println(pid);//debug
         Product p  = productService.selectById(Integer.valueOf(pid));
         model.addAttribute("product",p);
         return "html/checkout";
     }
 
+    //进入购物车结算确认页面
     @RequestMapping("/checkOutWithCart")
     public String checkOutWithCartProcessor(Model model, HttpSession session){
         String account = (String) session.getAttribute("u_Account");
@@ -58,7 +58,7 @@ public class CheckOutController {
         return "html/CartCheckOut";
     }
 
-    //已弃用
+    //单个商品结算（已弃用）
     @RequestMapping("/buyOneProduct")
     public String buyOneProduct(@RequestParam("u_Address") String address,
                                 @RequestParam("pid") String pid,
@@ -100,6 +100,7 @@ public class CheckOutController {
         return "html/buySuccessfully";
     }
 
+    //按购物车结算，买光购物车里的商品
     @RequestMapping("/buyCartOfProducts")
     @ResponseBody
     public BaseResponse buyCartOfProductsProcessor(@RequestBody BuyOrderInfo b, HttpSession session){

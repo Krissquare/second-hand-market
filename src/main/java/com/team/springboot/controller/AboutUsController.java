@@ -22,6 +22,7 @@ import java.util.UUID;
 
 @Controller
 public class AboutUsController {
+    //关于我们界面
     @RequestMapping("/about-us")
     public String login() {
         return "html/about-us";

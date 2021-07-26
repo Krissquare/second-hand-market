@@ -15,6 +15,7 @@ public class ForgotController {
     @Autowired
     UserService userService;
 
+    //忘记密码界面
     @RequestMapping("/forgot")
     public String forget() {
         return "html/forgot";

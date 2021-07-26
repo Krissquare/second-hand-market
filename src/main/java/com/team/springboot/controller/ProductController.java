@@ -218,14 +218,12 @@ public class ProductController {
     public BaseResponse pass(@RequestParam String p_Id,HttpServletRequest request){
         BaseResponse baseResponse = new BaseResponse();
         Product product=productService.selectProductById(Integer.valueOf(p_Id));
-        if(product==null || product.getP_Status().equals("上架中"))
-        {
+        if(product==null || product.getP_Status().equals("上架中")) {
             baseResponse.setCode(500);
             baseResponse.setMsg("上架失败，商品已在售卖");
             return baseResponse;
         }
-        if(product!=null && product.getP_Status().equals("待审核") && !request.getSession().getAttribute("u_Account").equals("admin"))
-        {
+        if(product!=null && product.getP_Status().equals("待审核") && !request.getSession().getAttribute("u_Account").equals("admin")) {
             baseResponse.setCode(500);
             baseResponse.setMsg("上架失败，商品正在审核");
             return baseResponse;
@@ -245,8 +243,7 @@ public class ProductController {
     public BaseResponse soldout(@RequestParam String p_Id){
         BaseResponse baseResponse = new BaseResponse();
         Product product=productService.selectProductById(Integer.valueOf(p_Id));
-        if(product==null || product.getP_Status().equals("已下架")|| product.getP_Status().equals("待审核"))
-        {
+        if(product==null || product.getP_Status().equals("已下架")|| product.getP_Status().equals("待审核")) {
             baseResponse.setCode(500);
             baseResponse.setMsg("下架失败，商品已下架或正在审核");
             return baseResponse;
@@ -339,8 +336,7 @@ public class ProductController {
         productCategory.setP_Name(p_Name);
         productCategory.setP_Price(p_Price);
         productCategory.setP_num(p_num);
-        switch (p_Name)
-        {
+        switch (p_Name) {
             case "日常用品":productCategory.setC_Id("c09");break;
             case "书籍教材":productCategory.setC_Id("c01");break;
             case "电子产品":productCategory.setC_Id("c02");break;
