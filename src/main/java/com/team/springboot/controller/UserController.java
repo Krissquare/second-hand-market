@@ -196,26 +196,16 @@ public class UserController {
         System.out.println(file);
         String pathString = null;
         if(file!=null) {
-            String path=request.getRealPath("/images/user/");
+            String path=request.getRealPath("/images/product/");
             String name= new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" +file.getOriginalFilename();
             pathString = path + name;
             File files=new File(pathString);
             //把内存图片写入磁盘中
             file.transferTo(files);
-            String realPath = "/images/user/"+name;
+            String realPath = "/images/product/"+name;
             baseResponse.setCode(200);
             baseResponse.setMsg(pathString);
-            User user=userService.selectUserById((String) request.getSession().getAttribute("u_Account"));
-
-            //删除服务器里的文件
-            File filesdelete =new File(request.getRealPath("/")+user.getU_Url());
-            if(filesdelete.exists()&&!user.getU_Url().contains("default")) {
-                filesdelete.delete();
-                System.out.println("文件已经删除");
-            }
-
-            //更新数据库
-            userHeadService.updateHead(new UserHead(realPath,(String)request.getSession().getAttribute("u_Account")));
+            request.getSession().setAttribute("img",realPath);
         }
         else{
             baseResponse.setCode(500);

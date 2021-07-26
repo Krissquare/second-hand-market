@@ -911,7 +911,9 @@
 <!--    </div>-->
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
              <label class="layui-form-label">物品预览</label>
-            <a class="layui-btn" data-type="reload"style="width: 190px">上传图片</a>
+        <div class="layui-input-inline" style="cursor: pointer">
+            <img class="layui-upload-img" id="demo1" width="100px" height="100px" alt="上传图片" title="上传图片">
+        </div>
     </div>
     <div>&nbsp;</div>
     <div class="layui-input-inline login-btn"style="position: relative;left: 230px;top: 50px">
@@ -1096,6 +1098,38 @@
     });
 </script>
 <script th:inline="javascript">
+    var myVarate = [[${session.url}]];
+    console.log(myVarate);
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function () {
+        var layer = layui.layer, upload = layui.upload, $ = layui.$, demoText = $('#demoText');
+        $('#demo1').attr('src', myVarate);//页面初始化的时候渲染图片
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#demo1',
+            url: '/admin/uploadSource',//这里填写你的上传地址
+            accept: 'images',
+            bindAction: '#uploadBtn',
+            method: 'post',
+            acceptMime: 'image/*'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    myVarate = result;
+                    $('#save').attr('class', 'layui-btn');
+                });
+            },
+            done: function (res) {
+                if (res.code == 200) {//长传成功(具体返回code 看后台是怎么处理的)
+                    layer.msg('图片上传成功!');
+                    $('#demo1').attr('src', myVarate);
+                }
+            }
+            , error: function () {
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            }
+        });
+    });
+
     layui.use(['table','form'], function(){
         var table = layui.table;
         const form = layui.form;
@@ -1288,6 +1322,7 @@
             ]]
         });
     });
+
 </script>
 </body>
 </html>

@@ -332,6 +332,7 @@ public class ProductController {
         productCategory.setP_Name(p_Name);
         productCategory.setP_Price(p_Price);
         productCategory.setP_num(p_num);
+        productCategory.setP_href((String) session.getAttribute("img"));
         switch (p_Name)
         {
             case "日常用品":productCategory.setC_Id("c09");break;
