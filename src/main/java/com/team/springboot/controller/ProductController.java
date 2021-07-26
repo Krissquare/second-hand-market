@@ -295,6 +295,7 @@ public class ProductController {
         product.setP_Date(p_Date);
         product.setP_Des(p_Des);
         product.setP_Name(p_Name);
+//        product.setP_originalPrice(p_originalPrice);
         product.setP_Title(p_Title);
         product.setP_Price(p_Price);
 

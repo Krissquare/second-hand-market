@@ -412,13 +412,10 @@
 						<div>&nbsp;</div>
 						<div class="star mb-2">
 							<span th:text="${p.getP_Account()}"></span>
+							<span>Tel:18273626261</span>
 							<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
 
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
+
 						</div>
 
 
@@ -1053,7 +1050,7 @@
 									<div>&nbsp;</div>
 
 									<div>
-										<!--										[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}]]-->
+										<!--								 		[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}]]-->
 										<span style="font-size: small">发布于</span>
 										<a th:text="${#numbers.formatDecimal((new java.util.Date().getTime()-p.getP_Date().getTime())/86400000,1,'COMMA',0,'POINT')}"></a>
 										<!--										<a th:text="${p.getP_Date()}"></a>-->
@@ -1061,14 +1058,14 @@
 									</div>
 
 									<div class="star mb-2">
+										<img src="/assets/img/用户.png"style="width: 17px;height: 17px">
+
 										<span th:text="${p.getP_Account()}"></span>
+										<img src="/assets/img/电话.png"style="position: relative;left: 40px;width: 20px;height: 20px">
+										<span style="position: relative;left: 40px">17262535342</span>
 										<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
 
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
+
 									</div>
 
 								</div>
