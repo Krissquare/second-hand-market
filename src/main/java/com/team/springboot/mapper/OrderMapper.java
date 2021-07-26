@@ -30,6 +30,9 @@ public interface OrderMapper {
     @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress,o.o_Saddress,o.o_Date, o.o_ItemId, o.o_Status, o.o_ExpressId from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer like #{0}")
     List<Order> selectByBuyer(String Buyer);
 
+    @Select("select o_Id,o_ItemId,p_Num,o_Seller,o_Buyer,o_Baddress,o_Saddress,o_Date,o_Status,o_ExpressId from order2 where o_Id = #{0}")
+    Order selectByOrderID(String o_Id);
+
 
     @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress,o.o_Saddress,o.o_Date, o.o_ItemId, o.o_Status, o.o_ExpressId from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller like #{0} and o.o_Buyer like #{1}")
     List<Order> selectByBuyerAndSeller(String Seller,String Buyer);
@@ -75,7 +78,7 @@ public interface OrderMapper {
     @Select("select count(o_Id) from order2")
     int selectOrderCount();
 
-    @Insert("insert into order2(o_Id, o_ItemId, o_Buyer, o_Seller, o_Baddress, o_Saddress, o_Date, o_Status, o_ExpressId) values(#{o_Id},#{o_ItemId}, #{o_Buyer}, #{o_Seller}, #{o_Baddress}, #{o_Saddress}, #{o_Date}, #{o_Status}), #{o_ExpressId}")
+    @Insert("insert into order2(o_Id, o_ItemId, o_Buyer, o_Seller, o_Baddress, o_Saddress, o_Date, o_Status) values(#{o_Id},#{o_ItemId}, #{o_Buyer}, #{o_Seller}, #{o_Baddress}, #{o_Saddress}, #{o_Date}, #{o_Status})")
     void insertOne(Order o);
 
     @Select("select o_ExpressId from order2 where o_Id = #{0}")

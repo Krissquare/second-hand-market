@@ -99,11 +99,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> selectByBuyerAndSeller(String Seller,String Buyer)
-    {
+    public List<Order> selectByBuyerAndSeller(String Seller,String Buyer) {
         return orderMapper.selectByBuyerAndSeller(Seller, Buyer);
     }
 
+    @Override
+    public Order selectByOrderID(String o_Id){
+        return orderMapper.selectByOrderID(o_Id);
+    }
 
     @Override
     public int countBypName(String p_Name)
