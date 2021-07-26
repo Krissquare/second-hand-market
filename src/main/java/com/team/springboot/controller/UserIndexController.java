@@ -33,19 +33,23 @@ public class UserIndexController {
         UserHeadService userHeadService;
 
         //进入userIndex界面，给model加上userhead和user
-    @RequestMapping("/userIndex")
-    public String login(Model m, @RequestParam("u_Account") String u_Account) {
+        @RequestMapping("/userIndex")
+        public String login(Model m, @RequestParam("u_Account") String u_Account) {
             User u;
             UserHead userHead;
-//            String account = (String) session.getAttribute("u_Account");
             u=userService.selectUserById(u_Account);
             userHead=userHeadService.selectHead(u_Account);
             m.addAttribute("userhead",userHead);
             m.addAttribute("user",u);
             return "html/user_index";
-    }
+        }
+
+        //我的钱包
         @RequestMapping("/userWallet")
-        public String login() {
+        public String login(HttpSession session, Model model) {
+                String account = (String) session.getAttribute("u_Account");
+                User user = userService.selectUserById(account);
+                model.addAttribute(user);
                 return "html/wallet";
         }
 }

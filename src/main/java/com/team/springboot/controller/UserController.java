@@ -245,6 +245,29 @@ public class UserController {
         return baseResponse;
     }
 
+    //充值
+    @RequestMapping("/AddMoneyToWallet")
+    @ResponseBody
+    public BaseResponse addMoneyToWallet(@RequestParam("money") String money, HttpSession session){
+        // TODO 输入的格式
+        System.out.println(money);
+        BaseResponse baseResponse = new BaseResponse();
+        try{
+            double moneyDouble = Double.parseDouble(money);
+            String account = (String) session.getAttribute("u_Account");
+            User user = userService.selectUserById(account);
+            user.setWallet(user.getWallet() + moneyDouble);
+            userService.updateWallet(user);
+
+            baseResponse.setCode(200);
+            baseResponse.setMsg("充值成功");
+            return baseResponse;
+        }catch (NumberFormatException e){
+            baseResponse.setCode(500);
+            baseResponse.setMsg("输入格式有误！");
+            return baseResponse;
+        }
+    }
 
     // 退出登录
     @RequestMapping("/quit")

@@ -899,52 +899,31 @@
                         }
                       </style>
                       <form class="layui-form1" >
-                        <fieldset style="font-size: 35px;font-family: YouYuan;color: #db2020">
-
-                        </fieldset>
+                        <fieldset style="font-size: 35px;font-family: YouYuan;color: #db2020"></fieldset>
                         <img src="/assets/img/我的钱包.png"style="width: 760px;height: 80px;position:relative;top: 10px;left: -250px">
-                        <div class="layui-form-item">
-                          &nbsp;
-                        </div>
-                        <div class="layui-form-item">
-                          &nbsp;
-                        </div>
-
+                        <div class="layui-form-item">&nbsp;</div>
+                        <div class="layui-form-item">&nbsp;</div>
                         <div class="layui-form-item">
                           <div class="layui-inline">
                             <img src="/assets/img/钱包.png" style="height: 50px;width: 50px">
-
                             <label style="font-size: 16px;font-weight: bolder">&nbsp;&nbsp;钱包余额:&nbsp;&nbsp;</label>
-
-                            <label  style="font-size: 16px;font-weight: bolder">¥100.00</label>
-
+                            <label  style="font-size: 16px;font-weight: bolder" th:text="'￥'+${user.getWallet()}"></label>
                           </div>
                         </div>
-                        <div>
-                          &nbsp;
-                        </div>
+                        <div>&nbsp;</div>
                         <div class="layui-form-item">
                           <div class="layui-inline">
-                            <input type="text" placeholder="请输入充值金额"
+                            <input type="text" placeholder="请输入充值金额" id="money" name="money"
                                    aria-label="search" style="width: 220px;height: 40px " aria-describedby="button-addon2">
-
                           </div>
-
-
                         </div>
                         <div class="layui-form-item">
-
-
                           <div class="layui-inline">
                             <div>&nbsp;</div>
-                            <button type="submit" class="btn btn-danger text-uppercase font-weight-normal"
+                            <button lay-submit lay-filter="Money" class="btn btn-danger text-uppercase font-weight-normal" type="button"
                                     style="width: 220px;height: 40px;font-size: 16px;background-color: #ff595b">确认充值</button>
-
                           </div>
                         </div>
-
-
-
                       </form>
                     </div>
 
@@ -1123,18 +1102,6 @@
 
 <!-- about us page end -->
 
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/owl.carousel.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -1143,15 +1110,42 @@
 <script src="assets/js/index.js"></script>
 <script src="assets/js/wow.min.js"></script>
 <script src="assets/js/masonry.js"></script>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/layui/jquery.min.js}"></script>
+<script>
+  layui.use(['element','form','layer','table'], function(){
+    const form = layui.form;
+    const $ = layui.$;
 
+    form.on('submit(Money)',function (data){
+      const field = data.field;
+      let money = document.getElementById("money").value;
+      //console.log(field);
+      $.ajax({
+        url: '/admin/AddMoneyToWallet' +'?money='+ money,
+        type: 'POST',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(field),
+        success: function (res){
+          if(res.code === 200){
+            layer.msg(res.msg);
+            window.setTimeout(()=>{
+              parent.layer.closeAll();
+              location.href = '/userWallet';
+            }, 3000);
+          }else if(res.code === 500){
+            layer.msg(res.msg);
+          }
+        },
+        error: function (res){
+          layer.msg('请求错误！');
+        }
+      });
+    });
+  })
+</script>
 
 <script>
-
-
-
-
-
-
   // init Masonry
   var $grid = $('.grid').masonry({
     itemSelector: '.grid-item',
@@ -1163,11 +1157,6 @@
   $grid.imagesLoaded().progress( function() {
     $grid.masonry();
   });
-
-
-
-
-
 </script>
 
 
