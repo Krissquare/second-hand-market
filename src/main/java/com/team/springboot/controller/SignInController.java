@@ -30,11 +30,9 @@ public class SignInController {
         return "redirect:/";
     }
 
+    //用户登录功能控制
     @PostMapping("/user/login")
-    public String loginin(@RequestParam("u_Account") String account,
-                          @RequestParam("u_Password") String originPassword,
-                          HttpSession session) {
-        //encipher
+    public String loginin(@RequestParam("u_Account") String account, @RequestParam("u_Password") String originPassword, HttpSession session) {
         String password = Cipher.isInWhiteList(account) ? originPassword : Cipher.Encipher(originPassword);
 
         if(userService.selectUserById(account) == null){

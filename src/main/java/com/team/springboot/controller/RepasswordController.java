@@ -24,10 +24,10 @@ public class RepasswordController {
         return "admin/re_check_password";
     }
 
+    //响应邮箱验证
     @RequestMapping(value = "/check", method = {RequestMethod.POST} )
     @ResponseBody
-    public BaseResponse checkEmail(@RequestBody User u,
-                                   HttpSession session){
+    public BaseResponse checkEmail(@RequestBody User u, HttpSession session){
         BaseResponse<Integer> baseResponse = new BaseResponse<Integer>();
         if(userService.selectUserById(u.getU_Account()) == null){
             baseResponse.setCode(500);
@@ -52,10 +52,11 @@ public class RepasswordController {
     public String checkSuccess() {
         return "admin/resetpwd";
     }
+
+    //修改密码控制
     @RequestMapping(value = "/set_pwd", method = {RequestMethod.POST} )
     @ResponseBody
-    public BaseResponse setPwd(@RequestBody User u,
-                               HttpSession session){
+    public BaseResponse setPwd(@RequestBody User u, HttpSession session){
         BaseResponse<Integer> baseResponse = new BaseResponse<Integer>();
         u.setU_Account(String.valueOf(session.getAttribute("ID")));
         userService.updatePwd(u);
