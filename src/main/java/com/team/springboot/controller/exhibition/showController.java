@@ -31,7 +31,7 @@ public class showController {
     @Autowired
     ProductService productService;
 
-
+    //辅助列表显示函数
     private List<List<ProductCategory>> row1ToRow2(List<ProductCategory> singleList) {
         List<List<ProductCategory>> doubleList = new ArrayList<>();
         for (int i = 0; i < singleList.size(); i++) {
@@ -64,7 +64,7 @@ public class showController {
         return "html/index";
     }
 
-    //前台搜索功能
+    //搜索商品功能
     @RequestMapping("/search")
     public String search(Model m, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo,
                          @RequestParam("search") String search, HttpServletRequest req) {
@@ -81,6 +81,7 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    //市场界面侧边栏页面控制
     @RequestMapping("/searchPage")
     public String searchPage(Model m, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo, HttpServletRequest req) {
         int pageSize = 16;
@@ -91,6 +92,7 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    //市场界面侧边栏显示所有
     @RequestMapping("/searchAll")
     public String searchAll(Model m, HttpServletRequest req)
     {
@@ -102,9 +104,9 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    //按商品库存数排序
     @RequestMapping("/ByNum")
-    public String byNum(Model model, HttpSession session, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo)
-    {
+    public String byNum(Model model, HttpSession session, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo) {
         if(session.getAttribute("search")!=null)
         {
             String search=(String)session.getAttribute("search");
@@ -127,9 +129,9 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    //按库存数由低到高显示
     @RequestMapping("/ByNumlow")
-    public String byNumLow(Model model, HttpSession session, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo)
-    {
+    public String byNumLow(Model model, HttpSession session, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo) {
         if(session.getAttribute("search")!=null)
         {
             String search=(String)session.getAttribute("search");
@@ -154,6 +156,7 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    //按价格由低到高显示
     @RequestMapping("/ByLowPrice")
     public String byLow(Model m,
                         HttpServletRequest req,
@@ -180,6 +183,7 @@ public class showController {
 
     }
 
+    //按价格由高到低显示
     @RequestMapping("/ByHighPrice")
     public String byHigh(Model m,
                          HttpServletRequest req,
@@ -208,10 +212,10 @@ public class showController {
 
     }
 
+    //选定范围显示
     @PostMapping("/range")
     public String range(@RequestParam("minRange")int minRange,
-                        @RequestParam("maxRange") int maxRange, Model model)
-    {
+                        @RequestParam("maxRange") int maxRange, Model model) {
         Integer pageSize = 15;
         int min,max;
         if(minRange>maxRange)
@@ -230,9 +234,9 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    //显示0-100价格区间的商品
     @RequestMapping("/zeroToOne")
-    public String zeroOne(Model model)
-    {
+    public String zeroOne(Model model) {
         Integer pageSize = 15;
         List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(0,100);
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
@@ -240,9 +244,9 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    //显示100-200价格区间的商品
     @RequestMapping("/oneToTwo")
-    public String oneTwo(Model model)
-    {
+    public String oneTwo(Model model) {
         Integer pageSize = 15;
         List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(100,200);
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
@@ -250,9 +254,9 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    //显示200-300价格区间的商品
     @RequestMapping("/twoToThree")
-    public String twoThree(Model model)
-    {
+    public String twoThree(Model model) {
         Integer pageSize = 15;
         List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(200,300);
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
@@ -260,9 +264,9 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    //显示300-400价格区间的商品
     @RequestMapping("/threeToFour")
-    public String threeFour(Model model)
-    {
+    public String threeFour(Model model) {
         Integer pageSize = 15;
         List<ProductCategory> list = productCategoryService.selectProductCategorysByRange(300,400);
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
@@ -270,27 +274,23 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
-
-
-    //交易记录页面的Mapping
+    //订单管理页面显示
     @RequestMapping("/showMyTransactionOrders")
     public String showMyTransactionOrders(HttpServletRequest req, Model m){
         ArrayList<Order> buyOrderList;
         ArrayList<Order> sellOrderList;
         String account = (String) req.getSession().getAttribute("u_Account");
-
         buyOrderList = (ArrayList<Order>) orderService.selectOrderAndProductBuy(account);
         sellOrderList = (ArrayList<Order>) orderService.selectOrderAndProductSell(account);
         m.addAttribute("myAllOrdersBuy",buyOrderList);
         m.addAttribute("myAllOrderSell",sellOrderList);
-
-//        System.out.println(buyOrderList.size());//debug
         return "html/transactionRecord";
     }
+
+    //按分类筛选商品
     @PostMapping("/selectCategory")
     public String selectCategory(@RequestParam("category") String category,@RequestParam("txt") String txt,Model m,HttpServletRequest req)
     {
-        //System.out.println(category);
         Integer pageSize = 15;
         txt = "%" + txt+ "%";
         if(category.equals("selected"))
