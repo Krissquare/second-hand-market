@@ -107,48 +107,48 @@ public class OrderController {
             }
             return baseResponse;
     }
-//    //订单收货地址修改页面转跳
-//    @RequestMapping("/OrderAddressUpdate")
-//    public String OrderAddressUpdate(){
-//        return "admin/OrderAddressUpdate";
-//    }
+    //订单收货地址修改页面转跳
+    @RequestMapping("/OrderAddressUpdate")
+    public String OrderAddressUpdate(){
+        return "admin/OrderAddressUpdate";
+    }
 
-//    @RequestMapping("/BuyOrderInit")
-//    public String BuyOrderInit(HttpSession session,Model m){
-//        String account = (String) session.getAttribute("u_Account");
-//        UserHead userHead = userHeadService.selectHead(account);
-//        m.addAttribute("userHead", userHead);
-//        return "admin/orderinfo";
-//    }
-//    //买入-订单表格初始化
-//    @RequestMapping("/BuyOrderInfo")
-//    @ResponseBody
-//    public BaseResponse BuyOrderInfo(HttpServletRequest req, Model m, int page, int limit){
-//        BaseResponse<List<Order>> baseResponse = new BaseResponse<>();
-//        String account = (String)req.getSession().getAttribute("u_Account");
-//        int count = orderService.orderBuyerCount(account);
-//        String SearchName = req.getParameter("SearchName");
-//        String Search = "%" + SearchName + "%";
-//        System.out.println(SearchName);
-//
-//        if(SearchName == null){
-//            System.out.println("test");
-//            List<Order> list = orderService.selectOrderAndProductBuy(account);
-//            req.getSession().setAttribute("StatusCode1","Buy");
-//            req.getSession().setAttribute("StatusCode2","Buy");
-//            baseResponse.setCode(0);
-//            baseResponse.setData(list);
-//            baseResponse.setCount(count);
-//            return baseResponse;
-//        }
-//
-//        List<Order> list1 = orderService.selectOrderAndProductBuyBySearchName(account, Search, (page - 1) * limit, limit);
-//        baseResponse.setCode(0);
-//        baseResponse.setData(list1);
-//        baseResponse.setCount(count);
-//        return baseResponse;
-//
-//    }
+    @RequestMapping("/BuyOrderInit")
+    public String BuyOrderInit(HttpSession session,Model m){
+        String account = (String) session.getAttribute("u_Account");
+        UserHead userHead = userHeadService.selectHead(account);
+        m.addAttribute("userHead", userHead);
+        return "admin/orderinfo";
+    }
+    //买入-订单表格初始化
+    @RequestMapping("/BuyOrderInfo")
+    @ResponseBody
+    public BaseResponse BuyOrderInfo(HttpServletRequest req, Model m, int page, int limit){
+        BaseResponse<List<Order>> baseResponse = new BaseResponse<>();
+        String account = (String)req.getSession().getAttribute("u_Account");
+        int count = orderService.orderBuyerCount(account);
+        String SearchName = req.getParameter("SearchName");
+        String Search = "%" + SearchName + "%";
+        System.out.println(SearchName);
+
+        if(SearchName == null){
+            System.out.println("test");
+            List<Order> list = orderService.selectOrderAndProductBuy(account);
+            req.getSession().setAttribute("StatusCode1","Buy");
+            req.getSession().setAttribute("StatusCode2","Buy");
+            baseResponse.setCode(0);
+            baseResponse.setData(list);
+            baseResponse.setCount(count);
+            return baseResponse;
+        }
+
+        List<Order> list1 = orderService.selectOrderAndProductBuyBySearchName(account, Search, (page - 1) * limit, limit);
+        baseResponse.setCode(0);
+        baseResponse.setData(list1);
+        baseResponse.setCount(count);
+        return baseResponse;
+
+    }
 //
 //    //出售-订单转跳
 //    @RequestMapping("/SellOrderInit")
