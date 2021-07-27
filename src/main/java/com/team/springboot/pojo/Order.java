@@ -13,6 +13,7 @@ public class Order {
     private String o_Status;
     private String p_href;
     private double p_Price;
+    private double p_originalPrice;
     private int p_Num;
     private String o_ExpressId;
 
@@ -123,5 +124,13 @@ public class Order {
 
     public void setP_Price(double p_Price) {
         this.p_Price = p_Price;
+    }
+
+    public double getP_originalPrice() {
+        return p_originalPrice;
+    }
+
+    public void setP_originalPrice(double p_originalPrice) {
+        this.p_originalPrice = p_originalPrice;
     }
 }

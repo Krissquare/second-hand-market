@@ -1061,7 +1061,7 @@
 										<span class="font-weight-bold"style="color: red;font-size: 15px" th:text="'￥'+${oneOrder.getP_Price()}"></span>
 									</li>
 									<li class="f_13">
-										<del class="text-muted" th:text="'￥'+'100'"></del>
+										<del class="text-muted" th:text="'￥'+${oneOrder.getP_originalPrice()}"></del>
 									</li>
 								</ul>
 							</div>
@@ -1205,7 +1205,7 @@
 										<span class="font-weight-bold"style="color: red;font-size: 15px" th:text="'￥'+${oneOrder.getP_Price()}"></span>
 									</li>
 									<li class="f_13">
-										<del class="text-muted" th:text="'￥'+'100'"></del>
+										<del class="text-muted" th:text="'￥'+${oneOrder.getP_originalPrice()}"></del>
 									</li>
 								</ul>
 							</div>
