@@ -10,18 +10,18 @@
 <body class="layui-layout-body" >
 <div class="layui-layout layui-layout-admin ">
     <div class="layui-header" style="background-color: #FFC107" >
-        <div class="layui-logo" style="font-weight:bolder;font-style: italic" style="color: #000000">厦大二手市场管理员后台</div>
+        <img src="../assets/img/后台管理.png"style="width: 1700px;height: 79px">
         <ul class="layui-nav layui-layout-right " style="background-color:  #FFC107" >
             <li class="layui-nav-item" >
                 <a href="javascript:" style="font-weight:bolder;color: #0C0C0C">
-                    <img th:src= "${userHead.getU_Url()}" class="layui-nav-img">
-                    我的
+                    <img th:src= "${userHead.getU_Url()}" style="width: 50px;height: 50px;position:relative;top: 10px" class="layui-nav-img">
+
                 </a>
 <!--                <dl class="layui-nav-child">-->
 <!--                    <dd><a href="/admin/userInfo" style="font-weight:bolder;color: #0C0C0C">基本资料</a></dd>-->
 <!--                </dl>-->
             </li>
-            <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: #0C0C0C">退出</a></li>
+            <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: white;font-size: 18px;position: relative;top: 10px">退出</a></li>
         </ul>
     </div>
 
@@ -29,6 +29,7 @@
         <div class="layui-side-scroll " style="background-color: #EEEEEE">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree "  lay-filter="test">
+                <li>&nbsp;</li>
                 <li class="layui-nav-item" style="background-color: #eeeeee "><a th:if="${session.u_Account eq 'admin'}" href="/admin/userinit" style="color: #0C0C0C">用户管理</a></li>
                 <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/init" style="color: #0C0C0C">商品管理</a></li>
 <!--                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/shoppingCarInit"style="color: #0C0C0C">购物车管理</a></li>-->
@@ -39,7 +40,7 @@
 <!--                        <dd><a th:href="@{/admin/SellOrderInit}" >我是卖家</a></dd>-->
 <!--                    </dl>-->
 <!--                </li>-->
-                <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/admin/BuyOrderInit}" style="color: #0C0C0C">历史订单查询</a></li>
+                <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/admin/BuyOrderInit}" style="color: #0C0C0C">订单管理</a></li>
                 <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/}" style="color: #0C0C0C">返回主页</a></li>
             </ul>
         </div>
@@ -225,12 +226,12 @@
 <script type="text/html" id="barDemo" th:if="${session.u_Account} eq 'admin'">
 
     <a class="layui-btn layui-btn-xs" lay-event="edit" style="background-color: #e72d2d;color: white">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs " lay-event="del" style="background-color: #e72d2d;color: white">删除</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" style="background-color: #F38D1E;color: white">删除</a>
 </script>
 
 <script type="text/html" id="toolbarDemo" th:if="${session.u_Account} eq 'admin'">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="add" style="background-color: #e72d2d;color: white">添加</button>
+        <button class="layui-btn layui-btn-xs" lay-event="add" style="background-color: #e72d2d;color: white;height: 35px;width: 150px;font-size: 14px">添加用户</button>
     </div>
 </script>
 </body>
