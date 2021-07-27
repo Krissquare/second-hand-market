@@ -309,7 +309,7 @@ public class ProductController {
         }
     }
     @RequestMapping("/addinit")
-    public String productaddInit(){
+    public String productaddInit(HttpSession session){
         return "admin/productadd";
     }
 

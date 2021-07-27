@@ -2,13 +2,9 @@ package com.team.springboot.controller;
 
 
 import com.mysql.cj.util.StringUtils;
-import com.team.springboot.mapper.UserAddressMapper;
 import com.team.springboot.pojo.*;
 
-import com.team.springboot.service.AddressService;
-import com.team.springboot.service.UserAddressService;
-import com.team.springboot.service.UserHeadService;
-import com.team.springboot.service.UserService;
+import com.team.springboot.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +33,12 @@ public class UserController {
 
     @Autowired
     UserHeadService userHeadService;
+
+    @Autowired
+    ProductCategoryService productCategoryService;
+
+    @Autowired
+    ProductImgService productImgService;
 
     //后台初始化
     @RequestMapping("/userInfo")
@@ -216,6 +218,44 @@ public class UserController {
         }
         return baseResponse;
     }
+
+    @RequestMapping("/addMoreImg")
+    public String moreImg(@RequestParam("Title") String title,HttpSession session,Model model)
+    {
+        ProductCategory p=productCategoryService.selectByTitle(title);
+        session.setAttribute("Title",title);
+        model.addAttribute("p",p);
+        return "html/addMore";
+    }
+    @RequestMapping(value="/addImg" , method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponse addImg(@RequestParam("file") MultipartFile file , HttpServletRequest request) throws IOException {
+        BaseResponse baseResponse=new BaseResponse();
+        System.out.println(file);
+        String pathString = null;
+        if(file!=null) {
+            String path=request.getRealPath("/images/product/");
+            String name= new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" +file.getOriginalFilename();
+            pathString = path + name;
+            File files=new File(pathString);
+            //把内存图片写入磁盘中
+            file.transferTo(files);
+            String realPath = "/images/product/"+name;
+            baseResponse.setCode(200);
+            baseResponse.setMsg(pathString);
+            request.getSession().setAttribute("img",realPath);
+            String title= (String) request.getSession().getAttribute("Title");
+            ProductCategory p=productCategoryService.selectByTitle(title);
+            productImgService.insert(p.getP_Id(),realPath);
+
+        }
+        else{
+            baseResponse.setCode(500);
+            baseResponse.setMsg("出现错误");
+        }
+        return baseResponse;
+    }
+
 
     //上传默认头像
     @RequestMapping(value="/uploaddefault")
