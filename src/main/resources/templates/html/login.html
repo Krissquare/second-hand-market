@@ -390,7 +390,7 @@
                         <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder">个人主页</a>
+                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder">个人中心</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
                         </div>
@@ -457,10 +457,10 @@
                                     <a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
                                                     width="34px" height="40px"></svg></span>
-                                        <img src="assets/img/发布商品.png" style="height: 33px;width: 30px" alt="">
+                                        <img src="assets/img/发布商品.png" style="height: 28px;width: 28px" alt="">
                                         <span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
-                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品</a></span>
-                                        <a th:if="${session.u_Account == null}" href="/login">发布商品</a></span>
+                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品&nbsp;&nbsp;&nbsp;</a></span>
+                                        <a th:if="${session.u_Account == null}" href="/login">发布商品&nbsp;&nbsp;&nbsp;</a></span>
                                     </a>
                                 </li>
 
@@ -495,7 +495,8 @@
 														<use xlink:href="#cart"></use>
 													</svg></span>
 												<span >购物车</span>
-
+ <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
+       th:text="${session.shoppingCartList.size()}"></span>
 										</span>
 
                                     <div class="dropdown-menu s_cart dropdown-menu-right">
@@ -556,14 +557,15 @@
                                aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="cart.html">我的购物车</a></li>
-
+                                                       href="/showWishList">我的收藏</a></li>
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
                                                        href="/showMyTransactionOrders">我的订单</a></li>
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="wishlist.html">我的收藏</a></li>
+                                                       href="/userWallet" >我的钱包</a></li>
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="/admin/user_init" >商品管理</a></li>
+                                                       href="/admin/user_init" >我的发布</a></li>
+                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                                       href="/shopProduct">我的购物车</a></li>
 
                             </ul>
                         </li>
@@ -575,7 +577,7 @@
 
 
 
-                        </ul>
+                    </ul>
                 </div> <!-- col-lg-9 text-left -->
 
             </div> <!-- row -->
@@ -843,7 +845,7 @@
                     <div class="invalid-feedback">请输入您的密码</div>
                 </div>
 
-                <input type="submit" name="submit" class="btn btn-primary mb-3" style="position: relative;left: 40%" value="登录">
+                <input type="submit" name="submit" class="btn btn-primary mb-3" style="position: relative;left: 30%;width: 200px" value="登录">
                 <div class="pass_acc border-top pt-3">
                     <span class="forgot_password font-weight-bolder"><a
                             href="/forgot">忘记密码 </a></span>
@@ -933,11 +935,17 @@
                             </div>
                             <div class="categorie collapse" id="sproduct">
                                 <ul>
-                                    <li><a th:href="@{/}">我的主页</a></li>
-                                    <li><a href="cart.html">我的购物车</a></li>
-                                    <li><a href="/showWishList">我的心愿清单</a></li>
-                                    <li><a href="/showMyTransactionOrders">我的订单</a></li>
-                                    <li><a th:href="@{/}">回到顶部</a></li>
+                                    <li ><a
+                                            href="/showWishList">我的收藏</a></li>
+                                    <li ><a
+                                            href="/showMyTransactionOrders">我的订单</a></li>
+                                    <li ><a
+                                            href="/userWallet" >我的钱包</a></li>
+                                    <li ><a
+                                            href="/admin/user_init" >我的发布</a></li>
+                                    <li ><a
+                                            href="/shopProduct">我的购物车</a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -988,7 +996,7 @@
         <div class="container custom_container">
             <div class="row">
                 <div class="col-12">
-                    <div class="text-center demo_link d-block">2021 @ Java程序设计实践-WinterBoot小组 保留所有权利 Powered By <a href="http://www.bootstrapmb.com/">bootstrapmb</a></div>
+                    <div class="text-center demo_link d-block">2021 @ Java程序设计实践-WinterBoot小组 保留所有权利 </div>
                 </div>
             </div>
         </div>

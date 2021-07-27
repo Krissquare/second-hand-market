@@ -551,19 +551,15 @@
 						<div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder"
-									>个人主页</a>
+                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder">个人中心</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
 						</div>
 						<div class="dropdown right1 md_1 hr_">
-
                             <span class="dropdown-toggle">
-                         <a th:if="${session.u_Account == null}" href="forgot.html" class="font-weight-bolder"
-						 >忘记密码</a>
-								</span>
-							<a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
-							>退出</a>
+                           <a th:if="${session.u_Account == null}" href="/forgot" class="font-weight-bolder">忘记密码</a>
+                            </span>
+							<a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder">退出</a>
 							</span>
 						</div>
 
@@ -622,10 +618,10 @@
 									<a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
 													width="34px" height="40px"></svg></span>
-										<img src="assets/img/发布商品.png" style="height: 33px;width: 30px" alt="">
+										<img src="assets/img/发布商品.png" style="height: 28px;width: 28px" alt="">
 										<span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
-                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品</a></span>
-										<a th:if="${session.u_Account == null}" href="/login">发布商品</a></span>
+                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品&nbsp;&nbsp;&nbsp;</a></span>
+										<a th:if="${session.u_Account == null}" href="/login">发布商品&nbsp;&nbsp;&nbsp;</a></span>
 									</a>
 								</li>
 
@@ -660,11 +656,11 @@
 														<use xlink:href="#cart"></use>
 													</svg></span>
 												<span >购物车</span>
-                                                <span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
-													  th:text="${session.shoppingCartList.size()}"></span>
+<span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
+	  th:text="${session.shoppingCartList.size()}"></span>
 										</span>
 
-									<div th:if="${session.u_Account != null}" class="dropdown-menu s_cart dropdown-menu-right">
+									<div class="dropdown-menu s_cart dropdown-menu-right">
 										<ul class="shopping-cart p-2 ">
 											<li th:each="p:${session.shoppingCartList}" class="pb-2 d-block">
 												<div class="media ">
@@ -672,32 +668,23 @@
 														<a href="#">
 															<img th:src="${p.getP_href()}"
 																 class="fst-image img-fluid align-self-center"
-																 alt="product_13"
-																 style="width: 75px;height: 75px;">
+																 alt="product_13">
 														</a>
 													</div>
-													<div class="media-body">
+													<div class="media-body">&nbsp;
 														<h6 class="mt-0 f_15"
-															th:text="'&nbsp;&nbsp;' + ${p.getP_Title()}"
-															style="max-width: 170px;
-                                                            overflow: hidden;
-                                                            text-overflow: ellipsis;
-                                                            font-size: 13px;
-                                                            font-weight: 700;
-                                                            white-space: nowrap;"></h6>
-
-														<span class="float-right cart_cross">X</span>
-														<span class="f_13" style="font-size: 12px;"
-															  th:text="'&nbsp;&nbsp;' + ${p.getP_Num()} + '&nbsp;X&nbsp;' + '￥' + ${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}"></span>
+															th:text="${p.getP_Title()}"><span
+																class="float-right cart_cross">X</span></h6>
+														<p><span class="f_13"
+																 th:text="'&nbsp;￥' + ${p.getP_Price()}"></span></p>
 													</div>
 												</div>
 											</li>
-											<div class="border-bottom"></div>
 
 											<li class="d-block text-muted font-weight-bolder p-2 border-bottom">
-												<span class="text-left" style="font-weight: 700">总计:</span>
-												<span class="float-right f_13" style="font-weight: 700"
-													  th:text="'￥' + ${#numbers.formatDecimal(session.shoppingCarPrice,1,'COMMA',2,'POINT')}"></span>
+												<span class="text-left">总计:</span>
+												<span class="float-right f_13"
+													  th:text="'￥' + ${session.shoppingCarPrice}"></span>
 											</li>
 											<li class="d-block font-weight-bolder pt-2">
 												<span class="text-left"><a href="/shopProduct">查看购物车</a></span>
@@ -714,7 +701,7 @@
 				</div> <!-- col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 head-search -->
 			</div> <!-- row -->
 		</div> <!--  container custom_container -->
-	</div> <!-- header-top py- 4 border-bottom bg-white -->
+	</div> <!-- header-top py-4 border-bottom bg-white -->
 
 	<!-- third row -->
 
@@ -731,14 +718,15 @@
 							   aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
 							<ul class="dropdown-menu">
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
-													   href="cart.html">我的购物车</a></li>
-
+													   href="/showWishList">我的收藏</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
 													   href="/showMyTransactionOrders">我的订单</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
-													   href="wishlist.html">我的收藏</a></li>
+													   href="/userWallet" >我的钱包</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
-													   href="/admin/user_init" >商品管理</a></li>
+													   href="/admin/user_init" >我的发布</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/shopProduct">我的购物车</a></li>
 
 							</ul>
 						</li>
@@ -1073,7 +1061,7 @@
 										<span class="font-weight-bold"style="color: red;font-size: 15px" th:text="'￥'+${oneOrder.getP_Price()}"></span>
 									</li>
 									<li class="f_13">
-										<del class="text-muted" th:text="'￥'+'100'"></del>
+										<del class="text-muted" th:text="'￥'+${oneOrder.getP_originalPrice()}"></del>
 									</li>
 								</ul>
 							</div>
@@ -1200,7 +1188,7 @@
 									</li>
 									<li class="f_13">
 										<span style="color: black">买家:</span>
-										<span style="color: black" th:text="${oneOrder.getO_Seller()}"></span>
+										<span style="color: black" th:text="${oneOrder.getO_Buyer()}"></span>
 									</li>
 								</ul>
 							</div>
@@ -1217,7 +1205,7 @@
 										<span class="font-weight-bold"style="color: red;font-size: 15px" th:text="'￥'+${oneOrder.getP_Price()}"></span>
 									</li>
 									<li class="f_13">
-										<del class="text-muted" th:text="'￥'+'100'"></del>
+										<del class="text-muted" th:text="'￥'+${oneOrder.getP_originalPrice()}"></del>
 									</li>
 								</ul>
 							</div>
@@ -1251,7 +1239,7 @@
 										<span style="color: black">发货地址：</span>
 									</li>
 									<li class="my-1 f_13">
-										<span style="color: black">厦门市翔安区厦门大学翔安校区芙蓉</span>
+										<span style="color: black" th:text="${oneOrder.getO_Saddress()}"></span>
 									</li>
 									<li class="my-1 f_13">
 										<span style="color: black">买家联系方式：</span>
@@ -1391,11 +1379,17 @@
 							</div>
 							<div class="categorie collapse" id="sproduct">
 								<ul>
-									<li><a th:href="@{/}">我的主页</a></li>
-									<li><a href="cart.html">我的购物车</a></li>
-									<li><a href="wishlist.html">我的心愿清单</a></li>
-									<li><a href="/showMyTransactionOrders">我的订单</a></li>
-									<li><a th:href="@{/}">回到顶部</a></li>
+									<li ><a
+											href="/showWishList">我的收藏</a></li>
+									<li ><a
+											href="/showMyTransactionOrders">我的订单</a></li>
+									<li ><a
+											href="/userWallet" >我的钱包</a></li>
+									<li ><a
+											href="/admin/user_init" >我的发布</a></li>
+									<li ><a
+											href="/shopProduct">我的购物车</a></li>
+
 								</ul>
 							</div>
 						</div>
@@ -1446,7 +1440,7 @@
 		<div class="container custom_container">
 			<div class="row">
 				<div class="col-12">
-					<div class="text-center demo_link d-block">2021 @ Java程序设计实践-WinterBoot小组 保留所有权利 Powered By <a href="http://www.bootstrapmb.com/">bootstrapmb</a></div>
+					<div class="text-center demo_link d-block">2021 @ Java程序设计实践-WinterBoot小组 保留所有权利 </div>
 				</div>
 			</div>
 		</div>

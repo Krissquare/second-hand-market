@@ -30,6 +30,11 @@ public class BaseResponse<T> {
 
     }
 
+    public BaseResponse(int code, String msg){
+        this.code = code;
+        this.msg = msg;
+    }
+
     public int getCode() {
         return code;
     }

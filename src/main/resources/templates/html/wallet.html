@@ -388,19 +388,15 @@
             <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder"
-                                    >个人主页</a>
+                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder">个人中心</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
             </div>
             <div class="dropdown right1 md_1 hr_">
-
                             <span class="dropdown-toggle">
-                         <a th:if="${session.u_Account == null}" href="forgot.html" class="font-weight-bolder"
-                         >忘记密码</a>
-								</span>
-              <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
-              >退出</a>
+                           <a th:if="${session.u_Account == null}" href="/forgot" class="font-weight-bolder">忘记密码</a>
+                            </span>
+              <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder">退出</a>
               </span>
             </div>
 
@@ -444,7 +440,7 @@
                   </select>
 
                   <div class="input-group">
-                    <input type="text" placeholder="搜索" class="form-control" aria-label="search"
+                    <input type="text"  class="form-control" aria-label="search"
                            aria-describedby="button-addon2" id="txt" name="txt">
                     <div class="input-group-btn"><button type="submit"
                                                          class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
@@ -459,10 +455,10 @@
                   <a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
                                                     width="34px" height="40px"></svg></span>
-                    <img src="assets/img/发布商品.png" style="height: 33px;width: 30px" alt="">
+                    <img src="assets/img/发布商品.png" style="height: 28px;width: 28px" alt="">
                     <span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
-                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品</a></span>
-                    <a th:if="${session.u_Account == null}" href="/login">发布商品</a></span>
+                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品&nbsp;&nbsp;&nbsp;</a></span>
+                    <a th:if="${session.u_Account == null}" href="/login">发布商品&nbsp;&nbsp;&nbsp;</a></span>
                   </a>
                 </li>
 
@@ -497,7 +493,8 @@
 														<use xlink:href="#cart"></use>
 													</svg></span>
 												<span >购物车</span>
-
+<span class="text-danger price_cart d-md-inline-block align-middle font-weight-bolder"
+      th:text="${session.shoppingCartList.size()}"></span>
 										</span>
 
                   <div class="dropdown-menu s_cart dropdown-menu-right">
@@ -545,15 +542,34 @@
 
   <!-- third row -->
 
-  <div class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
+  <div id="sp_header_top" class="header_bottom shadow-sm bg-white rounded bg-white d-md-none d-sm-none d-none d-lg-block">
     <div class="container custom_container">
       <div class="row">
-        <div class="col-lg-9 text-left">
+
+        <div class="col-lg-9 text-left sp_hz_menu">
           <ul class="main-menu navbar">
             <li><a th:href="@{/}">首页</a></li>
-            <li><a th:href="@{/searchAll}">市场</a></li>
+            <li><a th:href="@{/searchPage(pageNo=1)}">市场</a></li>
 
-            <li><a href="about-us.html">个人主页</a></li>
+            <li><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                   aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
+              <ul class="dropdown-menu">
+                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                       href="/showWishList">我的收藏</a></li>
+                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                       href="/showMyTransactionOrders">我的订单</a></li>
+                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                       href="/userWallet" >我的钱包</a></li>
+                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                       href="/admin/user_init" >我的发布</a></li>
+                <li class="d-block"><a class="dropdown-item font-weight-bolder"
+                                       href="/shopProduct">我的购物车</a></li>
+
+              </ul>
+            </li>
+
+
+
 
 
 
@@ -878,7 +894,7 @@
                   <!-- 内容主体区域 -->
                   <div >
                     <style>
-                      .content
+                      .content1
                       {
                         position:absolute;
                         left:280px;
@@ -887,7 +903,7 @@
                         height: 650px;
                       }
                     </style>
-                    <div class="content"style="background-color:  white"><!-- 个人信息 -->
+                    <div class="content1"style="background-color:  white"><!-- 个人信息 -->
                       <style>
                         .layui-form1
                         {
@@ -899,52 +915,31 @@
                         }
                       </style>
                       <form class="layui-form1" >
-                        <fieldset style="font-size: 35px;font-family: YouYuan;color: #db2020">
-
-                        </fieldset>
+                        <fieldset style="font-size: 35px;font-family: YouYuan;color: #db2020"></fieldset>
                         <img src="/assets/img/我的钱包.png"style="width: 760px;height: 80px;position:relative;top: 10px;left: -250px">
-                        <div class="layui-form-item">
-                          &nbsp;
-                        </div>
-                        <div class="layui-form-item">
-                          &nbsp;
-                        </div>
-
+                        <div class="layui-form-item">&nbsp;</div>
+                        <div class="layui-form-item">&nbsp;</div>
                         <div class="layui-form-item">
                           <div class="layui-inline">
                             <img src="/assets/img/钱包.png" style="height: 50px;width: 50px">
-
                             <label style="font-size: 16px;font-weight: bolder">&nbsp;&nbsp;钱包余额:&nbsp;&nbsp;</label>
-
-                            <label  style="font-size: 16px;font-weight: bolder">¥100.00</label>
-
+                            <label  style="font-size: 16px;font-weight: bolder" th:text="'￥'+${user.getWallet()}"></label>
                           </div>
                         </div>
-                        <div>
-                          &nbsp;
-                        </div>
+                        <div>&nbsp;</div>
                         <div class="layui-form-item">
                           <div class="layui-inline">
-                            <input type="text" placeholder="请输入充值金额"
+                            <input type="text" placeholder="请输入充值金额" id="money" name="money"
                                    aria-label="search" style="width: 220px;height: 40px " aria-describedby="button-addon2">
-
                           </div>
-
-
                         </div>
                         <div class="layui-form-item">
-
-
                           <div class="layui-inline">
                             <div>&nbsp;</div>
-                            <button type="submit" class="btn btn-danger text-uppercase font-weight-normal"
+                            <button lay-submit lay-filter="Money" class="btn btn-danger text-uppercase font-weight-normal" type="button"
                                     style="width: 220px;height: 40px;font-size: 16px;background-color: #ff595b">确认充值</button>
-
                           </div>
                         </div>
-
-
-
                       </form>
                     </div>
 
@@ -1051,11 +1046,16 @@
               </div>
               <div class="categorie collapse" id="sproduct">
                 <ul>
-                  <li><a th:href="@{/}">我的主页</a></li>
-                  <li><a href="cart.html">我的购物车</a></li>
-                  <li><a href="wishlist.html">我的心愿清单</a></li>
-                  <li><a href="/showMyTransactionOrders">我的订单</a></li>
-                  <li><a th:href="@{/}">回到顶部</a></li>
+                  <li ><a
+                          href="/showWishList">我的收藏</a></li>
+                  <li ><a
+                          href="/showMyTransactionOrders">我的订单</a></li>
+                  <li ><a
+                          href="/userWallet" >我的钱包</a></li>
+                  <li ><a
+                          href="/admin/user_init" >我的发布</a></li>
+                  <li ><a
+                                  href="/shopProduct">我的购物车</a></li>
                 </ul>
               </div>
             </div>
@@ -1123,18 +1123,6 @@
 
 <!-- about us page end -->
 
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/owl.carousel.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -1143,15 +1131,42 @@
 <script src="assets/js/index.js"></script>
 <script src="assets/js/wow.min.js"></script>
 <script src="assets/js/masonry.js"></script>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/layui/jquery.min.js}"></script>
+<script>
+  layui.use(['element','form','layer','table'], function(){
+    const form = layui.form;
+    const $ = layui.$;
 
+    form.on('submit(Money)',function (data){
+      const field = data.field;
+      let money = document.getElementById("money").value;
+      //console.log(field);
+      $.ajax({
+        url: '/admin/AddMoneyToWallet' +'?money='+ money,
+        type: 'POST',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(field),
+        success: function (res){
+          if(res.code === 200){
+            layer.msg(res.msg);
+            window.setTimeout(()=>{
+              parent.layer.closeAll();
+              location.href = '/userWallet';
+            }, 3000);
+          }else if(res.code === 500){
+            layer.msg(res.msg);
+          }
+        },
+        error: function (res){
+          layer.msg('请求错误！');
+        }
+      });
+    });
+  })
+</script>
 
 <script>
-
-
-
-
-
-
   // init Masonry
   var $grid = $('.grid').masonry({
     itemSelector: '.grid-item',
@@ -1163,11 +1178,6 @@
   $grid.imagesLoaded().progress( function() {
     $grid.masonry();
   });
-
-
-
-
-
 </script>
 
 
