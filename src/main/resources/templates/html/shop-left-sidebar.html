@@ -1041,8 +1041,6 @@
 									<p class="line-limit-length"> <a th:href="@{/goodsDetail(pid=${p.getP_Id()})}"style="font-size:20px"th:text="${p.getP_Title()}"></a></p>
 									<span  th:text="'￥'+${#numbers.formatDecimal(p.getP_Price(),1,'COMMA',2,'POINT')}" style="color: red;font-weight: bold;font-size: 20px"></span>
 									<del class="text-muted" th:text="'￥'+${p.getP_originalPrice()}"></del>
-
-
 									<div class="button-group">
 
 										<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>
@@ -1064,7 +1062,7 @@
 
 										<span th:text="${p.getP_Account()}"></span>
 										<img src="/assets/img/电话.png"style="position: relative;left: 40px;width: 20px;height: 20px">
-										<span style="position: relative;left: 40px">17262535342</span>
+										<span style="position: relative;left: 40px">12345678910</span>
 										<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
 
 
