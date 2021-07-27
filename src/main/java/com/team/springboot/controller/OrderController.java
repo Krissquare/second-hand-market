@@ -48,7 +48,7 @@ public class OrderController {
         List<Order> olist = null;
         HttpSession session = request.getSession();
         //通过商品名称查询
-        if (p_Name != null ) {
+        if (p_Name != null && !Objects.equals(p_Name, "")) {
             p_Name = "%" + p_Name + "%";
             if (session.getAttribute("u_Account").equals("admin")) {
                 olist = orderService.selectBypName(p_Name);
@@ -70,7 +70,7 @@ public class OrderController {
                 return baseResponse;
             }
         }
-        else if (o_Buyer != null && Objects.equals(o_Seller, "")) {
+        else if (o_Buyer != null &&  o_Seller!=null) {
             o_Buyer = "%" + o_Buyer + "%";
             o_Seller = "%" + o_Seller + "%";
             if (session.getAttribute("u_Account").equals("admin")) {
@@ -82,7 +82,7 @@ public class OrderController {
                 return baseResponse;
             }
         }
-        if (o_Buyer != null && o_Seller!=null) {
+        else if (o_Buyer != null && Objects.equals(o_Seller, "")) {
             o_Buyer = "%" + o_Buyer + "%";
             if (session.getAttribute("u_Account").equals("admin")) {
                 olist = orderService.selectByBuyer(o_Buyer);
