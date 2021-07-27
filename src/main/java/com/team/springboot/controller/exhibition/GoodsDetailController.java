@@ -39,8 +39,10 @@ public class GoodsDetailController   {
     public  String goodsDetail(@RequestParam("pid") String pid, Model model){
        Product p  = productService.selectById(Integer.valueOf(pid));
        List<ProductImg> plist=productImgService.selectById(Integer.valueOf(pid));
+       User u=userService.selectUserById(p.getP_Account());
        model.addAttribute("product",p);
        model.addAttribute("plist",plist);
+       model.addAttribute("user",u);
        return "html/single-product";
    }
 
