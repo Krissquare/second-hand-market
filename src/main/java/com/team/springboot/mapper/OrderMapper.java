@@ -9,16 +9,16 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
 
-    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title,p.p_originalPrice, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0}")
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title,p.p_originalPrice, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId, o.o_Date from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0}")
     List<Order> selectOrderAndProductBuy(String Buy_Account);
 
-    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0} and o.o_Status=#{1}")
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId, o.o_Date from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0} and o.o_Status=#{1}")
     List<Order> selectOrderAndProductBuyByStatus(String Buy_Account,String Status);
 
-    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title,p.p_originalPrice, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0}")
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title,p.p_originalPrice, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId, o.o_Date from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0}")
     List<Order> selectOrderAndProductSell(String account);
 
-    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0} and o.o_Status=#{1}")
+    @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress,o.o_Saddress,o.o_Date, o.o_ItemId, o.o_Status, o.o_ExpressId from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0} and o.o_Status=#{1}")
     List<Order> selectOrderAndProductSellByStatus(String account,String Status);
 
     @Select("select o.o_Id, p.p_href, p.p_Price, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress,o.o_Saddress,o.o_Date, o.o_ItemId, o.o_Status, o.o_ExpressId from order2 o, product p where o_ItemId = p.p_Id and p.p_Name like #{0}")
@@ -69,10 +69,10 @@ public interface OrderMapper {
     @Update("update order2 set o_Status = #{o_Status} where o_Id = #{o_Id}")
     void StatusUpdate(Order o);
 
-    @Select("select o.o_Id, p.p_href, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0} and p_Title like #{1} limit #{2}, #{3}")
+    @Select("select o.o_Id, p.p_href, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId, o.o_Date from order2 o, product p where o_ItemId = p.p_Id and o.o_Buyer = #{0} and p_Title like #{1} limit #{2}, #{3}")
     List<Order> selectOrderAndProductBuyBySearchName(String Buy_Account,String SearchName, int page, int limit);
 
-    @Select("select o.o_Id, p.p_href, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0} and p_Title like #{1} limit #{2}, #{3}")
+    @Select("select o.o_Id, p.p_href, p.p_Title, o.o_Buyer, o.o_Seller, o.o_Baddress, o.o_ItemId, o.o_Status, o.o_ExpressId, o.o_Date from order2 o, product p where o_ItemId = p.p_Id and o.o_Seller = #{0} and p_Title like #{1} limit #{2}, #{3}")
     List<Order> selectOrderAndProductSellBySearchName(String account,String SearchName, int page, int limit);
 
     @Select("select count(o_Id) from order2")

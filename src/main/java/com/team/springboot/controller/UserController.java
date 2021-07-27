@@ -240,7 +240,7 @@ public class UserController {
     @ResponseBody
     public BaseResponse addMoneyToWallet(@RequestParam("money") String money, HttpSession session){
         // TODO 输入的格式
-        System.out.println(money);
+//        System.out.println(money);
         BaseResponse baseResponse = new BaseResponse();
         try{
             double moneyDouble = Double.parseDouble(money);
