@@ -83,6 +83,8 @@ public class ShoppingController {
         int Id=Integer.parseInt(pid);
         String account = (String)req.getSession().getAttribute("u_Account");
         shoppingCarService.deleteByAccountId(account,Id);
+        req.getSession().setAttribute("shoppingCartList", shoppingCarService.selectShoppingCarProductById(account));
+        req.getSession().setAttribute("shoppingCarPrice", shoppingCarService.getTotalPrice(account));
         return "redirect:/shopProduct";
     }
 

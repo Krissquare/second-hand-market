@@ -31,12 +31,17 @@ public class GoodsDetailController   {
     @Autowired
     WishListService wishListService;
 
+    @Autowired
+    ProductImgService productImgService;
+
    //商品信息页面初始化
    @RequestMapping("/goodsDetail")
     public  String goodsDetail(@RequestParam("pid") String pid, Model model){
        Product p  = productService.selectById(Integer.valueOf(pid));
+       List<ProductImg> plist=productImgService.selectById(Integer.valueOf(pid));
        User u=userService.selectUserById(p.getP_Account());
        model.addAttribute("product",p);
+       model.addAttribute("plist",plist);
        model.addAttribute("user",u);
        return "html/single-product";
    }

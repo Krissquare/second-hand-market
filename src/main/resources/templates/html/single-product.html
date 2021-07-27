@@ -1067,6 +1067,11 @@
 							<div id="photo-container" style="margin-left:0;">
 								<div class="photo-holder"><img th:src="${product.getP_href()}" onclick=viewPhoto(this)
 															   class="photo-item" alt="product_13"></div>
+								<div class="photo-holder" th:each="p:${plist}">
+									<img th:src="${p.getP_href()}" onclick=viewPhoto(this)
+										 class="photo-item">
+								</div>
+
 							</div>
 						</div>
 						<div id="right" onclick=leftRight(this)></div>

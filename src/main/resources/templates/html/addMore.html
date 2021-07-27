@@ -396,23 +396,23 @@
                                     <a th:if="${session.u_Account == null}" href="/login" class="font-weight-bolder">登录</a>
 								</span>
                         </div>
+
+
+
                         <div class="dropdown right1 md_1 hr_">
 
                             <span class="dropdown-toggle">
-                                    <a th:if="${session.u_Account != null}" th:href="@{/userIndex(u_Account=${session.u_Account})}" class="font-weight-bolder">个人中心</a>
+                                    <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder"
+                                    >退出</a>
                                     <a th:if="${session.u_Account == null}" href="/registration" class="font-weight-bolder">注册</a>
 								</span>
                         </div>
-                        <div class="dropdown right1 md_1 hr_">
-                            <span class="dropdown-toggle">
-                           <a th:if="${session.u_Account == null}" href="/forgot" class="font-weight-bolder">忘记密码</a>
-                            </span>
-                            <a th:if="${session.u_Account != null}" href="/logout" class="font-weight-bolder">退出</a>
-                            </span>
+                        <div class="dropdown right1 md_1 hr_" th:if="${session.u_Account != null}">
+								<span class="dropdown-toggle">
+                                    <a href="../admin/userInfo.html" class="font-weight-bolder">修改个人信息</a>
+								</span>
+
                         </div>
-
-
-
 
                     </nav>
 
@@ -428,7 +428,7 @@
             <div class="row">
                 <div class="col-xl-2 col-lg-2 col-6  head-logo">
                     <div class="text-left header-top-left pt-2"><a href="/"><img src="../assets/img/logo.png"
-                                                                                          class="img-responsive img" alt="Hitech"></a></div>
+                                                                                 class="img-responsive img" alt="Hitech"></a></div>
                 </div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
                 <div class="col-xl-10 col-lg-10 col-6  head-search">
                     <div class="d-flex navbar">
@@ -470,10 +470,10 @@
                                     <a href="#">
 											<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><svg
                                                     width="34px" height="40px"></svg></span>
-                                        <img src="../assets/img/发布商品.png" style="height: 28px;width: 28px" alt="">
+                                        <img src="../assets/img/发布商品.png" style="height: 33px;width: 30px" alt="">
                                         <span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">
-                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品&nbsp;&nbsp;&nbsp;</a></span>
-                                        <a th:if="${session.u_Account == null}" href="/login">发布商品&nbsp;&nbsp;&nbsp;</a></span>
+                                            <a th:if="${session.u_Account != null}"th:href="@{/admin/addinit}">发布商品</a></span>
+                                        <a th:if="${session.u_Account == null}" href="/login">发布商品</a></span>
                                     </a>
                                 </li>
 
@@ -579,15 +579,14 @@
                                aria-expanded="false">我的&nbsp;<i class="fas fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="/showWishList">我的收藏</a></li>
+                                                       href="html/cart.html">我的购物车</a></li>
+
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
                                                        href="/showMyTransactionOrders">我的订单</a></li>
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="/userWallet" >我的钱包</a></li>
+                                                       href="/showWishList">我的收藏</a></li>
                                 <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="/admin/user_init" >我的发布</a></li>
-                                <li class="d-block"><a class="dropdown-item font-weight-bolder"
-                                                       href="/shopProduct">我的购物车</a></li>
+                                                       href="/admin/user_init" >商品管理</a></li>
                             </ul>
                         </li>
 
@@ -622,7 +621,7 @@
 
                         <ul class="vertical_main_menu sp_menu navbar navbar-nav">
                             <li class="dropdown level-1 font-weight-bolder">
-                                <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+                                <a class="dropdown-toggle" href="../admin/blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/书籍教材.png"
                                                               style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;书籍教材<span
                                         class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
@@ -637,7 +636,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown level-1 font-weight-bolder">
-                                <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+                                <a class="dropdown-toggle" href="../admin/blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/电子产品.png"
                                                               style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;电子产品<span
                                         class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
@@ -660,7 +659,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown level-1 font-weight-bolder">
-                                <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+                                <a class="dropdown-toggle" href="../admin/blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/代步工具.png"
                                                               style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;代步工具<span
                                         class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
@@ -678,7 +677,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown level-1 font-weight-bolder">
-                                <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+                                <a class="dropdown-toggle" href="../admin/blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/衣帽鞋伞.png"
                                                               style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;衣帽鞋伞<span
                                         class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
@@ -696,7 +695,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown level-1 font-weight-bolder">
-                                <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+                                <a class="dropdown-toggle" href="../admin/blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/体育健身.png"
                                                               style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;体育健身<span
                                         class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
@@ -717,7 +716,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown level-1 font-weight-bolder">
-                                <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+                                <a class="dropdown-toggle" href="../admin/blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/家用电器.png"
                                                               style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;家用电器<span
                                         class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
@@ -738,7 +737,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown level-1 font-weight-bolder">
-                                <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+                                <a class="dropdown-toggle" href="../admin/blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/虚拟产品.png"
                                                               style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;虚拟产品<span
                                         class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
@@ -756,7 +755,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown level-1 font-weight-bolder">
-                                <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+                                <a class="dropdown-toggle" href="../admin/blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/手工设计.png"
                                                               style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;手工设计<span
                                         class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
@@ -774,7 +773,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown level-1 font-weight-bolder">
-                                <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+                                <a class="dropdown-toggle" href="../admin/blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/日常用品.png"
                                                               style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;日常用品<span
                                         class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
@@ -792,7 +791,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown level-1 font-weight-bolder">
-                                <a class="dropdown-toggle" href="blog.html" role="button" data-toggle="dropdown"
+                                <a class="dropdown-toggle" href="../admin/blog.html" role="button" data-toggle="dropdown"
                                    aria-expanded="false"><img src="assets/img/分类/音乐器材.png"
                                                               style="height: 28px;width: 28px" alt="">&nbsp;&nbsp;&nbsp;音乐器材<span
                                         class="float-right mt-1"><i class="fas fa-angle-down"></i></span></a>
@@ -843,15 +842,15 @@
 
     }
 </style>
-<form class="layui-form" th:action="@{/admin/add}" method="post"style="background-color: white;width: 810px;height: 800px;position: relative;left: 250px">
+
 
     <div class="layui-form-item">
         <img src="/assets/img/发布.png"style="width: 810px;height: 100px">
     </div>
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
-        <label class="layui-form-label">物品标题</label>
+        <label class="layui-form-label">物品名称</label>
         <div class="layui-input-inline">
-            <input type="text"   name="p_Title" id="p_Title" required  lay-verify="required" autocomplete="off" class="layui-input">
+            <input type="text"   name="p_Title" required  lay-verify="required" autocomplete="off" class="layui-input" th:value="${p.getP_Name()}">
         </div>
     </div>
     <!--    <div class="layui-form-item">-->
@@ -866,44 +865,42 @@
     <!--        </div>-->
     <!--    </div>-->
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
-        <label class="layui-form-label">物品数量</label>
+        <label class="layui-form-label">物品标题</label>
         <div class="layui-input-inline">
-            <input type="text"   name="p_num" required autocomplete="off" class="layui-input">
+            <input type="text"   name="p_num" required autocomplete="off" class="layui-input" th:value="${p.getP_Title()}">
         </div>
     </div>
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
         <label class="layui-form-label">物品类别</label>
         <div class="layui-input-inline">
-            <select name="p_Name" id="o_type" lay-verify="required" lay-filter="xmFilter">
-                <option value="请选择"></option>
-            </select>
+            <input type="text"   name="p_type" required autocomplete="off" class="layui-input" th:value="${p.getC_Name()}">
         </div>
     </div>
 
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
-        <label class="layui-form-label">入手时间</label>
+        <label class="layui-form-label">附加图片1</label>
         <div class="layui-input-inline">
-            <input type="date"   name="p_Date"  required autocomplete="off" class="layui-input">
+            <img class="layui-upload-img" id="demo1" width="100px" height="100px" alt="上传图片" title="上传图片">
         </div>
     </div>
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
-        <label class="layui-form-label">物品标价</label>
+        <label class="layui-form-label">附加图片2</label>
         <div class="layui-input-inline">
-            <input type="text"  name="p_Price"  required autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'')">
+            <img class="layui-upload-img" id="demo2" width="100px" height="100px" alt="上传图片" title="上传图片">
         </div>
 
     </div>
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
 
-        <label class="layui-form-label">物品原价</label>
+        <label class="layui-form-label">附加图片3</label>
         <div class="layui-input-inline">
-            <input type="text"  name="p_originalPrice"  required autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'')">
+            <img class="layui-upload-img" id="demo3" width="100px" height="100px" alt="上传图片" title="上传图片">
         </div>
     </div>
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
-        <label class="layui-form-label">物品描述</label>
+        <label class="layui-form-label">附加图片4</label>
         <div class="layui-input-inline">
-        <textarea type="text"  name="p_Des"  required  autocomplete="off" class="layui-input">
+            <img class="layui-upload-img" id="demo4" width="100px" height="100px" alt="上传图片" title="上传图片">
         </textarea>
         </div>
     </div>
@@ -911,26 +908,22 @@
 <!--        <button  class="layui-btn-xs"  style="margin-left: 120px" lay-event="imgUpload">添加图片</button>-->
 <!--    </div>-->
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
-             <label class="layui-form-label">物品预览</label>
+             <label class="layui-form-label">附件图片5</label>
         <div class="layui-input-inline" style="cursor: pointer">
-            <img class="layui-upload-img" id="demo1" width="100px" height="100px" alt="上传图片" title="上传图片">
+            <img class="layui-upload-img" id="demo5" width="100px" height="100px" alt="上传图片" title="上传图片">
         </div>
     </div>
     <div>&nbsp;</div>
     <div class="layui-input-inline login-btn"style="position: relative;left: 230px;top: 50px">
         <button  class="layui-btn" id="btn1" style="margin-left: 125px;width: 270px;position:relative;left: -100px">发布</button>
     </div>
-</form>
-<button  class="layui-btn" id="btn2" style="margin-left: 125px;width: 270px;position:relative;left: -100px">上传附加图片</button>
 <script>
-    let b=document.getElementById("btn2");
-    let t=document.getElementById("p_Title");
-    console.log(t.value);
+    let b=document.getElementById("btn1");
     b.onclick=function ()
     {
-        location.href="/admin/addMoreImg?Title="+t.value;
+        location.href="/";
     }
-</script>
+    </script>
 
 <!-- footer -->
 
@@ -1082,25 +1075,7 @@
 <script th:src="@{/assets/js/wow.min.js}"></script>
 
 <script th:src="@{/layui/layui.all.js}"></script>
-<script>
-    layui.use(['element','form','layer','table'], function(){
-        const form = layui.form;
-        const $ = layui.$;
-        const table = layui.table;
-        $.ajax({  // select框ajax动态赋值
-            url: 'typeValue',
-            type: 'POST',
-            contentType: "application/json;charset=utf-8",
-            success: function (res) {
-                const field = res.data;
-                $.each(field, function (index, item) {  // $.each表示对JavaScript中数组对象的遍历，函数第一个参数为下标，第二个参数为下标对应的值
-                    $('#o_type').append(new Option(item,item));// 下拉菜单里添加元素
-                });
-                form.render("select");
-            }
-        });
-    })
-</script>
+
 <script>
     //JavaScript代码区域
     layui.use('element', function(){
@@ -1117,7 +1092,7 @@
         //普通图片上传
         var uploadInst = upload.render({
             elem: '#demo1',
-            url: '/admin/uploadSource',//这里填写你的上传地址
+            url: '/admin/addImg',//这里填写你的上传地址
             accept: 'images',
             bindAction: '#uploadBtn',
             method: 'post',
@@ -1140,6 +1115,126 @@
             }
         });
     });
+
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function () {
+        var layer = layui.layer, upload = layui.upload, $ = layui.$, demoText = $('#demoText');
+        $('#demo2').attr('src', myVarate);//页面初始化的时候渲染图片
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#demo2',
+            url: '/admin/addImg',//这里填写你的上传地址
+            accept: 'images',
+            bindAction: '#uploadBtn',
+            method: 'post',
+            acceptMime: 'image/*'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    myVarate = result;
+                    $('#save').attr('class', 'layui-btn');
+                });
+            },
+            done: function (res) {
+                if (res.code == 200) {//长传成功(具体返回code 看后台是怎么处理的)
+                    layer.msg('图片上传成功!');
+                    $('#demo2').attr('src', myVarate);
+                }
+            }
+            , error: function () {
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            }
+        });
+    });
+
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function () {
+        var layer = layui.layer, upload = layui.upload, $ = layui.$, demoText = $('#demoText');
+        $('#demo3').attr('src', myVarate);//页面初始化的时候渲染图片
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#demo3',
+            url: '/admin/addImg',//这里填写你的上传地址
+            accept: 'images',
+            bindAction: '#uploadBtn',
+            method: 'post',
+            acceptMime: 'image/*'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    myVarate = result;
+                    $('#save').attr('class', 'layui-btn');
+                });
+            },
+            done: function (res) {
+                if (res.code == 200) {//长传成功(具体返回code 看后台是怎么处理的)
+                    layer.msg('图片上传成功!');
+                    $('#demo3').attr('src', myVarate);
+                }
+            }
+            , error: function () {
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            }
+        });
+    });
+
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function () {
+        var layer = layui.layer, upload = layui.upload, $ = layui.$, demoText = $('#demoText');
+        $('#demo4').attr('src', myVarate);//页面初始化的时候渲染图片
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#demo4',
+            url: '/admin/addImg',//这里填写你的上传地址
+            accept: 'images',
+            bindAction: '#uploadBtn',
+            method: 'post',
+            acceptMime: 'image/*'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    myVarate = result;
+                    $('#save').attr('class', 'layui-btn');
+                });
+            },
+            done: function (res) {
+                if (res.code == 200) {//长传成功(具体返回code 看后台是怎么处理的)
+                    layer.msg('图片上传成功!');
+                    $('#demo4').attr('src', myVarate);
+                }
+            }
+            , error: function () {
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            }
+        });
+    });
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function () {
+        var layer = layui.layer, upload = layui.upload, $ = layui.$, demoText = $('#demoText');
+        $('#demo5').attr('src', myVarate);//页面初始化的时候渲染图片
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#demo5',
+            url: '/admin/addImg',//这里填写你的上传地址
+            accept: 'images',
+            bindAction: '#uploadBtn',
+            method: 'post',
+            acceptMime: 'image/*'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    myVarate = result;
+                    $('#save').attr('class', 'layui-btn');
+                });
+            },
+            done: function (res) {
+                if (res.code == 200) {//长传成功(具体返回code 看后台是怎么处理的)
+                    layer.msg('图片上传成功!');
+                    $('#demo5').attr('src', myVarate);
+                }
+            }
+            , error: function () {
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            }
+        });
+    });
+
 
 
     layui.use(['table','form'], function(){
