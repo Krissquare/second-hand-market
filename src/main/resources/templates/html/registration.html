@@ -847,34 +847,42 @@
 		<div id="Registration" class="page-content card card-block p-3 p-sm-4  ">
 			<form class="layui-form" method="post">
 
-				<div class="form-group text-left">
+				<div class="d-flex">
+					<div class="form-group col-md-6 pl-0 ">
 					<label class="font-weight-bolder">性别</label><br>
 					<span class="form-check">
 					          <input class="form-check-input" name="u_Sex" value="男" type="radio" checked>
 					          <label class="form-check-label">
-					            mr.
+					            男
 					          </label>
 					        </span>
 					<span class="form-check">
 					          <input class="form-check-input" name="u_Sex" value="女" type="radio">
 					          <label class="form-check-label">
-					            mrs.
+					            女
 					          </label>
 					        </span>
+					</div>
+					<div class="form-group col-md-6 pr-0 " >
+						<label for="l_name" class="font-weight-bolder">昵称</label>
+						<input type="text" name="u_Name" class="form-control" id="l_name"  required>
+						<div class="invalid-feedback">Please Enter your Name.</div>
+					</div>
 				</div>
 
 				<div class="d-flex">
 					<div class="form-group col-md-6 pl-0 ">
-						<label for="f_name" class="font-weight-bolder">用户名</label>
-						<input type="text" name="u_Account" class="form-control" id="f_name"  required>
+						<label for="f_name" class="font-weight-bolder">账号</label>
+						<input type="text" name="u_Account" class="form-control" id="f_name" style="width: 550px" required>
 						<div class="invalid-feedback">Please Enter your Name.</div>
 					</div>
 
-					<div class="form-group col-md-6 pr-0 " >
-						<label for="l_name" class="font-weight-bolder">姓名</label>
-						<input type="text" name="u_Name" class="form-control" id="l_name"  required>
-						<div class="invalid-feedback">Please Enter your Name.</div>
-					</div>
+
+				</div>
+				<div class="form-group">
+					<label for="r_date" class="font-weight-bolder">电话号码</label>
+					<input type="text" name="u_Phone" id="r_date" class="form-control"    required>
+					<div class="invalid-feedback">Please Enter your birthdate.</div>
 				</div>
 
 				<div class="form-group">
@@ -888,17 +896,15 @@
 					<input type="password" name="u_Password" class="form-control" id="r_password" required>
 					<div class="invalid-feedback">Please Enter your password.</div>
 				</div>
-
 				<div class="form-group">
-					<label for="r_date" class="font-weight-bolder">电话号码</label>
-					<input type="text" name="u_Phone" id="r_date" class="form-control"    required>
-					<div class="invalid-feedback">Please Enter your birthdate.</div>
+					<label for="r_password" class="font-weight-bolder">确认密码</label>
+					<input type="password" name="u_Password" class="form-control"  required>
+					<div class="invalid-feedback">Please Enter your password.</div>
 				</div>
 
 
 				<div>
-					<button id="clearButton" type="reset" class="btn btn-primary rese float-left mt-3">重置</button>
-					<button lay-submit lay-filter="register" id="btn" class="btn btn-primary mt-3 float-right">注册</button>
+					<button lay-submit lay-filter="register" id="btn" class="btn btn-primary mt-3 float-right"style="width: 200px;height: 40px;position: relative;left: -180px">注册</button>
 				</div>
 
 
@@ -931,7 +937,7 @@
 								layer.msg('注册失败！错误:500');
 							}
 							else if(res.code === 400){
-								layer.msg('注册失败,用户名已存在');
+								layer.msg('注册失败,账号已存在');
 							}
 						},
 						error: function (res){

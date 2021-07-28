@@ -843,7 +843,7 @@
 
     }
 </style>
-<form class="layui-form" th:action="@{/admin/add}" method="post"style="background-color: white;width: 810px;height: 800px;position: relative;left: 250px">
+<form class="layui-form" th:action="@{/admin/add}" method="post"style="background-color: white;width: 810px;height: 900px;position: relative;left: 250px">
 
     <div class="layui-form-item">
         <img src="/assets/img/发布.png"style="width: 810px;height: 100px">
@@ -912,16 +912,18 @@
 <!--    </div>-->
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
              <label class="layui-form-label">物品预览</label>
-        <div class="layui-input-inline" style="cursor: pointer">
-            <img class="layui-upload-img" id="demo1" width="100px" height="100px" alt="上传图片" title="上传图片">
+
+        <div class="layui-input-inline" style="cursor: pointer;border:0.6px solid #E6E6E6;width: 100px;position: relative;height: 100px">
+            <img  class="layui-upload-img" id="demo1" width="100px" height="100px" alt="上传图片" title="上传图片">
         </div>
+
     </div>
     <div>&nbsp;</div>
     <div class="layui-input-inline login-btn"style="position: relative;left: 230px;top: 50px">
-        <button  class="layui-btn" id="btn1" style="margin-left: 125px;width: 270px;position:relative;left: -100px">发布</button>
+        <button  class="layui-btn" id="btn1" style="margin-left: 125px;width: 270px;position:relative;left: -100px;top: -5px">发布</button>
     </div>
 </form>
-<button  class="layui-btn" id="btn2" style="margin-left: 125px;width: 270px;position:relative;left: -100px">上传附加图片</button>
+<button  class="layui-btn" id="btn2" style="background-color:#FFC107;margin-left: 125px;width: 270px;height:40px;position:relative;left: 380px;top: -99px">上传更多图片</button>
 <script>
     let b=document.getElementById("btn2");
     let t=document.getElementById("p_Title");
