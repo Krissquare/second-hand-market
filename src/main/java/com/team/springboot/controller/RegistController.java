@@ -4,6 +4,8 @@ package com.team.springboot.controller;
 import com.team.springboot.pojo.BaseResponse;
 import com.team.springboot.pojo.Cipher;
 import com.team.springboot.pojo.User;
+import com.team.springboot.service.AddressService;
+import com.team.springboot.service.UserAddressService;
 import com.team.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RegistController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    AddressService addressService;
 
     @RequestMapping("/registration")
         public String init() {
@@ -37,6 +42,7 @@ public class RegistController {
         u.setU_Password(Cipher.Encipher(u.getU_Password()));
 
         userService.insertOne(u);
+        addressService.insertAddressOne(u.getU_Account(),"无","无","无","无");
         if(userService.selectUserById(u.getU_Account()) != null){
             baseResponse.setCode(200);
             baseResponse.setMsg("注册成功");
