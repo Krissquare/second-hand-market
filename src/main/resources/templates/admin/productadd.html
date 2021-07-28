@@ -880,12 +880,13 @@
         </div>
     </div>
 
-    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
-        <label class="layui-form-label">入手时间</label>
-        <div class="layui-input-inline">
-            <input type="date"   name="p_Date"  required autocomplete="off" class="layui-input">
-        </div>
-    </div>
+<!--    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">-->
+<!--        <label class="layui-form-label">入手时间</label>-->
+<!--        <div class="layui-input-inline">-->
+            <input type="hidden"   name="p_Date"  th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}"
+                   required autocomplete="off" class="layui-input">
+<!--        </div>-->
+<!--    </div>-->
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
         <label class="layui-form-label">物品标价</label>
         <div class="layui-input-inline">
