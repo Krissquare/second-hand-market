@@ -1038,7 +1038,7 @@
 										<span style="color: black" th:text="${oneOrder.getO_Seller()}"></span>
 									</li>
 
-									<button type="submit" class="btn btn-danger text-uppercase font-weight-normal" th:id="'bt_buy_'+${oneOrder.getO_Id()}"
+									<button type="submit" class="btn btn-danger text-uppercase font-weight-normal"
 											style="position:relative;left:0px;bottom:-20px;font-size:14px;width: 165px;height: 45px;background-color: #F38D1E;border-color: #F38D1E"  >查看商品详情</button>
 
 								</ul>
@@ -1076,7 +1076,7 @@
 									<li class="my-1 f_13">&nbsp;</li>
 									<li class="my-1 f_13">&nbsp;</li>
 									<li class="my-1 f_13">
-										<span >数量</span>
+										<span th:text="${oneOrder.getP_Num()}+'件'"></span>
 									</li>
 								</ul>
 							</div>
@@ -1117,7 +1117,7 @@
 										<li class="my-1 f_13">
 											<span style="color: black;font-size: 16px">待收货</span>
 										</li>
-										<div>&nbsp;</div>
+
 										<li class="my-1 f_13">
 											<span style="color: black" th:text="'物流编号'+${oneOrder.getO_ExpressId()}"></span>
 										</li>
@@ -1187,7 +1187,7 @@
 										<span style="color: black">买家:</span>
 										<span style="color: black" th:text="${oneOrder.getO_Buyer()}"></span>
 									</li>
-									<button type="submit" class="btn btn-danger text-uppercase font-weight-normal" th:id="'bt_buy_'+${oneOrder.getO_Id()}"
+									<button type="submit" class="btn btn-danger text-uppercase font-weight-normal"
 											style="position:relative;left:0px;bottom:-20px;font-size:14px;width: 165px;height: 45px;background-color: #F38D1E;border-color: #F38D1E" >查看商品详情</button>
 
 								</ul>
@@ -1223,7 +1223,7 @@
 										&nbsp;
 									</li>
 									<li class="my-1 f_13">
-										<span style="color: black">数量</span>
+										<span style="color: black" th:text="${oneOrder.getP_Num()}+'件'"></span>
 									</li>
 
 								</ul>
