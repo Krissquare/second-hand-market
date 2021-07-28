@@ -1076,7 +1076,7 @@
 									<li class="my-1 f_13">&nbsp;</li>
 									<li class="my-1 f_13">&nbsp;</li>
 									<li class="my-1 f_13">
-										<span >数量</span>
+										<span th:text="${oneOrder.getP_Num()}+'件'"></span>
 									</li>
 								</ul>
 							</div>
@@ -1223,7 +1223,7 @@
 										&nbsp;
 									</li>
 									<li class="my-1 f_13">
-										<span style="color: black">数量</span>
+										<span style="color: black" th:text="${oneOrder.getP_Num()}+'件'"></span>
 									</li>
 
 								</ul>
