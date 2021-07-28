@@ -65,30 +65,11 @@
     </div>
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div class="between-header border border-danger rounded mb-0 head-left">
-            <div class="layui-form-item">
-            <select class="select-menu form-select d-none d-sm-block" onchange="javascript:window.open(this.options[this.selectedIndex].value)">
-                <option value="selected">商品状态</option>
-                <option value="" >上架中</option>
-                <option value="2">待审核</option>
-                <option value="3">已下架</option>
-            </select>
+        <div class="demoTable" style="margin-top: 10px;margin-left: 10px;">
+            <div class="layui-col-md4">
+                <input class="layui-input" name="productId" id="demoReload" autocomplete="off" placeholder="请输入商品名称">
             </div>
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">下拉选择框</label>-->
-<!--                    <div class="layui-input-block">-->
-<!--                        <select name="interest" lay-filter="ftest">-->
-<!--                            <option value="0">上架中</option>-->
-<!--                            <option value="1">已下架</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-
-            <div class="input-group">
-                <input type="text" placeholder="搜索"  aria-label="search" style="width: 270px" aria-describedby="button-addon2">
-                <div class="input-group-btn"><button type="button" style="position: relative;left: -390%" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
-            </div>
+            <button class="layui-btn" data-type="reload" >搜索</button>
         </div>
 
 
