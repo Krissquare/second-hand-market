@@ -4,8 +4,10 @@ package com.team.springboot.controller;
 import com.team.springboot.pojo.BaseResponse;
 import com.team.springboot.pojo.Cipher;
 import com.team.springboot.pojo.User;
+import com.team.springboot.pojo.UserHead;
 import com.team.springboot.service.AddressService;
 import com.team.springboot.service.UserAddressService;
+import com.team.springboot.service.UserHeadService;
 import com.team.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,9 @@ public class RegistController {
 
     @Autowired
     AddressService addressService;
+
+    @Autowired
+    UserHeadService userHeadService;
 
     @RequestMapping("/registration")
         public String init() {
@@ -43,6 +48,7 @@ public class RegistController {
 
         userService.insertOne(u);
         addressService.insertAddressOne(u.getU_Account(),"无","无","无","无");
+        userHeadService.insertHead(new UserHead("/images/user/default.jpg",u.getU_Account()));
         if(userService.selectUserById(u.getU_Account()) != null){
             baseResponse.setCode(200);
             baseResponse.setMsg("注册成功");
