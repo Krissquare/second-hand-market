@@ -14,16 +14,15 @@ public class UserHead {
         return u_Account;
     }
 
-    public UserHead()
-    {
+    public UserHead() {
 
     }
 
-    public UserHead(String u_Account)
-    {
+    public UserHead(String u_Account) {
         this.u_Url=null;
         this.u_Account=u_Account;
     }
+
     public UserHead(String u_Url,String u_Account) {
         this.u_Url=u_Url;
         this.u_Account = u_Account;
