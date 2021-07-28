@@ -29,18 +29,18 @@
 <body class="layui-layout-body" >
 <div class="layui-layout layui-layout-admin ">
     <div class="layui-header" style="background-color: #ffb65a" >
-        <div class="layui-logo" style="font-weight:bolder;font-style: italic" style="color: #000000">厦门大学二手市场后台</div>
-        <ul class="layui-nav layui-layout-right " style="background-color:  #ffb65a" >
+        <img src="../assets/img/后台管理.png"style="width: 1700px;height: 79px">
+        <ul class="layui-nav layui-layout-right "  >
             <li class="layui-nav-item" >
-                <a href="javascript:" style="font-weight:bolder;color: #0C0C0C">
-                    <img th:src= "${userHead.getU_Url()}" class="layui-nav-img">
-                    我的
+                <a href="javascript:" style="font-weight:bolder;">
+                    <img th:src= "${userHead.getU_Url()}" style="width: 50px;height: 50px;position:relative;top: 10px" class="layui-nav-img">
+
                 </a>
                 <!--                <dl class="layui-nav-child">-->
                 <!--                    <dd><a href="/admin/userInfo" style="font-weight:bolder;color: #0C0C0C">基本资料</a></dd>-->
                 <!--                </dl>-->
             </li>
-            <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: #0C0C0C">退出</a></li>
+            <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: white;font-size: 18px;position: relative;top: 10px">退出</a></li>
         </ul>
     </div>
 
@@ -48,6 +48,7 @@
         <div class="layui-side-scroll " style="background-color: #EEEEEE">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree "  lay-filter="test">
+                <li>&nbsp;</li>
                 <li class="layui-nav-item" style="background-color: #eeeeee "><a th:if="${session.u_Account eq 'admin'}" href="/admin/userinit" style="color: #0C0C0C">用户管理</a></li>
                 <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/init" style="color: #0C0C0C">商品管理</a></li>
                 <!--                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/shoppingCarInit"style="color: #0C0C0C">购物车管理</a></li>-->
@@ -65,6 +66,7 @@
     </div>
     <div class="layui-body">
         <!-- 内容主体区域 -->
+        <div>&nbsp;</div>
         <div class="demoTable" style="margin-top: 10px;margin-left: 10px;">
             <div class="layui-col-md4">
                 <input class="layui-input" name="productId" id="demoReload" autocomplete="off" placeholder="请输入商品名称">
