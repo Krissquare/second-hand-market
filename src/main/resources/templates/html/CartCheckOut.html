@@ -1141,7 +1141,7 @@
         success: function (res){
           if(res.code === 200){
             layer.msg(res.msg);
-            window.setTimeout('parent.layer.closeAll()', 3000);
+            window.setTimeout('parent.layer.closeAll()', 1000);
             toIndexPage();
           }else if(res.code === 500){
             layer.msg(res.msg);

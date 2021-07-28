@@ -156,6 +156,8 @@ public class CheckOutController {
             //清空购物车项
             shoppingCarService.deleteById(shoppingCarService.selectByAccountId(account,oneProduct.getP_Id()).getS_Id());
         }
+        session.setAttribute("shoppingCartList", shoppingCarService.selectShoppingCarProductById(account));
+        session.setAttribute("shoppingCarPrice", shoppingCarService.getTotalPrice(account));
 
         //扣费
         userBuyer.setWallet(userBuyer.getWallet() - totalPrice);
