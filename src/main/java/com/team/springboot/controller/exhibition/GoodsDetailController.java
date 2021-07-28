@@ -79,6 +79,8 @@ public class GoodsDetailController   {
        {
            shoppingCarService.insertOne(account, pId);
        }
+       session.setAttribute("shoppingCartList", shoppingCarService.selectShoppingCarProductById(account));
+       session.setAttribute("shoppingCarPrice", shoppingCarService.getTotalPrice(account));
        wishListService.deleteByAccountId(account,pId);
        return "redirect:/showWishList";
    }

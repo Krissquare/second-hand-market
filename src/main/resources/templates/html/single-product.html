@@ -566,14 +566,10 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-body">
-				Please login and you will add product to your wishlist
+				加入成功
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Sign In</button>
-				<button type="submit" class="btn btn-primary">Register</button>
 			</div>
 		</div>
 	</div>
@@ -1120,10 +1116,15 @@ p'ro
 					<div class="sp_wish_com my-3">
 
 								<span style="position:relative;top: -28px;left: 0px">
+									<div th:if="${session.u_Account != product.getP_Account()}">
 									<form  th:action="@{/addIntoWishList}" method="post">
 										<input type="hidden"  id="wPID" name="wPID" th:value="${product.getP_Id()}" style="display: none">
 							<span ><i class="far fa-heart"></i><input style="background-color: white;border: 0px;font-size: 16px" value="收藏" type="submit"  data-toggle="modal" data-target="#wish_Modal" ></span>
 									</form>
+									</div>
+									<span th:if="${session.u_Account == product.getP_Account()}" class="sp_c_count2">
+										<i class="far fa-heart"></i><input style="background-color: white;border: 0px;font-size: 16px" value="收藏" type="submit"  onclick="alert('不能收藏自己发布的商品！')">
+							</span>
 									</span>
 
 
