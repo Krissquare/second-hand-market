@@ -761,7 +761,7 @@
 					</div> <!-- row -->
 				</div> <!-- col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 head-search -->
 			</div> <!-- row -->
-		</div> <!--  container custom_container -->
+		</div> <!--  container cust om_container -->
 	</div> <!-- header-top py-4 border-bottom bg-white -->
 
 	<!-- third row -->
@@ -782,6 +782,8 @@
 													   href="/showWishList">我的收藏</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
 													   href="/showMyTransactionOrders">我的订单</a></li>
+								<li class="d-block"><a class="dropdown-item font-weight-bolder"
+													   href="/sell">我的售出</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
 													   href="/userWallet" >我的钱包</a></li>
 								<li class="d-block"><a class="dropdown-item font-weight-bolder"
@@ -1098,19 +1100,19 @@
 					<div >&nbsp;</div>
 					<div class="star mb-2">
 						<img src="/assets/img/用户.png"style="width: 25px;height: 25px">
-p'ro
-						<span style="font-size: 13px"th:text="'&nbsp;&nbsp;卖家：'+${product.getP_Account()}"></span>
+
+						<span style="font-size: 14px"th:text="'&nbsp;&nbsp;卖家：'+${product.getP_Account()}"></span>
 						<sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
 
 
 					</div>
 					<div class="sp_add_info my-3" >
 						<img src="/assets/img/电话.png"style="width: 25px;height: 25px">
-						<span style="position: relative;left: 15px" th:text="'联系方式：'+${user.getU_Phone()}"></span>
+						<span style="position: relative;top: 2px;font-size: 14px" th:text="'&nbsp;&nbsp;联系方式：'+${user.getU_Phone()}"></span>
 					</div>
 					<div class="sp_add_info my-3" style="width: 900px">
 						<img src="/assets/img/时间.png"style="width: 25px;height: 25px">
-						<div style="font-size: 13px;position:relative;left: 37px;top: -20px" th:text="'&nbsp;发布时间:'+${product.getP_Date()}"></div>
+						<div style="font-size: 14px;position:relative;left: 34px;top: -20px" th:text="'&nbsp;发布时间:'+${product.getP_Date()}"></div>
 					</div>
 					<div >&nbsp;</div>
 					<div class="sp_wish_com my-3">

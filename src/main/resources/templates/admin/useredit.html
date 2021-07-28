@@ -6,10 +6,10 @@
     <title>edit</title>
 </head>
 <body>
-<blockquote class=layui-elem-quote>物品信息</blockquote>
+<blockquote class=layui-elem-quote>编辑用户</blockquote>
 <form class="layui-form" th:action="@{/admin/edit/userupdate}" method="post">
     <div class="layui-form-item">
-        <label class="layui-form-label">用户名</label>
+        <label class="layui-form-label">账号</label>
         <div class="layui-input-inline">
             <input type="text" th:value="${session.userAddress.getU_Account()}"  name="u_Account" readonly lay-verify="required" autocomplete="off" class="layui-input">
         </div>

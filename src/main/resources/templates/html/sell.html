@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"><html>
 <head>
   <title>厦大二手交易平台</title>
   <meta charset="utf-8"/>
@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
   <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
   <link rel="stylesheet" type="text/css" href="assets/css/animate.min.css">
-  <link rel="stylesheet" th:href="@{/layui/css/layui4.css}"/>
+
 
 </head>
 <body>
@@ -353,6 +353,169 @@
 
 
 
+
+<!-- header area -->
+
+<!-- first row -->
+<div class="modal fade" id="cart_model" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title f_13 font-weight-bold">Product successfully added to your shopping cart
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-4 col-xs-12 mb-3	">
+            <img src="assets/img/product/product_13.jpg"
+                 class="fst-image mx-auto d-block img-fluid border rounded" alt="product_13">
+          </div>
+          <div class="col-sm-8 col-xs-12 ">
+            <h6 class="font-weight-bold">Hummingbird printed t-shirt</h6>
+            <div class="font-weight-bold pb-1">$19.12</div>
+            <span class="font-weight-bold f_13 pb-1">Size: S</span><br>
+            <span class="font-weight-bold f_13 pb-1">Color: White</span><br>
+            <span class="font-weight-bold f_13 pb-1">Qty: 2</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class=" col-12 ">
+            <div class="border rounded bg-white final_payment">
+              <div class="card-body  border-bottom">
+                <p class="text-muted">5 items</p>
+                <p class="font-weight-bolder">show details</p>
+                <div>
+                  <span class="font-weight-bold">subtotal</span>
+                  <span class="float-right font-weight-bold">$94.00</span>
+                </div>
+                <div>
+                  <span class="font-weight-bold">shipping</span>
+                  <span class="float-right font-weight-bold">$9.00</span>
+                </div>
+              </div>
+              <div class="card-body ">
+                <div>
+                  <span class="font-weight-bold">total(tax excl.)</span>
+                  <span class="float-right font-weight-bold">$94.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary mt-2 f_13 px-3 py-2 rounded" data-dismiss="modal">close</a>
+        <a href="checkout.html" class="btn btn-primary mt-2 f_13 px-3 py-2 rounded">continue</a>
+      </div>
+    </div>
+  </div>
+</div> <!-- cart_model -->
+
+
+<!-- eye-model -->
+<div class="modal fade" id="eye_model" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-5 col-12">
+            <img src="assets/img/product/product_13.jpg"
+                 class="fst-image mx-auto d-block img-fluid border rounded" alt="product_13">
+          </div>
+          <div class="col-sm-7 col-12">
+            <h5 class="font-weight-bold border-bottom me_name">Aliquam Top Erat Volutpat</h5>
+            <div class="font-weight-bold border-bottom me_price">$19.12</div>
+            <div class="my-2 border-bottom me_des">Fashion has been creating well-designed collections
+              since 2010. </div>
+            <div class="me_quan">
+              <div class="sp_counter ">
+
+                <div class="input-group">
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default btn-number" disabled="disabled"
+                                                    data-type="minus" data-field="quant[1]"><span
+                                                    class="minus">-</span></button>
+										</span>
+                  <input type="number" name="quant[1]" class="form-control input-number" value="1"
+                         min="1" max="10">
+                  <span class="input-group-btn">
+											<button type="button" class="btn btn-default btn-number" data-type="plus"
+                                                    data-field="quant[1]"><span class="plus">+</span></button>
+										</span>
+                </div>
+
+              </div>
+              <span>
+									<a href="cart.html" class="btn btn-primary primary mt-3">add to cart</a>
+								</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> <!-- eye_model -->
+
+<!-- compare-model -->
+<div class="modal fade" id="compare_model" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <p><svg width="30px" height="30px">
+          <use xlink:href="#checked"></use>
+        </svg></p>
+        <h5>Compare list updated!</h5>
+        <p class="text-muted font-weight-bold">Product successfully removed from the product comparison!</p>
+        <div class="text-danger font-weight-bold">Go to Compare</div>
+      </div>
+
+    </div>
+  </div>
+</div> <!-- compare_model -->
+
+<!-- heart-model -->
+<div class="modal fade" id="heart_model" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <p><svg width="30px" height="30px">
+          <use xlink:href="#checked"></use>
+        </svg></p>
+        <p class="text-muted font-weight-bold">You must be logged in to manage your wishlist.</p>
+        <div class="text-danger font-weight-bold">Go to wishlist</div>
+      </div>
+
+    </div>
+  </div>
+</div> <!-- heart_model -->
+
+
+
+<div class="preloader"></div>
+
 <!-- header area -->
 
 <header>
@@ -440,7 +603,7 @@
                   </select>
 
                   <div class="input-group">
-                    <input type="text"  class="form-control" aria-label="search"
+                    <input type="text" placeholder="搜索" class="form-control" aria-label="search"
                            aria-describedby="button-addon2" id="txt" name="txt">
                     <div class="input-group-btn"><button type="submit"
                                                          class="btn btn-danger text-uppercase font-weight-normal" id="btn">搜索</button>
@@ -536,9 +699,9 @@
 
           </div> <!-- row -->
         </div> <!-- col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 head-search -->
-      </div> <!-- row -->
-    </div> <!--  con tainer custom_container -->
-  </div> <!-- header-top py-4 border-bottom bg-white -->
+      </div> <!-- ro w -->
+    </div> <!--  container custom_container -->
+  </div> <!-- header-top py -4 border-bottom bg-white -->
 
   <!-- third row -->
 
@@ -805,12 +968,12 @@
   </div>
 </div>
 
-<!-- vertical men u end -->
+<!-- vertical menu end -->
 
 
-<!-- about us page -->
+<!-- wishlist page -->
 
-<div id="about_us_page" class="about-us-page animate__animated animate__fadeInUp">
+<div id="wishlist_page" class="wishlist-page animate__animated animate__fadeInUp">
 
   <div class="sp_header bg-white p-3 ">
     <div class="container custom_container ">
@@ -818,171 +981,198 @@
         <div class="col-12 ">
           <ul>
             <li class="d-inline-block font-weight-bolder"><a th:href="@{/}">首页</a></li>
-            <li class="d-inline-block hr_ font-weight-bolder"><a href="#">个人主页</a></li>
-
-            <nav class="navbar  " >
-              <style>
-                .xiugai
-                {
-                  position: absolute;
-                  left: 839px;
-                  top: -18px;
-                  width: 90px;
-                  text-align: left;
-                }
-              </style>
-              <div class="xiugai">
-						  <span  role="menu"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" class="font-weight-bolder">账号设置&nbsp;<i class="fas fa-angle-down"></i></a>
-						  </span>
-                <div class="dropdown-menu r_menu dropdown-menu-right" >
-                  <a class="dropdown-item font-weight-bolder" th:href="@{/admin/userInfo}">修改信息</a>
-                  <a class="dropdown-item font-weight-bolder" th:href="@{/admin/userPassword}">修改密码</a>
-                  <a class="dropdown-item font-weight-bolder" th:href="@{/admin/userAdd}">修改地址</a>
-                </div>
-              </div>
-            </nav>
+            <li class="d-inline-block hr_ font-weight-bolder"><a href="#">订单</a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-  <div class="bg-white rounded py-31">
-    <div class="container custom_container">
-      <div>
-        <div class="row">
-          <div class="col-12">
-            <style>
-              .layui-side1
-              {
-                position:absolute;
-                left:85px;
-                top:-10px;
-                height: 650px;
-                width: 700px;
-              }
-            </style>
-            <div class="layui-side1" >
-              <div class="layui-side-scroll " style="background-color: white">
-                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                <ul class="layui-nav layui-nav-tree "  lay-filter="test">
-                  <li class="layui-nav-item" style="background-color:white;width: 332px"><a th:href="@{/userIndex(u_Account=${session.u_Account})}" style="color: #0C0C0C">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人资料</a></li>
 
-                  <HR  width="110%" color=#987cb9 SIZE=4>
+  <div class="container custom_container">
 
-                  <li class="layui-nav-item" style="background-color:white;width: 332px"><a  href="/userWallet" style="color: #0C0C0C">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的钱包</a></li>
-                  <HR  width="110%" color=#987cb9 SIZE=4>
-                  <li class="layui-nav-item" style="background-color:white;width: 332px"><a  href="/shopProduct" style="color: #0C0C0C">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的购物车</a></li>
-                  <HR  width="110%" color=#987cb9 SIZE=4>
 
-                  <li class="layui-nav-item" style="background-color:white;width: 332px"><a href="/showMyTransactionOrders" style="color: #0C0C0C">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的订单</a></li>
-                  <HR  width="110%" color=#987cb9 SIZE=4>
-                  <li class="layui-nav-item" style="background-color:white;width: 332px"><a href="/sell" style="color: #0C0C0C">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的售出</a></li>
-                  <HR  width="110%" color=#987cb9 SIZE=4>
+    <div class="between-header border border-danger rounded mb-0 head-left">
 
-                  <li class="layui-nav-item" style="background-color: white;width: 332px"><a href="/admin/user_init" style="color: #0C0C0C">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品管理</a></li>
-                  <HR  width="110%" color=#987cb9 SIZE=4>
+      <select class="select-menu form-select d-none d-sm-block" >
+        <option value="selected">分类查询</option>
+        <option value="1">卖家ID</option>
+        <option value="2">买家ID</option>
+        <option value="3">商品信息</option>
+      </select>
 
-                  <li class="layui-nav-item" style="background-color:white;width: 332px"><a href="/showWishList" style="color: #0C0C0C">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的收藏</a></li>
-                  <HR  width="110%" color=#987cb9 SIZE=4>
 
-                  <li class="layui-nav-item" style="background-color: white;width: 332px"><a th:href="@{/}" style="color: #0C0C0C">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;返回主页</a></li>
-                  <HR  width="110%" color=#987cb9 SIZE=4>
+      <div class="input-group">
+        <input type="text" placeholder="搜索"  aria-label="search" style="width: 300px" aria-describedby="button-addon2">
+        <div class="input-group-btn"><button type="button" style="position: relative;left: -600px" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
+      </div>
+    </div>
 
-                </ul>
-              </div>
+
+
+
+  </div> <!-- container custom_c ontainer -->
+
+  <!--用来分割买卖-->
+  <div class="sp_header">
+  </div>
+
+  <div class="container custom_container">
+
+    <div class="row sh_page border-bottom">
+      <div class="col-12">
+        <span class="font-weight-bold">我卖的</span>
+      </div>
+    </div>
+    <div class="row sh_page" th:each="oneOrder:${myAllOrderSell}"><!-- border-bottom-->
+      <div class="row sh_page" >
+        <li class="f_13">
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span>购买时间</span>
+          <span th:text="${oneOrder.getO_Date()}"></span>
+        </li>
+        <li class="f_13">
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span>订单号</span>
+          <span th:text="${oneOrder.getO_Id()}"></span>
+        </li>
+      </div>
+      <div class="row sh_page col-12"><!-- border-bottom-->
+        <div class="col-6 col-md-6 pr-0">
+          <div class="d-flex" style="border:0.6px solid;color: #9F9F9F">
+            <div class=" col-xl-4 col-lg-5 col-md-5 col-6 px-0">
+              <a href="#"><img th:src="${oneOrder.getP_href()}" class="fst-image mx-auto d-block img-fluid" height="150px" width="150px" alt="picture"></a>
             </div>
-            <div class="container custom_container">
-              <div id="userinfo_page" class="animate__animated animate__fadeInUp" >
+            <div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
+              <h5 class="w_product_name font-weight-bold mb-2 mb-sm-3 mb-xl-3 mt-sm-2 mt-md-2"><a href="#" th:text="${oneOrder.getP_Title()}"></a></h5>
+              <ul >
 
-                <div  >
-                  <!-- 内容主体区域 -->
-                  <div >
-                    <style>
-                      .content1
-                      {
-                        position:absolute;
-                        left:280px;
-                        width: 760px;
-                        top: -10px;
-                        height: 650px;
-                      }
-                    </style>
-                    <div class="content1"style="background-color:  white"><!-- 个人信息 -->
-                      <style>
-                        .layui-form1
-                        {
-                          position:absolute;
-                          left:250px;
-                          width: 760px;
-                          top: -10px;
-                          height: 650px;
-                        }
-                      </style>
-                      <form class="layui-form1" >
-                        <fieldset style="font-size: 35px;font-family: YouYuan;color: #db2020"></fieldset>
-                        <img src="/assets/img/我的钱包.png"style="width: 760px;height: 80px;position:relative;top: 10px;left: -250px">
-                        <div class="layui-form-item">&nbsp;</div>
-                        <div class="layui-form-item">&nbsp;</div>
-                        <div class="layui-form-item">
-                          <div class="layui-inline">
-                            <img src="/assets/img/钱包.png" style="height: 50px;width: 50px">
-                            <label style="font-size: 16px;font-weight: bolder">&nbsp;&nbsp;钱包余额:&nbsp;&nbsp;</label>
-                            <label  style="font-size: 16px;font-weight: bolder" th:text="'￥'+${user.getWallet()}"></label>
-                          </div>
-                        </div>
-                        <div>&nbsp;</div>
-                        <div class="layui-form-item">
-                          <div class="layui-inline">
-                            <input type="text" placeholder="请输入充值金额" id="money" name="money"
-                                   aria-label="search" style="width: 220px;height: 40px " aria-describedby="button-addon2">
-                          </div>
-                        </div>
-                        <div class="layui-form-item">
-                          <div class="layui-inline">
-                            <div>&nbsp;</div>
-                            <button lay-submit lay-filter="Money" class="btn btn-danger text-uppercase font-weight-normal" type="button"
-                                    style="width: 220px;height: 40px;font-size: 16px;background-color: #ff595b">确认充值</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
+                <li class="f_13">
+                  <span style="color: black">买家:</span>
+                  <span style="color: black" th:text="${oneOrder.getO_Buyer()}"></span>
+                </li>
+                <button type="submit" class="btn btn-danger text-uppercase font-weight-normal"
+                        style="position:relative;left:0px;bottom:-20px;font-size:14px;width: 165px;height: 45px;background-color: #F38D1E;border-color: #F38D1E" >查看商品详情</button>
 
-
-                  </div>
-                </div>
-              </div>
-
-
-            </div>						</div>
+              </ul>
+            </div>
+          </div>
         </div>
+        <div >
+          <div class="d-flex" style="border:0.6px solid;position: relative;height: 171.5px;width: 90px;color: #9F9F9F">
+
+            <div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
+              <ul>
+                <li class="my-1 f_13">&nbsp;</li>
+                <li class="my-1 f_13">&nbsp;</li>
+                <li class="my-1 f_13">
+                  <span class="font-weight-bold"style="color: red;font-size: 15px" th:text="'￥'+${oneOrder.getP_Price()}"></span>
+                </li>
+                <li class="f_13">
+                  <del class="text-muted" th:text="'￥'+${oneOrder.getP_originalPrice()}"></del>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div >
+          <div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 40px;position:relative;height: 171.5px">
+
+            <div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
+              <ul >
+                <li class="my-1 f_13">
+                  &nbsp;
+                </li>
+                <li class="my-1 f_13">
+                  &nbsp;
+                </li>
+                <li class="my-1 f_13">
+                  <span style="color: black" th:text="${oneOrder.getP_Num()}+'件'"></span>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div >
+          <div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 180px;position: relative;height: 171.5px">
+
+            <div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
+              <ul >
+                <li>&nbsp;</li>
+                <li class="my-1 f_13"style="position: relative;top: 5px">
+                  <span style="color: black;font-size: 16px">发货地址：</span>
+                </li>
+                <li class="my-1 f_13">
+                  <span style="color: black" th:text="${oneOrder.getO_Saddress()}"></span>
+                </li>
+
+
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div >
+          <div class="d-flex" style="border:0.6px solid;color: #9F9F9F;width: 220px;position: relative;height: 171.5px">
+
+            <div class=" col-xl-8 col-lg-7 col-md-7 col-6 pr-0">
+              <ul >
+
+                <li class="my-1 f_13">
+                  &nbsp;
+                </li>
+
+                <div th:if="${oneOrder.getO_Status()} eq '未发货'">
+                  <li class="my-1 f_13" >
+                    <span style="color: black;font-size: 16px">待您发货</span>
+                    <div>&nbsp;</div>
+                    <input type="text" placeholder="请输入快递单号" th:id="'expressID_'+${oneOrder.getO_Id()}"
+                           aria-label="search" style="width: 170px" aria-describedby="button-addon2">
+                    <div>&nbsp;</div>
+                    <button type="submit" class="btn btn-danger text-uppercase font-weight-normal" th:id="'bt_sell_'+${oneOrder.getO_Id()}"
+                            style="width: 95px;height: 35px;font-size: 1px">确认发货</button>
+                  </li>
+                </div>
+
+                <div th:if="${oneOrder.getO_Status()} eq '已发货'">
+                  <li class="my-1 f_13">
+                    <span style="color: black;font-size: 16px">等待买家收货</span>
+                  </li>
+                </div>
+
+                <div th:if="${oneOrder.getO_Status()} eq '已收货'">
+                  <li class="my-1 f_13">
+                    <span style="color: black;font-size: 16px">交易完成</span>
+                  </li>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
 
 
   </div> <!-- container custom_container -->
 
-  <div class="container custom_container">
-
-
-
-  </div>
-
-</div> <!-- bg-white rounded p-3 -->
-
 </div> <!-- portfolio_2_page -->
+
+
+<!-- wishlist page end -->
+
+
+
 
 
 <!-- footer -->
 
 <div class="footer animate__animated animate__fadeInUp">
 
-  <style>
-    .third_footer
-    {position:absolute;
-      top: 650px;
-      width: 1300px;
-    }
-  </style>
+
 
   <div class="third_footer">
 
@@ -1059,7 +1249,8 @@
                   <li ><a
                           href="/admin/user_init" >我的发布</a></li>
                   <li ><a
-                                  href="/shopProduct">我的购物车</a></li>
+                          href="/shopProduct">我的购物车</a></li>
+
                 </ul>
               </div>
             </div>
@@ -1105,18 +1296,12 @@
 
   </div> <!-- row first_footer -->
 
-  <style>
-    .fifth_footer
-    {position:absolute;
-      top: 1000px;
-      width: 1300px;
-    }
-  </style>
+
   <div class="fifth_footer">
     <div class="container custom_container">
       <div class="row">
         <div class="col-12">
-          <div class="text-center demo_link d-block">2021 @ Java程序设计实践-WinterBoot小组 保留所有权利 Powered By <a href="http://www.bootstrapmb.com/">bootstrapmb</a></div>
+          <div class="text-center demo_link d-block">2021 @ Java程序设计实践-WinterBoot小组 保留所有权利 </div>
         </div>
       </div>
     </div>
@@ -1125,7 +1310,6 @@
 
 <!-- footer end -->
 
-<!-- about us page end -->
 
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/owl.carousel.js"></script>
@@ -1134,59 +1318,37 @@
 <script src="assets/js/all.min.js"></script>
 <script src="assets/js/index.js"></script>
 <script src="assets/js/wow.min.js"></script>
-<script src="assets/js/masonry.js"></script>
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/layui/jquery.min.js}"></script>
-<script>
-  layui.use(['element','form','layer','table'], function(){
-    const form = layui.form;
-    const $ = layui.$;
 
-    form.on('submit(Money)',function (data){
-      const field = data.field;
-      let money = document.getElementById("money").value;
-      //console.log(field);
-      $.ajax({
-        url: '/admin/AddMoneyToWallet' +'?money='+ money,
-        type: 'POST',
-        contentType: "application/json;charset=utf-8",
-        data: JSON.stringify(field),
-        success: function (res){
-          if(res.code === 200){
-            layer.msg(res.msg);
-            window.setTimeout(()=>{
-              parent.layer.closeAll();
-              location.href = '/userWallet';
-            }, 3000);
-          }else if(res.code === 500){
-            layer.msg(res.msg);
-          }
-        },
-        error: function (res){
-          layer.msg('请求错误！');
-        }
-      });
-    });
-  })
-</script>
-
-<script>
-  // init Masonry
-  var $grid = $('.grid').masonry({
-    itemSelector: '.grid-item',
-    percentPosition: true,
-    columnWidth: '.grid-sizer'
+<script th:inline="javascript">
+  let buyList = [[${myAllOrdersBuy}]];
+  let sellList = [[${myAllOrderSell}]];
+  buyList.forEach((oneOrder)=>{
+    if (oneOrder.o_Status == '已发货'){
+      let btBuy = document.getElementById('bt_buy_' + oneOrder.o_Id);
+      btBuy.onclick = function () {
+        location.href = '/HasReceived?o_Id=' + oneOrder.o_Id;
+      }
+    }
   });
-
-  // layout Masonry after each image loads
-  $grid.imagesLoaded().progress( function() {
-    $grid.masonry();
+  sellList.forEach((oneOrder)=>{
+    if (oneOrder.o_Status == '未发货'){
+      let expressID = document.getElementById('expressID_'+oneOrder.o_Id);
+      let btSell = document.getElementById('bt_sell_'+oneOrder.o_Id);
+      btSell.onclick = function (){
+        location.href = '/AddExpressID?o_Id=' + oneOrder.o_Id + '&exp_Id=' + expressID.value;
+      }
+    }
   });
 </script>
-
-
 </body>
 </html>
+
+
+
+
+
 
 
 

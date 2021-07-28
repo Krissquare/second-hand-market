@@ -310,4 +310,16 @@ public class showController {
         return "html/shop-left-sidebar";
     }
 
+    //显示我售出的商品
+    @RequestMapping("/ShowMyAllSellOrder")
+    public String showMyAllSellOrder(HttpSession session, Model model){
+        String account = (String) session.getAttribute("u_Account");
+        if(account == null)
+            return "redirect:/login";
+        ArrayList<Order> myAllOrdersSell = (ArrayList<Order>) orderService.selectOrderAndProductSell(account);
+        model.addAttribute("myAllOrderSell",myAllOrdersSell);
+
+        return "html/sell";
+    }
+
 }
