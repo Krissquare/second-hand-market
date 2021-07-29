@@ -45,6 +45,9 @@ public class WishListController {
     public String ShowWishList(HttpSession session,Model model)
     {
         String account = (String) session.getAttribute("u_Account");
+        if(account == null)
+            return "redirect:/login";
+
         List<WishProduct> wlist=wishListService.selectByAccount(account);
         model.addAttribute("wlist",wlist);
         return "html/wishlist";
@@ -56,6 +59,9 @@ public class WishListController {
     {
         int Id=Integer.parseInt(pid);
         String account = (String)req.getSession().getAttribute("u_Account");
+        if(account == null)
+            return "redirect:/login";
+
         wishListService.deleteByAccountId(account,Id);
         return "redirect:/showWishList";
     }

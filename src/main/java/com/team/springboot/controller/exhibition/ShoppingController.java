@@ -31,6 +31,10 @@ public class ShoppingController {
     @RequestMapping("/shoppingCarInit")
     public String shoppingCarInit(Model m, HttpSession session){
         String account = (String) session.getAttribute("u_Account");
+
+        if(account == null)
+            return "redirect:/login";
+
         UserHead userHead = userHeadService.selectHead(account);
         m.addAttribute("userHead", userHead);
         return "html/cart";
@@ -41,6 +45,10 @@ public class ShoppingController {
     public String shopProduct(HttpServletRequest req,Model m)
     {
         String account = (String)req.getSession().getAttribute("u_Account");
+
+        if(account == null)
+            return "redirect:/login";
+
         List<ShoppingCarProduct> list = shoppingCarService.selectShoppingCarProductById(account);
         m.addAttribute("sproduct",list);
         return "html/cart";
@@ -51,6 +59,10 @@ public class ShoppingController {
     public String minus(@RequestParam("ID") String pid,HttpServletRequest req,Model m) {
         int Id=Integer.parseInt(pid);
         String account = (String)req.getSession().getAttribute("u_Account");
+
+        if(account == null)
+            return "redirect:/login";
+
         shoppingCarService.updateByAccountId(account,Id,-1);
         ShoppingCar sp=shoppingCarService.selectByAccountId(account,Id);
         Product p=productService.selectProductById(sp.getP_Id());
@@ -68,6 +80,10 @@ public class ShoppingController {
     public String plus(@RequestParam("ID") String pid,HttpServletRequest req,Model m) {
         int Id=Integer.parseInt(pid);
         String account = (String)req.getSession().getAttribute("u_Account");
+
+        if(account == null)
+            return "redirect:/login";
+
         ShoppingCar sp=shoppingCarService.selectByAccountId(account,Id);
         Product p=productService.selectProductById(sp.getP_Id());
         shoppingCarService.updateByAccountId(account,Id,1);
@@ -82,6 +98,10 @@ public class ShoppingController {
     public String delete(@RequestParam("ID") String pid,HttpServletRequest req) {
         int Id=Integer.parseInt(pid);
         String account = (String)req.getSession().getAttribute("u_Account");
+
+        if(account == null)
+            return "redirect:/login";
+
         shoppingCarService.deleteByAccountId(account,Id);
         req.getSession().setAttribute("shoppingCartList", shoppingCarService.selectShoppingCarProductById(account));
         req.getSession().setAttribute("shoppingCarPrice", shoppingCarService.getTotalPrice(account));
