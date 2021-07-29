@@ -17,9 +17,6 @@
                     <img th:src= "${userHead.getU_Url()}" style="width: 50px;height: 50px;position:relative;top: 10px" class="layui-nav-img">
 
                 </a>
-<!--                <dl class="layui-nav-child">-->
-<!--                    <dd><a href="/admin/userInfo" style="font-weight:bolder;color: #0C0C0C">基本资料</a></dd>-->
-<!--                </dl>-->
             </li>
             <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: white;font-size: 18px;position: relative;top: 10px">退出</a></li>
         </ul>
@@ -27,38 +24,25 @@
 
     <div class="layui-side " >
         <div class="layui-side-scroll " style="background-color: #EEEEEE">
-            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree "  lay-filter="test">
                 <li>&nbsp;</li>
                 <li class="layui-nav-item" style="background-color: #eeeeee "><a th:if="${session.u_Account eq 'admin'}" href="/admin/userinit" style="color: #0C0C0C">用户管理</a></li>
                 <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/init" style="color: #0C0C0C">商品管理</a></li>
-<!--                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/shoppingCarInit"style="color: #0C0C0C">购物车管理</a></li>-->
-<!--                <li class="layui-nav-item" style="background-color: #EEEEEE">-->
-<!--                    <a href="javascript:" style="color: #0C0C0C">订单管理</a>-->
-<!--                    <dl class="layui-nav-child">-->
-<!--                        <dd><a th:href="@{/admin/BuyOrderInit}" >我是买家</a></dd>-->
-<!--                        <dd><a th:href="@{/admin/SellOrderInit}" >我是卖家</a></dd>-->
-<!--                    </dl>-->
-<!--                </li>-->
                 <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/admin/BuyOrderInit}" style="color: #0C0C0C">订单管理</a></li>
-                <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/}" style="color: #0C0C0C">返回主页</a></li>
             </ul>
         </div>
     </div>
 
     <div class="layui-body">
-        <!-- 内容主体区域 -->
         <table id="demo" lay-filter="test"></table>
     </div>
 
     <div class="layui-footer">
-        <!-- 底部固定区域 -->
         © xmu-secondhandmarket
     </div>
 </div>
 <script th:src="@{/layui/layui.js}"></script>
 <script>
-    //JavaScript代码区域
     layui.use('element', function(){
         var element = layui.element;
 
@@ -68,9 +52,9 @@
     layui.use('table', function(){
         var table = layui.table;
         table.on('tool(test)', function(obj){
-            var data = obj.data; //获得当前行数据
-            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
             const $=layui.$;
             if(layEvent === 'detail'){ //查看
                 layer.confirm('确认查看', function(index){
@@ -184,18 +168,6 @@
                     break;
             };
         });
-        // function go(){
-        //     layui.use('layer', function(){
-        //         var layer = layui.layer;
-        //         layer.open({
-        //             title: false,
-        //             type:2,
-        //             area: ['500px', '500px'],
-        //             content:"/admin/userhead",
-        //         });
-        //     });
-        // }
-        //第一个实例
         var tableIns = table.render({
             elem: '#demo'
             ,url: '/admin/userdata'

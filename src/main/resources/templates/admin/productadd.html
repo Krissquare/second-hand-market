@@ -4,12 +4,10 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>校园二手物品后台</title>
-<!--    <link rel="stylesheet" th:href="@{/layui/css/layui4.css}"/>-->
     <link rel="stylesheet" th:href="@{/layui/css/layui5.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/all.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/owl.theme.default.min.css}">
-    <!--    <link rel="shortcut icon" type="imath:ge/x-i@{/on" href="assets/img/Favicon.ico">-->
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/animate.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/fontawesome.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/fontawesome.min.css}">
@@ -854,17 +852,6 @@
             <input type="text"   name="p_Title" id="p_Title" required  lay-verify="required" autocomplete="off" class="layui-input">
         </div>
     </div>
-    <!--    <div class="layui-form-item">-->
-    <!--        <label class="layui-form-label">物品名称</label>-->
-    <!--&lt;!&ndash;        <div class="layui-input-inline">&ndash;&gt;-->
-    <!--&lt;!&ndash;            <input type="text"   name="p_Name" required autocomplete="off" class="layui-input">&ndash;&gt;-->
-    <!--&lt;!&ndash;        </div>&ndash;&gt;-->
-    <!--        <div class="layui-input-inline">-->
-    <!--            <select name="p_Name" id="o_type1" lay-verify="required" lay-filter="xmFilter">-->
-    <!--                <option value="请选择"></option>-->
-    <!--            </select>-->
-    <!--        </div>-->
-    <!--    </div>-->
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
         <label class="layui-form-label">物品数量</label>
         <div class="layui-input-inline">
@@ -880,13 +867,8 @@
         </div>
     </div>
 
-<!--    <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">-->
-<!--        <label class="layui-form-label">入手时间</label>-->
-<!--        <div class="layui-input-inline">-->
             <input type="hidden"   name="p_Date"  th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}"
                    required autocomplete="off" class="layui-input">
-<!--        </div>-->
-<!--    </div>-->
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
         <label class="layui-form-label">物品标价</label>
         <div class="layui-input-inline">
@@ -908,9 +890,6 @@
         </textarea>
         </div>
     </div>
-<!--    <div class="layui-input-inline ">-->
-<!--        <button  class="layui-btn-xs"  style="margin-left: 120px" lay-event="imgUpload">添加图片</button>-->
-<!--    </div>-->
     <div class="layui-form-item"style="position: relative;left: 230px;top: 50px">
              <label class="layui-form-label">物品预览</label>
 
@@ -1069,11 +1048,7 @@
     </div> <!-- row first_footer -->
 </div> <!-- footer -->
 
-<!-- footer end -->
-<!--    <div class="layui-footer">-->
-<!--        &lt;!&ndash; 底部固定区域 &ndash;&gt;-->
-<!--        © xmu-secondhandmarket-->
-<!--    </div>-->
+
 
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/assets/js/jquery-3.4.1.min.js}"></script>
@@ -1148,10 +1123,10 @@
     layui.use(['table','form'], function(){
         var table = layui.table;
         const form = layui.form;
-        table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-            var data = obj.data; //获得当前行数据
-            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
             const $=layui.$;
 
             if(layEvent === 'detail'){ //查看
@@ -1322,7 +1297,7 @@
             ,limits:[10,30,50]
             , id: 'testReload'
             ,response: {
-                statusCode: 200 //规定成功的状态码，默认：0
+                statusCode: 200
             }
             ,cols: [[ //表头
                 {field: 'p_Id', title: '物品编号', sort: true}

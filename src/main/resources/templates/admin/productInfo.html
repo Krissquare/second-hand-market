@@ -29,18 +29,15 @@
 <body class="layui-layout-body" >
 <div class="layui-layout layui-layout-admin ">
     <div class="layui-header" style="background-color: #ffb65a" >
-        <div class="layui-logo" style="font-weight:bolder;font-style: italic" style="color: #000000">厦门大学二手市场后台</div>
-        <ul class="layui-nav layui-layout-right " style="background-color:  #ffb65a" >
+        <img src="../assets/img/后台管理.png"style="width: 1700px;height: 79px">
+        <ul class="layui-nav layui-layout-right "  >
             <li class="layui-nav-item" >
-                <a href="javascript:" style="font-weight:bolder;color: #0C0C0C">
-                    <img th:src= "${userHead.getU_Url()}" class="layui-nav-img">
-                    我的
+                <a href="javascript:" style="font-weight:bolder;">
+                    <img th:src= "${userHead.getU_Url()}" style="width: 50px;height: 50px;position:relative;top: 10px" class="layui-nav-img">
+
                 </a>
-                <!--                <dl class="layui-nav-child">-->
-                <!--                    <dd><a href="/admin/userInfo" style="font-weight:bolder;color: #0C0C0C">基本资料</a></dd>-->
-                <!--                </dl>-->
             </li>
-            <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: #0C0C0C">退出</a></li>
+            <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: white;font-size: 18px;position: relative;top: 10px">退出</a></li>
         </ul>
     </div>
 
@@ -48,47 +45,21 @@
         <div class="layui-side-scroll " style="background-color: #EEEEEE">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree "  lay-filter="test">
+                <li>&nbsp;</li>
                 <li class="layui-nav-item" style="background-color: #eeeeee "><a th:if="${session.u_Account eq 'admin'}" href="/admin/userinit" style="color: #0C0C0C">用户管理</a></li>
                 <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/init" style="color: #0C0C0C">商品管理</a></li>
-                <!--                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/shoppingCarInit"style="color: #0C0C0C">购物车管理</a></li>-->
-                <!--                <li class="layui-nav-item" style="background-color: #EEEEEE">-->
-                <!--                    <a href="javascript:" style="color: #0C0C0C">订单管理</a>-->
-                <!--                    <dl class="layui-nav-child">-->
-                <!--                        <dd><a th:href="@{/admin/BuyOrderInit}" >我是买家</a></dd>-->
-                <!--                        <dd><a th:href="@{/admin/SellOrderInit}" >我是卖家</a></dd>-->
-                <!--                    </dl>-->
-                <!--                </li>-->
                 <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/admin/BuyOrderInit}" style="color: #0C0C0C">历史订单查询</a></li>
-                <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/}" style="color: #0C0C0C">返回主页</a></li>
             </ul>
         </div>
     </div>
     <div class="layui-body">
-        <!-- 内容主体区域 -->
-        <div class="between-header border border-danger rounded mb-0 head-left">
-            <div class="layui-form-item">
-            <select class="select-menu form-select d-none d-sm-block" onchange="javascript:window.open(this.options[this.selectedIndex].value)">
-                <option value="selected">商品状态</option>
-                <option value="" >上架中</option>
-                <option value="2">待审核</option>
-                <option value="3">已下架</option>
-            </select>
+        <!-- 内容主体区域  -->
+        <div>&nbsp;</div>
+        <div class="demoTable" style="margin-top: 10px;margin-left: 10px;">
+            <div class="layui-col-md4">
+                <input class="layui-input" name="productId" id="demoReload" autocomplete="off" placeholder="请输入商品名称">
             </div>
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">下拉选择框</label>-->
-<!--                    <div class="layui-input-block">-->
-<!--                        <select name="interest" lay-filter="ftest">-->
-<!--                            <option value="0">上架中</option>-->
-<!--                            <option value="1">已下架</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-
-            <div class="input-group">
-                <input type="text" placeholder="搜索"  aria-label="search" style="width: 270px" aria-describedby="button-addon2">
-                <div class="input-group-btn"><button type="button" style="position: relative;left: -390%" class="btn btn-danger text-uppercase font-weight-normal">搜索</button></div>
-            </div>
+            <button class="layui-btn" data-type="reload" >搜索</button>
         </div>
 
 
@@ -116,13 +87,6 @@
 }
 </script>
 
-<!--<script>-->
-<!--    //JavaScript代码区域-->
-<!--    layui.use('element', function(){-->
-<!--        var element = layui.element;-->
-
-<!--    });-->
-<!--</script>-->
 <script type="text/html" id="xuhao">
     {{d.LAY_INDEX}}
 </script>
@@ -307,19 +271,6 @@
         });
 
 
-        // var $ = layui.$, active = {
-        //     reload: function(){
-        //         table.reload('testReload', {
-        //             where: {
-        //                 p_Status: "上架中"
-        //             }
-        //         });
-        //     }
-        // };
-        // $('check_pass').on('click', function(){
-        //     var type = $(this).data('type');
-        //     active[type] ? active[type].call(this) : '';
-        // });
 
         form.on('select', function(data){
             var value=data.value;
