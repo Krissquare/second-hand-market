@@ -300,6 +300,7 @@ public class showController {
         if(category.equals("selected"))
         {
             List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name1(txt);
+            System.out.println(list.size());
             PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
             req.getSession().setAttribute("search",txt);
             m.addAttribute("productList",pageInfo);
