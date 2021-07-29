@@ -79,7 +79,7 @@ public class ForgotController {
                                  @RequestParam("u_RePassword") String rePassWord,
                                  HttpSession session) {
         if(!passWord.equals(rePassWord)) {
-            session.setAttribute("isValidPassword", false);
+            session.setAttribute("isSuccessfulModification", false);
             return "redirect:/changePassword";
         }
         else {
@@ -87,12 +87,13 @@ public class ForgotController {
             user.setU_Password(passWord);
             userService.updatePwd(user);
 
+            session.setAttribute("isSuccessfulModification", true);
             session.removeAttribute("emailNeedToChangePassword");
             session.removeAttribute("UserVerificationCode");
             session.removeAttribute("isEmailRegistered");
             session.removeAttribute("isValidCode");
             session.removeAttribute("isValidPassword");
-            return "redirect:/";
+            return "redirect:/login";
         }
     }
 

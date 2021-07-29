@@ -27,7 +27,7 @@ public class SignInController {
 
     @RequestMapping("/logout")
     public String logout( HttpSession session) {
-        session.setAttribute("u_Account",null);
+       session.removeAttribute("u_Account");
         return "redirect:/";
     }
 
@@ -36,7 +36,8 @@ public class SignInController {
     @PostMapping("/user/login")
     public String loginin(@RequestParam("u_Account") String account, @RequestParam("u_Password") String originPassword, HttpSession session) {
         String password = Cipher.isInWhiteList(account) ? originPassword : Cipher.Encipher(originPassword);
-
+        session.removeAttribute("isSuccessfulRegistration");
+        session.removeAttribute("isSuccessfulModification");
         if(userService.selectUserById(account) == null){
             session.setAttribute("msg","用户名不存在");
             return "redirect:/login";

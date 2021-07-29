@@ -19,7 +19,7 @@ public interface WishListMapper {
     @Select("select * from wishlist where u_Account=#{0} and p_Id=#{1}")
     Wishlist selectByAccountId(String u_Account,int p_Id);
 
-    @Select("select w.w_Id,w.u_Account,w.p_Id,p.p_Title, p.p_href, p.p_Price,p.p_Des from wishlist w,product p where w.p_Id=p.p_Id and w.u_Account=#{0}")
+    @Select("select w.w_Id,w.u_Account,w.p_Id,p.p_Title, p.p_href, p.p_Price,p.p_Des,p_originalPrice from wishlist w,product p where w.p_Id=p.p_Id and w.u_Account=#{0}")
     List<WishProduct> selectByAccount(String u_Account);
 
     @Delete("delete from wishlist where u_Account=#{0} and p_Id=#{1}")
