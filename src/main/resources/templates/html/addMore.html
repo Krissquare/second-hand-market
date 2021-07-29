@@ -1069,6 +1069,7 @@
 </script>
 <script th:inline="javascript">
     var myVarate = [[${session.url}]];
+    let tilte=document.getElementById("p_Title");
     console.log(myVarate);
     layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function () {
         var layer = layui.layer, upload = layui.upload, $ = layui.$, demoText = $('#demoText');
@@ -1080,7 +1081,12 @@
             accept: 'images',
             bindAction: '#uploadBtn',
             method: 'post',
-            acceptMime: 'image/*'
+            acceptMime: 'image/*',
+            data: {
+            title: function (){
+                return $('#p_Title').val();
+            }
+        }
             ,before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
@@ -1110,7 +1116,12 @@
             accept: 'images',
             bindAction: '#uploadBtn',
             method: 'post',
-            acceptMime: 'image/*'
+            acceptMime: 'image/*',
+            data: {
+                title: function (){
+                    return $('#p_Title').val();
+                }
+            }
             ,before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
@@ -1140,7 +1151,12 @@
             accept: 'images',
             bindAction: '#uploadBtn',
             method: 'post',
-            acceptMime: 'image/*'
+            acceptMime: 'image/*',
+            data: {
+                title: function (){
+                    return $('#p_Title').val();
+                }
+            }
             ,before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
@@ -1170,7 +1186,12 @@
             accept: 'images',
             bindAction: '#uploadBtn',
             method: 'post',
-            acceptMime: 'image/*'
+            acceptMime: 'image/*',
+            data: {
+                title: function (){
+                    return $('#p_Title').val();
+                }
+            }
             ,before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
@@ -1199,7 +1220,12 @@
             accept: 'images',
             bindAction: '#uploadBtn',
             method: 'post',
-            acceptMime: 'image/*'
+            acceptMime: 'image/*',
+            data: {
+                title: function (){
+                    return $('#p_Title').val();
+                }
+            }
             ,before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
