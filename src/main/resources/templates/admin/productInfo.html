@@ -36,9 +36,6 @@
                     <img th:src= "${userHead.getU_Url()}" style="width: 50px;height: 50px;position:relative;top: 10px" class="layui-nav-img">
 
                 </a>
-                <!--                <dl class="layui-nav-child">-->
-                <!--                    <dd><a href="/admin/userInfo" style="font-weight:bolder;color: #0C0C0C">基本资料</a></dd>-->
-                <!--                </dl>-->
             </li>
             <li class="layui-nav-item"><a href="/admin/quit" style="font-weight:bolder;color: white;font-size: 18px;position: relative;top: 10px">退出</a></li>
         </ul>
@@ -51,16 +48,7 @@
                 <li>&nbsp;</li>
                 <li class="layui-nav-item" style="background-color: #eeeeee "><a th:if="${session.u_Account eq 'admin'}" href="/admin/userinit" style="color: #0C0C0C">用户管理</a></li>
                 <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/init" style="color: #0C0C0C">商品管理</a></li>
-                <!--                <li class="layui-nav-item" style="background-color: #EEEEEE"><a href="/admin/shoppingCarInit"style="color: #0C0C0C">购物车管理</a></li>-->
-                <!--                <li class="layui-nav-item" style="background-color: #EEEEEE">-->
-                <!--                    <a href="javascript:" style="color: #0C0C0C">订单管理</a>-->
-                <!--                    <dl class="layui-nav-child">-->
-                <!--                        <dd><a th:href="@{/admin/BuyOrderInit}" >我是买家</a></dd>-->
-                <!--                        <dd><a th:href="@{/admin/SellOrderInit}" >我是卖家</a></dd>-->
-                <!--                    </dl>-->
-                <!--                </li>-->
                 <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/admin/BuyOrderInit}" style="color: #0C0C0C">历史订单查询</a></li>
-                <li class="layui-nav-item" style="background-color: #EEEEEE"><a th:href="@{/}" style="color: #0C0C0C">返回主页</a></li>
             </ul>
         </div>
     </div>
@@ -99,13 +87,6 @@
 }
 </script>
 
-<!--<script>-->
-<!--    //JavaScript代码区域-->
-<!--    layui.use('element', function(){-->
-<!--        var element = layui.element;-->
-
-<!--    });-->
-<!--</script>-->
 <script type="text/html" id="xuhao">
     {{d.LAY_INDEX}}
 </script>
@@ -290,19 +271,6 @@
         });
 
 
-        // var $ = layui.$, active = {
-        //     reload: function(){
-        //         table.reload('testReload', {
-        //             where: {
-        //                 p_Status: "上架中"
-        //             }
-        //         });
-        //     }
-        // };
-        // $('check_pass').on('click', function(){
-        //     var type = $(this).data('type');
-        //     active[type] ? active[type].call(this) : '';
-        // });
 
         form.on('select', function(data){
             var value=data.value;
