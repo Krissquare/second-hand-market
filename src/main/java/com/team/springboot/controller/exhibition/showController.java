@@ -280,6 +280,10 @@ public class showController {
         ArrayList<Order> buyOrderList;
         ArrayList<Order> sellOrderList;
         String account = (String) req.getSession().getAttribute("u_Account");
+        if(account == null)
+        {
+            return "redirect:/login";
+        }
         buyOrderList = (ArrayList<Order>) orderService.selectOrderAndProductBuy(account);
         sellOrderList = (ArrayList<Order>) orderService.selectOrderAndProductSell(account);
         m.addAttribute("myAllOrdersBuy",buyOrderList);
@@ -315,7 +319,9 @@ public class showController {
     public String showMyAllSellOrder(HttpSession session, Model model){
         String account = (String) session.getAttribute("u_Account");
         if(account == null)
+        {
             return "redirect:/login";
+        }
         ArrayList<Order> myAllOrdersSell = (ArrayList<Order>) orderService.selectOrderAndProductSell(account);
         model.addAttribute("myAllOrderSell",myAllOrdersSell);
 
