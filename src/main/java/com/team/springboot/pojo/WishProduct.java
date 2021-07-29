@@ -5,8 +5,18 @@ public class WishProduct {
     private String p_Title;
     private String p_href;
     private double p_Price;
+    private double p_originalPrice;
     private int p_Id;
     private String p_Des;
+
+    public double getP_originalPrice()
+    {
+        return p_originalPrice;
+    }
+    public void setP_originalPrice(double p_originalPrice)
+    {
+        this.p_originalPrice=p_originalPrice;
+    }
 
     public String getP_Des()
     {
