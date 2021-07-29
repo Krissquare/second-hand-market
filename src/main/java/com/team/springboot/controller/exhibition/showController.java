@@ -84,7 +84,7 @@ public class showController {
     //市场界面侧边栏页面控制
     @RequestMapping("/searchPage")
     public String searchPage(Model m, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo, HttpServletRequest req) {
-        int pageSize = 16;
+        int pageSize = 15;
         PageHelper.startPage(pageNo, pageSize);
         List<ProductCategory> list = productCategoryService.selectProductAll();
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);

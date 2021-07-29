@@ -22,4 +22,5 @@ public interface ProductService {
     List<Product>selectProductByp_name(String p_Name);
     List<Product> selectProductAll();
     void setStatusById(String p_Status,int p_ID);
+    List<Product> select();
 }
