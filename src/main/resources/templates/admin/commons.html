@@ -35,23 +35,13 @@
         </ul>
     </div>
 
-<!--    <div th:fragment="sidebar" class="layui-side layui-bg-black">-->
-<!--        <div class="layui-side-scroll">-->
-<!--            &lt;!&ndash; 左侧导航区域（可配合layui已有的垂直导航） &ndash;&gt;-->
-<!--            <ul class="layui-nav layui-nav-tree"  lay-filter="test">-->
-<!--                <<li class="layui-nav-item"><a th:href="@{/showAll}">返回前台</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
 
     <div class="layui-body">
-        <!-- 内容主体区域 -->
         <table id="demo" lay-filter="test"></table>
 
     </div>
 
     <div class="layui-footer">
-        <!-- 底部固定区域 -->
         © xmu-secondhandmarket
     </div>
 </div>
@@ -66,10 +56,10 @@
 <script th:inline="javascript">
     layui.use('table', function(){
         var table = layui.table;
-        table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-            var data = obj.data; //获得当前行数据
-            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+        table.on('tool(test)', function(obj){ 
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
             const $=layui.$;
 
             if(layEvent === 'detail'){ //查看

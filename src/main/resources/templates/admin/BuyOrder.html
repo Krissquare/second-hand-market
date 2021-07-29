@@ -122,8 +122,8 @@
         table.on('tool(test)', function (obj){
             const $ = layui.$;
             const data = obj.data;
-            const layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-            const tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+            const layEvent = obj.event;
+            const tr = obj.tr;
             const oId = data.o_Id;
             if(layEvent == 'edit'){ //修改收货地址
                 layer.open({
