@@ -52,7 +52,8 @@ public class RegistController {
             return "redirect:/registration";
         }
         else {
-            userService.insertOne(new User(account, name, password, email, sex, phone));
+            String encipheredPassword = Cipher.Encipher(password);
+            userService.insertOne(new User(account, name, encipheredPassword, email, sex, phone));
             session.setAttribute("isSuccessfulRegistration", true);
             session.removeAttribute("isValidRegisteredAccount");
             session.removeAttribute("isValidRegisteredEmail");

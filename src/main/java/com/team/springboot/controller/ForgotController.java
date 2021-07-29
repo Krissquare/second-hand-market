@@ -1,6 +1,7 @@
 package com.team.springboot.controller;
 
 
+import com.team.springboot.pojo.Cipher;
 import com.team.springboot.pojo.User;
 import com.team.springboot.service.UserService;
 import com.team.springboot.utils.SendVerificationCode;
@@ -84,7 +85,10 @@ public class ForgotController {
         }
         else {
             User user = userService.selectUserByEmail((String) session.getAttribute("emailNeedToChangePassword"));
-            user.setU_Password(passWord);
+            String psw = passWord;
+            if ( !Cipher.isInWhiteList((String) session.getAttribute("u_Account")) )
+                psw = Cipher.Encipher(passWord);
+            user.setU_Password(psw);
             userService.updatePwd(user);
 
             session.setAttribute("isSuccessfulModification", true);
