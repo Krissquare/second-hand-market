@@ -45,12 +45,26 @@ public class ShoppingController {
     public String shopProduct(HttpServletRequest req,Model m)
     {
         String account = (String)req.getSession().getAttribute("u_Account");
-
         if(account == null)
             return "redirect:/login";
 
         List<ShoppingCarProduct> list = shoppingCarService.selectShoppingCarProductById(account);
-        m.addAttribute("sproduct",list);
+        List<Product> plist=productService.select();
+        for(ShoppingCarProduct s:list)
+        {
+            for(Product p:plist)
+            {
+                if(s.getP_Id()==p.getP_Id())
+                {
+                    if(s.getP_Num()>p.getP_num())
+                    {
+                        shoppingCarService.updateNum(account,s.getP_Id(),p.getP_num());
+                    }
+                }
+            }
+        }
+        List<ShoppingCarProduct> nlist = shoppingCarService.selectShoppingCarProductById(account);
+        m.addAttribute("sproduct",nlist);
         return "html/cart";
     }
 

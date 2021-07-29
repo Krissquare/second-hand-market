@@ -57,4 +57,7 @@ public interface ProductMapper {
     @Select("select p_Id,p_Account,p_Name,c_Name,p_Title,p_originalPrice,p_Price,p_href,p_num,p_Date,p_Status from product inner join Category on product.c_Id=Category.c_Id and p_num!=0 and p_Status!='已下架' and p_Status!='待审核'")
     List<Product> selectProductAll();
 
+    @Select("select p_Id,p_Account,p_Name,p_Title,p_originalPrice,p_Price,p_href,p_num,p_Date,p_Status from product")
+    List<Product> select();
+
 }

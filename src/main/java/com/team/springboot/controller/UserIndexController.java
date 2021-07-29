@@ -48,6 +48,10 @@ public class UserIndexController {
         @RequestMapping("/userWallet")
         public String login(HttpSession session, Model model) {
                 String account = (String) session.getAttribute("u_Account");
+                if(account == null)
+                {
+                    return "redirect:/login";
+                }
                 User user = userService.selectUserById(account);
                 model.addAttribute(user);
                 return "html/wallet";

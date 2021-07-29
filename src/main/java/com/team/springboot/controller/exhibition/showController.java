@@ -31,6 +31,8 @@ public class showController {
     @Autowired
     ProductService productService;
 
+    private boolean isFirst=true;
+
     //辅助列表显示函数
     private List<List<ProductCategory>> row1ToRow2(List<ProductCategory> singleList) {
         List<List<ProductCategory>> doubleList = new ArrayList<>();
@@ -84,7 +86,7 @@ public class showController {
     //市场界面侧边栏页面控制
     @RequestMapping("/searchPage")
     public String searchPage(Model m, @RequestParam(defaultValue = "1", required = true, value = "pageNo") Integer pageNo, HttpServletRequest req) {
-        int pageSize = 16;
+        int pageSize = 15;
         PageHelper.startPage(pageNo, pageSize);
         List<ProductCategory> list = productCategoryService.selectProductAll();
         PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list, pageSize);
@@ -280,6 +282,10 @@ public class showController {
         ArrayList<Order> buyOrderList;
         ArrayList<Order> sellOrderList;
         String account = (String) req.getSession().getAttribute("u_Account");
+        if(account == null)
+        {
+            return "redirect:/login";
+        }
         buyOrderList = (ArrayList<Order>) orderService.selectOrderAndProductBuy(account);
         sellOrderList = (ArrayList<Order>) orderService.selectOrderAndProductSell(account);
         m.addAttribute("myAllOrdersBuy",buyOrderList);
@@ -296,15 +302,30 @@ public class showController {
         if(category.equals("selected"))
         {
             List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name1(txt);
+            System.out.println(list.size());
             PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
-            req.getSession().setAttribute("search",txt);
+            if(isFirst)
+            {
+                req.getSession().setAttribute("search",txt);
+                isFirst=false;
+            }else {
+                req.getSession().setAttribute("search",null);
+                isFirst=true;
+            }
             m.addAttribute("productList",pageInfo);
         }
         else
         {
             List<ProductCategory> list=productCategoryService.selectCategory(category,txt);
             PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
-            req.getSession().setAttribute("search",txt);
+            if(isFirst)
+            {
+                req.getSession().setAttribute("search",txt);
+                isFirst=false;
+            }else {
+                req.getSession().setAttribute("search",null);
+                isFirst=true;
+            }
             m.addAttribute("productList",pageInfo);
         }
         return "html/shop-left-sidebar";
@@ -315,7 +336,9 @@ public class showController {
     public String showMyAllSellOrder(HttpSession session, Model model){
         String account = (String) session.getAttribute("u_Account");
         if(account == null)
+        {
             return "redirect:/login";
+        }
         ArrayList<Order> myAllOrdersSell = (ArrayList<Order>) orderService.selectOrderAndProductSell(account);
         model.addAttribute("myAllOrderSell",myAllOrdersSell);
 

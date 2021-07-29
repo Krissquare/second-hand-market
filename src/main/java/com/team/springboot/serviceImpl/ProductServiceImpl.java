@@ -100,4 +100,10 @@ public class ProductServiceImpl implements ProductService {
         productMapper.setStatusById(p_Status,p_ID);
     }
 
+    @Override
+    public List<Product> select()
+    {
+        return productMapper.select();
+    }
+
 }
