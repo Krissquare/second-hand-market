@@ -1322,16 +1322,16 @@
 <script th:src="@{/layui/jquery.min.js}"></script>
 
 <script th:inline="javascript">
-  let buyList = [[${myAllOrdersBuy}]];
+  // let buyList = [[${myAllOrdersBuy}]];
   let sellList = [[${myAllOrderSell}]];
-  buyList.forEach((oneOrder)=>{
-    if (oneOrder.o_Status == '已发货'){
-      let btBuy = document.getElementById('bt_buy_' + oneOrder.o_Id);
-      btBuy.onclick = function () {
-        location.href = '/HasReceived?o_Id=' + oneOrder.o_Id;
-      }
-    }
-  });
+  // buyList.forEach((oneOrder)=>{
+  //   if (oneOrder.o_Status == '已发货'){
+  //     let btBuy = document.getElementById('bt_buy_' + oneOrder.o_Id);
+  //     btBuy.onclick = function () {
+  //       location.href = '/HasReceived?o_Id=' + oneOrder.o_Id;
+  //     }
+  //   }
+  // });
   sellList.forEach((oneOrder)=>{
     if (oneOrder.o_Status == '未发货'){
       let expressID = document.getElementById('expressID_'+oneOrder.o_Id);
