@@ -35,7 +35,7 @@ public interface ProductMapper {
     void deleteProductById(int p_ID);
 
 
-    @Update("update product set p_Title = #{p_Title}, p_Des = #{p_Des}, p_Price = #{p_Price}, p_Date = #{p_Date}  where p_Id = #{p_Id}")
+    @Update("update product set p_Title = #{p_Title}, p_Des = #{p_Des}, p_Price = #{p_Price}, p_Date = #{p_Date}, p_num = #{p_num}  where p_Id = #{p_Id}")
     void updateProduct(Product product);
 
 
