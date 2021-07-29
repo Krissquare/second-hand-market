@@ -4,12 +4,10 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>校园二手物品后台</title>
-    <!--    <link rel="stylesheet" th:href="@{/layui/css/layui4.css}"/>-->
     <link rel="stylesheet" th:href="@{/layui/css/layui5.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/all.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/owl.theme.default.min.css}">
-    <!--    <link rel="shortcut icon" type="imath:ge/x-i@{/on" href="assets/img/Favicon.ico">-->
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/animate.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/fontawesome.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/fontawesome.min.css}">
@@ -891,9 +889,6 @@
 
     </div>
 
-    <!--    <div class="layui-input-inline ">-->
-    <!--        <button  class="layui-btn-xs"  style="margin-left: 120px" lay-event="imgUpload">添加图片</button>-->
-    <!--    </div>-->
 
     <div>&nbsp;</div>
     <div class="layui-input-inline login-btn"style="position: relative;left: 230px;top: 50px">
@@ -1224,10 +1219,10 @@
     layui.use(['table','form'], function(){
         var table = layui.table;
         const form = layui.form;
-        table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-            var data = obj.data; //获得当前行数据
-            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
             const $=layui.$;
 
             if(layEvent === 'detail'){ //查看
