@@ -1,6 +1,7 @@
 package com.team.springboot.controller;
 
 
+import com.team.springboot.pojo.User;
 import com.team.springboot.service.UserService;
 import com.team.springboot.utils.SendVerificationCode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,14 +39,13 @@ public class ForgotController {
     //验证后修改密码
     @RequestMapping("/changePassword")
     public String changePassword(HttpSession session) {
-        if(session.getAttribute("isValidCode").equals(true)) {
+        if(session.getAttribute("isValidCode").equals(true))
             return "/html/changePassword";
-        }
         else
             return "redirect:/verify";
     }
 
-    //邮箱冲突控制
+    //判断用户输入的邮箱是否是注册过的邮箱
     @PostMapping("/forget/isEmailRegistered")
     public String isEmailRegistered(@RequestParam("u_Email") String email, HttpSession session) {
         session.setAttribute("emailNeedToChangePassword", email);
@@ -75,11 +75,25 @@ public class ForgotController {
 
     //修改密码后的跳转
     @PostMapping("/changePassword/isValidPassword")
-    public String changePassword(@RequestParam("u_PassWord") String passWord, @RequestParam("u_RePassWord") String rePassWord) {
-        if(!passWord.equals(rePassWord))
+    public String changePassword(@RequestParam("u_Password") String passWord,
+                                 @RequestParam("u_RePassword") String rePassWord,
+                                 HttpSession session) {
+        if(!passWord.equals(rePassWord)) {
+            session.setAttribute("isValidPassword", false);
             return "redirect:/changePassword";
-        else
+        }
+        else {
+            User user = userService.selectUserByEmail((String) session.getAttribute("emailNeedToChangePassword"));
+            user.setU_Password(passWord);
+            userService.updatePwd(user);
+
+            session.removeAttribute("emailNeedToChangePassword");
+            session.removeAttribute("UserVerificationCode");
+            session.removeAttribute("isEmailRegistered");
+            session.removeAttribute("isValidCode");
+            session.removeAttribute("isValidPassword");
             return "redirect:/";
+        }
     }
 
 }

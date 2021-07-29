@@ -25,9 +25,9 @@ public class SendVerificationCode {
 
     //controller层调用此方法
 
-    public String sendMessage(String mail) {
+    public String sendMessage(String email) {
         //将传过来的邮箱赋给receiveMailAccount
-        receiveMailAccount = mail;
+        receiveMailAccount = email;
 
         String ver = generateCode();
 
