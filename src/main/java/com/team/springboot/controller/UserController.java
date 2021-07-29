@@ -95,7 +95,7 @@ public class UserController {
         BaseResponse<Integer> baseResponse = new BaseResponse<Integer>();
 
         if(u.getU_Phone().length() < 11 || u.getU_Name() == "" || u.getU_Email().indexOf("@") == -1){
-            baseResponse.setCode(500);  // 前端所传内容不符合要求
+            baseResponse.setCode(500);
             baseResponse.setMsg("保存失败");
         }else{
             baseResponse.setCode(200);
