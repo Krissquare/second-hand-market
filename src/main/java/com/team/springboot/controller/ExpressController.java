@@ -35,7 +35,7 @@ public class ExpressController {
         order.setO_Status("已发货");
         orderService.StatusUpdate(order);
 
-        return "redirect:/showMyTransactionOrders";
+        return "redirect:/ShowMyAllSellOrder";
     }
 
     //确认收货
