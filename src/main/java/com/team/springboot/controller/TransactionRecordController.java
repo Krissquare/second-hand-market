@@ -23,7 +23,11 @@ import java.util.UUID;
 @Controller
 public class TransactionRecordController {
     @RequestMapping("/transactionRecord")
-    public String login() {
+    public String login(HttpSession session) {
+        String account = (String) session.getAttribute("u_Account");
+        if(account == null)
+            return "redirect:/login";
+
         return "html/transactionRecord";
     }
 }

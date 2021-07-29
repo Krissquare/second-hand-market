@@ -220,16 +220,13 @@ public class UserController {
     }
 
     @RequestMapping("/addMoreImg")
-    public String moreImg(@RequestParam("Title") String title,HttpSession session,Model model)
+    public String moreImg()
     {
-        ProductCategory p=productCategoryService.selectByTitle(title);
-        session.setAttribute("Title",title);
-        model.addAttribute("p",p);
         return "html/addMore";
     }
     @RequestMapping(value="/addImg" , method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse addImg(@RequestParam("file") MultipartFile file , HttpServletRequest request) throws IOException {
+    public BaseResponse addImg(@RequestParam("file") MultipartFile file , HttpServletRequest request,@RequestParam("title") String Title) throws IOException {
         BaseResponse baseResponse=new BaseResponse();
         System.out.println(file);
         String pathString = null;
@@ -244,8 +241,7 @@ public class UserController {
             baseResponse.setCode(200);
             baseResponse.setMsg(pathString);
             request.getSession().setAttribute("img",realPath);
-            String title= (String) request.getSession().getAttribute("Title");
-            ProductCategory p=productCategoryService.selectByTitle(title);
+            ProductCategory p=productCategoryService.selectByTitle(Title);
             productImgService.insert(p.getP_Id(),realPath);
 
         }
