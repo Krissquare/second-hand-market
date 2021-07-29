@@ -97,6 +97,10 @@ public class GoodsDetailController   {
    public String buyGoodsInit(@RequestParam("p_Id") String p_Id, HttpServletRequest req, Model m){
        System.out.println(p_Id);
         String account = (String)req.getSession().getAttribute("u_Account");
+
+       if(account == null)
+           return "redirect:/login";
+
         Product p = goodsService.selectProduct(Integer.valueOf(p_Id));
         Address a  = orderService.selectAddressValue(account);
         List<String> list = new ArrayList<>();

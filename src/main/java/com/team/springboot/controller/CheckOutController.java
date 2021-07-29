@@ -43,6 +43,9 @@ public class CheckOutController {
     @RequestMapping("/checkOutWithCart")
     public String checkOutWithCartProcessor(Model model, HttpSession session){
         String account = (String) session.getAttribute("u_Account");
+        if(account == null)
+            return "redirect:/login";
+
         Order virtualOrder = new Order();
         ArrayList<ShoppingCarProduct> myShoppingCar
                 = (ArrayList<ShoppingCarProduct>) shoppingCarService.selectShoppingCarProductById(account);
@@ -64,6 +67,9 @@ public class CheckOutController {
                                 @RequestParam("pid") String pid,
                                 HttpSession session){
         String account = (String) session.getAttribute("u_Account");
+        if(account == null)
+            return "redirect:/login";
+
         String orderId = "o" + String.valueOf( orderService.selectOrderCount() + 1);//新订单编号-递增规则
         int p_id = Integer.valueOf(pid);
 
