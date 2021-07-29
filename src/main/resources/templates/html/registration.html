@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html class="" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html class="" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Hitech</title>
 	<meta charset="utf-8"/>
@@ -847,8 +847,10 @@
 	<div class="container custom_container">
 		<h3 class="text-center">注册您的账号</h3>
 		<div id="Registration" class="page-content card card-block p-3 p-sm-4  ">
-			<form class="layui-form" method="post">
-
+			<p th:if="${session.isValidRegisteredAccount!= null and !session.isValidRegisteredAccount}" class="text-muted">您输入的账号已经注册，请重新注册。</p>
+			<p th:if="${session.isValidRegisteredEmail!= null and !session.isValidRegisteredEmail}" class="text-muted">您输入的邮箱已经注册，请重新注册。</p>
+			<p th:if="${session.isValidRegisteredPassword!= null and !session.isValidRegisteredPassword}" class="text-muted">您两次密码输入不一致，请重新注册。</p>
+			<form class="layui-form" th:action="@{/registration/add}" method="post">
 				<div class="d-flex">
 					<div class="form-group col-md-6 pl-0 ">
 					<label class="font-weight-bolder">性别</label><br>
@@ -868,7 +870,7 @@
 					<div class="form-group col-md-6 pr-0 " >
 						<label for="l_name" class="font-weight-bolder">姓名</label>
 						<input type="text" name="u_Name" class="form-control" id="l_name"  required>
-						<div class="invalid-feedback">Please Enter your Name.</div>
+						<div class="invalid-feedback">请输入您的姓名。</div>
 					</div>
 				</div>
 
@@ -876,88 +878,41 @@
 					<div class="form-group col-md-6 pl-0 ">
 						<label for="f_name" class="font-weight-bolder">账号</label>
 						<input type="text" name="u_Account" class="form-control" id="f_name" style="width: 550px" required>
-						<div class="invalid-feedback">Please Enter your Name.</div>
+						<div class="invalid-feedback">请输入您的账号。</div>
 					</div>
 
 
 				</div>
 				<div class="form-group">
 					<label for="r_date" class="font-weight-bolder">电话号码</label>
-					<input type="text" name="u_Phone" id="r_date" class="form-control"    required>
-					<div class="invalid-feedback">Please Enter your birthdate.</div>
+					<input type="text" name="u_Phone" id="r_date" class="form-control"  required>
+					<div class="invalid-feedback">请输入您的电话号码。</div>
 				</div>
 
 				<div class="form-group">
 					<label for="r_email" class="font-weight-bolder">电子邮箱</label>
 					<input type="email" name="u_Email" class="form-control" id="r_email"  required>
-					<div class="invalid-feedback">Please Enter your Account Name.</div>
+					<div class="invalid-feedback">请输入您的电子邮箱。</div>
 				</div>
 
 				<div class="form-group">
 					<label for="r_password" class="font-weight-bolder">密码</label>
 					<input type="password" name="u_Password" class="form-control" id="r_password" required>
-					<div class="invalid-feedback">Please Enter your password.</div>
+					<div class="invalid-feedback">请输入您的密码。</div>
 				</div>
 				<div class="form-group">
 					<label for="r_password" class="font-weight-bolder">确认密码</label>
-					<input type="password" name="u_Password" class="form-control"  required>
-					<div class="invalid-feedback">Please Enter your password.</div>
+					<input type="password" name="u_RePassword" class="form-control"  required>
+					<div class="invalid-feedback">请确认您输入的密码。</div>
 				</div>
 
-
 				<div>
-					<button lay-submit lay-filter="register" id="btn" class="btn btn-primary mt-3 float-right"style="width: 200px;height: 40px;position: relative;left: -180px">注册</button>
+					<button lay-submit lay-filter="register" class="btn btn-primary mt-3 float-right" style="width: 200px;height: 40px;position: relative;left: -180px">注册</button>
 				</div>
 
 
 			</form>
 		</div>
-
-		<script th:src="@{/layui/layui.all.js}"></script>
-		<script>
-			const form = layui.form;
-			const layer = layui.layer;
-			const $ = layui.$;
-			var $flag=false;
-			layui.use(['form','layer'], function(){
-				form.render();
-				form.on('submit(register)', function(data){
-					const field = data.field;
-					console.log(field);
-					$.ajax({
-						url: '/add',
-						type: 'POST',
-						contentType: "application/json;charset=utf-8",
-						data: JSON.stringify(field),
-						success:function (res){
-							console.log(res.code)
-							if(res.code === 200){
-								console.log(res.code)
-								layer.msg('注册成功');
-								$flag=true;
-							}else if(res.code === 500){
-								layer.msg('注册失败！错误:500');
-							}
-							else if(res.code === 400){
-								layer.msg('注册失败,账号已存在');
-							}
-						},
-						error: function (res){
-							layer.msg('Http错误！');
-						}
-					});
-					window.setTimeout("go()",1500);
-					return false;
-				});
-
-			});
-			function go(){
-				if($flag)
-					window.location.href = '/login';
-				else
-					window.location.href = '/registration';
-			}
-		</script>
 	</div>
 
 </div>	<!-- login_page -->
