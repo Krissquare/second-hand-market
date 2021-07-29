@@ -31,6 +31,8 @@ public class showController {
     @Autowired
     ProductService productService;
 
+    private boolean isFirst=true;
+
     //辅助列表显示函数
     private List<List<ProductCategory>> row1ToRow2(List<ProductCategory> singleList) {
         List<List<ProductCategory>> doubleList = new ArrayList<>();
@@ -302,14 +304,28 @@ public class showController {
             List<ProductCategory> list = productCategoryService.selectProductCategorysByp_name1(txt);
             System.out.println(list.size());
             PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
-            req.getSession().setAttribute("search",txt);
+            if(isFirst)
+            {
+                req.getSession().setAttribute("search",txt);
+                isFirst=false;
+            }else {
+                req.getSession().setAttribute("search",null);
+                isFirst=true;
+            }
             m.addAttribute("productList",pageInfo);
         }
         else
         {
             List<ProductCategory> list=productCategoryService.selectCategory(category,txt);
             PageInfo<ProductCategory> pageInfo = new PageInfo<ProductCategory>(list,pageSize);
-            req.getSession().setAttribute("search",txt);
+            if(isFirst)
+            {
+                req.getSession().setAttribute("search",txt);
+                isFirst=false;
+            }else {
+                req.getSession().setAttribute("search",null);
+                isFirst=true;
+            }
             m.addAttribute("productList",pageInfo);
         }
         return "html/shop-left-sidebar";
