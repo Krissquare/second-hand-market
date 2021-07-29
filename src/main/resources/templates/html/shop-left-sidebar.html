@@ -367,25 +367,7 @@
 
 </svg>
 
-<!-- cart-model -->
-<div class="modal fade" id="cart_model" tabindex="-1"  aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body text-center">
-				<p><svg width="30px" height="30px"><use xlink:href="#checked"></use></svg></p>
-				<p class="text-muted font-weight-bold">商品已成功加入您的购物车</p>
-				<div>
-					<a class="text-danger font-weight-bold" href="cart.html">查看我的购物车</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div> <!-- cart_model -->
+
 
 
 <!-- eye-model -->
@@ -440,25 +422,7 @@
 </div>  <!-- eye_model -->
 
 
-<!-- heart-model -->
-<div class="modal fade" id="heart_model" tabindex="-1"  aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body text-center">
-				<p><svg width="30px" height="30px"><use xlink:href="#checked"></use></svg></p>
-				<p class="text-muted font-weight-bold">商品已成功加入您的愿望清单</p>
-				<div>
-					<a class="text-danger font-weight-bold" href="cart.html">查看我的心愿清单</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div> <!-- heart_model -->
+
 
 
 
@@ -939,19 +903,20 @@
 	<div class="container custom_container">
 		<div class="row">
 			<div class="col-lg-3 col-md-4">
-				<div class="shop_sidebar border card-body rounded bg-white">
+				<div class="shop_sidebar border card-body rounded bg-white"style="height: 300px">
 
 					<h2 class="text-uppercase card-title  font-weight-bold d-md-block d-none">价格区间</h2>
-
-
+					<HR  width="220px" color=#987cb9 SIZE=4>
+<img src="/assets/img/导航.png"style="width: 18px;height: 21px">
+<p style="position: relative;top: -21px;left: 28px;font-size: 16px">快速筛选</p>
 					<a class="dropdown-item font-weight-bolder"
-					   href="/zeroToOne" style="font-size: small" >&nbsp;&nbsp;0~100</a>
+					   href="/zeroToOne" style="font-size: 14px;position: relative;top: -30px;left: 17px" >&nbsp;&nbsp;0~100</a>
 					<a class="dropdown-item font-weight-bolder"
-					   href="/oneToTwo" style="font-size: small">100~200</a>
+					   href="/oneToTwo" style="font-size: 14px;position: relative;top: -66px;left: 97px" >100~200</a>
 					<a class="dropdown-item font-weight-bolder"
-					   href="/twoToThree" style="font-size: small">200~300</a>
+					   href="/twoToThree" style="font-size: 14px;position: relative;top: -74px;left: 9px" >200~300</a>
 					<a class="dropdown-item font-weight-bolder"
-					   href="/threeToFour" style="font-size: small">300~400</a>
+					   href="/threeToFour" style="font-size: 14px;position: relative;top: -110px;left: 97px">300~400</a>
 					<p>    </p>
 					<div class="s_filter mt-0">  </div>
 					<div class="s_filter mt-0">
@@ -959,12 +924,12 @@
 						<form class="layui-form" th:action="@{/range}" method="post">
 							<div class="layui-input-inline">
 
-								<input type="number" id="minRange" name="minRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px">
+								<input type="number" id="minRange" name="minRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px;position: relative;top: -110px">
 
-								<input type="number" id="maxRange" name="maxRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px">
+								<input type="number" id="maxRange" name="maxRange" placeholder="¥" class="layui-input" style="width: 60px;height: 30px;position: relative;top: -110px;left: 10px">
 
 							</div>
-							<button data-search-url="#" class="btn btn-primary clear_btn " id="range">确定</button>
+							<button data-search-url="#" class="btn btn-primary clear_btn " id="range"style="position: relative;top: -171px;left: 149px">确定</button>
 
 
 						</form>
@@ -1045,9 +1010,7 @@
 									<del class="text-muted" th:text="'￥'+${p.getP_originalPrice()}"></del>
 									<div class="button-group">
 
-										<a href="#" class="symbol" data-toggle="modal" data-target="#cart_model"><svg width="20px" height="19px"><use xlink:href="#pro_cart"></use></svg></a>
 										<a href="#" class="symbol"  data-toggle="modal" th:attr="data-target='#eye_model' + ${p.getP_Id()}"><svg width="20px" height="19px"><use xlink:href="#pro_eye"></use></svg></a>
-										<a href="#"  class="symbol" data-toggle="modal" data-target="#heart_model"><svg width="20px" height="19px"><use xlink:href="#pro_heart"></use></svg></a>
 									</div>
 									<div>&nbsp;</div>
 
